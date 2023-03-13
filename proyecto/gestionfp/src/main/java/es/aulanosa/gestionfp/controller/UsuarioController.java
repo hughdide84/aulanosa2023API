@@ -21,13 +21,17 @@ public class UsuarioController {
     public ResponseEntity<?> create(@RequestBody UsuarioDTO usuarioDTO) {
         Usuario usuarioConsultado = service.findById(usuarioDTO.getId());
 
-        if (usuarioConsultado == null) {
+        if (usuarioConsultado == null && checkSizes(usuarioDTO)) {
             Usuario usuarioGuardado = usuarioDTO.toModel();
             service.save(usuarioGuardado);
             return ResponseEntity.status(HttpStatus.CREATED).body(usuarioGuardado);
+        } else if () {
+
+
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El usuario ya fue añadido previamente");
         }
+
     }
 
     @GetMapping("/{id}")
@@ -71,6 +75,21 @@ public class UsuarioController {
             return ResponseEntity.ok(usuarios);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontraron usuarios");
+        }
+    }
+
+    public boolean checkSizes(UsuarioDTO usuarioDTO) {
+
+        if (usuarioDTO.getNombre().length() > 50) {
+            return false;
+        } else if (usuarioDTO.getPassword().length() > 100) {
+            return false;
+        } else if (usuarioDTO.getRol().length() > 10) {
+            return false;
+        } else if (usuarioDTO.getEmail().length() > 50) {
+            return false;
+        } else {
+            true;
         }
     }
 }
