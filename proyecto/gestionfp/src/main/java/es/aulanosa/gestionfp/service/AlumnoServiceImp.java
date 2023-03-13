@@ -39,6 +39,10 @@ public class AlumnoServiceImp implements AlumnoService{
     @Transactional
     @Override
     public Alumno modificar(Alumno alumno) {
-        return null;
+        if (repositorio.findById(alumno.getId()) == null) {
+            return repositorio.save(alumno);
+        } else {
+            throw new NoSeHaEncontradoException("No se ha encontrado el usuario");
+        }
     }
 }
