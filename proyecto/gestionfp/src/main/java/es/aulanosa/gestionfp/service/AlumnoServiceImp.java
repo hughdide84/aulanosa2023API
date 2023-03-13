@@ -3,10 +3,12 @@ package es.aulanosa.gestionfp.service;
 import es.aulanosa.gestionfp.model.Alumno;
 import es.aulanosa.gestionfp.repository.AlumnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Service
 public class AlumnoServiceImp implements AlumnoService{
 
 
