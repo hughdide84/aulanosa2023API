@@ -8,7 +8,7 @@ public interface AlumnoService {
 
     List<Alumno> buscarTodo();
 
-    Alumno buscarPorId(int id);
+    Object buscarPorId(int id);
     void eliminar(int id);
     Alumno guardar(Alumno alumno);
     Alumno modificar(Alumno alumno);
