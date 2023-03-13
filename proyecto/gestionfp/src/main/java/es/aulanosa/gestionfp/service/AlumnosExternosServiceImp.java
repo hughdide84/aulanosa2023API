@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.service;
 
+import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.AlumnosExternos;
 import es.aulanosa.gestionfp.repository.AlumnosExternosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,11 +36,11 @@ public class AlumnosExternosServiceImp implements AlumnosExternosService {
 
     @Override
     @Transactional
-    public AlumnosExternos modificar(AlumnosExternos alumnoExterno) {
-        if(repository.existsById(alumnoExterno.getId())){
+    public AlumnosExternos modificar(AlumnosExternos alumnoExterno) throws NoSeHaEncontradoException {
+        if(!repository.existsById(alumnoExterno.getId())){
             return repository.save(alumnoExterno);
         }else{
-
+            throw new NoSeHaEncontradoException("No se ha encontrado el alumno externo");
         }
     }
 
