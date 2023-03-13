@@ -25,9 +25,8 @@ public class UsuarioController {
             Usuario usuarioGuardado = usuarioDTO.toModel();
             service.save(usuarioGuardado);
             return ResponseEntity.status(HttpStatus.CREATED).body(usuarioGuardado);
-        } else if () {
-
-
+        } else if (!checkSizes(usuarioDTO)) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se han respetado los tamaños de los campos");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El usuario ya fue añadido previamente");
         }
@@ -89,7 +88,7 @@ public class UsuarioController {
         } else if (usuarioDTO.getEmail().length() > 50) {
             return false;
         } else {
-            true;
+            return true;
         }
     }
 }
