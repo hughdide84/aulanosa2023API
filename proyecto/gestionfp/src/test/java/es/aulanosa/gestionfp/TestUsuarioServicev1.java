@@ -58,7 +58,7 @@ public class TestUsuarioServicev1 {
     @Test
     @Order(5)
     void borrarUsuario() {
-        usuarioService.deleteById(2);
+        usuarioService.deleteById(1);
     }
 
     @Test
