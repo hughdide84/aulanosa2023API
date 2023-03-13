@@ -59,6 +59,10 @@ public class TestUsuarioServicev1 {
     @Order(5)
     void borrarUsuario() {
         usuarioService.deleteById(1);
+        if (usuarioService.findById(1) == null)
+            System.out.println("Usuario borrado");
+        else
+            System.out.println("Usuario no borrado");
     }
 
     @Test
