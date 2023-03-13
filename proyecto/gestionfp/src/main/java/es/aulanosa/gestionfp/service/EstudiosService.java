@@ -7,13 +7,11 @@ import java.util.Optional;
 
 public interface EstudiosService {
 
+    public Estudios insertar(Estudios estudios);
 
     public Optional <Estudios> consultarPorId(Integer id);
 
-    public void borrar(Estudios estudios);
-
-    public Estudios insertar(Estudios estudios);
-
+    public void eliminar(Integer id);
 
 
 }
