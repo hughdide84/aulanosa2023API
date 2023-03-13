@@ -2,17 +2,22 @@ package es.aulanosa.gestionfp;
 
 import es.aulanosa.gestionfp.model.Usuario;
 import es.aulanosa.gestionfp.service.UsuarioService;
+import org.junit.jupiter.api.ClassOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestClassOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+@TestClassOrder(ClassOrderer.OrderAnnotation.class)
 @SpringBootTest
 public class TestUsuarioServicev1 {
 
     @Autowired
     private UsuarioService usuarioService;
 
-    @Test
+    @Test()
+    @Order(1)
     void insertarUsuario() {
         Usuario usuario = new Usuario();
         usuario.setNombre("Pepe");
@@ -24,15 +29,17 @@ public class TestUsuarioServicev1 {
     }
 
     @Test
+    @Order(2)
     void consultarUsuarioPorId() {
-        var a = usuarioService.findById(2);
+        var a = usuarioService.findById(1);
         System.out.println(a);
     }
 
     @Test
+    @Order(3)
     void updateUsuario() {
         Usuario usuario = new Usuario();
-        usuario.setId(2);
+        usuario.setId(1);
         usuario.setNombre("AAA");
         usuario.setPassword("Pérez");
         usuario.setRol("ROLE_ADMIN");
@@ -42,17 +49,20 @@ public class TestUsuarioServicev1 {
     }
 
     @Test
+    @Order(4)
     void consultarTodosUsuarios() {
         var a = usuarioService.findAll();
         System.out.println(a);
     }
 
     @Test
+    @Order(5)
     void borrarUsuario() {
         usuarioService.deleteById(2);
     }
 
     @Test
+    @Order(6)
     void consultarUsuarioPorNombre() {
         var a = usuarioService.findAllByNombre("Pepe");
         System.out.println(a);
