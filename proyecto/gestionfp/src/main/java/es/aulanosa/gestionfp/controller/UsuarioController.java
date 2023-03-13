@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -21,12 +22,12 @@ public class UsuarioController {
     public ResponseEntity<?> create(@RequestBody UsuarioDTO usuarioDTO) {
         Usuario usuarioConsultado = service.findById(usuarioDTO.getId());
 
-        if (usuarioConsultado == null && checkSizes(usuarioDTO)) {
+        if (usuarioConsultado == null && checkSizes(usuarioDTO).equals("")) {
             Usuario usuarioGuardado = usuarioDTO.toModel();
             service.save(usuarioGuardado);
             return ResponseEntity.status(HttpStatus.CREATED).body(usuarioGuardado);
-        } else if (!checkSizes(usuarioDTO)) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se han respetado los tamaños de los campos");
+        } else if (!checkSizes(usuarioDTO).equals("")) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Longitud excedida en el/los siguiente/-s campo/-s: " + checkSizes(usuarioDTO));
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El usuario ya fue añadido previamente");
         }
@@ -48,10 +49,12 @@ public class UsuarioController {
     public ResponseEntity<?> update(@RequestBody UsuarioDTO usuarioDTO) {
         Usuario usuarioConsultado = service.findById(usuarioDTO.getId());
 
-        if (usuarioConsultado != null) {
+        if (usuarioConsultado != null && checkSizes(usuarioDTO).equals("")) {
             Usuario usuarioActualizado = usuarioDTO.toModel();
             service.save(usuarioActualizado);
             return ResponseEntity.ok(usuarioActualizado);
+        } else if (!checkSizes(usuarioDTO).equals("")) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Longitud excedida en el/los siguiente/-s campo/-s: " + checkSizes(usuarioDTO));
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El usuario que desea modificar no existe");
         }
@@ -77,18 +80,33 @@ public class UsuarioController {
         }
     }
 
-    public boolean checkSizes(UsuarioDTO usuarioDTO) {
+    public String checkSizes(UsuarioDTO usuarioDTO) {
+        List<String> invalidFields = new ArrayList<>();
+        String msg = "";
 
         if (usuarioDTO.getNombre().length() > 50) {
-            return false;
+            invalidFields.add("nombre");
         } else if (usuarioDTO.getPassword().length() > 100) {
-            return false;
+            invalidFields.add("password");
         } else if (usuarioDTO.getRol().length() > 10) {
-            return false;
+            invalidFields.add("rol");
         } else if (usuarioDTO.getEmail().length() > 50) {
-            return false;
+            invalidFields.add("email");
         } else {
-            return true;
+
+        }
+
+        if (invalidFields.size() != 0) {
+            for (int i = 0; i < invalidFields.size(); i++) {
+                if (i != invalidFields.size() - 1) {
+                    msg += invalidFields.get(i) + ", ";
+                } else {
+                    msg += invalidFields.get(i);
+                }
+            }
+            return msg;
+        } else {
+            return msg;
         }
     }
 }
