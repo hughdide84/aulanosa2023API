@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.service;
 
+import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Usuario;
 import es.aulanosa.gestionfp.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +48,15 @@ public class UsuarioServiceImp implements UsuarioService{
     @Transactional
     public void deleteById(int id) {
         usuarioRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public Usuario update(Usuario usuario) throws NoSeHaEncontradoException {
+        if (usuarioRepository.findById(usuario.getId()) == null) {
+            return usuarioRepository.save(usuario);
+        } else {
+            throw new NoSeHaEncontradoException("No se ha encontrado el usuario");
+        }
     }
 }

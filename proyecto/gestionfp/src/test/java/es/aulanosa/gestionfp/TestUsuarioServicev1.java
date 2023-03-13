@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp;
 
+import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Usuario;
 import es.aulanosa.gestionfp.service.UsuarioService;
 import org.junit.jupiter.api.ClassOrderer;
@@ -22,10 +23,11 @@ public class TestUsuarioServicev1 {
         Usuario usuario = new Usuario();
         usuario.setNombre("Pepe");
         usuario.setPassword("Pérez");
-        usuario.setRol("ROLE_ADMIN");
+        usuario.setRol("ROLE_ADM");
         usuario.setEmail("pepe@gmial.com");
         var a = usuarioService.save(usuario);
         System.out.println(a);
+
     }
 
     @Test
@@ -39,13 +41,19 @@ public class TestUsuarioServicev1 {
     @Order(3)
     void updateUsuario() {
         Usuario usuario = new Usuario();
-        usuario.setId(1);
+        usuario.setId(12);
         usuario.setNombre("AAA");
         usuario.setPassword("Pérez");
         usuario.setRol("ROLE_ADMIN");
         usuario.setEmail("nada@nada");
-        var a = usuarioService.save(usuario);
-        System.out.println(a);
+        Usuario a = null;
+        try {
+            a = usuarioService.update(usuario);
+            System.out.println(a);
+        } catch (NoSeHaEncontradoException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     @Test
@@ -58,11 +66,16 @@ public class TestUsuarioServicev1 {
     @Test
     @Order(5)
     void borrarUsuario() {
-        usuarioService.deleteById(1);
-        if (usuarioService.findById(1) == null)
-            System.out.println("Usuario borrado");
-        else
-            System.out.println("Usuario no borrado");
+        Usuario usuarioConsultado = usuarioService.findById(15);
+        if (usuarioConsultado != null) {
+            usuarioService.deleteById(15);
+            if (usuarioService.findById(15) == null)
+                System.out.println("Usuario borrado");
+            else
+                System.out.println("Usuario no borrado");
+        } else {
+            System.out.println("Usuario no encontrado");
+        }
     }
 
     @Test
