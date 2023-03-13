@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.service;
 
+import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Curso;
 import es.aulanosa.gestionfp.repository.CursoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,11 +46,13 @@ public class CursoServiceImp implements CursoService {
     //modifica atributos de un objeto curso y lo sobreescribe
     @Override
     @Transactional
-    public Curso modificar(Curso curso) {
-        if(repositorio.existsById(curso.getId())){
-            
+    public Curso modificar(Curso curso) throws NoSeHaEncontradoException {
+        if (repositorio.findById(curso.getId()) == null) {
+            return repositorio.save(curso);
+        } else {
+            throw new NoSeHaEncontradoException("No se ha encontrado el usuario");
         }
-        return repositorio.save(curso);
+
     }
 
 

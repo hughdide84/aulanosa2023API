@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.service;
 
+import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Curso;
 
 import java.util.List;
@@ -8,11 +9,10 @@ import java.util.List;
 public interface CursoService {
 
     List<Curso> buscarTodo();
-
      Curso buscarPorId(int id);
      void eliminar(int id);
      Curso guardar(Curso curso);
-     Curso modificar(Curso curso);
+     Curso modificar(Curso curso) throws NoSeHaEncontradoException;
 
 
 
