@@ -5,6 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a5ef11b5-16f3-480b-a8ed-affc2d2e47b3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/model/Alumno.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/model/Alumno.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/AlumnoServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/AlumnoServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/UsuarioServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/UsuarioServiceImp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gestionfp/src/test/java/es/aulanosa/gestionfp/TestAlumnoServiceV1.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/test/java/es/aulanosa/gestionfp/TestAlumnoServiceV1.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,6 +53,29 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
 }</component>
+  <component name="RunManager">
+    <configuration name="TestAlumnoServiceV1.insertarUsuario" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="gestionfp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="es.aulanosa.gestionfp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
+      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestAlumnoServiceV1" />
+      <option name="METHOD_NAME" value="insertarUsuario" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.TestAlumnoServiceV1.insertarUsuario" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

@@ -21,11 +21,10 @@ public class Alumno {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @NotNull
-    @Size(max = 11, message = "El idCurso no puede tener más de 100 caracteres")
     private int idCurso;
     @NotNull
-    @Size(max = 11, message = "El idEstudios no puede tener más de 100 caracteres")
     private int idEstudios;
+    @NotNull
     @NotBlank(message = "El nombre no puede estar vacío")
     @Size(max = 100, message = "El nombre no puede tener más de 100 caracteres")
     private String nombre;
@@ -33,8 +32,6 @@ public class Alumno {
     private char cv;
     @NotNull
     private char carta;
-    @NotNull
-    @Size(max = 11, message = "El idEmpresa no puede tener más de 100 caracteres")
     private int idEmpresa;
     private Date inicioPr;
     private Date finPr;
