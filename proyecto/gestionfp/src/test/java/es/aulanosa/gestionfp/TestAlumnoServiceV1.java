@@ -76,7 +76,8 @@ public class TestAlumnoServiceV1 {
     void eliminarAlumno(){
 
         try{
-            service.eliminarAlumno(1);
+            service.eliminarAlumno(3);
+            System.out.println("Alumno eliminado con exito");
 
         }catch (DataIntegrityViolationException e){
             System.out.println("No se puede eliminar porque existen relaciones con la entidad");

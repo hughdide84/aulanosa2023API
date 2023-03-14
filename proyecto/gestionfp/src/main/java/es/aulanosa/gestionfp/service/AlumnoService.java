@@ -14,7 +14,7 @@ public interface AlumnoService {
 
     Optional<Alumno> buscarPorId(int id);
     Alumno modificarAlumno(Alumno alumno) throws NoSeHaEncontradoException;
-    void eliminarAlumno(int id);
+    void eliminarAlumno(int id) throws NoSeHaEncontradoException;
 
 
 }

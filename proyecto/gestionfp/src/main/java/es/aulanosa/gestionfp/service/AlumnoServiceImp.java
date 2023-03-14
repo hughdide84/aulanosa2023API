@@ -35,9 +35,11 @@ public class AlumnoServiceImp implements AlumnoService{
     //metodo para eliminar el alumno pasando su id
     @Transactional
     @Override
-    public void eliminarAlumno(int id) {
+    public void eliminarAlumno(int id) throws NoSeHaEncontradoException {
         if(repositorio.findById(id).isPresent()){
             repositorio.deleteById(id);
+        }else {
+            throw new NoSeHaEncontradoException("No existe en alumno");
         }
 
     }
