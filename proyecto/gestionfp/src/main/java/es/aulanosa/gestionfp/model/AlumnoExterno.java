@@ -19,6 +19,7 @@ public class AlumnoExterno {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotNull(message = "El idCurso no puede estar vacío")

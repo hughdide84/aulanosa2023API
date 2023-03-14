@@ -23,7 +23,7 @@ class TestAlumnoExternoV1 {
 
 	@Test
 	@Order(1)
-	void guardar(){
+	void insertarAlumnoExterno(){
 		AlumnoExterno alumnosExternos = new AlumnoExterno();
 		alumnosExternos.setCv('a');
 		alumnosExternos.setNombre("nose");
@@ -45,14 +45,8 @@ class TestAlumnoExternoV1 {
 		System.out.println(i);
 	}
 	@Test
-	@Order(3)
-	void eliminar(){
-		service.eliminar(2);
-		System.out.println("Alumno externo eliminado");
-	}
-	@Test
 	@Order(2)
-	void modificar() throws NoSeHaEncontradoException {
+	void modificarAlumnoExterno() throws NoSeHaEncontradoException {
 		Optional<AlumnoExterno> alumnosExternos = service.listarPorId(2);
 
 		if(alumnosExternos.isPresent()){
@@ -63,6 +57,12 @@ class TestAlumnoExternoV1 {
 		}else{
 			throw new NoSeHaEncontradoException("No se ha encontrado el alumno especificado");
 		}
+	}
+	@Test
+	@Order(3)
+	void eliminarAlumnoExterno(){
+		service.eliminar(2);
+		System.out.println("Alumno externo eliminado");
 	}
 
 }
