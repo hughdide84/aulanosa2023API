@@ -21,8 +21,8 @@ public class TestAlumnosEmpresasService {
     @Order(1)
     void insertarAlumnosEmpresas() {
         AlumnosEmpresas alumnosEmpresas = new AlumnosEmpresas();
-        alumnosEmpresas.setIdAlumno(1);
-        alumnosEmpresas.setIdEmpresa(1);
+        alumnosEmpresas.setIdAlumno(3);
+        alumnosEmpresas.setIdEmpresa(7);
         alumnosEmpresas.setEstado('a');
         var a = alumnosEmpresasService.save(alumnosEmpresas);
         System.out.println(a);
@@ -61,6 +61,7 @@ public class TestAlumnosEmpresasService {
         var b = alumnosEmpresasService.findById(1);
         if (b != null) {
             alumnosEmpresasService.deleteById(b.getId());
+            System.out.println("Registro eliminado");
         } else {
             throw new NoSeHaEncontradoException("No se ha encontrado el registro");
         }
