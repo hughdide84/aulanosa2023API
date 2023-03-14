@@ -2,7 +2,7 @@ package es.aulanosa.gestionfp;
 
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.AlumnoExterno;
-import es.aulanosa.gestionfp.service.AlumnosExternosServiceImp;
+import es.aulanosa.gestionfp.service.AlumnoExternoServiceImp;
 import org.junit.jupiter.api.ClassOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,7 @@ import java.util.Optional;
 class TestAlumnoExternoV1 {
 
 	@Autowired
-	private AlumnosExternosServiceImp service;
+	private AlumnoExternoServiceImp service;
 
 	@Test
 	@Order(1)

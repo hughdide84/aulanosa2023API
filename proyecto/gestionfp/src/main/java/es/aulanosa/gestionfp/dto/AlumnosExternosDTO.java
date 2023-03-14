@@ -1,6 +1,6 @@
 package es.aulanosa.gestionfp.dto;
 
-import es.aulanosa.gestionfp.model.AlumnosExternos;
+import es.aulanosa.gestionfp.model.AlumnoExterno;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,8 +27,8 @@ public class AlumnosExternosDTO {
     private char evaluacion;
     private char horario;
 
-    public AlumnosExternos convertirModel(){
-        AlumnosExternos alumnosExternos = new AlumnosExternos();
+    public AlumnoExterno convertirModel(){
+        AlumnoExterno alumnosExternos = new AlumnoExterno();
         alumnosExternos.setId(this.getId());
         alumnosExternos.setTelefono(this.getTelefono());
         alumnosExternos.setEvaluacion(this.getEvaluacion());
@@ -48,7 +48,7 @@ public class AlumnosExternosDTO {
         return alumnosExternos;
     }
 
-    public AlumnosExternosDTO crearDTO(AlumnosExternos alumnosExternos){
+    public AlumnosExternosDTO crearDTO(AlumnoExterno alumnosExternos){
         this.setId(alumnosExternos.getId());
         this.setTelefono(alumnosExternos.getTelefono());
         this.setEvaluacion(alumnosExternos.getEvaluacion());

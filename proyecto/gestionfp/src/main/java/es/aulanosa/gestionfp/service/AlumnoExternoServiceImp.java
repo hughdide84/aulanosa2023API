@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AlumnosExternosServiceImp implements AlumnosExternosService {
+public class AlumnoExternoServiceImp implements AlumnoExternoService {
     @Autowired
     private AlumnoExternoRepository repository;
 

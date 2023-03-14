@@ -6,7 +6,7 @@ import es.aulanosa.gestionfp.model.AlumnoExterno;
 import java.util.List;
 import java.util.Optional;
 
-public interface AlumnosExternosService {
+public interface AlumnoExternoService {
 
     List<AlumnoExterno> listarTodo();
 
