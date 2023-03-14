@@ -46,5 +46,32 @@ public class EstudiosController {
     public ResponseEntity<?> consultarTodos(){
         return ResponseEntity.status(HttpStatus.OK).body(servicio.consultarTodos());
     }
+
+    @GetMapping
+    @Operation(summary = "Modificar un estudio")
+    public ResponseEntity<?> modificar(@RequestBody EstudiosDTO estudiosDTO) throws NoSuchFieldException {
+        Optional<Estudios> estudiosConsultado = servicio.consultarPorId(estudiosDTO.getId());
+        if (estudiosConsultado.isPresent()) {
+            Estudios estudiosModificado = servicio.modificar(estudiosDTO.convertirModel());
+            return ResponseEntity.status(HttpStatus.OK).body(estudiosDTO.crearDTO(estudiosModificado));
+        }else {
+            ErrorEstudiosDto errorEstudiosDto = new ErrorEstudiosDto();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorEstudiosDto);
+        }
+    }
+
+   /* @GetMapping
+    @Operation(summary = "Eliminar un estudio")
+    public ResponseEntity<?> eliminar(@RequestParam Integer id){
+        Optional<Estudios> estudiosConsultado = servicio.consultarPorId(id);
+        if (estudiosConsultado.isPresent()) {
+            servicio.eliminar(id);
+            return ResponseEntity.status(HttpStatus.OK).body("Estudio eliminado");
+        }else {
+            ErrorEstudiosDto errorEstudiosDto = new ErrorEstudiosDto();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorEstudiosDto);
+        }
+    }*/
 }
+
 
