@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4133e6ee-c8f5-42f5-9fbe-e9a4948dee96" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/model/Comentario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/repository/ComentarioRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/ComentarioService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/ComentarioServiceImp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/config/SwaggerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gestionfp/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
