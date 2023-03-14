@@ -6,43 +6,47 @@ import es.aulanosa.gestionfp.repository.AlumnoExternoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.support.StandardMultipartHttpServletRequest;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AlumnosExternosServiceImp implements AlumnosExternosService {
+public class AlumnoExternoServiceImp implements AlumnoExternoService {
     @Autowired
     private AlumnoExternoRepository repository;
 
 
     @Override
     @Transactional(readOnly = true)
-    //lista todos los alumnos
+    //lista todos los campos
     public List<AlumnoExterno> listarTodo() {
         return repository.findAll();
     }
 
     @Override
     @Transactional
-    //elimina el alumno externo
-    public void eliminar(Integer id) {
-        repository.deleteById(id);
+    //elimina el alumno externo que tenga el id que se le pasa
+    public void eliminar(Integer id) throws NoSeHaEncontradoException {
+        if(repository.findById(id).isPresent()){
+            repository.deleteById(id);
+        }else{
+            throw new NoSeHaEncontradoException("No se ha encontrado el ID especificado");
+        }
     }
 
     @Override
     @Transactional
-    //guarda el alumno externo
+    //guarda el alumno externo que se le pasa
     public AlumnoExterno guardar(AlumnoExterno alumnoExterno) {
         return repository.save(alumnoExterno);
     }
 
     @Override
     @Transactional
-    //modifica el alumno externo
+    //modifica el alumno que se le pasa
     public AlumnoExterno modificar(AlumnoExterno alumnoExterno) throws NoSeHaEncontradoException {
-
-        //comprueba que el id elegido existe,en caso de que si, entra en el bucle y modifica el campo de ese id
+        //comprueba que existe el id que se le ha pasado, y si existe se modifica el campo
         if(repository.existsById(alumnoExterno.getId())){
             return repository.save(alumnoExterno);
         }else{
@@ -52,8 +56,12 @@ public class AlumnosExternosServiceImp implements AlumnosExternosService {
 
     @Override
     @Transactional(readOnly = true)
-    //lista segun la id que se le pasa
-    public Optional<AlumnoExterno> listarPorId(Integer id) {
-        return repository.findById(id);
+    //lista seguna la id que se le pasa
+    public Optional<AlumnoExterno> listarPorId(Integer id) throws NoSeHaEncontradoException {
+        if(repository.findById(id).isPresent()){
+            return repository.findById(id);
+        }else{
+            throw new NoSeHaEncontradoException("No se ha encontrado el alumno especificado con ese ID");
+        }
     }
 }

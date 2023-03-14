@@ -2,8 +2,7 @@ package es.aulanosa.gestionfp;
 
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.AlumnoExterno;
-import es.aulanosa.gestionfp.service.AlumnosExternosServiceImp;
-import jdk.dynalink.linker.LinkerServices;
+import es.aulanosa.gestionfp.service.AlumnoExternoServiceImp;
 import org.junit.jupiter.api.ClassOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -21,7 +20,7 @@ import java.util.Optional;
 class TestAlumnoExternoV1 {
 
 	@Autowired
-	private AlumnosExternosServiceImp service;
+	private AlumnoExternoServiceImp service;
 
 	@Test
 	@Order(1)
@@ -49,21 +48,22 @@ class TestAlumnoExternoV1 {
 	@Test
 	@Order(2)
 	void listarTodoAlumnoExterno(){
-		List<AlumnoExterno> lista= service.listarTodo();
+		List<AlumnoExterno> lista = service.listarTodo();
+
 		for (AlumnoExterno alumno :
 				lista) {
 			System.out.println(alumno);
 		}
 	}
-
 	@Test
 	@Order(3)
 	void listarAlumnoExterno(){
-		AlumnoExterno alumno = service.listarPorId(1).get();
-
-		System.out.println(alumno);
+		try{
+			Optional<AlumnoExterno> alumno = service.listarPorId(1);
+		}catch (NoSeHaEncontradoException e){
+			System.out.println(e);
+		}
 	}
-
 	@Test
 	@Order(4)
 	void modificarAlumnoExterno() throws NoSeHaEncontradoException {
@@ -81,14 +81,14 @@ class TestAlumnoExternoV1 {
 	@Test
 	@Order(5)
 	void eliminarAlumnoExterno(){
-		service.eliminar(2);
-		if(!service.listarPorId(2).isPresent()){
-			System.out.println("Alumno externo eliminado");
-		}else{
-			System.out.println("No se ha borrado");
+		int id = 14;
+
+		try {
+			service.eliminar(id);
+			System.out.println("Se ha eliminado el registro especificado de la base de datos");
+		}catch (NoSeHaEncontradoException e){
+			System.out.println(e);
 		}
+
 	}
-
-
-
 }
