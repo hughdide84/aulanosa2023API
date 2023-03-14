@@ -27,7 +27,7 @@ public class TestAlumnoServiceV1 {
         alumno.setCv('a');
         alumno.setCarta('b');
         alumno.setIdEmpresa(100);
-        alumno.setInicioPr(03-06-2022);
+        alumno.setInicioPr();
         var a = service.guardar(alumno);
         System.out.println(a);
 
