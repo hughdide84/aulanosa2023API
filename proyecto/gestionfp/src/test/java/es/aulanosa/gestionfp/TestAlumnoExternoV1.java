@@ -81,8 +81,8 @@ class TestAlumnoExternoV1 {
 	@Test
 	@Order(5)
 	void eliminarAlumnoExterno(){
-		service.eliminar(2);
-		if(service.listarPorId(2).isPresent()){
+		service.eliminar(10);
+		if(!service.listarPorId(10).isPresent()){
 			System.out.println("Alumno externo eliminado");
 		}else{
 			System.out.println("El alumno externo no ha podido ser eliminado crrectamente");
