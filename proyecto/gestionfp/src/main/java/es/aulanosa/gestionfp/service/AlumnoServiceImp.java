@@ -43,13 +43,15 @@ public class AlumnoServiceImp implements AlumnoService{
     public Alumno modificar(Alumno alumno) throws NoSeHaEncontradoException {
 
         Optional<Alumno> alumnoOptional = repositorio.findById(2);
+
         if(alumnoOptional.isPresent()){
             alumnoOptional.get().setNombre("Paco");
-            Alumno alumnosExternos1 = repositorio.save(alumnoOptional.get());
+            Alumno alumnoOptional1 = repositorio.save(alumnoOptional.get());
 
-            System.out.println("Alumno modificado a: " + alumnosExternos1);
+            System.out.println("Alumno modificado a: " + alumnoOptional1);
         }else{
             throw new NoSeHaEncontradoException("No se ha encontrado el alumno especificado");
         }
+        return alumno;
     }
 }
