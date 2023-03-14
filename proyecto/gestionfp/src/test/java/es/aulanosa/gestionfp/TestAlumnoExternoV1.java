@@ -73,12 +73,21 @@ class TestAlumnoExternoV1 {
 
 	@Test
 	@Order(4)
-	void listar(){
+	void listarTodoAlumnoExterno(){
 		List<AlumnoExterno> lista= service.listarTodo();
 		for (AlumnoExterno alumno :
 				lista) {
 			System.out.println(alumno);
 		}
 	}
+
+	@Test
+	@Order(5)
+	void listarAlumnoExterno(){
+		AlumnoExterno alumno = service.listarPorId(1).get();
+
+		System.out.println(alumno);
+	}
+
 
 }
