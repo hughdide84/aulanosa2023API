@@ -36,51 +36,53 @@ public class AlumnosExternosController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> consulta(@PathVariable Integer id){
-        Optional<AlumnoExterno> alumnosExternos = service.listarPorId(id);
-
-        if (alumnosExternos.isPresent()){
+        try{
+            Optional<AlumnoExterno> alumnosExternos = service.listarPorId(id);
             AlumnosExternosDTO alumnosExternosDTO = new AlumnosExternosDTO();
             alumnosExternosDTO.crearDTO(alumnosExternos.get());
 
             return ResponseEntity.status(HttpStatus.CREATED).body(alumnosExternosDTO);
-        }else{
+        }catch (NoSeHaEncontradoException e){
             ErrorDTO errorDTO = new ErrorDTO("E0001", "ID no encontrado");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
+
         }
     }
 
     @PutMapping("/")
     public ResponseEntity<?> editar(@RequestBody AlumnosExternosDTO alumnosExternosDTO){
-        Optional<AlumnoExterno> alumnosExternos = service.listarPorId(alumnosExternosDTO.getId());
-
-        if (alumnosExternos.isPresent()){
+        try{
+            Optional<AlumnoExterno> alumnosExternos = service.listarPorId(alumnosExternosDTO.getId());
             service.guardar(alumnosExternos.get());
             AlumnosExternosDTO alumnosExternosDTORecuperado = new AlumnosExternosDTO();
             alumnosExternosDTO.crearDTO(alumnosExternos.get());
 
             return ResponseEntity.status(HttpStatus.CREATED).body(alumnosExternosDTO);
-        }else if(!alumnosExternos.isPresent()){
+
+        }catch (NoSeHaEncontradoException e){
             ErrorDTO errorDTO = new ErrorDTO("E0002", "Alumno no encontrado");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
-        }else{
+        }catch (Exception e){
             ErrorDTO errorDTO = new ErrorDTO("E0004", "No se ha introducido un Alumno válido");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDTO);
+
         }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminar(@PathVariable int id){
-        Optional<AlumnoExterno> alumnosExternos = service.listarPorId(id);
-
-        if(alumnosExternos.isPresent()){
+        try{
+            Optional<AlumnoExterno> alumnosExternos = service.listarPorId(id);
             service.eliminar(alumnosExternos.get().getId());
 
             AlumnosExternosDTO alumnosExternosDTO = new AlumnosExternosDTO();
             alumnosExternosDTO.crearDTO(alumnosExternos.get());
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(alumnosExternosDTO);
-        }else{
+
+        }catch (NoSeHaEncontradoException e){
             ErrorDTO errorDTO = new ErrorDTO("E0002", "Alumno no encontrado");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
+
         }
     }
 

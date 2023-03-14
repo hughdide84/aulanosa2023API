@@ -6,6 +6,7 @@ import es.aulanosa.gestionfp.repository.AlumnoExternoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.support.StandardMultipartHttpServletRequest;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,8 +27,12 @@ public class AlumnoExternoServiceImp implements AlumnoExternoService {
     @Override
     @Transactional
     //elimina el alumno externo que tenga el id que se le pasa
-    public void eliminar(Integer id) {
-        repository.deleteById(id);
+    public void eliminar(Integer id) throws NoSeHaEncontradoException {
+        if(repository.findById(id).isPresent()){
+            repository.deleteById(id);
+        }else{
+            throw new NoSeHaEncontradoException("No se ha encontrado el ID especificado");
+        }
     }
 
     @Override
@@ -52,7 +57,11 @@ public class AlumnoExternoServiceImp implements AlumnoExternoService {
     @Override
     @Transactional(readOnly = true)
     //lista seguna la id que se le pasa
-    public Optional<AlumnoExterno> listarPorId(Integer id) {
-        return repository.findById(id);
+    public Optional<AlumnoExterno> listarPorId(Integer id) throws NoSeHaEncontradoException {
+        if(repository.findById(id).isPresent()){
+            return repository.findById(id);
+        }else{
+            throw new NoSeHaEncontradoException("No se ha encontrado el alumno especificado con ese ID");
+        }
     }
 }

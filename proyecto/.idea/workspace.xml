@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c2575183-66a4-4f62-a156-3054994e8e58" name="Changes" comment="" />
+    <list default="true" id="4a4ee20a-f05e-490a-af07-a07dcaeb3bc8" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -106,7 +106,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestAlumnoExternoV1.guardar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestAlumnoExternoV1.insertarAlumnoExterno" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gestionfp" />
       <extension name="coverage">
         <pattern>
@@ -116,7 +116,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
       <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestAlumnoExternoV1" />
-      <option name="METHOD_NAME" value="guardar" />
+      <option name="METHOD_NAME" value="insertarAlumnoExterno" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -141,10 +141,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.TestAlumnoExternoV1.eliminarAlumnoExterno" />
+        <item itemvalue="JUnit.TestAlumnoExternoV1.insertarAlumnoExterno" />
         <item itemvalue="Application.GestionfpApplication" />
         <item itemvalue="JUnit.TestAlumnoExternoV1.eliminar" />
         <item itemvalue="JUnit.TestAlumnoExternoV1.modificar" />
-        <item itemvalue="JUnit.TestAlumnoExternoV1.guardar" />
       </list>
     </recent_temporary>
   </component>

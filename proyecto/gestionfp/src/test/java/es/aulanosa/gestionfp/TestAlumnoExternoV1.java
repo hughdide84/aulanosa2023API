@@ -58,10 +58,10 @@ class TestAlumnoExternoV1 {
 	@Test
 	@Order(3)
 	void listarAlumnoExterno(){
-		Optional<AlumnoExterno> alumno = service.listarPorId(1);
-
-		if(alumno.isPresent()){
-			System.out.println(alumno.get());
+		try{
+			Optional<AlumnoExterno> alumno = service.listarPorId(1);
+		}catch (NoSeHaEncontradoException e){
+			System.out.println(e);
 		}
 	}
 	@Test
@@ -81,15 +81,14 @@ class TestAlumnoExternoV1 {
 	@Test
 	@Order(5)
 	void eliminarAlumnoExterno(){
-		service.eliminar(10);
-		if(!service.listarPorId(10).isPresent()){
-			System.out.println("Alumno externo eliminado");
-		}else{
-			System.out.println("El alumno externo no ha podido ser eliminado crrectamente");
+		int id = 14;
+
+		try {
+			service.eliminar(id);
+			System.out.println("Se ha eliminado el registro especificado de la base de datos");
+		}catch (NoSeHaEncontradoException e){
+			System.out.println(e);
 		}
+
 	}
-
-
-
-
 }
