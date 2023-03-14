@@ -1,11 +1,11 @@
 package es.aulanosa.gestionfp.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import org.hibernate.annotations.BatchSize;
+import org.apache.logging.log4j.message.Message;
 
 //Constructor
 @Entity
@@ -19,16 +19,15 @@ public class Proyectos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "idAlumno")
-    @NonNull
+    @NotNull(message = "Este campo no puede quedar vacio")
     private Integer idAlumno;
     @Column(name = "documento")
-    @NonNull
+    @NotNull(message = "Este campo no puede quedar vacio")
     private char documento;
     @Column(name = "presentacion")
-    @NonNull
+    @NotNull(message = "Este campo no puede quedar vacio")
     private char presentacion;
     @Column(name = "notaDoc")
-    @NonNull
     private Integer notaDoc;
     @Column(name = "notaPres")
     private Integer notaPres;
