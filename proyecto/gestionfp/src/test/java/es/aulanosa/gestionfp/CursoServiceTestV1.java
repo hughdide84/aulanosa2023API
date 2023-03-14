@@ -86,11 +86,14 @@ public class CursoServiceTestV1 {
     void eliminar(){
 
         try{
-            service.eliminarCurso(14);
+            service.eliminarCurso(9);
             System.out.println("Curso eliminado con exito");
 
+
         }catch (DataIntegrityViolationException e){
-            System.out.println("No se puede eliminar porque existen relaciones con la entidad o no existe");
+            System.out.println("No se puede eliminar porque existen relaciones con la entidad");
+        }catch (NoSeHaEncontradoException e){
+            System.out.println("El curso no se ha encontrado");
         }
 
     }

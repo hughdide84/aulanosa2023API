@@ -33,13 +33,16 @@ public class CursoServiceImp implements CursoService {
     //elimina el curso con el id que se le pase
     @Override
     @Transactional
-    public void eliminarCurso(int id) {
+    public void eliminarCurso(int id) throws NoSeHaEncontradoException {
 
         if(repositorio.findById(id).isPresent()){
             repositorio.deleteById(id);
         }else{
-            System.out.println("El curso que se intenta eliminar no existe");
+            throw new NoSeHaEncontradoException("Curso no existe");
         }
+
+
+
 
 
 

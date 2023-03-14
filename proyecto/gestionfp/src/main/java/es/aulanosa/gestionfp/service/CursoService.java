@@ -12,7 +12,7 @@ public interface CursoService {
     List<Curso> buscarTodo();
      Curso buscarPorId(int id);
     Curso modificarCurso(Curso curso) throws NoSeHaEncontradoException;
-     void eliminarCurso(int id);
+     void eliminarCurso(int id) throws NoSeHaEncontradoException;
 
 
 
