@@ -44,10 +44,8 @@ public class AlumnoServiceImp implements AlumnoService{
     @Override
     public Alumno modificar(Alumno alumno) throws NoSeHaEncontradoException {
 
-        Optional<Alumno> alumnoOptional = repositorio.findById(alumno.getId());
-
-        if(alumnoOptional.isPresent()){
-            Alumno alumnoOptional1 = repositorio.save(alumnoOptional.get());
+        if(repositorio.existsById(alumno.getId())){
+            repositorio.save(alumno);
 
         }else{
             throw new NoSeHaEncontradoException("No se ha encontrado el alumno especificado");
