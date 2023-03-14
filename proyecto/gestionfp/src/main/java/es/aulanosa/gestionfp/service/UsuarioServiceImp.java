@@ -53,7 +53,8 @@ public class UsuarioServiceImp implements UsuarioService{
     @Override
     @Transactional
     public Usuario update(Usuario usuario) throws NoSeHaEncontradoException {
-        if (usuarioRepository.findById(usuario.getId()) == null) {
+        var a = usuarioRepository.findById(usuario.getId());
+        if (!a.isEmpty()) {
             return usuarioRepository.save(usuario);
         } else {
             throw new NoSeHaEncontradoException("No se ha encontrado el usuario");
