@@ -25,8 +25,8 @@ public class AlumnoServiceImp implements AlumnoService{
 
     @Override
     @Transactional(readOnly = true)
-    public Alumno buscarPorId(int id) {
-        return repositorio.findById(id).orElse(null);
+    public Optional<Alumno> buscarPorId(int id) {
+        return Optional.ofNullable(repositorio.findById(id).orElse(null));
     }
     @Transactional
     @Override

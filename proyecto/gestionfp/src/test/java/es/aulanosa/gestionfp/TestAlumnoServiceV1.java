@@ -1,6 +1,7 @@
 package es.aulanosa.gestionfp;
 
 
+import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Alumno;
 import es.aulanosa.gestionfp.service.AlumnoService;
 import org.junit.jupiter.api.ClassOrderer;
@@ -9,9 +10,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestClassOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import java.sql.Timestamp;
 import java.util.GregorianCalendar;
+import java.util.Optional;
 
 @TestClassOrder(ClassOrderer.OrderAnnotation.class)
 @SpringBootTest
@@ -40,9 +43,67 @@ public class TestAlumnoServiceV1 {
 
     @Test
     @Order(2)
-    void consultarUsuarioPorId() {
-        var a = usuarioService.findById(1);
-        System.out.println(a);
+    void bucarPorId(){
+        Alumno alumno = new Alumno();
+        alumno.setIdCurso(1);
+        alumno.setIdEstudios(3);
+        alumno.setNombre("alumnoNuevo2");
+        alumno.setCv('a');
+        alumno.setCarta('b');
+        alumno.setIdEmpresa(100);
+        alumno.setInicioPr(new Timestamp(new GregorianCalendar(2014, 3, 24).getTimeInMillis()));
+        alumno.setFinPr(new Timestamp(new GregorianCalendar(2016, 2, 1).getTimeInMillis()));
+
+
+
+        System.out.println(service.buscarPorId(alumno.getId()));
+
+    }
+
+    @Test
+    @Order(3)
+    void buscarTodo(){
+        Alumno alumno = new Alumno();
+        alumno.setIdCurso(1);
+        alumno.setIdEstudios(3);
+        alumno.setNombre("alumnoNuevo");
+        alumno.setCv('a');
+        alumno.setCarta('b');
+        alumno.setIdEmpresa(100);
+        alumno.setInicioPr(new Timestamp(new GregorianCalendar(2014, 3, 24).getTimeInMillis()));
+        alumno.setFinPr(new Timestamp(new GregorianCalendar(2016, 2, 1).getTimeInMillis()));
+
+
+
+        System.out.println(service.buscarTodo());
+
+    }
+
+    @Test
+    @Order(4)
+    void modificar() throws NoSeHaEncontradoException {
+        Optional<Alumno> optionalAlumno = service.buscarPorId(3);
+
+        if(optionalAlumno.isPresent()){
+            optionalAlumno.get().setNombre("AlumnoMOD");
+            Alumno alumno1 = service.modificar(optionalAlumno.get());
+
+            System.out.println("Alumno modificado a: " + optionalAlumno);
+        }else{
+            throw new NoSeHaEncontradoException("No se ha encontrado el alumno especificado");
+        }
+    }
+    @Test
+    @Order(5)
+    void eliminar(){
+
+        try{
+            service.eliminar(1);
+
+        }catch (DataIntegrityViolationException e){
+            System.out.println("No se puede eliminar porque existen relaciones con la entidad");
+        }
+
     }
 
 }
