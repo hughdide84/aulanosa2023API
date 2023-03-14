@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.service;
 
+import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Proyectos;
 import es.aulanosa.gestionfp.repository.ProyectosRepository;
 import jakarta.transaction.Transactional;
@@ -34,6 +35,17 @@ public class ProyectosServiceImp implements ProyectosService{
     @Transactional
     public Optional<Proyectos> consultar(Integer id) {
         return repository.findById(id);
+    }
+
+    //Metodo para modificar datos de la tabla proyectos
+    @Override
+    public Proyectos update(Proyectos proyectos) throws NoSeHaEncontradoException {
+        var a = repository.findById(proyectos.getId());
+        if (!a.isEmpty()) {
+            return repository.save(proyectos);
+        } else {
+            throw new NoSeHaEncontradoException("No se ha el campo que desea modificar");
+        }
     }
 
     //Metodo para borrar datos de la tabla proyectos

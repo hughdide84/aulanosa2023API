@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.service;
 
+import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Proyectos;
 
 import java.util.List;
@@ -10,5 +11,6 @@ public interface ProyectosService {
     public Proyectos guardar(Proyectos proyectos);
     public List<Proyectos> buscarTodo();
     public Optional<Proyectos> consultar(Integer id);
+    public Proyectos update(Proyectos proyectos) throws NoSeHaEncontradoException;
     public void borrar(Integer id);
 }
