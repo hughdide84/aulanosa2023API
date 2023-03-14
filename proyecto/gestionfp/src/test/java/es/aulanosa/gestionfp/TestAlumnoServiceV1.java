@@ -36,7 +36,7 @@ public class TestAlumnoServiceV1 {
         alumno.setInicioPr(new Timestamp(new GregorianCalendar(2014, 3, 24).getTimeInMillis()));
         alumno.setFinPr(new Timestamp(new GregorianCalendar(2016, 2, 1).getTimeInMillis()));
 
-        var a = service.guardar(alumno);
+        var a = service.guardarAlumno(alumno);
         System.out.println(a);
 
     }
@@ -81,12 +81,12 @@ public class TestAlumnoServiceV1 {
 
     @Test
     @Order(4)
-    void modificar() throws NoSeHaEncontradoException {
+    void modificarUsuario() throws NoSeHaEncontradoException {
         Optional<Alumno> optionalAlumno = service.buscarPorId(4);
 
         if(optionalAlumno.isPresent()){
             optionalAlumno.get().setNombre("AlumnoMOD");
-            Alumno alumno1 = service.modificar(optionalAlumno.get());
+            Alumno alumno1 = service.modificarAlumno(optionalAlumno.get());
 
             System.out.println("Alumno modificado a: " + optionalAlumno);
         }else{
@@ -95,10 +95,10 @@ public class TestAlumnoServiceV1 {
     }
     @Test
     @Order(5)
-    void eliminar(){
+    void eliminarUsuario(){
 
         try{
-            service.eliminar(1);
+            service.eliminarAlumno(1);
 
         }catch (DataIntegrityViolationException e){
             System.out.println("No se puede eliminar porque existen relaciones con la entidad");

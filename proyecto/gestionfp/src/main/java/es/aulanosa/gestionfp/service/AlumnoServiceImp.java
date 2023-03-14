@@ -14,35 +14,41 @@ import java.util.Optional;
 public class AlumnoServiceImp implements AlumnoService{
 
 
+    //instanciar repositorio para usar sus metodos
     @Autowired
     private AlumnoRepository repositorio;
 
+    //metodo que devuelve una lista de todos los alumnos
     @Override
     @Transactional(readOnly = true)
     public List<Alumno> buscarTodo() {
         return repositorio.findAll();
     }
 
+    //metodo que devuelve toda la informacion de el alumno que se le pase el id
     @Override
     @Transactional(readOnly = true)
     public Optional<Alumno> buscarPorId(int id) {
 
         return repositorio.findById(id);
     }
+    //metodo para eliminar el alumno pasando su id
     @Transactional
     @Override
-    public void eliminar(int id) {
+    public void eliminarAlumno(int id) {
         repositorio.deleteById(id);
     }
+    //metodo para insertar un alumno en la BD
     @Transactional
     @Override
-    public Alumno guardar(Alumno alumno) {
+    public Alumno guardarAlumno(Alumno alumno) {
 
         return repositorio.save(alumno);
     }
+    //metodo para modificar los atributos de un alumno a partir de su id
     @Transactional
     @Override
-    public Alumno modificar(Alumno alumno) throws NoSeHaEncontradoException {
+    public Alumno modificarAlumno(Alumno alumno) throws NoSeHaEncontradoException {
 
         if(repositorio.existsById(alumno.getId())){
             repositorio.save(alumno);

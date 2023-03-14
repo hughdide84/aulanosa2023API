@@ -8,12 +8,13 @@ import java.util.Optional;
 
 public interface AlumnoService {
 
-    Alumno guardar(Alumno alumno);
+    //definicion de metodos CRUD para Alumno
+    Alumno guardarAlumno(Alumno alumno);
     List<Alumno> buscarTodo();
 
     Optional<Alumno> buscarPorId(int id);
-    Alumno modificar(Alumno alumno) throws NoSeHaEncontradoException;
-    void eliminar(int id);
+    Alumno modificarAlumno(Alumno alumno) throws NoSeHaEncontradoException;
+    void eliminarAlumno(int id);
 
 
 }
