@@ -47,6 +47,24 @@ class TestAlumnoExternoV1 {
 		System.out.println(i);
 	}
 	@Test
+	@Order(4)
+	void listarTodoAlumnoExterno(){
+		List<AlumnoExterno> lista= service.listarTodo();
+		for (AlumnoExterno alumno :
+				lista) {
+			System.out.println(alumno);
+		}
+	}
+
+	@Test
+	@Order(5)
+	void listarAlumnoExterno(){
+		AlumnoExterno alumno = service.listarPorId(1).get();
+
+		System.out.println(alumno);
+	}
+
+	@Test
 	@Order(2)
 	void modificarAlumnoExterno() throws NoSeHaEncontradoException {
 		Optional<AlumnoExterno> alumnosExternos = service.listarPorId(2);
@@ -71,23 +89,6 @@ class TestAlumnoExternoV1 {
 		}
 	}
 
-	@Test
-	@Order(4)
-	void listarTodoAlumnoExterno(){
-		List<AlumnoExterno> lista= service.listarTodo();
-		for (AlumnoExterno alumno :
-				lista) {
-			System.out.println(alumno);
-		}
-	}
-
-	@Test
-	@Order(5)
-	void listarAlumnoExterno(){
-		AlumnoExterno alumno = service.listarPorId(1).get();
-
-		System.out.println(alumno);
-	}
 
 
 }
