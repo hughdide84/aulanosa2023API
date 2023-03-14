@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.service;
 
+import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.AlumnosExternos;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public interface AlumnosExternosService {
 
     public void eliminar(Integer id);
     public AlumnosExternos guardar(AlumnosExternos alumnoExterno);
-    public AlumnosExternos modificar(AlumnosExternos alumnoExterno);
+    public AlumnosExternos modificar(AlumnosExternos alumnoExterno) throws NoSeHaEncontradoException;
     public Optional<AlumnosExternos> listarPorId(Integer id);
 
 }

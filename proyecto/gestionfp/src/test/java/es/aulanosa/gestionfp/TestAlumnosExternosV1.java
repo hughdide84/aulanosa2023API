@@ -1,7 +1,7 @@
 package es.aulanosa.gestionfp;
 
+import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.AlumnosExternos;
-import es.aulanosa.gestionfp.service.AlumnosExternosService;
 import es.aulanosa.gestionfp.service.AlumnosExternosServiceImp;
 import org.junit.jupiter.api.ClassOrderer;
 import org.junit.jupiter.api.Order;
@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @TestClassOrder(ClassOrderer.OrderAnnotation.class)
 @SpringBootTest
-class GestionfpApplicationTests {
+class TestAlumnosExternosV1 {
 
 	@Autowired
 	private AlumnosExternosServiceImp service;
@@ -45,18 +45,22 @@ class GestionfpApplicationTests {
 		System.out.println(i);
 	}
 	@Test
-	@Order(2)
+	@Order(3)
 	void eliminar(){
-		service.eliminar(1);
+		service.eliminar(2);
 	}
 	@Test
-	@Order(3)
-	void modificar(){
-		Optional<AlumnosExternos> alumnosExternos = service.listarPorId(1);
+	@Order(2)
+	void modificar() throws NoSeHaEncontradoException {
+		Optional<AlumnosExternos> alumnosExternos = service.listarPorId(2);
 
 		if(alumnosExternos.isPresent()){
 			alumnosExternos.get().setNombre("Paco");
-			var i = service.modificar(alumnosExternos.get());
+			AlumnosExternos alumnosExternos1 = service.modificar(alumnosExternos.get());
+
+			System.out.println("Alumno modificado a: " + alumnosExternos1);
+		}else{
+			throw new NoSeHaEncontradoException("No se ha encontrado el alumno especificado");
 		}
 	}
 
