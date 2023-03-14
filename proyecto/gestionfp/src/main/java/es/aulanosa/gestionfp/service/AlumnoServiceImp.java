@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.service;
 
+import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Alumno;
 import es.aulanosa.gestionfp.repository.AlumnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class AlumnoServiceImp implements AlumnoService{
     }
     @Transactional
     @Override
-    public Alumno modificar(Alumno alumno) {
+    public Alumno modificar(Alumno alumno) throws NoSeHaEncontradoException {
         if (repositorio.findById(alumno.getId()) == null) {
             return repositorio.save(alumno);
         } else {
