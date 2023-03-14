@@ -77,7 +77,7 @@ public class EstudiosController {
     @Operation(summary = "Borrar un estudio")
     public ResponseEntity<?> borrar(@PathVariable int id) {
         var estudiosConsultado = servicio.consultarPorId(id);
-        if (estudiosConsultado != null) {
+        if (!estudiosConsultado.isEmpty()) {
             servicio.eliminar(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         } else {
