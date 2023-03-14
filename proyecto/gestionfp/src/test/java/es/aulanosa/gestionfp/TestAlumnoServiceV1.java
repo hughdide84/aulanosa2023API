@@ -38,4 +38,11 @@ public class TestAlumnoServiceV1 {
 
     }
 
+    @Test
+    @Order(2)
+    void consultarUsuarioPorId() {
+        var a = usuarioService.findById(1);
+        System.out.println(a);
+    }
+
 }
