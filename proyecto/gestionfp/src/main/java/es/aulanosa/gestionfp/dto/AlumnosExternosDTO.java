@@ -29,8 +29,47 @@ public class AlumnosExternosDTO {
 
     public AlumnosExternos convertirModel(){
         AlumnosExternos alumnosExternos = new AlumnosExternos();
-        
+        alumnosExternos.setId(this.getId());
+        alumnosExternos.setTelefono(this.getTelefono());
+        alumnosExternos.setEvaluacion(this.getEvaluacion());
+        alumnosExternos.setTipo(this.getTipo());
+        alumnosExternos.setTitulacion(this.getTitulacion());
+        alumnosExternos.setUniversidad(this.getUniversidad());
+        alumnosExternos.setHorario(this.getHorario());
+        alumnosExternos.setCv(this.getCv());
+        alumnosExternos.setFin(this.getFin());
+        alumnosExternos.setInicio(this.getInicio());
+        alumnosExternos.setEspecialidad(this.getEspecialidad());
+        alumnosExternos.setNombre(this.getNombre());
+        alumnosExternos.setEmail(this.getEmail());
+        alumnosExternos.setConvenio(this.getConvenio());
+        alumnosExternos.setIdCurso(this.getIdCurso());
+
+        return alumnosExternos;
     }
+
+    public AlumnosExternosDTO crearDTO(AlumnosExternos alumnosExternos){
+        this.setId(alumnosExternos.getId());
+        this.setTelefono(alumnosExternos.getTelefono());
+        this.setEvaluacion(alumnosExternos.getEvaluacion());
+        this.setTipo(alumnosExternos.getTipo());
+        this.setTitulacion(alumnosExternos.getTitulacion());
+        this.setUniversidad(alumnosExternos.getUniversidad());
+        this.setHorario(alumnosExternos.getHorario());
+        this.setCv(alumnosExternos.getCv());
+        this.setFin(alumnosExternos.getFin());
+        this.setInicio(alumnosExternos.getInicio());
+        this.setEspecialidad(alumnosExternos.getEspecialidad());
+        this.setNombre(alumnosExternos.getNombre());
+        this.setEmail(alumnosExternos.getEmail());
+        this.setConvenio(alumnosExternos.getConvenio());
+        this.setIdCurso(alumnosExternos.getIdCurso());
+
+        return this;
+
+    }
+
+
 
 
 }

@@ -18,6 +18,7 @@ import java.sql.Timestamp;
 public class AlumnosExternos {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotNull(message = "El idCurso no puede estar vacío")

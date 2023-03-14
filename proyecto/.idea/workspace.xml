@@ -53,14 +53,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/FP/Desktop/Github/aulanosa2023API/proyecto&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/FP/Desktop/Github/aulanosa2023API/proyecto",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
-}</component>
-  <component name="RunManager" selected="JUnit.TestAlumnosExternosV1.eliminar">
+}]]></component>
+  <component name="RunManager" selected="Application.GestionfpApplication">
     <configuration name="GestionfpApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.GestionfpApplication" />
       <module name="gestionfp" />
@@ -139,11 +142,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.GestionfpApplication" />
         <item itemvalue="JUnit.TestAlumnosExternosV1.eliminar" />
         <item itemvalue="JUnit.TestAlumnosExternosV1.modificar" />
         <item itemvalue="JUnit.TestAlumnosExternosV1.guardar" />
         <item itemvalue="JUnit.TestAlumnosExternosV1" />
-        <item itemvalue="Application.GestionfpApplication" />
       </list>
     </recent_temporary>
   </component>
