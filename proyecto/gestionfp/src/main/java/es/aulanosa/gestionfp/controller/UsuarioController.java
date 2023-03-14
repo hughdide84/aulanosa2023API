@@ -18,22 +18,24 @@ public class UsuarioController {
     @Autowired
     UsuarioService service;
 
+    // Crea un nuevo usuario
     @PostMapping("")
     public ResponseEntity<?> create(@RequestBody UsuarioDTO usuarioDTO) {
         Usuario usuarioConsultado = service.findById(usuarioDTO.getId());
 
-        if (usuarioConsultado == null && checkSizes(usuarioDTO).equals("")) {
+        if (usuarioConsultado == null && checkFieldSize(usuarioDTO).equals("")) {
             Usuario usuarioGuardado = usuarioDTO.toModel();
             service.save(usuarioGuardado);
             return ResponseEntity.status(HttpStatus.CREATED).body(usuarioGuardado);
-        } else if (!checkSizes(usuarioDTO).equals("")) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Longitud excedida en el/los siguiente/-s campo/-s: " + checkSizes(usuarioDTO));
+        } else if (!checkFieldSize(usuarioDTO).equals("")) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Longitud excedida en el/los siguiente/-s campo/-s: " + checkFieldSize(usuarioDTO));
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El usuario ya fue añadido previamente");
         }
 
     }
 
+    // Devuelve el usuario cuyo id coincide con el introducido
     @GetMapping("/{id}")
     public ResponseEntity<?> getUsuarioById(@PathVariable Integer id) {
         Usuario usuarioConsultado = service.findById(id);
@@ -45,21 +47,24 @@ public class UsuarioController {
         }
     }
 
+    // Actualiza un usuario ya existente
     @PutMapping("")
     public ResponseEntity<?> update(@RequestBody UsuarioDTO usuarioDTO) {
         Usuario usuarioConsultado = service.findById(usuarioDTO.getId());
 
-        if (usuarioConsultado != null && checkSizes(usuarioDTO).equals("")) {
+        if (usuarioConsultado != null && checkFieldSize(usuarioDTO).equals("")) {
             Usuario usuarioActualizado = usuarioDTO.toModel();
             service.save(usuarioActualizado);
             return ResponseEntity.ok(usuarioActualizado);
-        } else if (!checkSizes(usuarioDTO).equals("")) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Longitud excedida en el/los siguiente/-s campo/-s: " + checkSizes(usuarioDTO));
+        } else if (!checkFieldSize(usuarioDTO).equals("")) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Longitud excedida en el/los siguiente/-s campo/-s: " + checkFieldSize(usuarioDTO));
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El usuario que desea modificar no existe");
         }
     }
 
+
+    // Borra el usuario cuyo id coincide con el introducido
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Integer id) {
         Usuario usuarioConsultado = service.findById(id);
@@ -69,6 +74,7 @@ public class UsuarioController {
         }
     }
 
+    // Devuelve un listado con todos los usuarios
     @GetMapping("")
     public ResponseEntity<?> getAll() {
         List<Usuario> usuarios = service.findAll();
@@ -80,7 +86,9 @@ public class UsuarioController {
         }
     }
 
-    public String checkSizes(UsuarioDTO usuarioDTO) {
+
+    // Función para gestionar el tamaño de los campos introducidos
+    public String checkFieldSize(UsuarioDTO usuarioDTO) {
         List<String> invalidFields = new ArrayList<>();
         String msg = "";
 
