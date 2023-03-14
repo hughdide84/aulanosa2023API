@@ -36,10 +36,10 @@ public class CursoServiceImp implements CursoService {
     public void eliminar(int id) {
          repositorio.deleteById(id);
     }
-    //guarda un objeto curso con los atributos que se le pase
+    //inserta en la BD un objeto curso con los atributos que se le pase
     @Override
     @Transactional
-    public Curso guardar(Curso curso) {
+    public Curso insertar(Curso curso) {
         return repositorio.save(curso);
     }
 
@@ -47,7 +47,7 @@ public class CursoServiceImp implements CursoService {
     @Override
     @Transactional
     public Curso modificar(Curso curso) throws NoSeHaEncontradoException {
-        if (repositorio.findById(curso.getId()) == null) {
+        if (repositorio.findById(curso.getId()).isPresent()) {
             return repositorio.save(curso);
         } else {
             throw new NoSeHaEncontradoException("No se ha encontrado el usuario");
