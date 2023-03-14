@@ -17,50 +17,64 @@ public class Empresa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "idCurso")
+    @NotNull(message = "El id del curso no puede estar vacío")
     private int idCurso;
     @Column(name = "idEstudios")
+    @NotNull(message = "El id del curso no puede estar vacío")
     private int idEstudios;
     @Column(name = "nombre")
     @NotBlank(message = "El nombre no puede estar vacío")
     @Size(max = 100, message = "El nombre no puede tener más de 100 caracteres")
+    @NotNull(message = "El id del curso no puede estar vacío")
     private String nombre;
     @Column(name = "direccionSocial")
     @NotBlank(message = "La dirección social no puede estar vacía")
     @Size(max = 300, message = "La dirección social no puede tener más de 300 caracteres")
+    @NotNull(message = "El id del curso no puede estar vacío")
     private String direccionSocial;
     @Column(name = "direccionTrabajo")
     @NotBlank(message = "La dirección de trabajo no puede estar vacía")
     @Size(max = 300, message = "La dirección de trabajo no puede tener más de 300 caracteres")
+    @NotNull(message = "El id del curso no puede estar vacío")
     private String direccionTrabajo;
     @Column(name = "cif")
     @NotBlank(message = "El cif no puede estar vacío")
     @Size(max = 10, message = "El cif no puede tener más de 10 caracteres")
+    @NotNull(message = "El id del curso no puede estar vacío")
     private String cif;
     @Column(name = "representante")
     @NotBlank(message = "El representante no puede estar vacío")
     @Size(max = 100, message = "El representante no puede tener más de 100 caracteres")
+    @NotNull(message = "El id del curso no puede estar vacío")
     private String representante;
     @Column(name = "contacto")
     @NotBlank(message = "El contacto no puede estar vacío")
     @Size(max = 100, message = "El contacto no puede tener más de 100 caracteres")
+    @NotNull(message = "El id del curso no puede estar vacío")
     private String contacto;
     @Column(name = "tutor1")
     @NotBlank(message = "El tutor1 no puede estar vacío")
     @Size(max = 100, message = "El tutor1 no puede tener más de 100 caracteres")
+    @NotNull(message = "El id del curso no puede estar vacío")
     private String tutor1;
     @Column(name = "tutor2")
     @NotBlank(message = "El tutor2 no puede estar vacío")
     @Size(max = 100, message = "El tutor2 no puede tener más de 100 caracteres")
+    @NotNull(message = "El id del curso no puede estar vacío")
     private String tutor2;
     @Column(name = "tutor3")
     @NotBlank(message = "El tutor3 no puede estar vacío")
     @Size(max = 100, message = "El tutor3 no puede tener más de 100 caracteres")
+    @NotNull(message = "El id del curso no puede estar vacío")
     private String tutor3;
     @Column(name = "convenio")
+    @NotNull(message = "El id del curso no puede estar vacío")
     private char convenio;
     @Column(name = "planIndividual")
+    @NotNull(message = "El id del curso no puede estar vacío")
     private char planIndividual;
     @Column(name = "hojaActividades")
+    @NotNull(message = "El id del curso no puede estar vacío")
     private char hojaActividades;
 
     public Empresa(int idCurso, int idEstudios, String nombre, String direccionSocial, String direccionTrabajo, String cif, String representante, String contacto, String tutor1, String tutor2, String tutor3, char convenio, char planIndividual, char hojaObersevaciones) {
