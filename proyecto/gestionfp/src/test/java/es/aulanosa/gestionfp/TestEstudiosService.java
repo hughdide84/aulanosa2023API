@@ -30,7 +30,8 @@ public class TestEstudiosService {
     public void testConsultar(){
         var consultado = servicio.consultarPorId(18);
         if (consultado.isPresent()){
-            System.out.println("Estudios consultados");
+            Estudios estudios = consultado.get();
+            System.out.println(estudios);
         }
         else{
             System.out.println("Estudios no consultados");
@@ -68,12 +69,11 @@ public class TestEstudiosService {
     @Test
     @Order(5)
     public void testEliminar(){
-        servicio.eliminar(1);
-        if (servicio.consultarPorId(1).isEmpty()){
+        servicio.eliminar(17);
+        if (servicio.consultarPorId(17).isPresent()){
             System.out.println("Estudios eliminados");
-        }
-        else{
-            System.out.println("Estudios no eliminados");
+        }else {
+            System.out.println("Estudios no encontrados/no eliminados");
         }
     }
 
