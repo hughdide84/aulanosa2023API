@@ -2,9 +2,7 @@ package es.aulanosa.gestionfp;
 
 
 import es.aulanosa.gestionfp.model.Alumno;
-import es.aulanosa.gestionfp.model.Usuario;
 import es.aulanosa.gestionfp.service.AlumnoService;
-import es.aulanosa.gestionfp.service.UsuarioService;
 import org.junit.jupiter.api.ClassOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -14,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @TestClassOrder(ClassOrderer.OrderAnnotation.class)
 @SpringBootTest
-public class TestAlumnoService {
+public class TestAlumnoServiceV1 {
 
     @Autowired
     private AlumnoService service;
@@ -29,7 +27,7 @@ public class TestAlumnoService {
         alumno.setCv('a');
         alumno.setCarta('b');
         alumno.setIdEmpresa(100);
-        alumno.setInicioPr();
+        alumno.setInicioPr(03-06-2022);
         var a = service.guardar(alumno);
         System.out.println(a);
 
