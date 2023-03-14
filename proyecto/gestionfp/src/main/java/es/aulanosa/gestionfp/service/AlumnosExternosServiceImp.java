@@ -1,8 +1,8 @@
 package es.aulanosa.gestionfp.service;
 
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
-import es.aulanosa.gestionfp.model.AlumnosExternos;
-import es.aulanosa.gestionfp.repository.AlumnosExternosRepository;
+import es.aulanosa.gestionfp.model.AlumnoExterno;
+import es.aulanosa.gestionfp.repository.AlumnoExternoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,12 +13,12 @@ import java.util.Optional;
 @Service
 public class AlumnosExternosServiceImp implements AlumnosExternosService {
     @Autowired
-    private AlumnosExternosRepository repository;
+    private AlumnoExternoRepository repository;
 
 
     @Override
     @Transactional(readOnly = true)
-    public List<AlumnosExternos> listarTodo() {
+    public List<AlumnoExterno> listarTodo() {
         return repository.findAll();
     }
 
@@ -30,13 +30,13 @@ public class AlumnosExternosServiceImp implements AlumnosExternosService {
 
     @Override
     @Transactional
-    public AlumnosExternos guardar(AlumnosExternos alumnoExterno) {
+    public AlumnoExterno guardar(AlumnoExterno alumnoExterno) {
         return repository.save(alumnoExterno);
     }
 
     @Override
     @Transactional
-    public AlumnosExternos modificar(AlumnosExternos alumnoExterno) throws NoSeHaEncontradoException {
+    public AlumnoExterno modificar(AlumnoExterno alumnoExterno) throws NoSeHaEncontradoException {
         if(repository.existsById(alumnoExterno.getId())){
             return repository.save(alumnoExterno);
         }else{
@@ -46,7 +46,7 @@ public class AlumnosExternosServiceImp implements AlumnosExternosService {
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<AlumnosExternos> listarPorId(Integer id) {
+    public Optional<AlumnoExterno> listarPorId(Integer id) {
         return repository.findById(id);
     }
 }

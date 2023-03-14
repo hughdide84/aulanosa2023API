@@ -60,7 +60,7 @@
     &quot;last_opened_file_path&quot;: &quot;C:/Users/FP/Desktop/Github/aulanosa2023API/proyecto&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.TestAlumnosExternosV1.eliminar">
+  <component name="RunManager">
     <configuration name="GestionfpApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.GestionfpApplication" />
       <module name="gestionfp" />
@@ -74,7 +74,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestAlumnosExternosV1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestAlumnoExternoV1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gestionfp" />
       <extension name="coverage">
         <pattern>
@@ -83,13 +83,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
-      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestAlumnosExternosV1" />
+      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestAlumnoExternoV1" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestAlumnosExternosV1.eliminar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestAlumnoExternoV1.eliminar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gestionfp" />
       <extension name="coverage">
         <pattern>
@@ -98,14 +98,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
-      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestAlumnosExternosV1" />
+      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestAlumnoExternoV1" />
       <option name="METHOD_NAME" value="eliminar" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestAlumnosExternosV1.guardar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestAlumnoExternoV1.guardar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gestionfp" />
       <extension name="coverage">
         <pattern>
@@ -114,14 +114,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
-      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestAlumnosExternosV1" />
+      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestAlumnoExternoV1" />
       <option name="METHOD_NAME" value="guardar" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestAlumnosExternosV1.modificar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestAlumnoExternoV1.modificar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gestionfp" />
       <extension name="coverage">
         <pattern>
@@ -130,7 +130,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
-      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestAlumnosExternosV1" />
+      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestAlumnoExternoV1" />
       <option name="METHOD_NAME" value="modificar" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -139,10 +139,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestAlumnosExternosV1.eliminar" />
-        <item itemvalue="JUnit.TestAlumnosExternosV1.modificar" />
-        <item itemvalue="JUnit.TestAlumnosExternosV1.guardar" />
-        <item itemvalue="JUnit.TestAlumnosExternosV1" />
+        <item itemvalue="JUnit.TestAlumnoExternoV1.eliminar" />
+        <item itemvalue="JUnit.TestAlumnoExternoV1.modificar" />
+        <item itemvalue="JUnit.TestAlumnoExternoV1.guardar" />
+        <item itemvalue="JUnit.TestAlumnoExternoV1" />
         <item itemvalue="Application.GestionfpApplication" />
       </list>
     </recent_temporary>
