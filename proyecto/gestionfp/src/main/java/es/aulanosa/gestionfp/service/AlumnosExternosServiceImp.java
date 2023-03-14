@@ -37,7 +37,7 @@ public class AlumnosExternosServiceImp implements AlumnosExternosService {
     @Override
     @Transactional
     public AlumnosExternos modificar(AlumnosExternos alumnoExterno) throws NoSeHaEncontradoException {
-        if(!repository.existsById(alumnoExterno.getId())){
+        if(repository.existsById(alumnoExterno.getId())){
             return repository.save(alumnoExterno);
         }else{
             throw new NoSeHaEncontradoException("No se ha encontrado el alumno externo");

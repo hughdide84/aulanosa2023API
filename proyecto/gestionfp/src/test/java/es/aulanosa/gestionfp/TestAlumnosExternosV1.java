@@ -47,12 +47,12 @@ class TestAlumnosExternosV1 {
 	@Test
 	@Order(3)
 	void eliminar(){
-		service.eliminar(1);
+		service.eliminar(2);
 	}
 	@Test
 	@Order(2)
 	void modificar() throws NoSeHaEncontradoException {
-		Optional<AlumnosExternos> alumnosExternos = service.listarPorId(1);
+		Optional<AlumnosExternos> alumnosExternos = service.listarPorId(2);
 
 		if(alumnosExternos.isPresent()){
 			alumnosExternos.get().setNombre("Paco");
