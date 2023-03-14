@@ -82,7 +82,7 @@ class TestAlumnoExternoV1 {
 	@Order(5)
 	void eliminarAlumnoExterno(){
 		service.eliminar(2);
-		if(service.listarPorId(2).isPresent()){
+		if(!service.listarPorId(2).isPresent()){
 			System.out.println("Alumno externo eliminado");
 		}else{
 			System.out.println("No se ha borrado");
