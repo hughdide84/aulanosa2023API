@@ -19,7 +19,7 @@ public class TestEmpresaServiceV2 {
 
     @Test
     @Order(1)
-    void insertarEmpresa() {
+    void insertarEmpresa() throws NoSeHaEncontradoException {
         Empresa empresa = new Empresa();
         empresa.setNombre("Empresa 1");
         empresa.setIdCurso(3);
@@ -35,8 +35,12 @@ public class TestEmpresaServiceV2 {
         empresa.setTutor3("Juan");
         empresa.setPlanIndividual('a');
         empresa.setHojaActividades('a');
-        var insertado = empresaService.save(empresa);
-        System.out.println(insertado);
+        try {
+            var insertado = empresaService.save(empresa);
+            System.out.println(insertado);
+        } catch (Exception e) {
+            throw new NoSeHaEncontradoException("No existe la empresa", e);
+        }
     }
 
     @Test
@@ -74,9 +78,17 @@ public class TestEmpresaServiceV2 {
         var a = empresaService.findById(6);
         if (a != null) {
             empresaService.deleteById(a.getId());
+            System.out.println("Borrado");
         } else {
             throw new NoSeHaEncontradoException("No existe la empresa");
         }
+    }
+
+    @Test
+    @Order(6)
+    void consultarEmpresaPorNombre() {
+        var a = empresaService.findAllByNombre("Empresa 22");
+        System.out.println(a);
     }
 
 }
