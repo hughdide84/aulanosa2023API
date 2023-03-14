@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp;
 
+import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Curso;
 import es.aulanosa.gestionfp.service.CursoService;
 import org.junit.jupiter.api.ClassOrderer;
@@ -51,7 +52,7 @@ public class CursoServiceTestV1 {
 
     @Test
     @Order(3)
-    void modificar(){
+    void modificar() throws NoSeHaEncontradoException {
         Curso curso = new Curso();
         curso.setId(2);
         curso.setNombre("curso1");

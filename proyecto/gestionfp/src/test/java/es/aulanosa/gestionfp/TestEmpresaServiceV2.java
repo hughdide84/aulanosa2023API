@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp;
 
+import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Empresa;
 import es.aulanosa.gestionfp.service.EmpresaService;
 import org.junit.jupiter.api.ClassOrderer;
@@ -21,8 +22,8 @@ public class TestEmpresaServiceV2 {
     void insertarEmpresa() {
         Empresa empresa = new Empresa();
         empresa.setNombre("Empresa 1");
-        empresa.setIdCurso(1);
-        empresa.setIdEstudios(1);
+        empresa.setIdCurso(3);
+        empresa.setIdEstudios(3);
         empresa.setCif("A12345678");
         empresa.setContacto("Juan");
         empresa.setConvenio('a');
@@ -34,14 +35,48 @@ public class TestEmpresaServiceV2 {
         empresa.setTutor3("Juan");
         empresa.setPlanIndividual('a');
         empresa.setHojaActividades('a');
-        empresaService.save(empresa);
-
+        var insertado = empresaService.save(empresa);
+        System.out.println(insertado);
     }
 
     @Test
+    @Order(2)
+    void consultarPorId() {
+        var a = empresaService.findById(4);
+        System.out.println(a);
+    }
+
+    @Test
+    @Order(3)
+    void modificar() throws NoSeHaEncontradoException {
+
+        var a = empresaService.findById(5);
+        if (a != null) {
+            a.setNombre("Empresa 2");
+            var b = empresaService.save(a);
+            System.out.println(b);
+        } else {
+            throw new NoSeHaEncontradoException("No existe la empresa");
+        }
+    }
+
+    @Test
+    @Order(4)
     void consultarEmpresas() {
         var a = empresaService.findAll();
         System.out.println(a);
+    }
+
+    @Test
+    @Order(5)
+    void borrar () throws NoSeHaEncontradoException {
+
+        var a = empresaService.findById(5);
+        if (a != null) {
+            empresaService.deleteById(a.getId());
+        } else {
+            throw new NoSeHaEncontradoException("No existe la empresa");
+        }
     }
 
 }

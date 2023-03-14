@@ -23,7 +23,7 @@ public class EstudiosServiceImp implements EstudiosService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     //Metodo para consultar un estudio por su id
     public Optional<Estudios> consultarPorId(Integer id) {
         return repositorio.findById(id);
