@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.sql.Timestamp;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Optional;
 
 @TestClassOrder(ClassOrderer.OrderAnnotation.class)
@@ -23,7 +24,7 @@ class TestAlumnoExternoV1 {
 
 	@Test
 	@Order(1)
-	void guardar(){
+	void insertarAlumnoExterno(){
 		AlumnoExterno alumnosExternos = new AlumnoExterno();
 		alumnosExternos.setCv('a');
 		alumnosExternos.setNombre("nose");
@@ -46,13 +47,13 @@ class TestAlumnoExternoV1 {
 	}
 	@Test
 	@Order(3)
-	void eliminar(){
+	void eliminarAlumnoExterno(){
 		service.eliminar(2);
 		System.out.println("Alumno externo eliminado");
 	}
 	@Test
 	@Order(2)
-	void modificar() throws NoSeHaEncontradoException {
+	void modificarAlumnoExterno() throws NoSeHaEncontradoException {
 		Optional<AlumnoExterno> alumnosExternos = service.listarPorId(2);
 
 		if(alumnosExternos.isPresent()){
@@ -65,4 +66,23 @@ class TestAlumnoExternoV1 {
 		}
 	}
 
-}
+	@Test
+	@Order(4)
+	void listarTodoAlumnoExterno(){
+		List<AlumnoExterno> lista = service.listarTodo();
+
+		for (AlumnoExterno alumno :
+				lista) {
+			System.out.println(alumno);
+		}
+	}
+	@Test
+	@Order(4)
+	void listarAlumnoExterno(){
+		AlumnoExterno alumno = service.listarPorId(1).get();
+
+		System.out.println(alumno);
+	}
+
+
+	}
