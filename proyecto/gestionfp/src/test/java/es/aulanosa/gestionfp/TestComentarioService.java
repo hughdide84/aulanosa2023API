@@ -70,7 +70,7 @@ public class TestComentarioService {
             else
                 System.out.println("Comentario no borrado");
         } else {
-            System.out.println("Usuario no encontrado");
+            System.out.println("Comentario no encontrado");
         }
     }
 
