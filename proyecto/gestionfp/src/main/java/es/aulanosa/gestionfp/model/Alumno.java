@@ -19,6 +19,7 @@ public class Alumno {
     private int id;
     private int idCurso;
     private int idEstudios;
+    
     private String nombre;
     private char cv;
     private char carta;
