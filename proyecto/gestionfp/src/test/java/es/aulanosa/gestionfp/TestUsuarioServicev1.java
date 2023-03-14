@@ -33,7 +33,7 @@ public class TestUsuarioServicev1 {
     @Test
     @Order(2)
     void consultarUsuarioPorId() {
-        var a = usuarioService.findById(1);
+        var a = usuarioService.findById(17);
         System.out.println(a);
     }
 
@@ -41,8 +41,8 @@ public class TestUsuarioServicev1 {
     @Order(3)
     void updateUsuario() {
         Usuario usuario = new Usuario();
-        usuario.setId(12);
-        usuario.setNombre("AAA");
+        usuario.setId(20);
+        usuario.setNombre("BBB");
         usuario.setPassword("Pérez");
         usuario.setRol("ROLE_ADMIN");
         usuario.setEmail("nada@nada");
