@@ -27,7 +27,6 @@ public class TestUsuarioServicev1 {
         usuario.setEmail("pepe@gmial.com");
         var a = usuarioService.save(usuario);
         System.out.println(a);
-
     }
 
     @Test
