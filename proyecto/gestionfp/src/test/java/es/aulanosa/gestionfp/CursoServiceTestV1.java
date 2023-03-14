@@ -91,7 +91,7 @@ public class CursoServiceTestV1 {
         curso.setEstado('a');
 
 
-        System.out.println(service.buscarPorId(3));
+        System.out.println(service.buscarPorId(curso.getId()));
 
     }
 
