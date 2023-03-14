@@ -22,6 +22,7 @@ public class Curso {
         //id autogenerado
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = "id")
         private Integer id;
         @NotBlank(message = "El nombre no puede estar vacío")
         @Size(max = 50, message = "El nombre no puede tener más de 50 caracteres")
