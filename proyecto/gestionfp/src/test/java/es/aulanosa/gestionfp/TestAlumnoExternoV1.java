@@ -46,7 +46,7 @@ class TestAlumnoExternoV1 {
 		System.out.println(i);
 	}
 	@Test
-	@Order(4)
+	@Order(2)
 	void listarTodoAlumnoExterno(){
 		List<AlumnoExterno> lista = service.listarTodo();
 
@@ -56,14 +56,16 @@ class TestAlumnoExternoV1 {
 		}
 	}
 	@Test
-	@Order(5)
+	@Order(3)
 	void listarAlumnoExterno(){
-		AlumnoExterno alumno = service.listarPorId(1).get();
+		Optional<AlumnoExterno> alumno = service.listarPorId(1);
 
-		System.out.println(alumno);
+		if(alumno.isPresent()){
+			System.out.println(alumno.get());
+		}
 	}
 	@Test
-	@Order(2)
+	@Order(4)
 	void modificarAlumnoExterno() throws NoSeHaEncontradoException {
 		Optional<AlumnoExterno> alumnosExternos = service.listarPorId(2);
 
@@ -77,10 +79,14 @@ class TestAlumnoExternoV1 {
 		}
 	}
 	@Test
-	@Order(3)
+	@Order(5)
 	void eliminarAlumnoExterno(){
 		service.eliminar(2);
-		System.out.println("Alumno externo eliminado");
+		if(service.listarPorId(2).isPresent()){
+			System.out.println("Alumno externo eliminado");
+		}else{
+			System.out.println("El alumno externo no ha podido ser eliminado crrectamente");
+		}
 	}
 
 
