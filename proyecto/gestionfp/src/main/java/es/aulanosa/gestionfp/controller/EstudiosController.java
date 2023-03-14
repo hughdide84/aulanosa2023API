@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -43,22 +44,20 @@ public class EstudiosController {
 
     @GetMapping
     @Operation(summary = "Consultar todos los estudios")
-    public ResponseEntity<?> consultarTodos(){
+    public ResponseEntity<?> consultarTodos(Estudios estudios){
+        List<Estudios> estudiosConsultado = servicio.consultarTodos();
         return ResponseEntity.status(HttpStatus.OK).body(servicio.consultarTodos());
+
+
     }
 
     @GetMapping
     @Operation(summary = "Modificar un estudio")
     public ResponseEntity<?> modificar(@RequestBody EstudiosDTO estudiosDTO) throws NoSuchFieldException {
         Optional<Estudios> estudiosConsultado = servicio.consultarPorId(estudiosDTO.getId());
-        if (estudiosConsultado.isPresent()) {
-            Estudios estudiosModificado = servicio.modificar(estudiosDTO.convertirModel());
-            return ResponseEntity.status(HttpStatus.OK).body(estudiosDTO.crearDTO(estudiosModificado));
-        }else {
-            ErrorEstudiosDto errorEstudiosDto = new ErrorEstudiosDto();
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorEstudiosDto);
-        }
+        return ResponseEntity.status(HttpStatus.OK).body(servicio.modificar(estudiosDTO.convertirModel()));
     }
+
 
    /* @GetMapping
     @Operation(summary = "Eliminar un estudio")
