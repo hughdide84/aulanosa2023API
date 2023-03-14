@@ -2,6 +2,7 @@ package es.aulanosa.gestionfp.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,20 +18,21 @@ import java.util.Date;
 public class Comentario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
     private Integer id;
     @Column(name = "sistema")
-    @NotBlank(message = "El sistema no puede estar vacío")
-    @Size(max = 1, message = "El sistema no puede tener más de 1 caracter")
+    @NotNull
     private char sistema;
     @Column(name = "referencia")
-    @NotBlank(message = "La referencia no puede estar vacía")
+    @NotNull
     private int referencia;
     @Column(name = "texto")
     @NotBlank(message = "El texto no puede estar vacío")
     @Size(max = 500, message = "El texto no puede tener más de 500 caracteres")
+    @NotNull
     private String texto;
     @Column(name = "fecha")
-    @NotBlank(message = "La fecha no puede estar vacía")
+    @NotNull
     private Date fecha;
 
     public Comentario(char sistema, int referencia, String texto, Date fecha) {
