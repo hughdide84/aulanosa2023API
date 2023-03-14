@@ -18,25 +18,30 @@ public class AlumnoExternoServiceImp implements AlumnoExternoService {
 
     @Override
     @Transactional(readOnly = true)
+    //lista todos los campos
     public List<AlumnoExterno> listarTodo() {
         return repository.findAll();
     }
 
     @Override
     @Transactional
+    //elimina
     public void eliminar(Integer id) {
         repository.deleteById(id);
     }
 
     @Override
     @Transactional
+    //guarda
     public AlumnoExterno guardar(AlumnoExterno alumnoExterno) {
         return repository.save(alumnoExterno);
     }
 
     @Override
     @Transactional
+    //modifica
     public AlumnoExterno modificar(AlumnoExterno alumnoExterno) throws NoSeHaEncontradoException {
+        //comprueba que existe el id que se le ha pasado, y si existe se modifica el campo
         if(repository.existsById(alumnoExterno.getId())){
             return repository.save(alumnoExterno);
         }else{
@@ -46,6 +51,7 @@ public class AlumnoExternoServiceImp implements AlumnoExternoService {
 
     @Override
     @Transactional(readOnly = true)
+    //lista seguna la id que se le pasa
     public Optional<AlumnoExterno> listarPorId(Integer id) {
         return repository.findById(id);
     }
