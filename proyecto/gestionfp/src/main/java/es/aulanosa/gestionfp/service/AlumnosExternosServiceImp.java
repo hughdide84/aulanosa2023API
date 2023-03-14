@@ -37,6 +37,8 @@ public class AlumnosExternosServiceImp implements AlumnosExternosService {
     @Override
     @Transactional
     public AlumnoExterno modificar(AlumnoExterno alumnoExterno) throws NoSeHaEncontradoException {
+
+        //comprueba que el id elegido existe,en caso de que si, entra en el bucle y modifica el campo de ese id
         if(repository.existsById(alumnoExterno.getId())){
             return repository.save(alumnoExterno);
         }else{
