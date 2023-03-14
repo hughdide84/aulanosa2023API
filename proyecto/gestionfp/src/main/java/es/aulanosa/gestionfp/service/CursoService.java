@@ -8,11 +8,11 @@ import java.util.List;
 //definir metodos a implementar
 public interface CursoService {
 
-    Curso insertar(Curso curso);
+    Curso insertarCurso(Curso curso);
     List<Curso> buscarTodo();
      Curso buscarPorId(int id);
-    Curso modificar(Curso curso) throws NoSeHaEncontradoException;
-     void eliminar(int id);
+    Curso modificarCurso(Curso curso) throws NoSeHaEncontradoException;
+     void eliminarCurso(int id);
 
 
 

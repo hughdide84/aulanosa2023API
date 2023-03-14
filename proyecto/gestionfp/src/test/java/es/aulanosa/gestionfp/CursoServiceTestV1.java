@@ -31,7 +31,7 @@ public class CursoServiceTestV1 {
         curso.setFin(new Timestamp(new GregorianCalendar(2022, 8, 24).getTimeInMillis()));
         curso.setEstado('b');
 
-        var var1 = service.insertar(curso);
+        var var1 = service.insertarCurso(curso);
 
         System.out.println(var1);
     }
@@ -46,8 +46,8 @@ public class CursoServiceTestV1 {
         curso.setEstado('a');
 
 
-        service.insertar(curso);
-        service.eliminar(curso.getId());
+        service.insertarCurso(curso);
+        service.eliminarCurso(curso.getId());
 
         System.out.println(curso);
     }
@@ -59,7 +59,7 @@ public class CursoServiceTestV1 {
 
         if(optionalCurso.isPresent()){
             optionalCurso.get().setNombre("CursoMOD");
-            Curso curso1 = service.modificar(optionalCurso.get());
+            Curso curso1 = service.modificarCurso(optionalCurso.get());
 
             System.out.println("Curso modificado a: " + curso1);
         }else{

@@ -33,20 +33,21 @@ public class CursoServiceImp implements CursoService {
     //elimina el curso con el id que se le pase
     @Override
     @Transactional
-    public void eliminar(int id) {
+    public void eliminarCurso(int id) {
          repositorio.deleteById(id);
+        System.out.println("Curso eliminado con exito");
     }
     //inserta en la BD un objeto curso con los atributos que se le pase
     @Override
     @Transactional
-    public Curso insertar(Curso curso) {
+    public Curso insertarCurso(Curso curso) {
         return repositorio.save(curso);
     }
 
     //modifica atributos de un objeto curso y lo sobreescribe
     @Override
     @Transactional
-    public Curso modificar(Curso curso) throws NoSeHaEncontradoException {
+    public Curso modificarCurso(Curso curso) throws NoSeHaEncontradoException {
         if (repositorio.findById(curso.getId()).isPresent()) {
             return repositorio.save(curso);
         } else {
