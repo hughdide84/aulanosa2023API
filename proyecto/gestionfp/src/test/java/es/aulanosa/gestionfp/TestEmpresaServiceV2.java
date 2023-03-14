@@ -50,9 +50,9 @@ public class TestEmpresaServiceV2 {
     @Order(3)
     void modificar() throws NoSeHaEncontradoException {
 
-        var a = empresaService.findById(5);
+        var a = empresaService.findById(4);
         if (a != null) {
-            a.setNombre("Empresa 2");
+            a.setNombre("Empresa 22");
             var b = empresaService.save(a);
             System.out.println(b);
         } else {
@@ -71,7 +71,7 @@ public class TestEmpresaServiceV2 {
     @Order(5)
     void borrar () throws NoSeHaEncontradoException {
 
-        var a = empresaService.findById(5);
+        var a = empresaService.findById(6);
         if (a != null) {
             empresaService.deleteById(a.getId());
         } else {
