@@ -59,9 +59,12 @@ public class AlumnosExternosController {
             alumnosExternosDTO.crearDTO(alumnosExternos.get());
 
             return ResponseEntity.status(HttpStatus.CREATED).body(alumnosExternosDTO);
-        }else{
+        }else if(!alumnosExternos.isPresent()){
             ErrorDTO errorDTO = new ErrorDTO("E0002", "Alumno no encontrado");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
+        }else{
+            ErrorDTO errorDTO = new ErrorDTO("E0004", "No se ha introducido un Alumno válido");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDTO);
         }
     }
 
