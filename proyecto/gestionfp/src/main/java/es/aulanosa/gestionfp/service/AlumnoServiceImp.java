@@ -36,7 +36,10 @@ public class AlumnoServiceImp implements AlumnoService{
     @Transactional
     @Override
     public void eliminarAlumno(int id) {
-        repositorio.deleteById(id);
+        if(repositorio.findById(id).isPresent()){
+            repositorio.deleteById(id);
+        }
+
     }
     //metodo para insertar un alumno en la BD
     @Transactional
