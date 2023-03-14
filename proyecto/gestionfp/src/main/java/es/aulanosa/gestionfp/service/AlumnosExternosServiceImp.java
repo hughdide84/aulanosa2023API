@@ -25,21 +25,21 @@ public class AlumnosExternosServiceImp implements AlumnosExternosService {
 
     @Override
     @Transactional
-    //elimina
+    //elimina el alumno externo
     public void eliminar(Integer id) {
         repository.deleteById(id);
     }
 
     @Override
     @Transactional
-    //guarda
+    //guarda el alumno externo
     public AlumnoExterno guardar(AlumnoExterno alumnoExterno) {
         return repository.save(alumnoExterno);
     }
 
     @Override
     @Transactional
-    //modifica
+    //modifica el alumno externo
     public AlumnoExterno modificar(AlumnoExterno alumnoExterno) throws NoSeHaEncontradoException {
 
         //comprueba que el id elegido existe,en caso de que si, entra en el bucle y modifica el campo de ese id
