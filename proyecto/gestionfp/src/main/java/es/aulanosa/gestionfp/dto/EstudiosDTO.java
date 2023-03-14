@@ -19,6 +19,12 @@ public class EstudiosDTO {
 
     private boolean pext;
 
+    public EstudiosDTO(String nombre, boolean fct, boolean pext) {
+        this.nombre = nombre;
+        this.fct = fct;
+        this.pext = pext;
+    }
+
     public Estudios convertirModel(){
         Estudios estudios = new Estudios();
         estudios.setId(this.id);
