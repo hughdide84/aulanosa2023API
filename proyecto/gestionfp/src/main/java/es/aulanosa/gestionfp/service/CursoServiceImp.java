@@ -34,8 +34,15 @@ public class CursoServiceImp implements CursoService {
     @Override
     @Transactional
     public void eliminarCurso(int id) {
-         repositorio.deleteById(id);
-        System.out.println("Curso eliminado con exito");
+
+        if(repositorio.findById(id).isPresent()){
+            repositorio.deleteById(id);
+        }else{
+            System.out.println("El curso que se intenta eliminar no existe");
+        }
+
+
+
     }
     //inserta en la BD un objeto curso con los atributos que se le pase
     @Override
