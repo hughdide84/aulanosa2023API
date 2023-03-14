@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestClassOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import java.sql.Timestamp;
 import java.util.GregorianCalendar;
@@ -35,9 +36,25 @@ public class CursoServiceTestV1 {
 
         System.out.println(var1);
     }
+
     @Test
     @Order(2)
-    void eliminar(){
+    void bucarPorId(){
+        Curso curso = new Curso();
+        curso.setId(3);
+        curso.setNombre("curso1");
+        curso.setInicio(new Timestamp(new GregorianCalendar(2014, 3, 24).getTimeInMillis()));
+        curso.setFin(new Timestamp(new GregorianCalendar(2016, 8, 24).getTimeInMillis()));
+        curso.setEstado('a');
+
+
+        System.out.println(service.buscarPorId(curso.getId()));
+
+    }
+
+    @Test
+    @Order(3)
+    void buscarTodo(){
         Curso curso = new Curso();
         curso.setId(2);
         curso.setNombre("curso1");
@@ -46,14 +63,12 @@ public class CursoServiceTestV1 {
         curso.setEstado('a');
 
 
-        service.insertarCurso(curso);
-        service.eliminarCurso(curso.getId());
+        System.out.println(service.buscarTodo());
 
-        System.out.println(curso);
     }
 
     @Test
-    @Order(3)
+    @Order(4)
     void modificar() throws NoSeHaEncontradoException {
         Optional<Curso> optionalCurso = Optional.ofNullable(service.buscarPorId(1));
 
@@ -67,32 +82,20 @@ public class CursoServiceTestV1 {
         }
     }
     @Test
-    @Order(4)
-    void buscarTodo(){
-        Curso curso = new Curso();
-        curso.setId(2);
-        curso.setNombre("curso1");
-        curso.setInicio(new Timestamp(new GregorianCalendar(2014, 3, 24).getTimeInMillis()));
-        curso.setFin(new Timestamp(new GregorianCalendar(2016, 8, 24).getTimeInMillis()));
-        curso.setEstado('a');
-
-
-        System.out.println(service.buscarTodo());
-
-    }
-    @Test
     @Order(5)
-    void bucarPorId(){
-        Curso curso = new Curso();
-        curso.setId(3);
-        curso.setNombre("curso1");
-        curso.setInicio(new Timestamp(new GregorianCalendar(2014, 3, 24).getTimeInMillis()));
-        curso.setFin(new Timestamp(new GregorianCalendar(2016, 8, 24).getTimeInMillis()));
-        curso.setEstado('a');
+    void eliminar(){
 
+        try{
+            service.eliminarCurso(1);
 
-        System.out.println(service.buscarPorId(curso.getId()));
+        }catch (DataIntegrityViolationException e){
+            System.out.println("No se puede eliminar porque existen relaciones con la entidad");
+        }
 
     }
+
+
+
+
 
 }
