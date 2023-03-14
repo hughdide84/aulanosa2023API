@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AlumnoServiceImp implements AlumnoService{
@@ -40,10 +41,15 @@ public class AlumnoServiceImp implements AlumnoService{
     @Transactional
     @Override
     public Alumno modificar(Alumno alumno) throws NoSeHaEncontradoException {
-        if (repositorio.findById(alumno.getId()) == null) {
-            return repositorio.save(alumno);
-        } else {
-            throw new NoSeHaEncontradoException("No se ha encontrado el usuario");
+
+        Optional<Alumno> alumnoOptional = repositorio.findById(2);
+        if(alumnoOptional.isPresent()){
+            alumnoOptional.get().setNombre("Paco");
+            Alumno alumnosExternos1 = repositorio.save(alumnoOptional.get());
+
+            System.out.println("Alumno modificado a: " + alumnosExternos1);
+        }else{
+            throw new NoSeHaEncontradoException("No se ha encontrado el alumno especificado");
         }
     }
 }

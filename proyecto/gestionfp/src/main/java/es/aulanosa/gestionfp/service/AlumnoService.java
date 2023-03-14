@@ -7,11 +7,12 @@ import java.util.List;
 
 public interface AlumnoService {
 
+    Alumno guardar(Alumno alumno);
     List<Alumno> buscarTodo();
 
     Object buscarPorId(int id);
-    void eliminar(int id);
-    Alumno guardar(Alumno alumno);
     Alumno modificar(Alumno alumno) throws NoSeHaEncontradoException;
+    void eliminar(int id);
+
 
 }
