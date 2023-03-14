@@ -21,7 +21,7 @@ public class ProyectosTest1 {
 
     @Test()
     @Order(1)
-    void insertoProyecto() {
+    void insertarProyecto() {
         Proyectos proyectos = new Proyectos();
         proyectos.setIdAlumno(52);
         proyectos.setDocumento('a');
@@ -29,14 +29,14 @@ public class ProyectosTest1 {
         proyectos.setNotaDoc(9);
         proyectos.setNotaPres(5);
         proyectos.setNotaFinal(6);
-        var a = proyectosService.guardar(proyectos);
+        var a = proyectosService.save(proyectos);
         System.out.println(a);
     }
 
     @Test
     @Order(2)
     void consultarProyectoPorId() {
-        var a = proyectosService.consultarPorId(5);
+        var a = proyectosService.findById(5);
         System.out.println(a);
     }
 
@@ -64,17 +64,17 @@ public class ProyectosTest1 {
     @Test
     @Order(4)
     void consultarAllProyectos() {
-        var a = proyectosService.buscarTodo();
+        var a = proyectosService.findAll();
         System.out.println(a);
     }
 
     @Test
     @Order(5)
     void borrarProyecto() {
-        Optional<Proyectos> proyectosCon = proyectosService.consultarPorId(13);
+        Optional<Proyectos> proyectosCon = proyectosService.findById(13);
         if (proyectosCon != null) {
-            proyectosService.borrarPorId(13);
-            if (proyectosService.consultarPorId(13) == null) {
+            proyectosService.deleteById(13);
+            if (proyectosService.findById(13) == null) {
                 System.out.println("Proyecto eliminado");
             }
             else {

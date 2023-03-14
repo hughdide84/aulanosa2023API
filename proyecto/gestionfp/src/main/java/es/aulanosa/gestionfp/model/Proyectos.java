@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import org.hibernate.annotations.BatchSize;
 
 //Constructor
@@ -18,12 +19,16 @@ public class Proyectos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "idAlumno")
+    @NonNull
     private Integer idAlumno;
     @Column(name = "documento")
+    @NonNull
     private char documento;
     @Column(name = "presentacion")
+    @NonNull
     private char presentacion;
     @Column(name = "notaDoc")
+    @NonNull
     private Integer notaDoc;
     @Column(name = "notaPres")
     private Integer notaPres;

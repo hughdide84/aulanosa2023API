@@ -8,9 +8,9 @@ import java.util.Optional;
 
 //Interface por la que pasamos los metodos que utilizara el ServiceImp
 public interface ProyectosService {
-    public Proyectos guardar(Proyectos proyectos);
-    public List<Proyectos> buscarTodo();
-    public Optional<Proyectos> consultarPorId(Integer id);
+    public Proyectos save(Proyectos proyectos);
+    public List<Proyectos> findAll();
+    public Optional<Proyectos> findById(Integer id);
     public Proyectos update(Proyectos proyectos) throws NoSeHaEncontradoException;
-    public void borrarPorId(Integer id);
+    public void deleteById(Integer id);
 }
