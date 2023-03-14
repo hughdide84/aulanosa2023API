@@ -47,6 +47,9 @@ public class TestEstudiosService {
         }
         else{
             System.out.println("Estudios consultados");
+            for (Estudios estudios : consultado) {
+                System.out.println(estudios);
+            }
         }
     }
 

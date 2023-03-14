@@ -38,7 +38,7 @@ public class EstudiosServiceImp implements EstudiosService {
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     //Metodo para modificar un estudio
     public Estudios modificar(Estudios estudios) throws NoSuchFieldException{
         if (repositorio.findById(estudios.getId()).isPresent()){
@@ -50,7 +50,7 @@ public class EstudiosServiceImp implements EstudiosService {
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     //Metodo para eliminar un estudio por su id
     public void eliminar(Integer id) {
         repositorio.deleteById(id);
