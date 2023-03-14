@@ -74,7 +74,7 @@ public class AlumnosExternosController {
 
             AlumnosExternosDTO alumnosExternosDTO = new AlumnosExternosDTO();
             alumnosExternosDTO.crearDTO(alumnosExternos.get());
-            return ResponseEntity.status(HttpStatus.OK).body(alumnosExternosDTO);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(alumnosExternosDTO);
         }else{
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new NoSeHaEncontradoException("No se ha encontrado ese Alumno Externo"));
         }

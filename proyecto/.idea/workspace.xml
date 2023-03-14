@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a4ee20a-f05e-490a-af07-a07dcaeb3bc8" name="Changes" comment="" />
+    <list default="true" id="c2575183-66a4-4f62-a156-3054994e8e58" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,7 +60,7 @@
     &quot;last_opened_file_path&quot;: &quot;C:/Users/FP/Desktop/Github/aulanosa2023API/proyecto&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.GestionfpApplication">
     <configuration name="GestionfpApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.GestionfpApplication" />
       <module name="gestionfp" />
