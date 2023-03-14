@@ -26,7 +26,8 @@ public class AlumnoServiceImp implements AlumnoService{
     @Override
     @Transactional(readOnly = true)
     public Optional<Alumno> buscarPorId(int id) {
-        return Optional.ofNullable(repositorio.findById(id).orElse(null));
+
+        return repositorio.findById(id);
     }
     @Transactional
     @Override
@@ -43,13 +44,11 @@ public class AlumnoServiceImp implements AlumnoService{
     @Override
     public Alumno modificar(Alumno alumno) throws NoSeHaEncontradoException {
 
-        Optional<Alumno> alumnoOptional = repositorio.findById(2);
+        Optional<Alumno> alumnoOptional = repositorio.findById(alumno.getId());
 
         if(alumnoOptional.isPresent()){
-            alumnoOptional.get().setNombre("Paco");
             Alumno alumnoOptional1 = repositorio.save(alumnoOptional.get());
 
-            System.out.println("Alumno modificado a: " + alumnoOptional1);
         }else{
             throw new NoSeHaEncontradoException("No se ha encontrado el alumno especificado");
         }

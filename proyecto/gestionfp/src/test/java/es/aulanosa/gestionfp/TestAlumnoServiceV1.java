@@ -82,7 +82,7 @@ public class TestAlumnoServiceV1 {
     @Test
     @Order(4)
     void modificar() throws NoSeHaEncontradoException {
-        Optional<Alumno> optionalAlumno = service.buscarPorId(3);
+        Optional<Alumno> optionalAlumno = service.buscarPorId(4);
 
         if(optionalAlumno.isPresent()){
             optionalAlumno.get().setNombre("AlumnoMOD");
