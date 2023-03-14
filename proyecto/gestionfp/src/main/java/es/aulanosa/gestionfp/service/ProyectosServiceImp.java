@@ -33,14 +33,14 @@ public class ProyectosServiceImp implements ProyectosService{
     //Metodo de busqueda de campos de la tabla proyectos por id
     @Override
     @Transactional(readOnly = true)
-    public Optional<Proyectos> findById(Integer id) {
-        return repository.findById(id);
+    public Proyectos findById(Integer id) {
+        return repository.findById(id).orElse(null);
     }
 
     //Metodo para modificar datos de la tabla proyectos
     @Override
     public Proyectos update(Proyectos proyectos) throws NoSeHaEncontradoException {
-        if (repository.findById(proyectos.getId()) == null) {
+        if (repository.findById(proyectos.getId()) != null) {
             return repository.save(proyectos);
         } else {
             throw new NoSeHaEncontradoException("No se ha encontrado el usuario");

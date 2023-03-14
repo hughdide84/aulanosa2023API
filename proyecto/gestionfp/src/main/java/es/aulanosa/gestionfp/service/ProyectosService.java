@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface ProyectosService {
     public Proyectos save(Proyectos proyectos);
     public List<Proyectos> findAll();
-    public Optional<Proyectos> findById(Integer id);
+    public Proyectos findById(Integer id);
     public Proyectos update(Proyectos proyectos) throws NoSeHaEncontradoException;
     public void deleteById(Integer id);
 }

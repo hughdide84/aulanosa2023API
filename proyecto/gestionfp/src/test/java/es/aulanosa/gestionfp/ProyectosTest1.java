@@ -44,8 +44,8 @@ public class ProyectosTest1 {
     @Order(3)
     void updateProyectos() {
         Proyectos proyectos = new Proyectos();
-        proyectos.setId(56);
-        proyectos.setIdAlumno(23);
+        proyectos.setId(6);
+        proyectos.setIdAlumno(3);
         proyectos.setDocumento('a');
         proyectos.setPresentacion('e');
         proyectos.setNotaDoc(9);
@@ -71,10 +71,10 @@ public class ProyectosTest1 {
     @Test
     @Order(5)
     void borrarProyecto() {
-        Optional<Proyectos> proyectosCon = proyectosService.findById(13);
+        Proyectos proyectosCon = proyectosService.findById(23);
         if (proyectosCon != null) {
-            proyectosService.deleteById(13);
-            if (proyectosService.findById(13) == null) {
+            proyectosService.deleteById(proyectosCon.getId());
+            if (proyectosCon == null) {
                 System.out.println("Proyecto eliminado");
             }
             else {
