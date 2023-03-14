@@ -26,6 +26,15 @@ public class TestEmpresaServiceV2 {
         empresa.setCif("A12345678");
         empresa.setContacto("Juan");
         empresa.setConvenio('a');
+        empresa.setRepresentante("Juan");
+        empresa.setDireccionSocial("Calle 1");
+        empresa.setDireccionTrabajo("Calle 1");
+        empresa.setTutor1("Juan");
+        empresa.setTutor2("Juan");
+        empresa.setTutor3("Juan");
+        empresa.setPlanIndividual('a');
+        empresa.setHojaActividades('a');
+        empresaService.save(empresa);
 
     }
 
