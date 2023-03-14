@@ -10,9 +10,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -31,14 +29,22 @@ public class EstudiosController {
         estudiosDTO.crearDTO(estudiosGuardado);
         return ResponseEntity.status(HttpStatus.CREATED).body(estudiosDTO);
     }
-
-    public ResponseEntity<?> crear (@RequestBody EstudiosDTO estudiosDTO) {
-        Optional<Estudios> estudiosConsultado = servicio.consultarPorId(estudiosDTO.getId());
-        if (!estudiosConsultado.isPresent()) {
-            Estudios estudiosGuardado = servicio.insertar(estudiosDTO.convertirModel());
-            return ResponseEntity.status(HttpStatus.CREATED).body(estudiosDTO.crearDTO(estudiosGuardado));
-
+    @GetMapping
+    @Operation(summary = "Consulta un estudio por su id")
+    public ResponseEntity<?> consultarId(@RequestParam Integer id){
+        Optional<Estudios> estudiosConsultado = servicio.consultarPorId(id);
+        if (estudiosConsultado.isPresent()) {
+            return ResponseEntity.status(HttpStatus.OK).body(estudiosConsultado);
+        }else {
+            ErrorEstudiosDto errorEstudiosDto = new ErrorEstudiosDto();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorEstudiosDto);
         }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorEstudiosDto());
+    }
+
+    @GetMapping
+    @Operation(summary = "Consultar todos los estudios")
+    public ResponseEntity<?> consultarTodos(){
+        return ResponseEntity.status(HttpStatus.OK).body(servicio.consultarTodos());
     }
 }
+
