@@ -3,7 +3,7 @@ package es.aulanosa.gestionfp.service;
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Proyectos;
 import es.aulanosa.gestionfp.repository.ProyectosRepository;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,14 +25,14 @@ public class ProyectosServiceImp implements ProyectosService{
 
     //Metodo de listado completo de la tabla proyectos completa
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<Proyectos> findAll() {
         return repository.findAll();
     }
 
     //Metodo de busqueda de campos de la tabla proyectos por id
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Optional<Proyectos> findById(Integer id) {
         return repository.findById(id);
     }

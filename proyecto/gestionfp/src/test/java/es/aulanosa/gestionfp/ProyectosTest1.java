@@ -23,7 +23,7 @@ public class ProyectosTest1 {
     @Order(1)
     void insertarProyecto() {
         Proyectos proyectos = new Proyectos();
-        proyectos.setIdAlumno(52);
+        proyectos.setIdAlumno(3);
         proyectos.setDocumento('a');
         proyectos.setPresentacion('e');
         proyectos.setNotaDoc(9);
