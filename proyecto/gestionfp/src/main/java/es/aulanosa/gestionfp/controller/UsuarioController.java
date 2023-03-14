@@ -55,7 +55,7 @@ public class UsuarioController {
         if (usuarioConsultado != null && checkFieldSize(usuarioDTO).equals("")) {
             Usuario usuarioActualizado = usuarioDTO.toModel();
             service.save(usuarioActualizado);
-            return ResponseEntity.ok(usuarioActualizado);
+            return ResponseEntity.status(HttpStatus.CREATED).body(usuarioActualizado);
         } else if (!checkFieldSize(usuarioDTO).equals("")) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Longitud excedida en el/los siguiente/-s campo/-s: " + checkFieldSize(usuarioDTO));
         } else {
@@ -66,12 +66,14 @@ public class UsuarioController {
 
     // Borra el usuario cuyo id coincide con el introducido
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable Integer id) {
+    public ResponseEntity<?> deleteById(@PathVariable Integer id) {
         Usuario usuarioConsultado = service.findById(id);
 
         if (usuarioConsultado != null) {
             service.deleteById(id);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
+        return null;
     }
 
     // Devuelve un listado con todos los usuarios
