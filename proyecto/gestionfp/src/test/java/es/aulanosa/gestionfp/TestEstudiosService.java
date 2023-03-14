@@ -68,15 +68,14 @@ public class TestEstudiosService {
         }
     }
 
-
     @Test
     @Order(5)
     public void testEliminar(){
         servicio.eliminar(17);
         if (servicio.consultarPorId(17).isPresent()){
-            System.out.println("Estudios eliminados");
-        }else {
             System.out.println("Estudios no encontrados/no eliminados");
+        }else {
+            System.out.println("Estudios eliminados");
         }
     }
 
