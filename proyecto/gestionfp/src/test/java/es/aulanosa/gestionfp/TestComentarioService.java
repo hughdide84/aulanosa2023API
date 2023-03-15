@@ -49,9 +49,13 @@ public class TestComentarioService {
         comentario.setTexto("ROLE_ADMIN");
         comentario.setIdUsuarioComentario(14);
         comentario.setFecha(new Date(2023, 2, 14));
-        Comentario c = null;
-        c = comentarioService.actualizar(comentario);
-        System.out.println(c);
+        Comentario comentarioActualizado = null;
+        try {
+            comentarioActualizado = comentarioService.actualizar(comentario);
+            System.out.println(comentarioActualizado);
+        } catch (NoSeHanEncontradoException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Test
@@ -64,13 +68,15 @@ public class TestComentarioService {
     @Test
     @Order(5)
     void borrarComentarioPorId() {
-        Optional<Comentario> comentarioConsultado = comentarioService.listarPorId(15);
+        Integer id = 15;
+        Optional<Comentario> comentarioConsultado = comentarioService.listarPorId(id);
         if (comentarioConsultado.isPresent()) {
-            comentarioService.borrarPorId(15);
-            if (comentarioService.listarPorId(15) == null)
-                System.out.println("Comentario borrado");
-            else
+            comentarioService.borrarPorId(id);
+            if (comentarioService.listarPorId(id).isPresent()) {
                 System.out.println("Comentario no borrado");
+            } else {
+                System.out.println("Comentario borrado");
+            }
         } else {
             System.out.println("Comentario no encontrado");
         }

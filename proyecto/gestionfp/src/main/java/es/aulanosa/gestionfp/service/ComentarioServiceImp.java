@@ -48,8 +48,11 @@ public class ComentarioServiceImp implements ComentarioService {
     public Comentario actualizar(Comentario comentario) {
         Optional<Comentario> comentarioConsultado = comentarioRepository.findById(comentario.getId());
 
-        if ()
+        if (comentarioConsultado.isPresent()) {
             return comentarioRepository.save(comentario);
+        } else {
+            throw new NoSeHaEncontradoException("No se ha encontrado el comentario");
+        }
     }
 
     // Borra un comentario por ID
