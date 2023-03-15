@@ -7,58 +7,88 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class UsuarioServiceImp implements UsuarioService{
+public class UsuarioServiceImp implements UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    //busca todos los usuarios
+    // Crea un nuevo usuario
     @Override
-    @Transactional(readOnly = true)
-    public List<Usuario> findAll() {
-        return usuarioRepository.findAll();
+    @Transactional
+    public Usuario crear(Usuario usuario) {
+        Optional<Usuario> usuarioConsultado = usuarioRepository.findByNombre(usuario.getNombre());
+
+        if (!usuarioConsultado.isPresent()) {
+            return usuarioRepository.save(usuario);
+        } else {
+            throw new NoSeHaEncontradoException("Ya existe un usuario con ese nombre");
+        }
     }
 
-    //busca todos los usuarios por nombre
+    // Lista el usuario cuyo id coincida con el introducido
     @Override
     @Transactional(readOnly = true)
-    public List<Usuario> findAllByNombre(String nombre) {
-        return usuarioRepository.findAllByNombre(nombre);
-    }
-
-    //busca usuario por id
-    @Override
-    @Transactional(readOnly = true)
-    public Usuario findById(int id) {
+    public Usuario listarPorId(int id) {
         return usuarioRepository.findById(id).orElse(null);
     }
 
-    //guarda un usuario
+    // Lista el usuario cuyo nombre coincida con el introducido
     @Override
-    @Transactional
-    public Usuario save(Usuario usuario) {
-
-        return usuarioRepository.save(usuario);
+    public Optional<Usuario> consultarPorNombre(String nombre) {
+        return usuarioRepository.findByNombre(nombre);
     }
 
-    //borra un usuario por id
+    // Lista los usuarios cuyo rol coincida con el introducido
     @Override
-    @Transactional
-    public void deleteById(int id) {
-        usuarioRepository.deleteById(id);
+    public List<Usuario> consultarPorRol(String rol) {
+        return usuarioRepository.findByRol(rol);
+    }
+
+    // Lista todos los usuarios
+    @Override
+    @Transactional(readOnly = true)
+    public List<Usuario> listarTodo() {
+        return usuarioRepository.findAll();
+    }
+
+    // Lista los usuarios que contengan en su nombre la cadena introducida
+    @Override
+    public List<Usuario> listarPorNombre(String cadenaNombre) {
+        return usuarioRepository.findByNombreContains(cadenaNombre);
+    }
+
+    // Lista los usuarios que contengan en su email la cadena introducida
+    @Override
+    public List<Usuario> listarPorEmail(String cadenaEmail) {
+        return usuarioRepository.findByEmailContains(cadenaEmail);
     }
 
     @Override
     @Transactional
-    public Usuario update(Usuario usuario) throws NoSeHaEncontradoException {
-        var a = usuarioRepository.findById(usuario.getId());
-        if (!a.isEmpty()) {
-            return usuarioRepository.save(usuario);
+    public Usuario actualizar(Usuario usuario) throws NoSeHaEncontradoException {
+        Optional<Usuario> usuarioConsultado = usuarioRepository.findById(usuario.getId());
+
+        if (usuarioConsultado.isPresent()) {
+            Optional<Usuario> usuarioModificado = usuarioRepository.findByNombre(usuario.getNombre());
+            if (!usuarioModificado.isPresent()) {
+                return usuarioRepository.save(usuario);
+            } else {
+                throw new NoSeHaEncontradoException("Ya existe un usuario con ese nombre");
+            }
         } else {
             throw new NoSeHaEncontradoException("No se ha encontrado el usuario");
         }
+    }
+
+    // Borra el usuario cuyo id coincide con el introducido
+    @Override
+    @Transactional
+    public void borrarPorId(int id) {
+        usuarioRepository.deleteById(id);
     }
 }
