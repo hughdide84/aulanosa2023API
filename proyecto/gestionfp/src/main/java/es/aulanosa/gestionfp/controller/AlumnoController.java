@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -100,7 +101,12 @@ public class AlumnoController {
     public ResponseEntity<?> buscarPorEmpresa(@PathVariable Integer id) {
 
         List<Empresa> listaEmpresas = serviceAlumnoEmpresa.buscarTodasEmpresasPorIdAlumno(id);
-        
+
+        List<Empresa> listaEmpresasDTO = new ArrayList<>();
+
+        for (Empresa empresa : listaEmpresas) {
+            empresa.
+        }
 
         if(!listaEmpresas.isEmpty()){
             return ResponseEntity.status(HttpStatus.OK).body(listaEmpresas);
