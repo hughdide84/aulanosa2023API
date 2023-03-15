@@ -40,7 +40,7 @@ public class TestProyectosV2 {
 
     @Test
     @Order(3)
-    void modificarProyectos() throws NoSeHaEncontradoException{
+    void modificarProyecto() throws NoSeHaEncontradoException{
         Proyectos proyectos = new Proyectos();
         proyectos.setId(20);
         proyectos.setIdAlumno(3);
