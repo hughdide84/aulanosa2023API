@@ -39,11 +39,12 @@ public class ProyectosServiceImp implements ProyectosService{
 
     //Metodo para modificar datos de la tabla proyectos
     @Override
+    @Transactional
     public Proyectos update(Proyectos proyectos) throws NoSeHaEncontradoException {
         if (repository.findById(proyectos.getId()) != null) {
             return repository.save(proyectos);
         } else {
-            throw new NoSeHaEncontradoException("No se ha encontrado el usuario");
+            throw new NoSeHaEncontradoException("No se ha encontrado el proyecto en concreto");
         }
     }
 

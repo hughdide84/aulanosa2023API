@@ -10,12 +10,10 @@ import org.junit.jupiter.api.TestClassOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Optional;
-
 
 @TestClassOrder(ClassOrderer.OrderAnnotation.class)
 @SpringBootTest
-public class ProyectosTest1 {
+public class TestProyectosV2 {
     @Autowired
     private ProyectosService proyectosService;
 
@@ -44,10 +42,10 @@ public class ProyectosTest1 {
     @Order(3)
     void updateProyectos() {
         Proyectos proyectos = new Proyectos();
-        proyectos.setId(6);
+        proyectos.setId(14);
         proyectos.setIdAlumno(3);
-        proyectos.setDocumento('a');
-        proyectos.setPresentacion('e');
+        proyectos.setDocumento('l');
+        proyectos.setPresentacion('k');
         proyectos.setNotaDoc(9);
         proyectos.setNotaPres(5);
         proyectos.setNotaFinal(6);
@@ -71,7 +69,7 @@ public class ProyectosTest1 {
     @Test
     @Order(5)
     void borrarProyecto() {
-        Proyectos proyectosCon = proyectosService.findById(30);
+        Proyectos proyectosCon = proyectosService.findById(350);
         if (proyectosCon != null) {
 
             int idCom = proyectosCon.getId();
