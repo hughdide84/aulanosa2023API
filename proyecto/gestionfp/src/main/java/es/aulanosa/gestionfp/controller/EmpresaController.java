@@ -41,7 +41,7 @@ public class EmpresaController {
 
     //Este metodo busca un campo de la tabla empresa mediante su id
     @GetMapping("{id}")
-    public ResponseEntity<?> consultarEmpresa(@RequestBody Integer id) {
+    public ResponseEntity<?> consultarEmpresa(@PathVariable("id") Integer id) {
         Empresa empresa = empService.findById(id);
 
         if (empresa != null) {
@@ -70,7 +70,7 @@ public class EmpresaController {
 
     //Este metodo busca un campo de la tabla empresa para eliminarlo.
     @DeleteMapping("{id}")
-    public ResponseEntity<?> eliminarEmpresa(@RequestBody Integer id) {
+    public ResponseEntity<?> eliminarEmpresa(@PathVariable("id") Integer id) {
         Empresa empresa = empService.findById(id);
 
         if (empresa != null) {
