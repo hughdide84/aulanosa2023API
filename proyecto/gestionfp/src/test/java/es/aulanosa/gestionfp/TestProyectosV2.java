@@ -64,7 +64,7 @@ public class TestProyectosV2 {
 
     @Test
     @Order(4)
-    void consultarAllProyectos() {
+    void consultarTodosProyectos() {
         var a = proyectosService.buscarTodo();
         System.out.println(a);
     }
