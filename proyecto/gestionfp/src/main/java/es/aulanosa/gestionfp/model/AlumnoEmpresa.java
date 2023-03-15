@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AlumnosEmpresas {
+public class AlumnoEmpresa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +22,7 @@ public class AlumnosEmpresas {
     @Column(name = "estado")
     private char estado;
 
-    public AlumnosEmpresas(int idAlumno, int idEmpresa, char estado) {
+    public AlumnoEmpresa(int idAlumno, int idEmpresa, char estado) {
         this.idAlumno = idAlumno;
         this.idEmpresa = idEmpresa;
         this.estado = estado;
