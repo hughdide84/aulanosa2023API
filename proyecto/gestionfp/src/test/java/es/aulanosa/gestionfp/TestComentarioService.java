@@ -26,6 +26,7 @@ public class TestComentarioService {
         comentario.setSistema('P');
         comentario.setReferencia(7);
         comentario.setTexto("ROLE_ADM");
+        comentario.setIdUsuarioComentario(14);
         comentario.setFecha(new Date(2023, 2, 14));
         var c = comentarioService.save(comentario);
         System.out.println(c);
@@ -34,7 +35,7 @@ public class TestComentarioService {
     @Test
     @Order(2)
     void consultarComentarioPorId() {
-        var c = comentarioService.findById(1);
+        var c = comentarioService.findById(14);
         System.out.println(c);
     }
 
@@ -46,6 +47,7 @@ public class TestComentarioService {
         comentario.setSistema('A');
         comentario.setReferencia(21);
         comentario.setTexto("ROLE_ADMIN");
+        comentario.setIdUsuarioComentario(14);
         comentario.setFecha(new Date(2023, 2, 14));
         Comentario c = null;
         c = comentarioService.update(comentario);
