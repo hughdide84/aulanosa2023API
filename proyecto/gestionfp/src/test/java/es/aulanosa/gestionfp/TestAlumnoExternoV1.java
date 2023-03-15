@@ -81,7 +81,7 @@ class TestAlumnoExternoV1 {
 	@Test
 	@Order(5)
 	void eliminarAlumnoExterno(){
-		int id = 14;
+		int id = 99;
 
 		try {
 			service.eliminar(id);
