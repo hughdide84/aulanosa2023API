@@ -31,7 +31,7 @@ public class TestAsignatura {
             var a = asignaturaService.save(asignatura);
             System.out.println(a);
         } catch (Exception e) {
-            throw new NoSeHaEncontradoException("No se ha encontrado el usuario", e);
+            throw new NoSeHaEncontradoException("No se ha encontrado la asignatura", e);
         }
     }
 
@@ -48,15 +48,17 @@ public class TestAsignatura {
     @Order(3)
     public void update() throws NoSeHaEncontradoException {
 
-        var asignaturaConsultada = asignaturaService.findById(1);
+        var asignaturaConsultada = asignaturaService.findById(1032);
         if (asignaturaConsultada != null) {
             asignaturaConsultada.setNombre("Programación333");
             try {
                 var a = asignaturaService.update(asignaturaConsultada);
                 System.out.println(a);
             } catch (Exception e) {
-                throw new NoSeHaEncontradoException("No se ha encontrado el usuario", e);
+                throw new NoSeHaEncontradoException("No se ha encontrado la asignatura", e);
             }
+        } else {
+            System.out.println("No se ha encontrado la asignatura");
         }
     }
 
@@ -69,8 +71,10 @@ public class TestAsignatura {
                 asignaturaService.deleteById(asignaturaConsultada.getId());
                 System.out.println("Se ha borrado correctamente");
             } catch (Exception e) {
-                throw new NoSeHaEncontradoException("No se ha encontrado el usuario", e);
+                throw new NoSeHaEncontradoException("No se ha encontrado la asignatura", e);
             }
+        } else {
+            System.out.println("No se ha encontrado la asignatura");
         }
     }
 
@@ -81,7 +85,7 @@ public class TestAsignatura {
             List<Asignatura> asignaturas = asignaturaService.findAll();
             System.out.println(asignaturas);
         } catch (Exception e) {
-            throw new NoSeHaEncontradoException("No se ha encontrado el usuario", e);
+            throw new NoSeHaEncontradoException("No se han encontrado asignaturas", e);
         }
     }
 
@@ -92,7 +96,7 @@ public class TestAsignatura {
             List<Asignatura> asignaturas = asignaturaService.findAllByNombre("Programación");
             System.out.println(asignaturas);
         } catch (Exception e) {
-            throw new NoSeHaEncontradoException("No se ha encontrado el usuario", e);
+            throw new NoSeHaEncontradoException("No se ha encontrado el asignaturas", e);
         }
     }
 
