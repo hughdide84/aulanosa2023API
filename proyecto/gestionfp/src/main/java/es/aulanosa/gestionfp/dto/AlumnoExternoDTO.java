@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AlumnosExternosDTO {
+public class AlumnoExternoDTO {
     private int id;
     private int idCurso;
     private char tipo;
@@ -48,7 +48,7 @@ public class AlumnosExternosDTO {
         return alumnosExternos;
     }
 
-    public AlumnosExternosDTO crearDTO(AlumnoExterno alumnosExternos){
+    public AlumnoExternoDTO crearDTO(AlumnoExterno alumnosExternos){
         this.setId(alumnosExternos.getId());
         this.setTelefono(alumnosExternos.getTelefono());
         this.setEvaluacion(alumnosExternos.getEvaluacion());

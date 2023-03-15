@@ -43,6 +43,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
         <option name="useMavenConfig" value="true" />
       </MavenGeneralSettings>
     </option>
@@ -53,14 +54,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/FP/Desktop/Github/aulanosa2023API/proyecto&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/FP/Desktop/Github/aulanosa2023API/proyecto",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
-}</component>
-  <component name="RunManager" selected="JUnit.TestAlumnoExternoV1.eliminarAlumnoExterno">
+}]]></component>
+  <component name="RunManager" selected="Application.GestionfpApplication">
     <configuration name="GestionfpApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.GestionfpApplication" />
       <module name="gestionfp" />
@@ -90,7 +94,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestAlumnoExternoV1.eliminarAlumnoExterno" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestAsignaturaHorariov1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gestionfp" />
       <extension name="coverage">
         <pattern>
@@ -99,14 +103,29 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
-      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestAlumnoExternoV1" />
-      <option name="METHOD_NAME" value="eliminarAlumnoExterno" />
+      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestAsignaturaHorariov1" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestAsignaturaHorariov1.insertarAsignaturaHorario" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="gestionfp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="es.aulanosa.gestionfp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
+      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestAsignaturaHorariov1" />
+      <option name="METHOD_NAME" value="insertarAsignaturaHorario" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestAlumnoExternoV1.insertarAlumnoExterno" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestUsuarioServicev1.insertarUsuario" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gestionfp" />
       <extension name="coverage">
         <pattern>
@@ -115,36 +134,33 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
-      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestAlumnoExternoV1" />
-      <option name="METHOD_NAME" value="insertarAlumnoExterno" />
+      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestUsuarioServicev1" />
+      <option name="METHOD_NAME" value="insertarUsuario" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestAlumnoExternoV1.modificar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="true" type="JetRunConfigurationType">
       <module name="gestionfp" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="es.aulanosa.gestionfp.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
-      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestAlumnoExternoV1" />
-      <option name="METHOD_NAME" value="modificar" />
-      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="gestionfp" />
+      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestAlumnoExternoV1.eliminarAlumnoExterno" />
-        <item itemvalue="JUnit.TestAlumnoExternoV1.insertarAlumnoExterno" />
         <item itemvalue="Application.GestionfpApplication" />
+        <item itemvalue="JUnit.TestAsignaturaHorariov1.insertarAsignaturaHorario" />
+        <item itemvalue="JUnit.TestUsuarioServicev1.insertarUsuario" />
+        <item itemvalue="JUnit.TestAsignaturaHorariov1" />
         <item itemvalue="JUnit.TestAlumnoExternoV1.eliminar" />
-        <item itemvalue="JUnit.TestAlumnoExternoV1.modificar" />
       </list>
     </recent_temporary>
   </component>
