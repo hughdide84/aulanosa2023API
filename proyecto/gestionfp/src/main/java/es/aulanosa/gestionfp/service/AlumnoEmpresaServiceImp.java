@@ -1,7 +1,9 @@
 package es.aulanosa.gestionfp.service;
 
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
+import es.aulanosa.gestionfp.model.Alumno;
 import es.aulanosa.gestionfp.model.AlumnoEmpresa;
+import es.aulanosa.gestionfp.model.Empresa;
 import es.aulanosa.gestionfp.repository.AlumnoEmpresaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,6 +51,19 @@ public class AlumnoEmpresaServiceImp implements AlumnoEmpresaService {
             throw new NoSeHaEncontradoException("No se ha encontrado el alumnosEmpresas");
         }
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Alumno> findAllAlumnoByEmpresaId(int empresaId) {
+        return alumnoEmpresaRepository.findAllAlumnoByEmpresaId(empresaId);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Empresa> findAllEmpresaByAlumnoId(int alumnoId) {
+        return alumnoEmpresaRepository.findAllEmpresaByAlumnoId(alumnoId);
+    }
+
 
 
 }

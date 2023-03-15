@@ -22,6 +22,14 @@ public class AlumnoEmpresa {
     @Column(name = "estado")
     private char estado;
 
+    @ManyToOne
+    @JoinColumn(name = "idAlumno", insertable = false, updatable = false)
+    private Alumno alumno;
+
+    @ManyToOne
+    @JoinColumn(name = "idEmpresa", insertable = false, updatable = false)
+    private Empresa empresa;
+
     public AlumnoEmpresa(int idAlumno, int idEmpresa, char estado) {
         this.idAlumno = idAlumno;
         this.idEmpresa = idEmpresa;

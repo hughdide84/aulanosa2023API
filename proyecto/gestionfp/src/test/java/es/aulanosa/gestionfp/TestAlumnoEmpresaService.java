@@ -22,7 +22,7 @@ public class TestAlumnoEmpresaService {
     void insertarAlumnosEmpresas() {
         AlumnoEmpresa alumnosEmpresas = new AlumnoEmpresa();
         alumnosEmpresas.setIdAlumno(3);
-        alumnosEmpresas.setIdEmpresa(7);
+        alumnosEmpresas.setIdEmpresa(8);
         alumnosEmpresas.setEstado('a');
         var a = alumnoEmpresaService.save(alumnosEmpresas);
         System.out.println(a);
@@ -65,6 +65,20 @@ public class TestAlumnoEmpresaService {
         } else {
             throw new NoSeHaEncontradoException("No se ha encontrado el registro");
         }
+    }
+
+    @Test
+    @Order(6)
+    void consultarAlumnosPorIdEmpresa() {
+        var a = alumnoEmpresaService.findAllAlumnoByEmpresaId(7);
+        System.out.println(a);
+    }
+
+    @Test
+    @Order(7)
+    void consultarEmpresasPorIdAlumno() {
+        var a = alumnoEmpresaService.findAllEmpresaByAlumnoId(3);
+        System.out.println(a);
     }
 
 }
