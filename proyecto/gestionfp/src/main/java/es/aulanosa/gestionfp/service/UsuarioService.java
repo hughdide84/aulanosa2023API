@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface UsuarioService {
     Usuario listarPorId(int id);
 
-    Usuario crear(Usuario usuario);
+    Usuario crear(Usuario usuario) throws NoSeHaEncontradoException;
 
     Usuario actualizar(Usuario usuario) throws NoSeHaEncontradoException;
 

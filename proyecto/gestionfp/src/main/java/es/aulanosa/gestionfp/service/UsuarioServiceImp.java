@@ -20,7 +20,7 @@ public class UsuarioServiceImp implements UsuarioService {
     // Crea un nuevo usuario
     @Override
     @Transactional
-    public Usuario crear(Usuario usuario) {
+    public Usuario crear(Usuario usuario) throws NoSeHaEncontradoException {
         Optional<Usuario> usuarioConsultado = usuarioRepository.findByNombre(usuario.getNombre());
 
         if (!usuarioConsultado.isPresent()) {

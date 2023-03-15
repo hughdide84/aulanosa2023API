@@ -1,6 +1,7 @@
 package es.aulanosa.gestionfp.controller;
 
 import es.aulanosa.gestionfp.dto.UsuarioDTO;
+import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Usuario;
 import es.aulanosa.gestionfp.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/usuario")
@@ -20,7 +22,7 @@ public class UsuarioController {
 
     // Crea un nuevo usuario
     @PostMapping("")
-    public ResponseEntity<?> create(@RequestBody UsuarioDTO usuarioDTO) {
+    public ResponseEntity<?> create(@RequestBody UsuarioDTO usuarioDTO) throws NoSeHaEncontradoException {
         Usuario usuarioConsultado = service.listarPorId(usuarioDTO.getId());
 
         if (usuarioConsultado == null && checkFieldSize(usuarioDTO).equals("")) {
@@ -49,7 +51,7 @@ public class UsuarioController {
 
     // Actualiza un usuario ya existente
     @PutMapping("")
-    public ResponseEntity<?> update(@RequestBody UsuarioDTO usuarioDTO) {
+    public ResponseEntity<?> update(@RequestBody UsuarioDTO usuarioDTO) throws NoSeHaEncontradoException {
         Usuario usuarioConsultado = service.listarPorId(usuarioDTO.getId());
 
         if (usuarioConsultado != null && checkFieldSize(usuarioDTO).equals("")) {
@@ -88,6 +90,51 @@ public class UsuarioController {
         }
     }
 
+    @GetMapping("/nombreEs/{nombre}")
+    // Devuelve el usuario cuyo nombre coincide con el introducido
+    public ResponseEntity<?> getUsuarioByNombre(@PathVariable String nombre) {
+        Optional<Usuario> usuarioConsultado = service.consultarPorNombre(nombre);
+
+        if (usuarioConsultado != null) {
+            return ResponseEntity.ok(usuarioConsultado);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe ningún usuario con ese nombre");
+        }
+    }
+    @GetMapping("/nombreContiene/{nombre}")
+    // Devuelve un listado con todos los usuarios cuyo nombre coincide con el introducido
+    public ResponseEntity<?> getUsuariosByNombre(@PathVariable String cadenaNombre) {
+        List<Usuario> usuariosConsultados = service.listarPorNombre(cadenaNombre);
+
+        if (!usuariosConsultados.isEmpty()) {
+            return ResponseEntity.ok(usuariosConsultados);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe ningún usuario con ese nombre");
+        }
+    }
+    @GetMapping("/{email}")
+    // Devuelve un listado con todos los usuarios cuyo email coincide con el introducido
+    public ResponseEntity<?> getUsuariosByEmail(@PathVariable String cadenaEmail) {
+        List<Usuario> usuariosConsultados = service.listarPorEmail(cadenaEmail);
+
+        if (!usuariosConsultados.isEmpty()) {
+            return ResponseEntity.ok(usuariosConsultados);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe ningún usuario con ese email");
+        }
+    }
+
+    @GetMapping("/{rol}")
+    // Devuelve un listado con todos los usuarios cuyo rol coincide con el introducido
+    public ResponseEntity<?> getUsuariosByRol(@PathVariable String rol) {
+        List<Usuario> usuariosConsultados = service.listarPorNombre(rol);
+
+        if (!usuariosConsultados.isEmpty()) {
+            return ResponseEntity.ok(usuariosConsultados);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe ningún usuario con ese rol");
+        }
+    }
 
     // Función para gestionar el tamaño de los campos introducidos
     public String checkFieldSize(UsuarioDTO usuarioDTO) {
