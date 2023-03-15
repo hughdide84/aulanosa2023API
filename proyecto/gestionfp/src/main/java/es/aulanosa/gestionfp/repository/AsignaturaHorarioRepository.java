@@ -9,6 +9,6 @@ import java.util.List;
 public interface AsignaturaHorarioRepository extends JpaRepository<AsignaturaHorario, Integer> {
     //busca los horarios que se relacionan con la asignatura con el id que se le pase
 
-    @Query("")
+    @Query("select a from AsignaturaHorario a join fetch a.asignatura asig where asig.id = ?1")
     public List<AsignaturaHorario> findByIdAsignatura(int idAsignatura);
 }

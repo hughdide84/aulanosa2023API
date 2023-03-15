@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface AsignaturaRepository extends JpaRepository<Asignatura, Integer> {
 
-    List<Asignatura> findAllByNameContaining(String nombre);
+    List<Asignatura> findAllByNombreContaining(String nombre);
 }

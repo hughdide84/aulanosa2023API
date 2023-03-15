@@ -35,4 +35,9 @@ public class AsignaturaHorario {
     @NotNull
     @Column(name = "fin")
     private Time fin;
+
+    @ManyToOne
+    @JoinColumn(name = "idAsignatura", insertable = false, updatable = false)
+    private Asignatura asignatura;
+
 }

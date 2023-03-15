@@ -46,7 +46,7 @@ public class AsignaturaHorarioTextV1 {
         //busca por la id
     void buscarPorIdAsignaturaHorario(){
         try{
-            service.buscarPorId(recuperado.getId());
+            System.out.println(service.buscarPorId(2));
         }catch (NoSeHaEncontradoException e){
             System.out.println(e.getMessage());
         }

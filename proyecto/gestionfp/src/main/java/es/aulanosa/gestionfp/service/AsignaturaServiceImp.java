@@ -29,7 +29,7 @@ public class AsignaturaServiceImp implements AsignaturaService{
     @Override
     @Transactional(readOnly = true)
     public List<Asignatura> buscarTodoPorNombreCon(String nombre) {
-        return asignaturaRepository.findAllByNameContaining(nombre);
+        return asignaturaRepository.findAllByNombreContaining(nombre);
     }
 
     @Override
