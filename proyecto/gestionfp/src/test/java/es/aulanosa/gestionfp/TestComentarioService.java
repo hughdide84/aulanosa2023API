@@ -28,14 +28,14 @@ public class TestComentarioService {
         comentario.setTexto("ROLE_ADM");
         comentario.setIdUsuarioComentario(14);
         comentario.setFecha(new Date(2023, 2, 14));
-        var c = comentarioService.save(comentario);
+        var c = comentarioService.insertar(comentario);
         System.out.println(c);
     }
 
     @Test
     @Order(2)
     void consultarComentarioPorId() {
-        var c = comentarioService.findById(14);
+        var c = comentarioService.listarPorId(14);
         System.out.println(c);
     }
 
@@ -50,24 +50,24 @@ public class TestComentarioService {
         comentario.setIdUsuarioComentario(14);
         comentario.setFecha(new Date(2023, 2, 14));
         Comentario c = null;
-        c = comentarioService.update(comentario);
+        c = comentarioService.actualizar(comentario);
         System.out.println(c);
     }
 
     @Test
     @Order(4)
     void consultarTodosComentarios() {
-        var c = comentarioService.findAll();
+        var c = comentarioService.listarTodo();
         System.out.println(c);
     }
 
     @Test
     @Order(5)
     void borrarComentario() {
-        Optional<Comentario> comentarioConsultado = comentarioService.findById(15);
+        Optional<Comentario> comentarioConsultado = comentarioService.listarPorId(15);
         if (comentarioConsultado.isPresent()) {
-            comentarioService.deleteById(15);
-            if (comentarioService.findById(15) == null)
+            comentarioService.borrarPorId(15);
+            if (comentarioService.listarPorId(15) == null)
                 System.out.println("Comentario borrado");
             else
                 System.out.println("Comentario no borrado");
@@ -79,7 +79,7 @@ public class TestComentarioService {
     @Test
     @Order(6)
     void consultarComentarioPorSistemaYReferencia() {
-        var c = comentarioService.findBySistemaAndReferencia('A', 21);
+        var c = comentarioService.listarPorSistemaYReferencia('A', 21);
         System.out.println(c);
     }
 }

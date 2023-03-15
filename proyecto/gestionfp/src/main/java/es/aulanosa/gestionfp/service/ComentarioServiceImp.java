@@ -17,42 +17,42 @@ public class ComentarioServiceImp implements ComentarioService {
     // Guarda un comentario
     @Override
     @Transactional
-    public Comentario save(Comentario comentario) {
+    public Comentario insertar(Comentario comentario) {
         return comentarioRepository.save(comentario);
     }
 
     // Lista un comentario por ID
     @Override
     @Transactional(readOnly = true)
-    public Optional<Comentario> findById(Integer id) {
+    public Optional<Comentario> listarPorId(Integer id) {
         return comentarioRepository.findById(id);
     }
 
     // Lista todos los comentarios
     @Override
     @Transactional(readOnly = true)
-    public List<Comentario> findAll() {
+    public List<Comentario> listarTodo() {
         return comentarioRepository.findAll();
     }
 
     // Lista todos los comentarios con un sistema y referencia concretos
     @Override
     @Transactional(readOnly = true)
-    public List<Comentario> findBySistemaAndReferencia(char sistema, int referencia) {
-        return comentarioRepository.listarPorSistemaYReferencia(sistema, referencia);
+    public List<Comentario> listarPorSistemaYReferencia(char sistema, int referencia) {
+        return comentarioRepository.findBySistemaAndReferencia(sistema, referencia);
     }
 
     // Actualiza un comentario
     @Override
     @Transactional
-    public Comentario update(Comentario comentario) {
+    public Comentario actualizar(Comentario comentario) {
         return comentarioRepository.save(comentario);
     }
 
     // Borra un comentario por ID
     @Override
     @Transactional
-    public void deleteById(Integer id) {
+    public void borrarPorId(Integer id) {
         comentarioRepository.deleteById(id);
     }
 }
