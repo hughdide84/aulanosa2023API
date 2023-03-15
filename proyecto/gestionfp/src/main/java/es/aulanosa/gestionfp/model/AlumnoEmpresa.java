@@ -23,12 +23,10 @@ public class AlumnoEmpresa {
     @Column(name = "estado")
     private char estado;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idAlumno", insertable = false, updatable = false)
     private Alumno alumno;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idEmpresa", insertable = false, updatable = false)
     private Empresa empresa;

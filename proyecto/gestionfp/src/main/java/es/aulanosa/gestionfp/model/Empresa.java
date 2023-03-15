@@ -98,25 +98,4 @@ public class Empresa {
         this.planIndividual = planIndividual;
         this.hojaActividades = hojaObersevaciones;
     }
-
-    @Override
-    public String toString() {
-        return "Empresa{" +
-                "id=" + id +
-                ", idCurso=" + idCurso +
-                ", idEstudios=" + idEstudios +
-                ", nombre='" + nombre + '\'' +
-                ", direccionSocial='" + direccionSocial + '\'' +
-                ", direccionTrabajo='" + direccionTrabajo + '\'' +
-                ", cif='" + cif + '\'' +
-                ", representante='" + representante + '\'' +
-                ", contacto='" + contacto + '\'' +
-                ", tutor1='" + tutor1 + '\'' +
-                ", tutor2='" + tutor2 + '\'' +
-                ", tutor3='" + tutor3 + '\'' +
-                ", convenio=" + convenio +
-                ", planIndividual=" + planIndividual +
-                ", hojaActividades=" + hojaActividades +
-                '}';
-    }
 }

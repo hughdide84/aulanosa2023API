@@ -2,6 +2,7 @@ package es.aulanosa.gestionfp.controller;
 
 
 import es.aulanosa.gestionfp.dto.AlumnoDTO;
+import es.aulanosa.gestionfp.dto.EmpresaDTO;
 import es.aulanosa.gestionfp.dto.UsuarioDTO;
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Alumno;
@@ -100,16 +101,21 @@ public class AlumnoController {
     @GetMapping("/{id}/empresa")
     public ResponseEntity<?> buscarPorEmpresa(@PathVariable Integer id) {
 
+        //listado de empresas que devuelve
         List<Empresa> listaEmpresas = serviceAlumnoEmpresa.buscarTodasEmpresasPorIdAlumno(id);
 
-        List<Empresa> listaEmpresasDTO = new ArrayList<>();
+        //lista de empresasDTO para poder recuperar datos
+        List<EmpresaDTO> listaEmpresasDTO = new ArrayList<>();
 
+        //pasar cada empresa recuperada a dto
         for (Empresa empresa : listaEmpresas) {
-            empresa.
+            EmpresaDTO empresaDTO = new EmpresaDTO();
+            empresaDTO.crearDTO(empresa);
+            listaEmpresasDTO.add(empresaDTO);
         }
 
         if(!listaEmpresas.isEmpty()){
-            return ResponseEntity.status(HttpStatus.OK).body(listaEmpresas);
+            return ResponseEntity.status(HttpStatus.OK).body(listaEmpresasDTO);
         }else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontraron empresas asignadas al alumno consultado");
 
