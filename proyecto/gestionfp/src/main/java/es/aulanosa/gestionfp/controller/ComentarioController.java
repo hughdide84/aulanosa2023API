@@ -19,10 +19,8 @@ public class ComentarioController {
 
     // Crea un nuevo comentario
     @PostMapping("")
-    public ResponseEntity<?> create(@RequestBody ComentarioDTO comentarioDTO) {
-        Optional<Comentario> comentarioConsultado = service.listarPorId(comentarioDTO.getId());
-
-        if (!comentarioConsultado.isPresent() && comentarioDTO.getTexto().length() <= 500) {
+    public ResponseEntity<?> crear(@RequestBody ComentarioDTO comentarioDTO) {
+        if (comentarioDTO.getTexto().length() <= 500) {
             Comentario comentarioGuardado = comentarioDTO.toModel();
             service.crear(comentarioGuardado);
             return ResponseEntity.status(HttpStatus.CREATED).body(comentarioGuardado);
@@ -35,7 +33,7 @@ public class ComentarioController {
 
     // Devuelve el comentario cuyo id coincide con el introducido
     @GetMapping("/{id}")
-    public ResponseEntity<?> getComentarioById(@PathVariable Integer id) {
+    public ResponseEntity<?> listarComentarioPorId(@PathVariable Integer id) {
         Optional<Comentario> comentarioConsultado = service.listarPorId(id);
 
         if (comentarioConsultado.isPresent()) {
@@ -47,7 +45,7 @@ public class ComentarioController {
 
     // Actualiza un comentario ya existente
     @PutMapping("")
-    public ResponseEntity<?> update(@RequestBody ComentarioDTO comentarioDTO) {
+    public ResponseEntity<?> actualizar(@RequestBody ComentarioDTO comentarioDTO) {
         Optional<Comentario> comentarioConsultado = service.listarPorId(comentarioDTO.getId());
 
         if (comentarioConsultado.isPresent() && comentarioDTO.getTexto().length() <= 500) {
@@ -63,19 +61,20 @@ public class ComentarioController {
 
     // Borra el comentario cuyo id coincide con el introducido
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteById(@PathVariable Integer id) {
+    public ResponseEntity<?> borrarPorId(@PathVariable Integer id) {
         Optional<Comentario> comentarioConsultado = service.listarPorId(id);
 
         if (comentarioConsultado.isPresent()) {
             service.borrarPorId(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
     // Devuelve un listado con todos los comentarios
     @GetMapping("")
-    public ResponseEntity<?> getAll() {
+    public ResponseEntity<?> listarTodo() {
         List<Comentario> comentarios = service.listarTodo();
 
         if (!comentarios.isEmpty()) {
@@ -87,7 +86,7 @@ public class ComentarioController {
 
     // Devuelve un listado con todos los comentarios cuyo sistema y referencia coincidan con los introducidos
     @GetMapping("/sistema/{sistema}/referencia/{referencia}")
-    public ResponseEntity<?> getAll(@PathVariable char sistema, @PathVariable int referencia) {
+    public ResponseEntity<?> listarPorSistemaYReferencia(@PathVariable char sistema, @PathVariable int referencia) {
         List<Comentario> comentarios = service.listarPorSistemaYReferencia(sistema, referencia);
 
         if (!comentarios.isEmpty()) {
