@@ -17,7 +17,7 @@ public class ComentarioServiceImp implements ComentarioService {
     // Guarda un comentario
     @Override
     @Transactional
-    public Comentario insertar(Comentario comentario) {
+    public Comentario crear(Comentario comentario) {
         return comentarioRepository.save(comentario);
     }
 
@@ -46,7 +46,10 @@ public class ComentarioServiceImp implements ComentarioService {
     @Override
     @Transactional
     public Comentario actualizar(Comentario comentario) {
-        return comentarioRepository.save(comentario);
+        Optional<Comentario> comentarioConsultado = comentarioRepository.findById(comentario.getId());
+
+        if ()
+            return comentarioRepository.save(comentario);
     }
 
     // Borra un comentario por ID

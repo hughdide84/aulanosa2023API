@@ -21,27 +21,27 @@ public class TestComentarioService {
 
     @Test()
     @Order(1)
-    void insertarComentario() {
+    void crearComentario() {
         Comentario comentario = new Comentario();
         comentario.setSistema('P');
         comentario.setReferencia(7);
         comentario.setTexto("ROLE_ADM");
         comentario.setIdUsuarioComentario(14);
         comentario.setFecha(new Date(2023, 2, 14));
-        var c = comentarioService.insertar(comentario);
-        System.out.println(c);
+        var comentarioCreado = comentarioService.crear(comentario);
+        System.out.println(comentarioCreado);
     }
 
     @Test
     @Order(2)
     void consultarComentarioPorId() {
-        var c = comentarioService.listarPorId(14);
-        System.out.println(c);
+        var comentarioConsultado = comentarioService.listarPorId(14);
+        System.out.println(comentarioConsultado);
     }
 
     @Test
     @Order(3)
-    void updateComentario() {
+    void actualizarComentario() {
         Comentario comentario = new Comentario();
         comentario.setId(77);
         comentario.setSistema('A');
@@ -63,7 +63,7 @@ public class TestComentarioService {
 
     @Test
     @Order(5)
-    void borrarComentario() {
+    void borrarComentarioPorId() {
         Optional<Comentario> comentarioConsultado = comentarioService.listarPorId(15);
         if (comentarioConsultado.isPresent()) {
             comentarioService.borrarPorId(15);

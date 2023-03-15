@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ComentarioService {
-    Comentario insertar(Comentario comentario);
+    Comentario crear(Comentario comentario);
 
     Optional<Comentario> listarPorId(Integer id);
 
