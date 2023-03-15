@@ -59,7 +59,7 @@ public class AlumnoController {
 
     // Actualiza un usuario ya existente
     @PutMapping("")
-    public ResponseEntity<?> modificar(@RequestBody AlumnoDTO alumnoDTO) {
+    public ResponseEntity<?> editar(@RequestBody AlumnoDTO alumnoDTO) {
         Optional<Alumno> alumnoConusltado = service.buscarPorId(alumnoDTO.getId());
 
         if (!alumnoConusltado.isEmpty()) {
