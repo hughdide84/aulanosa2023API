@@ -5,8 +5,11 @@ import es.aulanosa.gestionfp.dto.AlumnoDTO;
 import es.aulanosa.gestionfp.dto.UsuarioDTO;
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Alumno;
+import es.aulanosa.gestionfp.model.Empresa;
 import es.aulanosa.gestionfp.model.Usuario;
+import es.aulanosa.gestionfp.service.AlumnoEmpresaService;
 import es.aulanosa.gestionfp.service.AlumnoService;
+import es.aulanosa.gestionfp.service.EmpresaService;
 import es.aulanosa.gestionfp.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +25,8 @@ public class AlumnoController {
 
     @Autowired
     AlumnoService service;
-
+    @Autowired
+    AlumnoEmpresaService serviceAlumnoEmpresa;
 
     // Crea un nuevo alumno
     @PostMapping("")
@@ -92,10 +96,18 @@ public class AlumnoController {
         }
     }
     // Devuelve un listado de las empresas
-    @GetMapping("")
-    public ResponseEntity<?> buscarPorEmpresa() {
+    @GetMapping("/{id}/empresa")
+    public ResponseEntity<?> buscarPorEmpresa(@PathVariable Integer id) {
 
+        List<Empresa> listaEmpresas = serviceAlumnoEmpresa.buscarTodasEmpresasPorIdAlumno(id);
+        
 
+        if(!listaEmpresas.isEmpty()){
+            return ResponseEntity.status(HttpStatus.OK).body(listaEmpresas);
+        }else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontraron empresas asignadas al alumno consultado");
+
+        }
 
     }
 

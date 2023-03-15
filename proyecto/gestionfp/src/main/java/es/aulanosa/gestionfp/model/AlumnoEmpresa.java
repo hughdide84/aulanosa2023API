@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,10 +23,12 @@ public class AlumnoEmpresa {
     @Column(name = "estado")
     private char estado;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idAlumno", insertable = false, updatable = false)
     private Alumno alumno;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idEmpresa", insertable = false, updatable = false)
     private Empresa empresa;
