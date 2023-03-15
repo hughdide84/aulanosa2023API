@@ -21,35 +21,41 @@ public class TestComentarioService {
 
     @Test()
     @Order(1)
-    void insertarComentario() {
+    void crearComentario() {
         Comentario comentario = new Comentario();
         comentario.setSistema('P');
         comentario.setReferencia(7);
         comentario.setTexto("ROLE_ADM");
+        comentario.setIdUsuarioComentario(14);
         comentario.setFecha(new Date(2023, 2, 14));
-        var c = comentarioService.insertar(comentario);
-        System.out.println(c);
+        var comentarioCreado = comentarioService.crear(comentario);
+        System.out.println(comentarioCreado);
     }
 
     @Test
     @Order(2)
     void consultarComentarioPorId() {
-        var c = comentarioService.listarPorId(1);
-        System.out.println(c);
+        var comentarioConsultado = comentarioService.listarPorId(14);
+        System.out.println(comentarioConsultado);
     }
 
     @Test
     @Order(3)
-    void updateComentario() {
+    void actualizarComentario() {
         Comentario comentario = new Comentario();
         comentario.setId(77);
         comentario.setSistema('A');
         comentario.setReferencia(21);
         comentario.setTexto("ROLE_ADMIN");
+        comentario.setIdUsuarioComentario(14);
         comentario.setFecha(new Date(2023, 2, 14));
-        Comentario c = null;
-        c = comentarioService.actualizar(comentario);
-        System.out.println(c);
+        Comentario comentarioActualizado = null;
+        try {
+            comentarioActualizado = comentarioService.actualizar(comentario);
+            System.out.println(comentarioActualizado);
+        } catch (NoSeHanEncontradoException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Test
@@ -61,14 +67,16 @@ public class TestComentarioService {
 
     @Test
     @Order(5)
-    void borrarComentario() {
-        Optional<Comentario> comentarioConsultado = comentarioService.listarPorId(15);
+    void borrarComentarioPorId() {
+        Integer id = 15;
+        Optional<Comentario> comentarioConsultado = comentarioService.listarPorId(id);
         if (comentarioConsultado.isPresent()) {
-            comentarioService.borrarPorId(15);
-            if (comentarioService.listarPorId(15) == null)
-                System.out.println("Comentario borrado");
-            else
+            comentarioService.borrarPorId(id);
+            if (comentarioService.listarPorId(id).isPresent()) {
                 System.out.println("Comentario no borrado");
+            } else {
+                System.out.println("Comentario borrado");
+            }
         } else {
             System.out.println("Comentario no encontrado");
         }
