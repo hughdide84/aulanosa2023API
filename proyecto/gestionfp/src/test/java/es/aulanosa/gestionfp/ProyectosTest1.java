@@ -71,10 +71,14 @@ public class ProyectosTest1 {
     @Test
     @Order(5)
     void borrarProyecto() {
-        Proyectos proyectosCon = proyectosService.findById(23);
+        Proyectos proyectosCon = proyectosService.findById(30);
         if (proyectosCon != null) {
+
+            int idCom = proyectosCon.getId();
             proyectosService.deleteById(proyectosCon.getId());
-            if (proyectosCon == null) {
+            Proyectos proyectosComprobar = proyectosService.findById(idCom);
+
+            if (proyectosComprobar == null) {
                 System.out.println("Proyecto eliminado");
             }
             else {
