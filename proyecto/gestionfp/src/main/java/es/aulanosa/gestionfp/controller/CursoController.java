@@ -2,14 +2,18 @@ package es.aulanosa.gestionfp.controller;
 
 import es.aulanosa.gestionfp.dto.CursoDTO;
 import es.aulanosa.gestionfp.dto.ErrorDTO;
+import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Curso;
 import es.aulanosa.gestionfp.service.CursoService;
 import es.aulanosa.gestionfp.util.Errores;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -17,13 +21,13 @@ import java.util.Optional;
 public class CursoController {
 
     @Autowired
-    CursoService serviceCur =
+     private CursoService serviceCur;
 
     //Operacion para insertar los datos correspondientes a la tabla cursos
     @PostMapping
     public ResponseEntity<?> altaCurso(@RequestBody CursoDTO cursoDTO) {
 
-        Curso cursoGuardado = servicio.guardar(cursoDTO.convertirModel());
+        Curso cursoGuardado = serviceCur.insertarCurso(cursoDTO.convertirModel());
         cursoDTO.crearDTO(cursoGuardado);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(cursoDTO);
@@ -32,10 +36,10 @@ public class CursoController {
     //Operacion correspondiente para consultar un curso determinado por id
     @GetMapping("{id}")
     public ResponseEntity<?> consultaCurso(@PathVariable("id") Integer id) {
-        Optional<Curso> consultaDelCurso = servicio.consultarPorId(id);
+        Curso curso = serviceCur.buscarPorId(id);
 
-        if (consultaDelCurso.isPresent()) {
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body(consultaDelCurso);
+        if (curso != null) {
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(curso);
         }
 
         else {
@@ -47,16 +51,26 @@ public class CursoController {
     //Operacion correspondiente para cambiar los datos de un curso
     @PutMapping
     public ResponseEntity<?> editarCurso(@RequestBody CursoDTO curso) {
-        
+        Curso cursoConsultar = serviceCur.buscarPorId(curso.getId());
+
+        if (cursoConsultar != null && checkFieldSize(curso).equals("")) {
+            Curso cursoActualizar = curso.convertirModel();
+            serviceCur.insertarCurso(cursoActualizar);
+            return ResponseEntity.status(HttpStatus.CREATED).body(cursoActualizar);
+        } else if (!checkFieldSize(curso).equals("")) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El campo nombre excede el numero de caracteres permitidos");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se ha encontrado el campo a modificar.");
+        }
     }
 
     //Operación correspondiente para borrar un curso en concreto por id
-    @DeleteMapping("/api/curso/{id}")
-    public ResponseEntity<?> borrarCurso(@PathVariable Integer id) {
-        Optional<Curso> borradoCurso = servicio.consultarPorId(id);
+    @DeleteMapping("{id}")
+    public ResponseEntity<?> borrarCurso (@PathVariable Integer id) throws NoSeHaEncontradoException {
+        Curso curso = serviceCur.buscarPorId(id);
 
-        if (borradoCurso.isPresent()) {
-            servicio.borrarPorId(borradoCurso.get().getId());
+        if (curso != null) {
+            serviceCur.eliminarCurso(id);
             return ResponseEntity.status(HttpStatus.ACCEPTED).body("Borrado con exito");
         }
 
@@ -69,8 +83,32 @@ public class CursoController {
     //Operacion correspondiente para listar todos los datos de la tabla Cursos
     @GetMapping
     public ResponseEntity<?> listarAllCursos(@RequestBody CursoDTO cursoDTO) {
-        Optional<Curso> listadoAllCurso = servicio.findAll();
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(listadoAllCurso);
+        List<Curso> curso = serviceCur.buscarTodo();
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(curso);
+    }
+
+    public String checkFieldSize(CursoDTO cursoDTO) {
+        List<String> invalidFields = new ArrayList<>();
+        String msg = "";
+
+        if (cursoDTO.getNombre().length() > 100) {
+            invalidFields.add("nombre");
+        } else {
+
+        }
+
+        if (invalidFields.size() != 0) {
+            for (int i = 0; i < invalidFields.size(); i++) {
+                if (i != invalidFields.size() - 1) {
+                    msg += invalidFields.get(i) + ", ";
+                } else {
+                    msg += invalidFields.get(i);
+                }
+            }
+            return msg;
+        } else {
+            return msg;
+        }
     }
 
 }
