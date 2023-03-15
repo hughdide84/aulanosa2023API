@@ -19,7 +19,7 @@ public class ProyectoController {
     private ProyectosService service;
 
     @PostMapping("/alta")
-    @Operation(summary = "Alta proyecto")
+    @Operation(summary = "Alta")
     //Guarda un nuevo proyecto
     public ResponseEntity<?> altaProyecto(@RequestBody ProyectoDTO proyectosDTO) {
         Proyectos proyectosGuardado = service.guardar(proyectosDTO.toModel());
@@ -31,9 +31,9 @@ public class ProyectoController {
         }
     }
     @GetMapping("")
-    @Operation(summary = "Listar todos los proyectos")
+    @Operation(summary = "Listar")
     //Lista todos los proyectos
-    public ResponseEntity<?> listarTodo(){
+    public ResponseEntity<?> listarTodoProyecto(){
         List<Proyectos> proyectos = service.buscarTodo();
 
         if (!proyectos.isEmpty()) {
@@ -43,9 +43,9 @@ public class ProyectoController {
         }
     }
     @GetMapping("/{id}")
-    @Operation(summary = "Consultar un proyecto")
+    @Operation(summary = "Consultar")
     //Consulta un proyecto por su ID
-    public ResponseEntity<?> getUsuarioPorId(@PathVariable Integer id){
+    public ResponseEntity<?> consultarProyectoId(@PathVariable Integer id){
         Proyectos proyectosConsultado = service.buscarPorId(id);
 
         if (proyectosConsultado != null) {
@@ -55,9 +55,9 @@ public class ProyectoController {
         }
     }
     @PutMapping("")
-    @Operation(summary = "Editar un proyecto")
+    @Operation(summary = "Editar")
     //Edita un proyecto
-    public ResponseEntity<?> editar(@RequestBody ProyectoDTO proyectosDTO){
+    public ResponseEntity<?> editarProyecto(@RequestBody ProyectoDTO proyectosDTO){
         Proyectos proyectosConsultado = service.buscarPorId(proyectosDTO.getId());
 
         if (proyectosConsultado != null) {
@@ -69,9 +69,9 @@ public class ProyectoController {
         }
     }
     @DeleteMapping("/{id}")
-    @Operation(summary = "Eliminar proyecto")
+    @Operation(summary = "Eliminar")
     //Elimina un proyecto
-    public ResponseEntity<?> eliminar(@PathVariable Integer id){
+    public ResponseEntity<?> eliminarProyecto(@PathVariable Integer id){
         Proyectos proyectosConsultado = service.buscarPorId(id);
 
         if(proyectosConsultado != null){
