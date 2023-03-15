@@ -3,7 +3,9 @@ package es.aulanosa.gestionfp.controller;
 import es.aulanosa.gestionfp.dto.CursoDTO;
 import es.aulanosa.gestionfp.dto.ErrorDTO;
 import es.aulanosa.gestionfp.model.Curso;
+import es.aulanosa.gestionfp.service.CursoService;
 import es.aulanosa.gestionfp.util.Errores;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,12 +14,13 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/curso")
-@Tag(name = "Curso", description = "Estado de los cursos escolares")
 public class CursoController {
+
+    @Autowired
+    CursoService serviceCur =
 
     //Operacion para insertar los datos correspondientes a la tabla cursos
     @PostMapping
-    @Operation(summary = "Altas")
     public ResponseEntity<?> altaCurso(@RequestBody CursoDTO cursoDTO) {
 
         Curso cursoGuardado = servicio.guardar(cursoDTO.convertirModel());
@@ -27,7 +30,7 @@ public class CursoController {
     }
 
     //Operacion correspondiente para consultar un curso determinado por id
-    @GetMapping("/api/curso/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<?> consultaCurso(@PathVariable("id") Integer id) {
         Optional<Curso> consultaDelCurso = servicio.consultarPorId(id);
 
