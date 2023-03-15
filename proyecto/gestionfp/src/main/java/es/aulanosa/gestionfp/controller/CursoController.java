@@ -50,7 +50,7 @@ public class CursoController {
         }
 
         else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Campo no encontrado");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Campo no encontrado");
         }
     }
 
