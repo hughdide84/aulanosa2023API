@@ -22,7 +22,7 @@ public class ProyectoController {
     @Operation(summary = "Alta")
     //Guarda un nuevo proyecto
     public ResponseEntity<?> altaProyecto(@RequestBody ProyectoDTO proyectosDTO) {
-        Proyectos proyectosGuardado = service.save(proyectosDTO.toModel());
+        Proyectos proyectosGuardado = service.guardar(proyectosDTO.toModel());
 
         if (proyectosGuardado != null) {
             return ResponseEntity.status(HttpStatus.CREATED).body(proyectosGuardado);
@@ -34,7 +34,7 @@ public class ProyectoController {
     @Operation(summary = "Consulta")
     //Consulta un proyecto por su ID
     public ResponseEntity<?> getUsuarioPorId(@PathVariable Integer id){
-        Proyectos proyectosConsultado = service.findById(id);
+        Proyectos proyectosConsultado = service.buscarPorId(id);
 
         if (proyectosConsultado != null) {
             return ResponseEntity.ok(proyectosConsultado);
@@ -46,11 +46,11 @@ public class ProyectoController {
     @Operation(summary = "Editar")
     //Edita un proyecto
     public ResponseEntity<?> editar(@RequestBody ProyectoDTO proyectosDTO){
-        Proyectos proyectosConsultado = service.findById(proyectosDTO.getId());
+        Proyectos proyectosConsultado = service.buscarPorId(proyectosDTO.getId());
 
         if (proyectosConsultado != null) {
             Proyectos proyectosActualizado = proyectosDTO.toModel();
-            service.save(proyectosActualizado);
+            service.guardar(proyectosActualizado);
             return ResponseEntity.status(HttpStatus.CREATED).body(proyectosActualizado);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe ningún proyecto con ese ID");
@@ -60,10 +60,10 @@ public class ProyectoController {
     @Operation(summary = "Eliminar")
     //Elimina un proyecto
     public ResponseEntity<?> eliminar(@PathVariable Integer id){
-        Proyectos proyectosConsultado = service.findById(id);
+        Proyectos proyectosConsultado = service.buscarPorId(id);
 
         if(proyectosConsultado != null){
-            service.deleteById(id);
+            service.borrar(id);
             return ResponseEntity.status(HttpStatus.OK).body("Proyecto eliminado");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe ningún proyecto con ese ID");
@@ -73,7 +73,7 @@ public class ProyectoController {
     @Operation(summary = "Listar todo")
     //Lista todos los proyectos
     public ResponseEntity<?> listarTodo(){
-        List<Proyectos> proyectos = service.findAll();
+        List<Proyectos> proyectos = service.buscarTodo();
 
         if (!proyectos.isEmpty()) {
             return ResponseEntity.ok(proyectos);
