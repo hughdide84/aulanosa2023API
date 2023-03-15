@@ -31,7 +31,7 @@ public class AsignaturaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getAsignaturaById(@PathVariable int id) {
+    public ResponseEntity<?> buscarAsignaturaPorId(@PathVariable int id) {
         Asignatura asignatura = asignaturaService.findById(id);
         if (asignatura != null) {
             return ResponseEntity.status(HttpStatus.OK).body(asignatura);
@@ -41,7 +41,7 @@ public class AsignaturaController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<?> getAllAsignaturas() {
+    public ResponseEntity<?> buscarTodasAsignaturas() {
         List<Asignatura> asignaturas = asignaturaService.findAll();
         if (asignaturas != null && !asignaturas.isEmpty()) {
             return ResponseEntity.status(HttpStatus.OK).body(asignaturas);
@@ -51,7 +51,7 @@ public class AsignaturaController {
     }
 
     @PutMapping("update")
-    public ResponseEntity<?> updateAsignatura(@RequestBody AsignaturaDTO asignaturaDTO) {
+    public ResponseEntity<?> modificarAsignatura(@RequestBody AsignaturaDTO asignaturaDTO) {
         Asignatura asignaturaConsultada = asignaturaService.findById(asignaturaDTO.getId());
 
         if (asignaturaConsultada != null) {
