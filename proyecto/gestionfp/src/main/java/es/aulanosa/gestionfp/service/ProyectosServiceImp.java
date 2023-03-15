@@ -19,28 +19,28 @@ public class ProyectosServiceImp implements ProyectosService{
     //Metodo para insertar datos en la tabla proyectos
     @Override
     @Transactional
-    public Proyectos save(Proyectos proyectos) {
+    public Proyectos guardar(Proyectos proyectos) {
         return repository.save(proyectos);
     }
 
     //Metodo de listado completo de la tabla proyectos completa
     @Override
     @Transactional(readOnly = true)
-    public List<Proyectos> findAll() {
+    public List<Proyectos> buscarTodo() {
         return repository.findAll();
     }
 
     //Metodo de busqueda de campos de la tabla proyectos por id
     @Override
     @Transactional(readOnly = true)
-    public Proyectos findById(Integer id) {
+    public Proyectos buscarPorId(Integer id) {
         return repository.findById(id).orElse(null);
     }
 
     //Metodo para modificar datos de la tabla proyectos
     @Override
     @Transactional
-    public Proyectos update(Proyectos proyectos) throws NoSeHaEncontradoException {
+    public Proyectos modificar(Proyectos proyectos) throws NoSeHaEncontradoException {
         if (repository.findById(proyectos.getId()) != null) {
             return repository.save(proyectos);
         } else {
@@ -51,7 +51,7 @@ public class ProyectosServiceImp implements ProyectosService{
     //Metodo para borrar datos de la tabla proyectos
     @Override
     @Transactional
-    public void deleteById(Integer id) {
+    public void borrar(Integer id) {
         repository.deleteById(id);
     }
 }
