@@ -87,12 +87,11 @@ public class AlumnoExternoController {
         }catch (NoSeHaEncontradoException e){
             ErrorDTO errorDTO = new ErrorDTO("E0002", "Alumno no encontrado");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
-
         }
     }
 
     @GetMapping("/")
-    //lsita todos los campos de la BD, en caso de que ésta esé vacía, devuelve un error personalizado
+    //lista todos los campos de la BD, en caso de que esta este vacia, devuelve un error personalizado
     public ResponseEntity<?> listarTodo(){
         if(!service.listarTodo().isEmpty()){
             return ResponseEntity.status(HttpStatus.OK).body(service.listarTodo());
