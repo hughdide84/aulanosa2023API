@@ -29,7 +29,7 @@ public class TestAlumnoServiceV1 {
         Alumno alumno = new Alumno();
         alumno.setIdCurso(1);
         alumno.setIdEstudios(3);
-        alumno.setNombre("alumnoNuevo");
+        alumno.setNombre("holsa");
         alumno.setCv('a');
         alumno.setCarta('b');
         alumno.setIdEmpresa(100);

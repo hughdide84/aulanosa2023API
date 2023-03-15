@@ -23,7 +23,6 @@ public class Alumno {
     private int id;
     @NotNull
     @Column(name = "idCurso")
-
     private int idCurso;
     @NotNull
     @Column(name = "idEstudios")
