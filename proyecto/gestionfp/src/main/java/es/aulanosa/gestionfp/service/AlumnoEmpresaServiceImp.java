@@ -17,33 +17,38 @@ public class AlumnoEmpresaServiceImp implements AlumnoEmpresaService {
     @Autowired
     private AlumnoEmpresaRepository alumnoEmpresaRepository;
 
+    //busca todo
     @Override
     @Transactional(readOnly = true)
-    public List<AlumnoEmpresa> findAll() {
+    public List<AlumnoEmpresa> buscarTodo() {
         return alumnoEmpresaRepository.findAll();
     }
 
+    //busca por id
     @Override
     @Transactional(readOnly = true)
-    public AlumnoEmpresa findById(int id) {
+    public AlumnoEmpresa buscarPorId(int id) {
         return alumnoEmpresaRepository.findById(id).orElse(null);
     }
 
+    //guarda
     @Override
     @Transactional
-    public AlumnoEmpresa save(AlumnoEmpresa alumnosEmpresas) {
+    public AlumnoEmpresa guardar(AlumnoEmpresa alumnosEmpresas) {
         return alumnoEmpresaRepository.save(alumnosEmpresas);
     }
 
+    //borra por id
     @Override
     @Transactional
-    public void deleteById(int id) {
+    public void borrarPorId(int id) {
         alumnoEmpresaRepository.deleteById(id);
     }
 
+    //modifica
     @Override
     @Transactional
-    public AlumnoEmpresa update(AlumnoEmpresa alumnosEmpresas) throws NoSeHaEncontradoException {
+    public AlumnoEmpresa modificar(AlumnoEmpresa alumnosEmpresas) throws NoSeHaEncontradoException {
         var a = alumnoEmpresaRepository.findById(alumnosEmpresas.getId());
         if (!a.isEmpty()) {
             return alumnoEmpresaRepository.save(alumnosEmpresas);
@@ -52,15 +57,17 @@ public class AlumnoEmpresaServiceImp implements AlumnoEmpresaService {
         }
     }
 
+    //busca todos los alumnos por id de empresa
     @Override
     @Transactional(readOnly = true)
-    public List<Alumno> findAllAlumnoByEmpresaId(int empresaId) {
+    public List<Alumno> buscarTodosAlumnosPorIdEmpresa(int empresaId) {
         return alumnoEmpresaRepository.findAllAlumnoByEmpresaId(empresaId);
     }
 
+    //busca todas las empresas por id de alumno
     @Override
     @Transactional(readOnly = true)
-    public List<Empresa> findAllEmpresaByAlumnoId(int alumnoId) {
+    public List<Empresa> buscarTodasEmpresasPorIdAlumno(int alumnoId) {
         return alumnoEmpresaRepository.findAllEmpresaByAlumnoId(alumnoId);
     }
 

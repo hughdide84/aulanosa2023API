@@ -9,14 +9,14 @@ import java.util.List;
 
 public interface AlumnoEmpresaService {
 
-    List<AlumnoEmpresa> findAll();
-    AlumnoEmpresa findById(int id);
-    AlumnoEmpresa save(AlumnoEmpresa alumnosEmpresas);
-    void deleteById(int id);
-    AlumnoEmpresa update (AlumnoEmpresa alumnosEmpresas) throws NoSeHaEncontradoException;
+    List<AlumnoEmpresa> buscarTodo();
+    AlumnoEmpresa buscarPorId(int id);
+    AlumnoEmpresa guardar(AlumnoEmpresa alumnosEmpresas);
+    void borrarPorId(int id);
+    AlumnoEmpresa modificar (AlumnoEmpresa alumnosEmpresas) throws NoSeHaEncontradoException;
 
-    List<Alumno> findAllAlumnoByEmpresaId(int EmpresaId);
-    List<Empresa> findAllEmpresaByAlumnoId(int AlumnoId);
+    List<Alumno> buscarTodosAlumnosPorIdEmpresa(int EmpresaId);
+    List<Empresa> buscarTodasEmpresasPorIdAlumno(int AlumnoId);
 
 
 }
