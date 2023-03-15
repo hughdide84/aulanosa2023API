@@ -37,7 +37,7 @@ public class TestAlumnoEmpresaService {
 
     @Test
     @Order(3)
-    void updateAlumnosEmpresas() throws NoSeHaEncontradoException {
+    void modificarAlumnosEmpresas() throws NoSeHaEncontradoException {
         var b = alumnoEmpresaService.buscarPorId(1);
         if (b != null) {
             b.setEstado('b');
@@ -57,7 +57,7 @@ public class TestAlumnoEmpresaService {
 
     @Test
     @Order(5)
-    void deleteAlumnosEmpresas() throws NoSeHaEncontradoException {
+    void borrarAlumnosEmpresas() throws NoSeHaEncontradoException {
         var b = alumnoEmpresaService.buscarPorId(1);
         if (b != null) {
             alumnoEmpresaService.borrarPorId(b.getId());
