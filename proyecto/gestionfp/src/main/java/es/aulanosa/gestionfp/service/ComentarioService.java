@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.service;
 
+import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Comentario;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public interface ComentarioService {
 
     List<Comentario> listarPorSistemaYReferencia(char sistema, int referencia);
 
-    Comentario actualizar(Comentario comentario);
+    Comentario actualizar(Comentario comentario) throws NoSeHaEncontradoException;
 
     void borrarPorId(Integer id);
 }

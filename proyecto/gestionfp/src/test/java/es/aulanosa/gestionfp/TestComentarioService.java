@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp;
 
+import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Comentario;
 import es.aulanosa.gestionfp.service.ComentarioService;
 import org.junit.jupiter.api.ClassOrderer;
@@ -53,7 +54,7 @@ public class TestComentarioService {
         try {
             comentarioActualizado = comentarioService.actualizar(comentario);
             System.out.println(comentarioActualizado);
-        } catch (NoSeHanEncontradoException e) {
+        } catch (NoSeHaEncontradoException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -85,7 +86,7 @@ public class TestComentarioService {
     @Test
     @Order(6)
     void consultarComentarioPorSistemaYReferencia() {
-        var c = comentarioService.listarPorSistemaYReferencia('A', 21);
-        System.out.println(c);
+        var comentariosConsultados = comentarioService.listarPorSistemaYReferencia('A', 21);
+        System.out.println(comentariosConsultados);
     }
 }

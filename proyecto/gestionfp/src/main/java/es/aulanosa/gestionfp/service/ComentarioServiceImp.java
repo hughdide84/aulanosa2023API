@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.service;
 
+import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Comentario;
 import es.aulanosa.gestionfp.repository.ComentarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +46,7 @@ public class ComentarioServiceImp implements ComentarioService {
     // Actualiza un comentario
     @Override
     @Transactional
-    public Comentario actualizar(Comentario comentario) {
+    public Comentario actualizar(Comentario comentario) throws NoSeHaEncontradoException {
         Optional<Comentario> comentarioConsultado = comentarioRepository.findById(comentario.getId());
 
         if (comentarioConsultado.isPresent()) {

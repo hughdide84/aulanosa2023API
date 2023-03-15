@@ -8,9 +8,6 @@ import java.util.List;
 
 @Repository
 public interface ComentarioRepository extends JpaRepository<Comentario, Integer> {
-<<<<<<< HEAD
+
     List<Comentario> findBySistemaAndReferencia(char sistema, int refencia);
-=======
-    List<Comentario> findBySistemaAndReferencia(char sistema, int referencia);
->>>>>>> Comentario-(Servicio,-repositorio-y-model)
 }

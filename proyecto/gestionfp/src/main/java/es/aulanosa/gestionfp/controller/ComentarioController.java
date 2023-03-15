@@ -24,7 +24,7 @@ public class ComentarioController {
 
         if (!comentarioConsultado.isPresent() && comentarioDTO.getTexto().length() <= 500) {
             Comentario comentarioGuardado = comentarioDTO.toModel();
-            service.insertar(comentarioGuardado);
+            service.crear(comentarioGuardado);
             return ResponseEntity.status(HttpStatus.CREATED).body(comentarioGuardado);
         } else if (comentarioDTO.getTexto().length() > 500) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Longitud excedida en el campo texto");
@@ -52,7 +52,7 @@ public class ComentarioController {
 
         if (comentarioConsultado.isPresent() && comentarioDTO.getTexto().length() <= 500) {
             Comentario comentarioActualizado = comentarioDTO.toModel();
-            service.insertar(comentarioActualizado);
+            service.crear(comentarioActualizado);
             return ResponseEntity.status(HttpStatus.CREATED).body(comentarioActualizado);
         } else if (comentarioDTO.getTexto().length() > 500) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Longitud excedida en el campo texto");
