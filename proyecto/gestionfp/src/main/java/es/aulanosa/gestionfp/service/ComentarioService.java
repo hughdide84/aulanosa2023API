@@ -6,16 +6,16 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ComentarioService {
-    Comentario save(Comentario comentario);
+    Comentario insertar(Comentario comentario);
 
-    Optional<Comentario> findById(Integer id);
+    Optional<Comentario> listarPorId(Integer id);
 
-    List<Comentario> findAll();
+    List<Comentario> listarTodo();
 
-    List<Comentario> findBySistemaAndReferencia(char sistema, int referencia);
+    List<Comentario> listarPorSistemaYReferencia(char sistema, int referencia);
 
-    Comentario update(Comentario comentario);
+    Comentario actualizar(Comentario comentario);
 
-    void deleteById(Integer id);
+    void borrarPorId(Integer id);
 }
 

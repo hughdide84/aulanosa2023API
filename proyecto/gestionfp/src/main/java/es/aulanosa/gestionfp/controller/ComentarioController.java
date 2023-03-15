@@ -20,11 +20,11 @@ public class ComentarioController {
     // Crea un nuevo comentario
     @PostMapping("")
     public ResponseEntity<?> create(@RequestBody ComentarioDTO comentarioDTO) {
-        Optional<Comentario> comentarioConsultado = service.findById(comentarioDTO.getId());
+        Optional<Comentario> comentarioConsultado = service.listarPorId(comentarioDTO.getId());
 
         if (!comentarioConsultado.isPresent() && comentarioDTO.getTexto().length() <= 500) {
             Comentario comentarioGuardado = comentarioDTO.toModel();
-            service.save(comentarioGuardado);
+            service.insertar(comentarioGuardado);
             return ResponseEntity.status(HttpStatus.CREATED).body(comentarioGuardado);
         } else if (comentarioDTO.getTexto().length() > 500) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Longitud excedida en el campo texto");
@@ -36,7 +36,7 @@ public class ComentarioController {
     // Devuelve el comentario cuyo id coincide con el introducido
     @GetMapping("/{id}")
     public ResponseEntity<?> getComentarioById(@PathVariable Integer id) {
-        Optional<Comentario> comentarioConsultado = service.findById(id);
+        Optional<Comentario> comentarioConsultado = service.listarPorId(id);
 
         if (comentarioConsultado.isPresent()) {
             return ResponseEntity.ok(comentarioConsultado);
@@ -48,11 +48,11 @@ public class ComentarioController {
     // Actualiza un comentario ya existente
     @PutMapping("")
     public ResponseEntity<?> update(@RequestBody ComentarioDTO comentarioDTO) {
-        Optional<Comentario> comentarioConsultado = service.findById(comentarioDTO.getId());
+        Optional<Comentario> comentarioConsultado = service.listarPorId(comentarioDTO.getId());
 
         if (comentarioConsultado.isPresent() && comentarioDTO.getTexto().length() <= 500) {
             Comentario comentarioActualizado = comentarioDTO.toModel();
-            service.save(comentarioActualizado);
+            service.insertar(comentarioActualizado);
             return ResponseEntity.status(HttpStatus.CREATED).body(comentarioActualizado);
         } else if (comentarioDTO.getTexto().length() > 500) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Longitud excedida en el campo texto");
@@ -64,10 +64,10 @@ public class ComentarioController {
     // Borra el comentario cuyo id coincide con el introducido
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteById(@PathVariable Integer id) {
-        Optional<Comentario> comentarioConsultado = service.findById(id);
+        Optional<Comentario> comentarioConsultado = service.listarPorId(id);
 
         if (comentarioConsultado.isPresent()) {
-            service.deleteById(id);
+            service.borrarPorId(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -76,7 +76,7 @@ public class ComentarioController {
     // Devuelve un listado con todos los comentarios
     @GetMapping("")
     public ResponseEntity<?> getAll() {
-        List<Comentario> comentarios = service.findAll();
+        List<Comentario> comentarios = service.listarTodo();
 
         if (!comentarios.isEmpty()) {
             return ResponseEntity.ok(comentarios);
@@ -85,10 +85,10 @@ public class ComentarioController {
         }
     }
 
-    // Devuelve un listado con todos los comentarios cuyo sistema y referencia coinciden con los introducidos
+    // Devuelve un listado con todos los comentarios cuyo sistema y referencia coincidan con los introducidos
     @GetMapping("/sistema/{sistema}/referencia/{referencia}")
-    public ResponseEntity<?> getAll(@PathVariable char sistema, int referencia) {
-        List<Comentario> comentarios = service.findAll();
+    public ResponseEntity<?> getAll(@PathVariable char sistema, @PathVariable int referencia) {
+        List<Comentario> comentarios = service.listarPorSistemaYReferencia(sistema, referencia);
 
         if (!comentarios.isEmpty()) {
             return ResponseEntity.ok(comentarios);
