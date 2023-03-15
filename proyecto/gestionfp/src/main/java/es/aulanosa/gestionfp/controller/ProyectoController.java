@@ -19,7 +19,7 @@ public class ProyectoController {
     private ProyectosService service;
 
     @PostMapping("/alta")
-    @Operation(summary = "Alta")
+    @Operation(summary = "Alta proyecto")
     //Guarda un nuevo proyecto
     public ResponseEntity<?> altaProyecto(@RequestBody ProyectoDTO proyectosDTO) {
         Proyectos proyectosGuardado = service.guardar(proyectosDTO.toModel());
@@ -30,8 +30,20 @@ public class ProyectoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El proyecto ya existe");
         }
     }
+    @GetMapping("")
+    @Operation(summary = "Listar todos los proyectos")
+    //Lista todos los proyectos
+    public ResponseEntity<?> listarTodo(){
+        List<Proyectos> proyectos = service.buscarTodo();
+
+        if (!proyectos.isEmpty()) {
+            return ResponseEntity.ok(proyectos);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No hay proyectos");
+        }
+    }
     @GetMapping("/{id}")
-    @Operation(summary = "Consulta")
+    @Operation(summary = "Consultar un proyecto")
     //Consulta un proyecto por su ID
     public ResponseEntity<?> getUsuarioPorId(@PathVariable Integer id){
         Proyectos proyectosConsultado = service.buscarPorId(id);
@@ -43,7 +55,7 @@ public class ProyectoController {
         }
     }
     @PutMapping("")
-    @Operation(summary = "Editar")
+    @Operation(summary = "Editar un proyecto")
     //Edita un proyecto
     public ResponseEntity<?> editar(@RequestBody ProyectoDTO proyectosDTO){
         Proyectos proyectosConsultado = service.buscarPorId(proyectosDTO.getId());
@@ -57,7 +69,7 @@ public class ProyectoController {
         }
     }
     @DeleteMapping("/{id}")
-    @Operation(summary = "Eliminar")
+    @Operation(summary = "Eliminar proyecto")
     //Elimina un proyecto
     public ResponseEntity<?> eliminar(@PathVariable Integer id){
         Proyectos proyectosConsultado = service.buscarPorId(id);
@@ -67,18 +79,6 @@ public class ProyectoController {
             return ResponseEntity.status(HttpStatus.OK).body("Proyecto eliminado");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe ningún proyecto con ese ID");
-        }
-    }
-    @GetMapping("")
-    @Operation(summary = "Listar todo")
-    //Lista todos los proyectos
-    public ResponseEntity<?> listarTodo(){
-        List<Proyectos> proyectos = service.buscarTodo();
-
-        if (!proyectos.isEmpty()) {
-            return ResponseEntity.ok(proyectos);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No hay proyectos");
         }
     }
 }
