@@ -64,7 +64,7 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.TestUsuarioServicev1.insertarUsuario">
+  <component name="RunManager" selected="JUnit.AsignaturaHorarioTextV1.buscarPorIdAsignaturaHorario">
     <configuration name="GestionfpApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.GestionfpApplication" />
       <module name="gestionfp" />
@@ -78,7 +78,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestAlumnoExternoV1.eliminarAlumnoExterno" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AsignaturaHorarioTextV1.buscarPorIdAsignaturaHorario" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gestionfp" />
       <extension name="coverage">
         <pattern>
@@ -87,14 +87,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
-      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestAlumnoExternoV1" />
-      <option name="METHOD_NAME" value="eliminarAlumnoExterno" />
+      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.AsignaturaHorarioTextV1" />
+      <option name="METHOD_NAME" value="buscarPorIdAsignaturaHorario" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestAlumnoExternoV1.insertarAlumnoExterno" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AsignaturaHorarioTextV1.insertarAsignaturaHorario" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gestionfp" />
       <extension name="coverage">
         <pattern>
@@ -103,8 +103,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
-      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestAlumnoExternoV1" />
-      <option name="METHOD_NAME" value="insertarAlumnoExterno" />
+      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.AsignaturaHorarioTextV1" />
+      <option name="METHOD_NAME" value="insertarAsignaturaHorario" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -157,11 +157,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AsignaturaHorarioTextV1.buscarPorIdAsignaturaHorario" />
+        <item itemvalue="JUnit.AsignaturaHorarioTextV1.insertarAsignaturaHorario" />
         <item itemvalue="JUnit.TestUsuarioServicev1.insertarUsuario" />
         <item itemvalue="JUnit.TestAsignaturaHorariov1.insertarAsignaturaHorario" />
         <item itemvalue="Application.GestionfpApplication" />
-        <item itemvalue="JUnit.TestAlumnoExternoV1.insertarAlumnoExterno" />
-        <item itemvalue="JUnit.TestAlumnoExternoV1.eliminarAlumnoExterno" />
       </list>
     </recent_temporary>
   </component>

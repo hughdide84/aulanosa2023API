@@ -16,4 +16,6 @@ public interface AsignaturaHorarioService {
     List<AsignaturaHorario> buscarPorCurso(int idAsignatura) throws NoSeHaEncontradoException;
     void eliminar(int id) throws NoSeHaEncontradoException;
 
+    List<AsignaturaHorario> listarTodo();
+
 }

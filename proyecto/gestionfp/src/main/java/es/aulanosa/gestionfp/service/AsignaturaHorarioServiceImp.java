@@ -5,6 +5,8 @@ import es.aulanosa.gestionfp.model.AsignaturaHorario;
 import es.aulanosa.gestionfp.repository.AsignaturaHorarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +18,8 @@ public class AsignaturaHorarioServiceImp implements AsignaturaHorarioService{
     AsignaturaHorarioRepository repository;
 
     @Override
+    @Transactional(readOnly = true)
+
     //busca asignaturaHorario en la BD por el id que se le pasa
     public Optional<AsignaturaHorario> buscarPorId(Integer id) throws NoSeHaEncontradoException {
         Optional<AsignaturaHorario> asignaturaHorario = repository.findById(id);
@@ -28,12 +32,14 @@ public class AsignaturaHorarioServiceImp implements AsignaturaHorarioService{
     }
 
     @Override
+    @Transactional
     //inserta una asignaturahorario en la base de datos, no controla que este en la base de datos porque el id es autoIncremental y los demás campos se pueden repetir
     public AsignaturaHorario insertar(AsignaturaHorario asignaturaHorario) {
         return repository.save(asignaturaHorario);
     }
 
     @Override
+    @Transactional
     //busca con el id del objeto que se le pasa si existe en la base de datos, en caso de que lo haga se modifica
     public AsignaturaHorario modificar(AsignaturaHorario asignaturaHorario) throws NoSeHaEncontradoException {
         Optional<AsignaturaHorario> asignaturaHorarioConsultada = repository.findById(asignaturaHorario.getId());
@@ -47,6 +53,8 @@ public class AsignaturaHorarioServiceImp implements AsignaturaHorarioService{
     }
 
     @Override
+    @Transactional(readOnly = true)
+
     //busca los horarios que se relacionen con los cursos a traves de idAsignatura, que es un campo de asignaturaHorario
     public List<AsignaturaHorario> buscarPorCurso(int idAsignatura) throws NoSeHaEncontradoException {
         List<AsignaturaHorario> asignaturaHorarioConsultada = repository.findByIdAsignatura(idAsignatura);
@@ -60,6 +68,7 @@ public class AsignaturaHorarioServiceImp implements AsignaturaHorarioService{
     }
 
     @Override
+    @Transactional
     //elimina de la base de datos la asignatura horario con el id que se le pase
     public void eliminar(int id) throws NoSeHaEncontradoException {
         Optional<AsignaturaHorario> asignaturaHorarioConsultada = repository.findById(id);
@@ -70,5 +79,12 @@ public class AsignaturaHorarioServiceImp implements AsignaturaHorarioService{
             throw new NoSeHaEncontradoException("En id proporcionado no existe en la base de datos");
         }
 
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<AsignaturaHorario> listarTodo(){
+        List<AsignaturaHorario> lista = repository.findAll();
+        return lista;
     }
 }
