@@ -33,21 +33,32 @@ public class CursoServiceImp implements CursoService {
     //elimina el curso con el id que se le pase
     @Override
     @Transactional
-    public void eliminar(int id) {
-         repositorio.deleteById(id);
+    public void eliminarCurso(int id) throws NoSeHaEncontradoException {
+
+        if(repositorio.findById(id).isPresent()){
+            repositorio.deleteById(id);
+        }else{
+            throw new NoSeHaEncontradoException("Curso no existe");
+        }
+
+
+
+
+
+
     }
-    //guarda un objeto curso con los atributos que se le pase
+    //inserta en la BD un objeto curso con los atributos que se le pase
     @Override
     @Transactional
-    public Curso guardar(Curso curso) {
+    public Curso insertarCurso(Curso curso) {
         return repositorio.save(curso);
     }
 
     //modifica atributos de un objeto curso y lo sobreescribe
     @Override
     @Transactional
-    public Curso modificar(Curso curso) throws NoSeHaEncontradoException {
-        if (repositorio.findById(curso.getId()) == null) {
+    public Curso modificarCurso(Curso curso) throws NoSeHaEncontradoException {
+        if (repositorio.findById(curso.getId()).isPresent()) {
             return repositorio.save(curso);
         } else {
             throw new NoSeHaEncontradoException("No se ha encontrado el usuario");

@@ -10,9 +10,4 @@ import java.util.Optional;
 @Repository
 public interface EstudiosRepository extends JpaRepository<Estudios, Integer> {
 
-    Optional<Estudios> findByNombre(String nombre);
-
-    List<Estudios> findByNombreContains(String nombre);
-
-    List<Estudios> findByNombreContainsOrderByNombreAsc(String nombre);
 }
