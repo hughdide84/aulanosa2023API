@@ -27,54 +27,57 @@ public class TestProyectosV2 {
         proyectos.setNotaDoc(9);
         proyectos.setNotaPres(5);
         proyectos.setNotaFinal(6);
-        var a = proyectosService.save(proyectos);
+        var a = proyectosService.guardar(proyectos);
         System.out.println(a);
     }
 
     @Test
     @Order(2)
     void consultarProyectoPorId() {
-        var a = proyectosService.findById(5);
+        var a = proyectosService.buscarPorId(5);
         System.out.println(a);
     }
 
     @Test
     @Order(3)
-    void updateProyectos() {
+    void modificarProyectos() throws NoSeHaEncontradoException{
         Proyectos proyectos = new Proyectos();
-        proyectos.setId(14);
+        proyectos.setId(20);
         proyectos.setIdAlumno(3);
         proyectos.setDocumento('l');
         proyectos.setPresentacion('k');
-        proyectos.setNotaDoc(9);
-        proyectos.setNotaPres(5);
-        proyectos.setNotaFinal(6);
-        Proyectos mejora = null;
-        try {
-            mejora = proyectosService.update(proyectos);
-            System.out.println(mejora);
+        proyectos.setNotaDoc(10);
+        proyectos.setNotaPres(10);
+        proyectos.setNotaFinal(10);
+
+        Proyectos mejora = proyectosService.buscarPorId(proyectos.getId());
+        Proyectos mejora2 = null;
+
+        if (mejora != null) {
+            mejora2 = proyectosService.modificar(proyectos);
+            System.out.println(mejora2);
         }
-        catch (NoSeHaEncontradoException e) {
-            System.out.println(e.getMessage());
+        else {
+            System.out.println("No se ha encontrado el proyecto a modificar");
         }
     }
 
     @Test
     @Order(4)
     void consultarAllProyectos() {
-        var a = proyectosService.findAll();
+        var a = proyectosService.buscarTodo();
         System.out.println(a);
     }
 
     @Test
     @Order(5)
     void borrarProyecto() {
-        Proyectos proyectosCon = proyectosService.findById(350);
+        Proyectos proyectosCon = proyectosService.buscarPorId(350);
         if (proyectosCon != null) {
 
             int idCom = proyectosCon.getId();
-            proyectosService.deleteById(proyectosCon.getId());
-            Proyectos proyectosComprobar = proyectosService.findById(idCom);
+            proyectosService.borrar(proyectosCon.getId());
+            Proyectos proyectosComprobar = proyectosService.buscarPorId(idCom);
 
             if (proyectosComprobar == null) {
                 System.out.println("Proyecto eliminado");
