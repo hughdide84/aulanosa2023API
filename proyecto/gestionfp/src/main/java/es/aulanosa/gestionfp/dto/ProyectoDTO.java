@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProyectosDTO {
+public class ProyectoDTO {
 
     private Integer id;
 
@@ -38,7 +38,7 @@ public class ProyectosDTO {
         return proyectos;
     }
 
-    public ProyectosDTO toDTO(Proyectos proyectos) {
+    public ProyectoDTO toDTO(Proyectos proyectos) {
         this.setId(proyectos.getId());
         this.setIdAlumno(proyectos.getIdAlumno());
         this.setDocumento(proyectos.getDocumento());

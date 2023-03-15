@@ -1,6 +1,6 @@
 package es.aulanosa.gestionfp.controller;
 
-import es.aulanosa.gestionfp.dto.ProyectosDTO;
+import es.aulanosa.gestionfp.dto.ProyectoDTO;
 import es.aulanosa.gestionfp.model.Proyectos;
 import es.aulanosa.gestionfp.service.ProyectosService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/proyectos")
-public class ProyectosController {
+public class ProyectoController {
 
     @Autowired
     private ProyectosService service;
@@ -21,7 +21,7 @@ public class ProyectosController {
     @PostMapping("/alta")
     @Operation(summary = "Alta")
     //Guarda un nuevo proyecto
-    public ResponseEntity<?> altaProyecto(@RequestBody ProyectosDTO proyectosDTO) {
+    public ResponseEntity<?> altaProyecto(@RequestBody ProyectoDTO proyectosDTO) {
         Proyectos proyectosGuardado = service.save(proyectosDTO.toModel());
 
         if (proyectosGuardado != null) {
@@ -45,7 +45,7 @@ public class ProyectosController {
     @PutMapping("")
     @Operation(summary = "Editar")
     //Edita un proyecto
-    public ResponseEntity<?> editar(@RequestBody ProyectosDTO proyectosDTO){
+    public ResponseEntity<?> editar(@RequestBody ProyectoDTO proyectosDTO){
         Proyectos proyectosConsultado = service.findById(proyectosDTO.getId());
 
         if (proyectosConsultado != null) {
