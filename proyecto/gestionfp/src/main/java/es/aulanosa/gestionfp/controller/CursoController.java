@@ -26,16 +26,23 @@ public class CursoController {
     //Operacion para insertar los datos correspondientes a la tabla cursos
     @PostMapping
     public ResponseEntity<?> altaCurso(@RequestBody CursoDTO cursoDTO) {
+        Curso cursoComprobar = serviceCur.buscarPorId(cursoDTO.getId());
+        if (cursoComprobar == null && checkFieldSize(cursoDTO).equals("")) {
+            Curso cursoGuardado = serviceCur.insertarCurso(cursoDTO.convertirModel());
+            cursoDTO.crearDTO(cursoGuardado);
 
-        Curso cursoGuardado = serviceCur.insertarCurso(cursoDTO.convertirModel());
-        cursoDTO.crearDTO(cursoGuardado);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(cursoDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).body(cursoDTO);
+        } else if (!checkFieldSize(cursoDTO).equals("")) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El campo nombre supera el numero de caracteres");
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Campo ya existente");
+        }
     }
 
     //Operacion correspondiente para consultar un curso determinado por id
     @GetMapping("{id}")
-    public ResponseEntity<?> consultaCurso(@PathVariable("id") Integer id) {
+    public ResponseEntity<?> consultarCurso(@PathVariable("id") Integer id) {
         Curso curso = serviceCur.buscarPorId(id);
 
         if (curso != null) {
@@ -43,8 +50,7 @@ public class CursoController {
         }
 
         else {
-            ErrorDTO errorDTO = new ErrorDTO(Errores.COD_ERROR_FALLOGENERAL, Errores.MEN_ERROR_FALLOGENERAL);
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDTO);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Campo no encontrado");
         }
     }
 
@@ -75,14 +81,13 @@ public class CursoController {
         }
 
         else {
-            ErrorDTO errorDTO = new ErrorDTO(Errores.COD_ERROR_FALLOGENERAL, Errores.MEN_ERROR_FALLOGENERAL);
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDTO);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Campo no encontrado");
         }
     }
 
     //Operacion correspondiente para listar todos los datos de la tabla Cursos
     @GetMapping
-    public ResponseEntity<?> listarAllCursos(@RequestBody CursoDTO cursoDTO) {
+    public ResponseEntity<?> listarTodosCursos(@RequestBody CursoDTO cursoDTO) {
         List<Curso> curso = serviceCur.buscarTodo();
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(curso);
     }
