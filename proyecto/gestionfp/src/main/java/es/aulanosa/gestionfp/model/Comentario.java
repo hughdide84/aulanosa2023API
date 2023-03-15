@@ -30,6 +30,9 @@ public class Comentario {
     @Size(max = 500, message = "El texto no puede tener más de 500 caracteres")
     @NotNull
     private String texto;
+    @Column(name = "idUsuarioComentario")
+    @NotNull
+    private Integer idUsuarioComentario;
     @Column(name = "fecha")
     @NotNull
     private Date fecha;
@@ -38,6 +41,14 @@ public class Comentario {
         this.sistema = sistema;
         this.referencia = referencia;
         this.texto = texto;
+        this.fecha = fecha;
+    }
+
+    public Comentario(char sistema, int referencia, String texto, Integer idUsuarioComentario, Date fecha) {
+        this.sistema = sistema;
+        this.referencia = referencia;
+        this.texto = texto;
+        this.idUsuarioComentario = idUsuarioComentario;
         this.fecha = fecha;
     }
 }

@@ -54,7 +54,7 @@ public class ComentarioController {
             Comentario comentarioActualizado = comentarioDTO.toModel();
             service.save(comentarioActualizado);
             return ResponseEntity.status(HttpStatus.CREATED).body(comentarioActualizado);
-        } else if (comentarioDTO.getTexto().length() <= 500) {
+        } else if (comentarioDTO.getTexto().length() > 500) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Longitud excedida en el campo texto");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El comentario que desea modificar no existe");

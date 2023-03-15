@@ -1,7 +1,6 @@
 package es.aulanosa.gestionfp.dto;
 
 import es.aulanosa.gestionfp.model.Comentario;
-import es.aulanosa.gestionfp.model.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +15,7 @@ public class ComentarioDTO {
     private char sistema;
     private int referencia;
     private String texto;
+    private Integer idUsuarioComentario;
     private Date fecha;
 
     public Comentario toModel() {
@@ -25,6 +25,7 @@ public class ComentarioDTO {
         comentario.setSistema(this.sistema);
         comentario.setReferencia(this.referencia);
         comentario.setTexto(this.texto);
+        comentario.setIdUsuarioComentario(this.idUsuarioComentario);
         comentario.setFecha(this.fecha);
 
         return comentario;
@@ -35,6 +36,7 @@ public class ComentarioDTO {
         this.setSistema(comentario.getSistema());
         this.setReferencia(comentario.getReferencia());
         this.setTexto(comentario.getTexto());
+        this.setIdUsuarioComentario(comentario.getIdUsuarioComentario());
         this.setFecha(comentario.getFecha());
 
         return this;
