@@ -101,8 +101,13 @@ public class AsignaturaHorarioController {
     }
 
     @GetMapping("api/asignaturaHorario/curso/{curso}/estudio/{estudio}/nivel/{nivel}")
-    public ResponseEntity<?> listarCursoEstudiosYNivel(){
-        if(!service.buscarPorCursoAsignaturaHorario())
+    public ResponseEntity<?> listarCursoEstudiosYNivel(@PathVariable int idAsignatura, int idCurso, int nivel) throws NoSeHaEncontradoException {
+            if(!service.buscarPorCursoAsignaturaHorario(idAsignatura, idCurso, nivel).isEmpty()){
+                return ResponseEntity.status(HttpStatus.OK).body(service.buscarPorCursoAsignaturaHorario(idAsignatura, idCurso, nivel));
+            }else{
+                ErrorDTO errorDTO = new ErrorDTO("E0005", "Los registros de la base de datos no coinciden con los insertados");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
+            }
     }
 
 

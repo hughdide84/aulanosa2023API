@@ -56,11 +56,11 @@ public class AsignaturaHorarioServiceImp implements AsignaturaHorarioService{
     @Transactional(readOnly = true)
 
     //busca los horarios que se relacionen con los cursos a traves de idAsignatura, que es un campo de asignaturaHorario
-    public List<AsignaturaHorario> buscarPorCursoAsignaturaHorario(int idAsignatura) throws NoSeHaEncontradoException {
-        List<AsignaturaHorario> asignaturaHorarioConsultada = repository.findByIdAsignatura(idAsignatura);
+    public List<AsignaturaHorario> buscarPorCursoAsignaturaHorario(int idAsignatura, int idCurso, int nivel) throws NoSeHaEncontradoException {
+        List<AsignaturaHorario> asignaturaHorarioConsultada = repository.findByIdAsignatura(idAsignatura, idCurso, nivel);
 
         if(!asignaturaHorarioConsultada.isEmpty()){
-            return repository.findByIdAsignatura(idAsignatura);
+            return repository.findByIdAsignatura(idAsignatura, idCurso, nivel);
         }else{
             throw new NoSeHaEncontradoException("El id de la asignatura no consta en la base de datos");
         }
