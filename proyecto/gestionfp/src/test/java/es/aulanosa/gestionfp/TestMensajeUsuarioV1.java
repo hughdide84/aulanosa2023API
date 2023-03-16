@@ -21,7 +21,7 @@ public class TestMensajeUsuarioV1 {
     @Order(1)
     void insertarMensajeUsuario() throws NoSeHaEncontradoException {
         MensajeUsuario mensajeUsuario = new MensajeUsuario();
-        mensajeUsuario.setIdMensaje(4);
+        mensajeUsuario.setIdMensaje(5);
         mensajeUsuario.setIdUsuario(14);
         mensajeUsuario.setEstado('p');
 
@@ -51,7 +51,7 @@ public class TestMensajeUsuarioV1 {
         mensajeUsuario.setId(1);
         mensajeUsuario.setIdMensaje(4);
         mensajeUsuario.setIdUsuario(14);
-        mensajeUsuario.setEstado('p');
+        mensajeUsuario.setEstado('l');
         try {
             mensajeUsuarioService.modificar(mensajeUsuario);
             System.out.println(mensajeUsuario);
@@ -74,6 +74,7 @@ public class TestMensajeUsuarioV1 {
     void eliminarMensajeUsuario() throws NoSeHaEncontradoException {
         try {
             mensajeUsuarioService.eliminar(1);
+            System.out.println("Se ha eliminado el mensajeUsuario");
         } catch (Exception e) {
             throw new NoSeHaEncontradoException("No se ha encontrado el mensajeUsuario");
         }
@@ -82,7 +83,7 @@ public class TestMensajeUsuarioV1 {
     @Test
     @Order(6)
     void consultarMensajeUsuarioPorIdMensaje() throws NoSeHaEncontradoException {
-        var a = mensajeUsuarioService.buscarTodoUsuarioPorMensajeId(4);
+        var a = mensajeUsuarioService.buscarTodoUsuarioPorMensajeId(5);
         System.out.println(a);
 
     }

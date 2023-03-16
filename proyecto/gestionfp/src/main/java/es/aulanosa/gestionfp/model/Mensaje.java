@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name = "Mensajes")
@@ -34,4 +35,17 @@ public class Mensaje {
     @NotNull
     private Timestamp fecha;
 
+    @OneToMany(mappedBy = "mensaje")
+    private List<MensajeUsuario> mensajeUsuario;
+
+    @Override
+    public String toString() {
+        return "Mensaje{" +
+                "id=" + id +
+                ", idUsuario=" + idUsuario +
+                ", asunto='" + asunto + '\'' +
+                ", texto='" + texto + '\'' +
+                ", fecha=" + fecha +
+                '}';
+    }
 }
