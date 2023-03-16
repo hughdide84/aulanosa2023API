@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -93,7 +94,17 @@ public class AsignaturaHorarioController {
     //lista todos los campos de la BD, en caso de que esta este vacia, devuelve un error personalizado
     public ResponseEntity<?> listarTodo(){
         if(!service.listarTodoAsignaturaHorario().isEmpty()){
-            return ResponseEntity.status(HttpStatus.OK).body(service.listarTodoAsignaturaHorario());
+            List<AsignaturaHorario> asignaturaHorarioLista = service.listarTodoAsignaturaHorario();
+
+            List<AsignaturaHorarioDTO> asignaturaHorarioDTOLista = null;
+
+            for (AsignaturaHorario asig:
+                 asignaturaHorarioLista) {
+                int cont = 0;
+                asignaturaHorarioDTOLista.get(cont).convertirDTO(asig);
+            }
+
+            return ResponseEntity.status(HttpStatus.OK).body(asignaturaHorarioDTOLista);
         }else{
             ErrorDTO errorDTO = new ErrorDTO("E0003", "No hay registros en la base de datos");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
