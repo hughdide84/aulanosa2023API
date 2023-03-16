@@ -17,9 +17,16 @@ La aplicación cuenta con las siguientes funcionalidades:
 
 Se ha desarrollado la API en Spring Boot utilizando MySQL como sistema de gestión de bases de datos.
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - El framework web usado
-* [Maven](https://maven.apache.org/) - Manejador de dependencias
-* [ROME](https://rometools.github.io/rome/) - Usado para generar RSS
+El proyecto se ha creado con MAVEN, incluyendo las siguientes dependencias:
+
+* [Spring Boot Data JPA] (spring-boot-starter-data-jpa de org.springframework.boot) - Para la persistencia en base de datos relacional
+* [Spring Boot Web] (spring-boot-starter-web de org.springframework.boot) - Para crear la aplicación web usando Spring MVC
+* [Spring Boot Test] (spring-boot-starter-test de org.springframework.boot) - Para las clases de pruebas
+* [Spring Boot Validation] (spring-boot-starter-validation de org.springframework.boot) - Para validar objetos de dominio
+* [MySQL Connector] (mysql-connector-j de com.mysql) - Controlador JDBC oficial para MySQL
+* [Lombok] (lombok de org.projectlombok) - Para generación de código automático en clases POJO mediante anotaciones
+* [WEBMVC UI] (springdoc-openapi-starter-webmvc-ui de org.springdoc) - Para la integración entre Spring Boot y Swagger
+* [ROME] (springfox-swagger-ui de io.springfox) - Para integrar Swagger, que usaremos para documentar los endpoints del API
 
 ## Requisitos 🔧
 
