@@ -29,17 +29,17 @@ public class EmpresaController {
 
 
     //Metodo para insertar datos a la tabla empresa
-    @PostMapping
+    @PostMapping("")
     public ResponseEntity<?> altaEmpresa(@RequestBody EmpresaDTO empresaDTO) {
 
         Empresa consultarEmpresa = empService.findById(empresaDTO.getId());
 
-        if (consultarEmpresa == null && checkFieldSize(empresaDTO).equals("")) {
+        if (consultarEmpresa == null && comprobarTamanoCampos(empresaDTO).equals("")) {
             Empresa empresaGuardada = empresaDTO.convertirModel();
             empService.save(empresaGuardada);
             return ResponseEntity.status(HttpStatus.CREATED).body(empresaDTO);
-        } else if (!checkFieldSize(empresaDTO).equals("")) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Longitud de caracteres excedida de los siguientes campos: " + checkFieldSize(empresaDTO));
+        } else if (!comprobarTamanoCampos(empresaDTO).equals("")) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Longitud de caracteres excedida de los siguientes campos: " + comprobarTamanoCampos(empresaDTO));
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Empresa ya existente");
         }
@@ -63,12 +63,12 @@ public class EmpresaController {
     public ResponseEntity<?> editarEmpresa(@RequestBody EmpresaDTO empresaDTO) {
         Empresa empresaParaActualizar = empService.findById(empresaDTO.getId());
 
-        if (empresaParaActualizar != null && checkFieldSize(empresaDTO).equals("")) {
+        if (empresaParaActualizar != null && comprobarTamanoCampos(empresaDTO).equals("")) {
             Empresa empresaGuardada = empresaDTO.convertirModel();
             empService.save(empresaGuardada);
             return ResponseEntity.status(HttpStatus.CREATED).body(empresaGuardada);
-        } else if (!checkFieldSize(empresaDTO).equals("")) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Longitud de caracteres excedida de los siguientes campos: " + checkFieldSize(empresaDTO));
+        } else if (!comprobarTamanoCampos(empresaDTO).equals("")) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Longitud de caracteres excedida de los siguientes campos: " + comprobarTamanoCampos(empresaDTO));
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se ha encontrado la empresa a modificar");
         }
@@ -80,8 +80,10 @@ public class EmpresaController {
         Empresa empresa = empService.findById(id);
 
         if (empresa != null) {
+            int idEmp = empresa.getId();
             empService.deleteById(id);
-            if (empresa == null) {
+            Empresa empresaComp = empService.findById(idEmp);
+            if (empresaComp == null) {
                 return ResponseEntity.ok("Campo seleccionado borrado con exito");
             }
             else {
@@ -94,7 +96,7 @@ public class EmpresaController {
         }
     }
 
-    @GetMapping
+    @GetMapping("")
     public ResponseEntity<?> listarTodasEmpresas() {
         List<Empresa> empresa = empService.findAll();
 
@@ -120,8 +122,8 @@ public class EmpresaController {
         }
     }
     
-
-    public String checkFieldSize(EmpresaDTO empresaDTO) {
+    //Metodo para controlar los tamaños de los campos con longitud determinada
+    public String comprobarTamanoCampos(EmpresaDTO empresaDTO) {
         List<String> invalidFields = new ArrayList<>();
         String msg = "";
 
