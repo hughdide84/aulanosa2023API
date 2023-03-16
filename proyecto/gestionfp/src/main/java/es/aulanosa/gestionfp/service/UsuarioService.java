@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface UsuarioService {
     // Lista el usuario cuyo id coincida con el introducido
-    Usuario listarPorId(int id);
+    Optional<Usuario> listarPorId(int id);
 
     // Crea un nuevo usuario
     Usuario crear(Usuario usuario) throws NoSeHaEncontradoException;

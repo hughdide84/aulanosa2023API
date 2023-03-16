@@ -32,8 +32,8 @@ public class UsuarioServiceImp implements UsuarioService {
     // Lista el usuario cuyo id coincida con el introducido
     @Override
     @Transactional(readOnly = true)
-    public Usuario listarPorId(int id) {
-        return usuarioRepository.findById(id).orElse(null);
+    public Optional<Usuario> listarPorId(int id) {
+        return usuarioRepository.findById(id);
     }
 
     // Lista el usuario cuyo nombre coincida con el introducido

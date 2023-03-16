@@ -23,9 +23,7 @@ public class UsuarioController {
     // Crea un nuevo usuario
     @PostMapping("")
     public ResponseEntity<?> crear(@RequestBody UsuarioDTO usuarioDTO) throws NoSeHaEncontradoException {
-        Usuario usuarioConsultado = service.listarPorId(usuarioDTO.getId());
-
-        if (usuarioConsultado == null && comprobarLongitudCampos(usuarioDTO).equals("")) {
+        if (comprobarLongitudCampos(usuarioDTO).equals("")) {
             Usuario usuarioGuardado = usuarioDTO.toModel();
             service.crear(usuarioGuardado);
             return ResponseEntity.status(HttpStatus.CREATED).body(usuarioGuardado);
@@ -39,7 +37,7 @@ public class UsuarioController {
     // Lista el usuario cuyo id coincida con el introducido
     @GetMapping("/{id}")
     public ResponseEntity<?> listarPorId(@PathVariable Integer id) {
-        Usuario usuarioConsultado = service.listarPorId(id);
+        Optional<Usuario> usuarioConsultado = service.listarPorId(id);
 
         if (usuarioConsultado != null) {
             return ResponseEntity.ok(usuarioConsultado);
@@ -111,7 +109,7 @@ public class UsuarioController {
     // Actualiza un usuario ya existente
     @PutMapping("")
     public ResponseEntity<?> actualizar(@RequestBody UsuarioDTO usuarioDTO) throws NoSeHaEncontradoException {
-        Usuario usuarioConsultado = service.listarPorId(usuarioDTO.getId());
+        Optional<Usuario> usuarioConsultado = service.listarPorId(usuarioDTO.getId());
 
         if (usuarioConsultado != null && comprobarLongitudCampos(usuarioDTO).equals("")) {
             Usuario usuarioActualizado = usuarioDTO.toModel();
@@ -128,7 +126,7 @@ public class UsuarioController {
     // Borra el usuario cuyo id coincide con el introducido
     @DeleteMapping("/{id}")
     public ResponseEntity<?> borrarPorId(@PathVariable Integer id) {
-        Usuario usuarioConsultado = service.listarPorId(id);
+        Optional<Usuario> usuarioConsultado = service.listarPorId(id);
 
         if (usuarioConsultado != null) {
             service.borrarPorId(id);
