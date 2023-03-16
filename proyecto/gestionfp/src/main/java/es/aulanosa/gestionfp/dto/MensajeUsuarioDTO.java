@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.dto;
 
+import es.aulanosa.gestionfp.model.MensajeUsuario;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
