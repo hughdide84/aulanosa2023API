@@ -19,7 +19,7 @@ public class TestProyectosV2 {
 
     @Test()
     @Order(1)
-    void insertarProyecto() {
+    void insertarProyecto() throws NoSeHaEncontradoException {
         Proyectos proyectos = new Proyectos();
         proyectos.setIdAlumno(3);
         proyectos.setDocumento('a');
@@ -27,8 +27,14 @@ public class TestProyectosV2 {
         proyectos.setNotaDoc(9);
         proyectos.setNotaPres(5);
         proyectos.setNotaFinal(6);
-        var a = proyectosService.guardar(proyectos);
-        System.out.println(a);
+        try {
+            var a = proyectosService.guardar(proyectos);
+            System.out.println(a);
+        }
+        catch (Exception e) {
+            throw new NoSeHaEncontradoException("No se ha podido insertar");
+        }
+
     }
 
     @Test
@@ -54,8 +60,13 @@ public class TestProyectosV2 {
         Proyectos mejora2 = null;
 
         if (mejora != null) {
-            mejora2 = proyectosService.modificar(proyectos);
-            System.out.println(mejora2);
+            try {
+                mejora2 = proyectosService.modificar(proyectos);
+                System.out.println(mejora2);
+            }
+            catch (Exception e) {
+                throw new NoSeHaEncontradoException("No se ha encontrado el alumno en especifico");
+            }
         }
         else {
             System.out.println("No se ha encontrado el proyecto a modificar");
