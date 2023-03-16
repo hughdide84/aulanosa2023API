@@ -23,14 +23,16 @@ public class UsuarioController {
     // Crea un nuevo usuario
     @PostMapping("")
     public ResponseEntity<?> crearUsuario(@RequestBody UsuarioDTO usuarioDTO) throws NoSeHaEncontradoException {
-        if (comprobarLongitudCampos(usuarioDTO).equals("")) {
+        Optional<Usuario> usuarioConsultado = service.consultarPorNombre(usuarioDTO.getNombre());
+
+        if (comprobarLongitudCampos(usuarioDTO).equals("") && !usuarioConsultado.isPresent()) {
             Usuario usuarioGuardado = usuarioDTO.toModel();
             service.crear(usuarioGuardado);
             return ResponseEntity.status(HttpStatus.CREATED).body(usuarioGuardado);
         } else if (!comprobarLongitudCampos(usuarioDTO).equals("")) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Longitud excedida en el/los siguiente/-s campo/-s: " + comprobarLongitudCampos(usuarioDTO));
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El usuario ya fue añadido previamente");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El usuario que desea crear contiene un nombre que ya existe");
         }
     }
 
@@ -99,10 +101,26 @@ public class UsuarioController {
     public ResponseEntity<?> actualizarUsuario(@RequestBody UsuarioDTO usuarioDTO) throws NoSeHaEncontradoException {
         Optional<Usuario> usuarioConsultado = service.listarPorId(usuarioDTO.getId());
 
+        // Comprobamos si existe un usuario con el ID introducido
         if (usuarioConsultado.isPresent() && comprobarLongitudCampos(usuarioDTO).equals("")) {
-            Usuario usuarioActualizado = usuarioDTO.toModel();
-            service.actualizar(usuarioActualizado);
-            return ResponseEntity.ok(usuarioActualizado);
+            Optional<Usuario> usuarioMismoNombreConsultado = service.consultarPorNombre(usuarioDTO.getNombre());
+            // Comprobamos si existe un usuario con el nombre introducido
+            if (usuarioMismoNombreConsultado.isPresent()) {
+                Usuario usuarioMismoNombre = usuarioMismoNombreConsultado.get();
+                // Permitimos la actualización si el nombre ya existe pero pertenece al usuario que deseamos modificar
+                if (usuarioMismoNombre.getId() == usuarioDTO.getId()) {
+                    Usuario usuarioActualizado = usuarioDTO.toModel();
+                    service.actualizar(usuarioActualizado);
+                    return ResponseEntity.ok(usuarioActualizado);
+                } else {
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El nombre al que desea actualizar ya existe para otro usuario");
+                }
+            } else {
+                // Permitimos la actualización si el nombre introducido no existe
+                Usuario usuarioActualizado = usuarioDTO.toModel();
+                service.actualizar(usuarioActualizado);
+                return ResponseEntity.ok(usuarioActualizado);
+            }
         } else if (!comprobarLongitudCampos(usuarioDTO).equals("")) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Longitud excedida en el/los siguiente/-s campo/-s: " + comprobarLongitudCampos(usuarioDTO));
         } else {
@@ -115,7 +133,7 @@ public class UsuarioController {
     public ResponseEntity<?> borrarUsuarioPorId(@PathVariable Integer id) {
         Optional<Usuario> usuarioConsultado = service.listarPorId(id);
 
-        if (usuarioConsultado != null) {
+        if (usuarioConsultado.isPresent()) {
             service.borrarPorId(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body("El usuario ha sido eliminado correctamente");
         } else {
