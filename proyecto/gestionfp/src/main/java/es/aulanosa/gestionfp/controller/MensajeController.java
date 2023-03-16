@@ -46,7 +46,7 @@ public class MensajeController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe ningún mensaje con ese ID");
         }
     }
-
+    //edita el mensaje ya existente
     @PutMapping
     public ResponseEntity<?> editarMensaje(@RequestBody MensajeDTO mensajeDTO) {
         Optional<Mensaje> mensajeConsultar = service.consultarPorIdMensaje(mensajeDTO.getId());
