@@ -1,7 +1,9 @@
 package es.aulanosa.gestionfp.controller;
 
+import es.aulanosa.gestionfp.dto.ErrorDTO;
 import es.aulanosa.gestionfp.dto.MensajeDTO;
 import es.aulanosa.gestionfp.dto.UsuarioDTO;
+import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Mensaje;
 import es.aulanosa.gestionfp.model.Usuario;
 import es.aulanosa.gestionfp.service.MensajeService;
@@ -11,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @RestController
@@ -19,19 +22,34 @@ public class MensajeController {
 
     @Autowired
     MensajeService service;
+    @Autowired
+    UsuarioService serviceUsu;
 
     // Crea un nuevo mensaje
     @PostMapping("")
     public ResponseEntity<?> crear(@RequestBody MensajeDTO mensajeDTO) {
         Optional<Mensaje> mensajeConsultado = service.consultarPorIdMensaje(mensajeDTO.getId());
 
-        if(!mensajeConsultado.isPresent()){
-            Mensaje mensajeGuardado = mensajeDTO.toModel();
-            service.insertarMensaje(mensajeGuardado);
-            return ResponseEntity.status(HttpStatus.CREATED).body(mensajeDTO.toDTO(mensajeGuardado));
-        }else{
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El usuario ya ha sido añadido");
-        }
+            try{
+                if(!mensajeConsultado.isPresent()){
+                    if(mensajeConsultado.get().getIdUsuario() > 0){
+                        Mensaje mensajeGuardado = mensajeDTO.toModel();
+                        service.insertarMensaje(mensajeGuardado);
+                        return ResponseEntity.status(HttpStatus.CREATED).body(mensajeDTO.toDTO(mensajeGuardado));
+                    }else{
+                        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El idUsuario no existe");
+                    }
+
+                }else{
+                    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El usuario ya ha sido añadido");
+
+                }
+
+            }catch (NoSuchElementException e){
+                ErrorDTO errorDTO = new ErrorDTO("E001","Error con un campo usado como clave foranea");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
+            }
+
 
     }
 
@@ -47,7 +65,7 @@ public class MensajeController {
         }
     }
     //edita el mensaje ya existente
-    @PutMapping
+    @PutMapping("")
     public ResponseEntity<?> editarMensaje(@RequestBody MensajeDTO mensajeDTO) {
         Optional<Mensaje> mensajeConsultar = service.consultarPorIdMensaje(mensajeDTO.getId());
 
@@ -60,6 +78,7 @@ public class MensajeController {
         }
     }
 
+    //elimina el mensaje existente que tenga el id que se le pasa
     @DeleteMapping("/{id}")
     public ResponseEntity<?> borrarMensajePorId(@PathVariable Integer id) {
         Optional<Mensaje> mensajeConsultado = service.consultarPorIdMensaje(id);
