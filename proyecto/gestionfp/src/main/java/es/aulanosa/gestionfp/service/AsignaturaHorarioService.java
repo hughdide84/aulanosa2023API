@@ -9,13 +9,13 @@ import java.util.Optional;
 public interface AsignaturaHorarioService {
 
 
-    Optional<AsignaturaHorario> buscarPorId(Integer id) throws NoSeHaEncontradoException;
-    AsignaturaHorario insertar(AsignaturaHorario asignaturaHorario);
-    AsignaturaHorario modificar(AsignaturaHorario asignaturaHorario) throws NoSeHaEncontradoException;
+    Optional<AsignaturaHorario> buscarPorIdAsignaturaHorario(Integer id) throws NoSeHaEncontradoException;
+    AsignaturaHorario insertarAsignaturaHorario(AsignaturaHorario asignaturaHorario);
+    AsignaturaHorario modificarAsignaturaHorario(AsignaturaHorario asignaturaHorario) throws NoSeHaEncontradoException;
 
-    List<AsignaturaHorario> buscarPorCurso(int idAsignatura) throws NoSeHaEncontradoException;
-    void eliminar(int id) throws NoSeHaEncontradoException;
+    List<AsignaturaHorario> buscarPorCursoAsignaturaHorario(int idAsignatura) throws NoSeHaEncontradoException;
+    void eliminarAsignaturaHorario(int id) throws NoSeHaEncontradoException;
 
-    List<AsignaturaHorario> listarTodo();
+    List<AsignaturaHorario> listarTodoAsignaturaHorario();
 
 }

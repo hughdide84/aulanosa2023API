@@ -26,7 +26,7 @@ public class AsignaturaHorarioController {
     public ResponseEntity<?> alta(@RequestBody AsignaturaHorarioDTO asignaturaHorarioDTO){
         try{
             AsignaturaHorario asignaturahorario = asignaturaHorarioDTO.convertirModel();
-            AsignaturaHorario asignaturahorarioGuardado = service.insertar(asignaturahorario);
+            AsignaturaHorario asignaturahorarioGuardado = service.insertarAsignaturaHorario(asignaturahorario);
             asignaturaHorarioDTO.convertirDTO(asignaturahorarioGuardado);
             return ResponseEntity.status(HttpStatus.CREATED).body(asignaturaHorarioDTO);
         }catch (Exception e){
@@ -38,7 +38,7 @@ public class AsignaturaHorarioController {
     //consulta por id, se le pasa como variable el mismo, consulta si existe y en caso de que lo haga devuelve el objeto recuperado de la BD
     public ResponseEntity<?> consulta(@PathVariable Integer id){
         try{
-            Optional<AsignaturaHorario> asignaturahorario = service.buscarPorId(id);
+            Optional<AsignaturaHorario> asignaturahorario = service.buscarPorIdAsignaturaHorario(id);
             AsignaturaHorarioDTO asignaturaHorarioDTO = new AsignaturaHorarioDTO();
             asignaturaHorarioDTO.convertirDTO(asignaturahorario.get());
 
@@ -54,8 +54,8 @@ public class AsignaturaHorarioController {
     //se le pasa un objeto completo por POST, el programa comprueba que su ID exista en la BD y en caso de que lo haga cambia los valores que estén diferentes
     public ResponseEntity<?> editar(@RequestBody AsignaturaHorarioDTO asignaturaHorarioDTO){
         try{
-            Optional<AsignaturaHorario> asignaturaHorario = service.buscarPorId(asignaturaHorarioDTO.getId());
-            service.insertar(asignaturaHorario.get());
+            Optional<AsignaturaHorario> asignaturaHorario = service.buscarPorIdAsignaturaHorario(asignaturaHorarioDTO.getId());
+            service.insertarAsignaturaHorario(asignaturaHorario.get());
             AsignaturaHorarioDTO asignaturaHorarioDTORecuperado = new AsignaturaHorarioDTO();
             asignaturaHorarioDTO.convertirDTO(asignaturaHorario.get());
 
@@ -74,8 +74,8 @@ public class AsignaturaHorarioController {
     //se le pasa un ID por API, el programa comprueba que exista en la BD y en caso afirmativo se borra de la misma
     public ResponseEntity<?> eliminar(@PathVariable int id){
         try{
-            Optional<AsignaturaHorario> asignaturaHorario = service.buscarPorId(id);
-            service.eliminar(asignaturaHorario.get().getId());
+            Optional<AsignaturaHorario> asignaturaHorario = service.buscarPorIdAsignaturaHorario(id);
+            service.eliminarAsignaturaHorario(asignaturaHorario.get().getId());
 
             AsignaturaHorarioDTO asignaturaHorarioDTO = new AsignaturaHorarioDTO();
             asignaturaHorarioDTO.convertirDTO(asignaturaHorario.get());
@@ -90,8 +90,8 @@ public class AsignaturaHorarioController {
     @GetMapping("/")
     //lista todos los campos de la BD, en caso de que esta este vacia, devuelve un error personalizado
     public ResponseEntity<?> listarTodo(){
-        if(!service.listarTodo().isEmpty()){
-            return ResponseEntity.status(HttpStatus.OK).body(service.listarTodo());
+        if(!service.listarTodoAsignaturaHorario().isEmpty()){
+            return ResponseEntity.status(HttpStatus.OK).body(service.listarTodoAsignaturaHorario());
         }else{
             ErrorDTO errorDTO = new ErrorDTO("E0003", "No hay registros en la base de datos");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);

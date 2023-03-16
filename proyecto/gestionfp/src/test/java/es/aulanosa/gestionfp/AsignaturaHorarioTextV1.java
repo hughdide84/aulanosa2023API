@@ -21,6 +21,12 @@ public class AsignaturaHorarioTextV1 {
     @Autowired
     AsignaturaHorarioServiceImp service;
 
+
+    //en asignatura hay id 7, 8 y 9
+    int idAsignaturaHorarioGeneral = 7;
+
+    //en asignaturaHorario hay id 2 y 4
+    int idAsignatura = 2;
     AsignaturaHorario recuperado = new AsignaturaHorario();
 
 
@@ -35,7 +41,7 @@ public class AsignaturaHorarioTextV1 {
         asignaturaHorario.setInicio(new Time(1,1,1));
         asignaturaHorario.setDia('a');
 
-        recuperado = service.insertar(asignaturaHorario);
+        recuperado = service.insertarAsignaturaHorario(asignaturaHorario);
 
         System.out.println(recuperado);
 
@@ -46,7 +52,7 @@ public class AsignaturaHorarioTextV1 {
         //busca por la id
     void buscarPorIdAsignaturaHorario(){
         try{
-            System.out.println(service.buscarPorId(2));
+            System.out.println(service.buscarPorIdAsignaturaHorario(idAsignatura));
         }catch (NoSeHaEncontradoException e){
             System.out.println(e.getMessage());
         }
@@ -57,7 +63,7 @@ public class AsignaturaHorarioTextV1 {
         //busca por la id de la asignatura
     void buscarPorIdAsignatura(){
         try{
-            service.buscarPorCurso(recuperado.getIdAsignatura());
+            service.buscarPorCursoAsignaturaHorario(idAsignatura);
         }catch (NoSeHaEncontradoException e){
             System.out.println(e.getMessage());
         }
@@ -67,33 +73,32 @@ public class AsignaturaHorarioTextV1 {
     @Order(4)
     void actualizarAsignaturaHorario(){
         try{
-            AsignaturaHorario asignaturaHorarioRecuperada = service.buscarPorId(recuperado.getId()).get();
+            AsignaturaHorario asignaturaHorarioRecuperada = service.buscarPorIdAsignaturaHorario(idAsignatura).get();
             asignaturaHorarioRecuperada.setDia('z');
-            service.modificar(asignaturaHorarioRecuperada);
+            service.modificarAsignaturaHorario(asignaturaHorarioRecuperada);
         }catch (NoSeHaEncontradoException e){
             System.out.println(e.getMessage());
         }
     }
-
     @Test
-    @Order(2)
+    @Order(5)
         //compruebo que se haya actualizado
     void comprobarActualizacion(){
         try{
-            service.buscarPorId(recuperado.getId());
+            recuperado = service.buscarPorIdAsignaturaHorario(idAsignatura).get();
+            System.out.println(recuperado);
         }catch (NoSeHaEncontradoException e){
             System.out.println(e.getMessage());
         }
     }
 
-
     @Test
-    @Order(5)
+    @Order(6)
     void eliminarAsignaturaHorario(){
         try{
-            service.eliminar(1);
+            service.eliminarAsignaturaHorario(idAsignatura);
 
-            if(!service.buscarPorId(1).isPresent()){
+            if(!service.buscarPorIdAsignaturaHorario(1).isPresent()){
                 System.out.println("La asignaturaHorario se ha borrado correctamente");
             }else{
                 System.out.println("No se ha podido borrar la AsignaturaHorario");
@@ -104,10 +109,10 @@ public class AsignaturaHorarioTextV1 {
     }
 
     @Test
-    @Order(2)
+    @Order(7)
         //busca por la id
     void listarTodoAsignaturaHorario(){
-        List<AsignaturaHorario> lista = service.listarTodo();
+        List<AsignaturaHorario> lista = service.listarTodoAsignaturaHorario();
 
         if(lista.isEmpty()){
             System.out.println("La base de datos no tiene campos que mostrar");
