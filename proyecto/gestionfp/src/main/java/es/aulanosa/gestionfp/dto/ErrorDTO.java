@@ -11,4 +11,5 @@ public class ErrorDTO {
 
     private String error;
     private String mensaje;
+
 }
