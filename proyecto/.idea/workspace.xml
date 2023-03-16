@@ -64,7 +64,7 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.AsignaturaHorarioTextV1.eliminarAsignaturaHorario">
+  <component name="RunManager">
     <configuration name="GestionfpApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.GestionfpApplication" />
       <module name="gestionfp" />
@@ -78,7 +78,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AsignaturaHorarioTextV1.actualizarAsignaturaHorario" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestAsignaturaHorarioServiceV1.actualizarAsignaturaHorario" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gestionfp" />
       <extension name="coverage">
         <pattern>
@@ -87,14 +87,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
-      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.AsignaturaHorarioTextV1" />
+      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestAsignaturaHorarioServiceV1" />
       <option name="METHOD_NAME" value="actualizarAsignaturaHorario" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AsignaturaHorarioTextV1.buscarPorIdAsignaturaHorario" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestAsignaturaHorarioServiceV1.buscarPorIdAsignaturaHorario" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gestionfp" />
       <extension name="coverage">
         <pattern>
@@ -103,14 +103,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
-      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.AsignaturaHorarioTextV1" />
+      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestAsignaturaHorarioServiceV1" />
       <option name="METHOD_NAME" value="buscarPorIdAsignaturaHorario" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AsignaturaHorarioTextV1.eliminarAsignaturaHorario" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestAsignaturaHorarioServiceV1.eliminarAsignaturaHorario" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gestionfp" />
       <extension name="coverage">
         <pattern>
@@ -119,14 +119,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
-      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.AsignaturaHorarioTextV1" />
+      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestAsignaturaHorarioServiceV1" />
       <option name="METHOD_NAME" value="eliminarAsignaturaHorario" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AsignaturaHorarioTextV1.insertarAsignaturaHorario" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestAsignaturaHorarioServiceV1.insertarAsignaturaHorario" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gestionfp" />
       <extension name="coverage">
         <pattern>
@@ -135,7 +135,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
-      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.AsignaturaHorarioTextV1" />
+      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestAsignaturaHorarioServiceV1" />
       <option name="METHOD_NAME" value="insertarAsignaturaHorario" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -144,11 +144,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.AsignaturaHorarioTextV1.eliminarAsignaturaHorario" />
-        <item itemvalue="JUnit.AsignaturaHorarioTextV1.insertarAsignaturaHorario" />
-        <item itemvalue="JUnit.AsignaturaHorarioTextV1.actualizarAsignaturaHorario" />
+        <item itemvalue="JUnit.TestAsignaturaHorarioServiceV1.eliminarAsignaturaHorario" />
+        <item itemvalue="JUnit.TestAsignaturaHorarioServiceV1.insertarAsignaturaHorario" />
+        <item itemvalue="JUnit.TestAsignaturaHorarioServiceV1.actualizarAsignaturaHorario" />
         <item itemvalue="Application.GestionfpApplication" />
-        <item itemvalue="JUnit.AsignaturaHorarioTextV1.buscarPorIdAsignaturaHorario" />
+        <item itemvalue="JUnit.TestAsignaturaHorarioServiceV1.buscarPorIdAsignaturaHorario" />
       </list>
     </recent_temporary>
   </component>

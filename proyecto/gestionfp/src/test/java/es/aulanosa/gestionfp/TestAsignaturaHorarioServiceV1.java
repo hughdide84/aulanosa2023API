@@ -2,7 +2,6 @@ package es.aulanosa.gestionfp;
 
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.AsignaturaHorario;
-import es.aulanosa.gestionfp.service.AsignaturaHorarioService;
 import es.aulanosa.gestionfp.service.AsignaturaHorarioServiceImp;
 import org.junit.jupiter.api.ClassOrderer;
 import org.junit.jupiter.api.Order;
@@ -16,7 +15,7 @@ import java.util.List;
 
 @TestClassOrder(ClassOrderer.OrderAnnotation.class)
 @SpringBootTest
-public class AsignaturaHorarioTextV1 {
+public class TestAsignaturaHorarioServiceV1 {
 
     @Autowired
     AsignaturaHorarioServiceImp service;
@@ -63,7 +62,11 @@ public class AsignaturaHorarioTextV1 {
         //busca por la id de la asignatura
     void buscarPorIdAsignatura(){
         try{
-            service.buscarPorCursoAsignaturaHorario(idAsignatura, 5, 1);
+            List<AsignaturaHorario> lista = service.buscarPorCursoAsignaturaHorario(5, 3, 1);
+            for (AsignaturaHorario asig :
+                    lista) {
+                System.out.println(asig);
+            }
         }catch (NoSeHaEncontradoException e){
             System.out.println(e.getMessage());
         }
