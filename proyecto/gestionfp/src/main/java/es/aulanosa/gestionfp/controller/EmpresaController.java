@@ -59,7 +59,7 @@ public class EmpresaController {
     }
 
     //Este metodo busca un campo por id para modificarlo a partir del body que se le pasa.
-    @PutMapping
+    @PutMapping("")
     public ResponseEntity<?> editarEmpresa(@RequestBody EmpresaDTO empresaDTO) {
         Empresa empresaParaActualizar = empService.findById(empresaDTO.getId());
 
