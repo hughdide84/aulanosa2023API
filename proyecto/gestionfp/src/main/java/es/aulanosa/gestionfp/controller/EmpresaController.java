@@ -1,7 +1,10 @@
 package es.aulanosa.gestionfp.controller;
 
 import es.aulanosa.gestionfp.dto.EmpresaDTO;
+import es.aulanosa.gestionfp.model.Alumno;
+import es.aulanosa.gestionfp.model.AlumnoEmpresa;
 import es.aulanosa.gestionfp.model.Empresa;
+import es.aulanosa.gestionfp.service.AlumnoEmpresaService;
 import es.aulanosa.gestionfp.service.EmpresaService;
 import jakarta.persistence.Table;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,9 @@ public class EmpresaController {
 
     @Autowired
     private EmpresaService empService;
+
+    @Autowired
+    private AlumnoEmpresaService alumnoEmpresaService;
 
 
 
@@ -98,6 +104,19 @@ public class EmpresaController {
 
         else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error, no se ha podido ejecutar esta funcion");
+        }
+    }
+
+    @GetMapping("{id}/alumno")
+    public ResponseEntity<?> listarAlumnosEnEmpresa(@PathVariable("id") Integer id) {
+        List<Alumno> alumnoEmp = alumnoEmpresaService.buscarTodosAlumnosPorIdEmpresa(id);
+
+        if (alumnoEmp != null) {
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(alumnoEmp);
+        }
+
+        else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error, no se pude ejecutar esta opcion");
         }
     }
     

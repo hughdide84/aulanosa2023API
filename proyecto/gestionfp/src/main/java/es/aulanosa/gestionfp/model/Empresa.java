@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -79,6 +80,7 @@ public class Empresa {
     @NotNull(message = "La hoja de actividades no puede estar vacía")
     private char hojaActividades;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "idEmpresa")
     private List<AlumnoEmpresa> alumnoEmpresa;
 

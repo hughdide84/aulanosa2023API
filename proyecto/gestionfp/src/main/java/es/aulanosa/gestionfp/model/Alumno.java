@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -48,6 +49,7 @@ public class Alumno {
     @Column(name = "finPr")
     private Date finPr;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "idAlumno")
     private List<AlumnoEmpresa> alumnoEmpresa;
 
