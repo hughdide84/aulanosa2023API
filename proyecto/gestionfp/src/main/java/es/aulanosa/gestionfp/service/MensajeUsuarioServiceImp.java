@@ -54,13 +54,13 @@ public class MensajeUsuarioServiceImp implements MensajeUsuarioService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Mensaje> buscarTodoMensajePorUsuarioId(int usuarioId) {
-        return repository.buscarTodoMensajePorUsuarioId(usuarioId);
+    public List<Mensaje> listarPorAutor(int usuarioId) {
+        return repository.listarPorAutor(usuarioId);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<Usuario> buscarTodoUsuarioPorMensajeId(int mensajeId) {
-        return repository.buscarTodoUsuarioPorMensajeId(mensajeId);
+    public List<Usuario> listarPorDestinario(int mensajeId) {
+        return repository.listarPorDestinatario(mensajeId);
     }
 }
