@@ -19,14 +19,14 @@ Se ha desarrollado la API en Spring Boot utilizando MySQL como sistema de gesti�
 
 El proyecto se ha creado con MAVEN, incluyendo las siguientes dependencias:
 
-* [Spring Boot Data JPA] (spring-boot-starter-data-jpa de org.springframework.boot) - Persistencia en base de datos relacional
-* [Spring Boot Web] (spring-boot-starter-web de org.springframework.boot) - Crear aplicación web usando Spring MVC
-* [Spring Boot Test] (spring-boot-starter-test de org.springframework.boot) - Clases de pruebas
-* [Spring Boot Validation] (spring-boot-starter-validation de org.springframework.boot) - Validar objetos de dominio
-* [MySQL Connector] (mysql-connector-j de com.mysql) - Controlador JDBC oficial para MySQL
-* [Lombok] (lombok de org.projectlombok) - Generación de código automático en clases POJO mediante anotaciones
-* [WEBMVC UI] (springdoc-openapi-starter-webmvc-ui de org.springdoc) - Integración entre Spring Boot y Swagger
-* [ROME] (springfox-swagger-ui de io.springfox) - Integraciónd de Swagger, usado para documentar los endpoints del API
+* Spring Boot Data JPA - Persistencia en base de datos relacional
+* Spring Boot Web - Crear aplicación web usando Spring MVC
+* Spring Boot Test - Clases de pruebas
+* Spring Boot Validation - Validar objetos de dominio
+* MySQL Connector - Controlador JDBC oficial para MySQL
+* Lombok - Generación de código automático en clases POJO mediante anotaciones
+* WEBMVC UI - Integración entre Spring Boot y Swagger
+* SWAGGER UI - Integraciónd de Swagger, usado para documentar los endpoints del API
 
 ## Requisitos 🔧
 
@@ -49,4 +49,4 @@ Proyecto realizado por alumnos del Ciclo Superior de Desarrollo de Aplicaciones 
 
 ## Licencia 📄
 
-Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md](LICENSE.md) para detalles
+Este proyecto está bajo la Licencia MIT - mira el archivo [LICENSE.txt](LICENSE.txt) para detalles
