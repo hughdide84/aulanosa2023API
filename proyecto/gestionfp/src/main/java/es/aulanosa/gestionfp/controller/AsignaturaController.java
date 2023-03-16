@@ -23,8 +23,12 @@ public class AsignaturaController {
         Asignatura asignaturaConsultada = asignaturaService.findById(asignaturaDTO.getId());
 
         if (asignaturaConsultada == null) {
-            asignaturaService.save(asignaturaDTO.toAsignatura());
-            return ResponseEntity.status(HttpStatus.CREATED).body(asignaturaDTO);
+            try {
+                Asignatura asignatura = asignaturaService.save(asignaturaDTO.toAsignatura());
+                return ResponseEntity.status(HttpStatus.CREATED).body(asignatura);
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al crear la asignatura");
+            }
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Ya existe una asignatura con ese id");
         }
@@ -55,8 +59,12 @@ public class AsignaturaController {
         Asignatura asignaturaConsultada = asignaturaService.findById(asignaturaDTO.getId());
 
         if (asignaturaConsultada != null) {
-            asignaturaService.update(asignaturaDTO.toAsignatura());
-            return ResponseEntity.status(HttpStatus.OK).body(asignaturaDTO);
+            try {
+                asignaturaService.update(asignaturaDTO.toAsignatura());
+                return ResponseEntity.status(HttpStatus.OK).body(asignaturaDTO);
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al modificar la asignatura");
+            }
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se ha encontrado la asignatura");
         }
