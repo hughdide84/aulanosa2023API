@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -68,6 +67,7 @@ public class UsuarioServiceImp implements UsuarioService {
         return usuarioRepository.findByEmailContains(cadenaEmail);
     }
 
+    // Actualiza un usuario ya existente
     @Override
     @Transactional
     public Usuario actualizar(Usuario usuario) throws NoSeHaEncontradoException {
@@ -88,7 +88,7 @@ public class UsuarioServiceImp implements UsuarioService {
     // Borra el usuario cuyo id coincide con el introducido
     @Override
     @Transactional
-    public void borrarPorId(int id) {
+    public void borrarPorId(Integer id) {
         usuarioRepository.deleteById(id);
     }
 }
