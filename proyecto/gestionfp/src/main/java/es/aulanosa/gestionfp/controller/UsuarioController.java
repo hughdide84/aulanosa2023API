@@ -30,7 +30,7 @@ public class UsuarioController {
             service.crear(usuarioGuardado);
             return ResponseEntity.status(HttpStatus.CREATED).body(usuarioGuardado);
         } else if (!comprobarLongitudCampos(usuarioDTO).equals("")) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Longitud excedida en el/los siguiente/-s campo/-s: " + comprobarLongitudCampos(usuarioDTO));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Longitud excedida en el/los siguiente/-s campo/-s: " + comprobarLongitudCampos(usuarioDTO));
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El usuario que desea crear contiene un nombre que ya existe");
         }
@@ -122,7 +122,7 @@ public class UsuarioController {
                 return ResponseEntity.ok(usuarioActualizado);
             }
         } else if (!comprobarLongitudCampos(usuarioDTO).equals("")) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Longitud excedida en el/los siguiente/-s campo/-s: " + comprobarLongitudCampos(usuarioDTO));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Longitud excedida en el/los siguiente/-s campo/-s: " + comprobarLongitudCampos(usuarioDTO));
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El usuario que desea modificar no existe");
         }
