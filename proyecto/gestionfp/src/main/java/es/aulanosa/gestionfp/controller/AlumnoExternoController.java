@@ -1,6 +1,6 @@
 package es.aulanosa.gestionfp.controller;
 
-import es.aulanosa.gestionfp.dto.AlumnosExternosDTO;
+import es.aulanosa.gestionfp.dto.AlumnoExternoDTO;
 import es.aulanosa.gestionfp.dto.ErrorDTO;
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.AlumnoExterno;
@@ -16,32 +16,35 @@ import java.util.Optional;
 @RequestMapping("api/alumnoExterno")
 //falta @tag
 
-public class AlumnosExternosController {
+public class AlumnoExternoController {
 
     @Autowired
     private AlumnoExternoServiceImp service;
 
     @PostMapping("/")
     //falta @operation
-    public ResponseEntity<?> alta(@RequestBody AlumnosExternosDTO alumnosExternosDTO){
+
+    //API para dar de alta, se le pasa un objeto DTO por POST, lo convierte al model y lo inserta
+    public ResponseEntity<?> alta(@RequestBody AlumnoExternoDTO alumnoExternoDTO){
         try{
-            AlumnoExterno alumnosExternos = alumnosExternosDTO.convertirModel();
+            AlumnoExterno alumnosExternos = alumnoExternoDTO.convertirModel();
             AlumnoExterno alumnosExternosGuardado = service.guardar(alumnosExternos);
-            alumnosExternosDTO.crearDTO(alumnosExternosGuardado);
-            return ResponseEntity.status(HttpStatus.CREATED).body(alumnosExternosDTO);
+            alumnoExternoDTO.crearDTO(alumnosExternosGuardado);
+            return ResponseEntity.status(HttpStatus.CREATED).body(alumnoExternoDTO);
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
     }
 
     @GetMapping("/{id}")
+    //consulta por id, se le pasa como variable el mismo, consulta si existe y en caso de que l ohaga devuelve el objeto recuperado de la BD
     public ResponseEntity<?> consulta(@PathVariable Integer id){
         try{
             Optional<AlumnoExterno> alumnosExternos = service.listarPorId(id);
-            AlumnosExternosDTO alumnosExternosDTO = new AlumnosExternosDTO();
-            alumnosExternosDTO.crearDTO(alumnosExternos.get());
+            AlumnoExternoDTO alumnoExternoDTO = new AlumnoExternoDTO();
+            alumnoExternoDTO.crearDTO(alumnosExternos.get());
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(alumnosExternosDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).body(alumnoExternoDTO);
         }catch (NoSeHaEncontradoException e){
             ErrorDTO errorDTO = new ErrorDTO("E0001", "ID no encontrado");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
@@ -50,14 +53,15 @@ public class AlumnosExternosController {
     }
 
     @PutMapping("/")
-    public ResponseEntity<?> editar(@RequestBody AlumnosExternosDTO alumnosExternosDTO){
+    //se le pasa un objeto completo por POST, el programa comprueba que su ID exista en la BD y en caso de que lo haga cambia los valores que estén diferentes
+    public ResponseEntity<?> editar(@RequestBody AlumnoExternoDTO alumnoExternoDTO){
         try{
-            Optional<AlumnoExterno> alumnosExternos = service.listarPorId(alumnosExternosDTO.getId());
+            Optional<AlumnoExterno> alumnosExternos = service.listarPorId(alumnoExternoDTO.getId());
             service.guardar(alumnosExternos.get());
-            AlumnosExternosDTO alumnosExternosDTORecuperado = new AlumnosExternosDTO();
-            alumnosExternosDTO.crearDTO(alumnosExternos.get());
+            AlumnoExternoDTO alumnoExternoDTORecuperado = new AlumnoExternoDTO();
+            alumnoExternoDTO.crearDTO(alumnosExternos.get());
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(alumnosExternosDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).body(alumnoExternoDTO);
 
         }catch (NoSeHaEncontradoException e){
             ErrorDTO errorDTO = new ErrorDTO("E0002", "Alumno no encontrado");
@@ -70,23 +74,24 @@ public class AlumnosExternosController {
     }
 
     @DeleteMapping("/{id}")
+    //se le pasa un ID por API, el programa comprueba que exista en la BD y en caso afirmativo se borra de la misma
     public ResponseEntity<?> eliminar(@PathVariable int id){
         try{
             Optional<AlumnoExterno> alumnosExternos = service.listarPorId(id);
             service.eliminar(alumnosExternos.get().getId());
 
-            AlumnosExternosDTO alumnosExternosDTO = new AlumnosExternosDTO();
-            alumnosExternosDTO.crearDTO(alumnosExternos.get());
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(alumnosExternosDTO);
+            AlumnoExternoDTO alumnoExternoDTO = new AlumnoExternoDTO();
+            alumnoExternoDTO.crearDTO(alumnosExternos.get());
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(alumnoExternoDTO);
 
         }catch (NoSeHaEncontradoException e){
             ErrorDTO errorDTO = new ErrorDTO("E0002", "Alumno no encontrado");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
-
         }
     }
 
     @GetMapping("/")
+    //lista todos los campos de la BD, en caso de que esta este vacia, devuelve un error personalizado
     public ResponseEntity<?> listarTodo(){
         if(!service.listarTodo().isEmpty()){
             return ResponseEntity.status(HttpStatus.OK).body(service.listarTodo());

@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @TestClassOrder(ClassOrderer.OrderAnnotation.class)
 @SpringBootTest
-class TestAlumnoExternoV1 {
+class TestAlumnoExternoDTOV1 {
 
 	@Autowired
 	private AlumnoExternoServiceImp service;

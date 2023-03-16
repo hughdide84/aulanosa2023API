@@ -1,6 +1,5 @@
 package es.aulanosa.gestionfp.dto;
 
-import es.aulanosa.gestionfp.model.AlumnoExterno;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +9,7 @@ import java.sql.Timestamp;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AlumnosExternosDTO {
+public class AlumnoExternoDTO {
     private int id;
     private int idCurso;
     private char tipo;
@@ -27,8 +26,8 @@ public class AlumnosExternosDTO {
     private char evaluacion;
     private char horario;
 
-    public AlumnoExterno convertirModel(){
-        AlumnoExterno alumnosExternos = new AlumnoExterno();
+    public es.aulanosa.gestionfp.model.AlumnoExterno convertirModel(){
+        es.aulanosa.gestionfp.model.AlumnoExterno alumnosExternos = new es.aulanosa.gestionfp.model.AlumnoExterno();
         alumnosExternos.setId(this.getId());
         alumnosExternos.setTelefono(this.getTelefono());
         alumnosExternos.setEvaluacion(this.getEvaluacion());
@@ -48,7 +47,7 @@ public class AlumnosExternosDTO {
         return alumnosExternos;
     }
 
-    public AlumnosExternosDTO crearDTO(AlumnoExterno alumnosExternos){
+    public AlumnoExternoDTO crearDTO(es.aulanosa.gestionfp.model.AlumnoExterno alumnosExternos){
         this.setId(alumnosExternos.getId());
         this.setTelefono(alumnosExternos.getTelefono());
         this.setEvaluacion(alumnosExternos.getEvaluacion());
