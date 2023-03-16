@@ -20,6 +20,8 @@ public class Curso {
 
         //atributos objeto curso
         //id autogenerado
+        //atributos objeto curso
+        //id autogenerado
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "id")
