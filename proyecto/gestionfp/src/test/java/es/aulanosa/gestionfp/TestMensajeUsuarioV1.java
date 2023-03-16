@@ -83,7 +83,7 @@ public class TestMensajeUsuarioV1 {
     @Test
     @Order(6)
     void consultarMensajeUsuarioPorIdMensaje() throws NoSeHaEncontradoException {
-        var a = mensajeUsuarioService.buscarTodoUsuarioPorMensajeId(5);
+        var a = mensajeUsuarioService.listarPorDestinario(5);
         System.out.println(a);
 
     }
@@ -91,7 +91,7 @@ public class TestMensajeUsuarioV1 {
     @Test
     @Order(7)
     void consultarMensajeUsuarioPorIdUsuario() throws NoSeHaEncontradoException {
-        var a = mensajeUsuarioService.buscarTodoMensajePorUsuarioId(14);
+        var a = mensajeUsuarioService.listarPorAutor(14);
         System.out.println(a);
 
     }

@@ -21,7 +21,7 @@ public interface MensajeUsuarioService {
 
     public void eliminar(Integer id);
 
-    List<Mensaje> buscarTodoMensajePorUsuarioId(int usuarioId);
-    List<Usuario> buscarTodoUsuarioPorMensajeId(int mensajeId);
+    List<Mensaje> listarPorAutor(int usuarioId);
+    List<Usuario> listarPorDestinario(int mensajeId);
 
 }

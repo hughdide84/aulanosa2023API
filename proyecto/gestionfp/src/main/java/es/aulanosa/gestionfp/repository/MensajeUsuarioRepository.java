@@ -12,9 +12,13 @@ import java.util.List;
 @Repository
 public interface MensajeUsuarioRepository extends JpaRepository<MensajeUsuario, Integer> {
 
-    @Query("SELECT m FROM Mensaje m join fetch m.mensajeUsuario mu WHERE mu.usuario.id = ?1")
-    List<Mensaje> buscarTodoMensajePorUsuarioId(int usuarioId);
+    @Query("SELECT m FROM Mensaje m WHERE m.idUsuario = ?1")
+    List<Mensaje> listarPorAutor(int usuarioId);
 
     @Query("SELECT u FROM Usuario u join fetch u.mensajeUsuario mu WHERE mu.mensaje.id = ?1" )
-    List<Usuario> buscarTodoUsuarioPorMensajeId(int mensajeId);
+    List<Usuario> listarPorDestinatario(int mensajeId);
+
+
+
+
 }
