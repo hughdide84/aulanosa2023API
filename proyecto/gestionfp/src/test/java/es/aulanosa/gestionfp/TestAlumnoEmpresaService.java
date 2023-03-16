@@ -19,13 +19,17 @@ public class TestAlumnoEmpresaService {
 
     @Test
     @Order(1)
-    void insertarAlumnosEmpresas() {
+    void insertarAlumnosEmpresas() throws NoSeHaEncontradoException {
         AlumnoEmpresa alumnosEmpresas = new AlumnoEmpresa();
         alumnosEmpresas.setIdAlumno(3);
         alumnosEmpresas.setIdEmpresa(8);
         alumnosEmpresas.setEstado('a');
-        var a = alumnoEmpresaService.guardar(alumnosEmpresas);
-        System.out.println(a);
+        try {
+            var a = alumnoEmpresaService.guardar(alumnosEmpresas);
+            System.out.println(a);
+        } catch (Exception e) {
+            throw new NoSeHaEncontradoException("No existe el alumno o la empresa", e);
+        }
     }
 
     @Test

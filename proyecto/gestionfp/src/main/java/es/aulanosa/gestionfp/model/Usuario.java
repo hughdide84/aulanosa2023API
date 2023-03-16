@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "Usuarios")
 @Data
@@ -37,10 +39,24 @@ public class Usuario {
     @NotNull(message = "El rol no puede ser nulo")
     private String rol;
 
+    @OneToMany(mappedBy = "usuario")
+    private List<MensajeUsuario> mensajeUsuario;
+
     public Usuario(String nombre, String password, String email, String rol) {
         this.nombre = nombre;
         this.password = password;
         this.email = email;
         this.rol = rol;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", rol='" + rol + '\'' +
+                '}';
     }
 }
