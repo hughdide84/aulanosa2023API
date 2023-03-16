@@ -24,16 +24,14 @@ public class ComentarioController {
             Comentario comentarioGuardado = comentarioDTO.toModel();
             service.crear(comentarioGuardado);
             return ResponseEntity.status(HttpStatus.CREATED).body(comentarioGuardado);
-        } else if (comentarioDTO.getTexto().length() > 500) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Longitud excedida en el campo texto");
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El comentario ya fue añadido previamente");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Longitud excedida en el campo texto");
         }
     }
 
     // Devuelve el comentario cuyo id coincide con el introducido
     @GetMapping("/{id}")
-    public ResponseEntity<?> listarComentarioPorId(@PathVariable Integer id) {
+    public ResponseEntity<?> listarPorId(@PathVariable Integer id) {
         Optional<Comentario> comentarioConsultado = service.listarPorId(id);
 
         if (comentarioConsultado.isPresent()) {
@@ -68,7 +66,7 @@ public class ComentarioController {
             service.borrarPorId(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El comentario que desea eliminar no existe");
         }
     }
 
