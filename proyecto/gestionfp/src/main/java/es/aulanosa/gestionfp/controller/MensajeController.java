@@ -20,7 +20,7 @@ public class MensajeController {
     @Autowired
     MensajeService service;
 
-    // Crea un nuevo usuario
+    // Crea un nuevo mensaje
     @PostMapping("")
     public ResponseEntity<?> crear(@RequestBody MensajeDTO mensajeDTO) {
         Optional<Mensaje> mensajeConsultado = service.consultarPorIdMensaje(mensajeDTO.getId());
@@ -28,7 +28,7 @@ public class MensajeController {
         if(!mensajeConsultado.isPresent()){
             Mensaje mensajeGuardado = mensajeDTO.toModel();
             service.insertarMensaje(mensajeGuardado);
-            return ResponseEntity.status(HttpStatus.CREATED).body(mensajeGuardado);
+            return ResponseEntity.status(HttpStatus.CREATED).body(mensajeDTO.toDTO(mensajeGuardado));
         }else{
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El usuario ya ha sido añadido");
         }
@@ -39,6 +39,8 @@ public class MensajeController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getUsuarioById(@PathVariable Integer id) {
         Optional<Mensaje> mensajeConsultado = service.consultarPorIdMensaje(id);
+
+        MensajeDTO mensajeDTO = 
 
         if (mensajeConsultado.isPresent()) {
             return ResponseEntity.ok(mensajeConsultado);
