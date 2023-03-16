@@ -35,17 +35,40 @@ public class MensajeController {
 
     }
 
-    // Devuelve el usuario cuyo id coincide con el introducido
+    // Devuelve el mensaje cuyo id coincide con el introducido
     @GetMapping("/{id}")
-    public ResponseEntity<?> getUsuarioById(@PathVariable Integer id) {
+    public ResponseEntity<?> obtenerUsuarioPorId(@PathVariable Integer id) {
         Optional<Mensaje> mensajeConsultado = service.consultarPorIdMensaje(id);
-
-        MensajeDTO mensajeDTO = 
 
         if (mensajeConsultado.isPresent()) {
             return ResponseEntity.ok(mensajeConsultado);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe ningún mensaje con ese ID");
+        }
+    }
+
+    @PutMapping
+    public ResponseEntity<?> editarMensaje(@RequestBody MensajeDTO mensajeDTO) {
+        Optional<Mensaje> mensajeConsultar = service.consultarPorIdMensaje(mensajeDTO.getId());
+
+        if (mensajeConsultar.isPresent()) {
+            Mensaje mensajeActualizar = mensajeDTO.toModel();
+            service.insertarMensaje(mensajeActualizar);
+            return ResponseEntity.status(HttpStatus.CREATED).body(mensajeDTO.toDTO(mensajeActualizar));
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se ha encontrado el mensaje a modificar.");
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> borrarMensajePorId(@PathVariable Integer id) {
+        Optional<Mensaje> mensajeConsultado = service.consultarPorIdMensaje(id);
+
+        if (mensajeConsultado.isPresent()) {
+            service.eliminarMensaje(id);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El mensaje que desea eliminar no existe");
         }
     }
 
