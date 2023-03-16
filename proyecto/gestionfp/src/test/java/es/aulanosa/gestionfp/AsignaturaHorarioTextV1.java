@@ -23,10 +23,10 @@ public class AsignaturaHorarioTextV1 {
 
 
     //en asignatura hay id 7, 8 y 9
-    int idAsignaturaHorarioGeneral = 7;
+    int idAsignaturaHorarioGeneral = 2;
 
     //en asignaturaHorario hay id 2 y 4
-    int idAsignatura = 2;
+    int idAsignatura = 7;
     AsignaturaHorario recuperado = new AsignaturaHorario();
 
 
@@ -63,7 +63,7 @@ public class AsignaturaHorarioTextV1 {
         //busca por la id de la asignatura
     void buscarPorIdAsignatura(){
         try{
-            service.buscarPorCursoAsignaturaHorario(idAsignatura);
+            service.buscarPorCursoAsignaturaHorario(idAsignatura, 5, 1);
         }catch (NoSeHaEncontradoException e){
             System.out.println(e.getMessage());
         }

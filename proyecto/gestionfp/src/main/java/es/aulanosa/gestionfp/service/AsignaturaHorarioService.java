@@ -13,7 +13,7 @@ public interface AsignaturaHorarioService {
     AsignaturaHorario insertarAsignaturaHorario(AsignaturaHorario asignaturaHorario);
     AsignaturaHorario modificarAsignaturaHorario(AsignaturaHorario asignaturaHorario) throws NoSeHaEncontradoException;
 
-    List<AsignaturaHorario> buscarPorCursoAsignaturaHorario(int idAsignatura) throws NoSeHaEncontradoException;
+    List<AsignaturaHorario> buscarPorCursoAsignaturaHorario(int idAsignatura, int idCurso, int nivel) throws NoSeHaEncontradoException;
     void eliminarAsignaturaHorario(int id) throws NoSeHaEncontradoException;
 
     List<AsignaturaHorario> listarTodoAsignaturaHorario();
