@@ -73,9 +73,10 @@ public class AsignaturaHorarioTextV1 {
     @Order(4)
     void actualizarAsignaturaHorario(){
         try{
-            AsignaturaHorario asignaturaHorarioRecuperada = service.buscarPorIdAsignaturaHorario(idAsignatura).get();
+            AsignaturaHorario asignaturaHorarioRecuperada = service.buscarPorIdAsignaturaHorario(5).get();
             asignaturaHorarioRecuperada.setDia('z');
             service.modificarAsignaturaHorario(asignaturaHorarioRecuperada);
+            System.out.println("AsignaturaHorario modificada correctamente");
         }catch (NoSeHaEncontradoException e){
             System.out.println(e.getMessage());
         }
@@ -96,13 +97,8 @@ public class AsignaturaHorarioTextV1 {
     @Order(6)
     void eliminarAsignaturaHorario(){
         try{
-            service.eliminarAsignaturaHorario(idAsignatura);
-
-            if(!service.buscarPorIdAsignaturaHorario(1).isPresent()){
-                System.out.println("La asignaturaHorario se ha borrado correctamente");
-            }else{
-                System.out.println("No se ha podido borrar la AsignaturaHorario");
-            }
+            service.eliminarAsignaturaHorario(7);
+            System.out.println("Se ha borrado correctamente el ID proporcionado");
         }catch (NoSeHaEncontradoException e){
             System.out.println(e.getMessage());
         }

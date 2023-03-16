@@ -45,7 +45,7 @@ public class AsignaturaHorarioServiceImp implements AsignaturaHorarioService{
         Optional<AsignaturaHorario> asignaturaHorarioConsultada = repository.findById(asignaturaHorario.getId());
 
         if(asignaturaHorarioConsultada.isPresent()){
-            return repository.save(asignaturaHorarioConsultada.get());
+            return repository.save(asignaturaHorario);
         }else{
             throw new NoSeHaEncontradoException("El id proporcionado no consta en la base de datos");
         }

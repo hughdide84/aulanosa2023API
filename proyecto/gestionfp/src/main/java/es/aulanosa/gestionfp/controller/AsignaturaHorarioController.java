@@ -106,6 +106,7 @@ public class AsignaturaHorarioController {
                 return ResponseEntity.status(HttpStatus.OK).body(service.buscarPorCursoAsignaturaHorario(idCurso, idEstudio, nivel));
             }else{
                 ErrorDTO errorDTO = new ErrorDTO("E0005", "Los registros de la base de datos no coinciden con los insertados");
+
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
             }
     }

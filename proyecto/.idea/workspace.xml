@@ -64,7 +64,7 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.GestionfpApplication">
+  <component name="RunManager" selected="JUnit.AsignaturaHorarioTextV1.eliminarAsignaturaHorario">
     <configuration name="GestionfpApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.GestionfpApplication" />
       <module name="gestionfp" />
@@ -74,6 +74,22 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AsignaturaHorarioTextV1.actualizarAsignaturaHorario" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="gestionfp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="es.aulanosa.gestionfp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
+      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.AsignaturaHorarioTextV1" />
+      <option name="METHOD_NAME" value="actualizarAsignaturaHorario" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -94,7 +110,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AsignaturaHorarioTextV1.comprobarActualizacion" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AsignaturaHorarioTextV1.eliminarAsignaturaHorario" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gestionfp" />
       <extension name="coverage">
         <pattern>
@@ -104,7 +120,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
       <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.AsignaturaHorarioTextV1" />
-      <option name="METHOD_NAME" value="comprobarActualizacion" />
+      <option name="METHOD_NAME" value="eliminarAsignaturaHorario" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -126,29 +142,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AsignaturaHorarioTextV1.listarTodoAsignaturaHorario" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="gestionfp" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="es.aulanosa.gestionfp.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
-      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.AsignaturaHorarioTextV1" />
-      <option name="METHOD_NAME" value="listarTodoAsignaturaHorario" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AsignaturaHorarioTextV1.eliminarAsignaturaHorario" />
+        <item itemvalue="JUnit.AsignaturaHorarioTextV1.insertarAsignaturaHorario" />
+        <item itemvalue="JUnit.AsignaturaHorarioTextV1.actualizarAsignaturaHorario" />
         <item itemvalue="Application.GestionfpApplication" />
         <item itemvalue="JUnit.AsignaturaHorarioTextV1.buscarPorIdAsignaturaHorario" />
-        <item itemvalue="JUnit.AsignaturaHorarioTextV1.comprobarActualizacion" />
-        <item itemvalue="JUnit.AsignaturaHorarioTextV1.listarTodoAsignaturaHorario" />
-        <item itemvalue="JUnit.AsignaturaHorarioTextV1.insertarAsignaturaHorario" />
       </list>
     </recent_temporary>
   </component>
