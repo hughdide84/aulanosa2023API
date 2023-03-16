@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -9,6 +10,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "Alumnos")
@@ -23,7 +26,6 @@ public class Alumno {
     private int id;
     @NotNull
     @Column(name = "idCurso")
-
     private int idCurso;
     @NotNull
     @Column(name = "idEstudios")
@@ -46,6 +48,10 @@ public class Alumno {
     @Column(name = "finPr")
     private Date finPr;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "idAlumno",cascade = CascadeType.REMOVE)
+    private List<AlumnoEmpresa> alumnoEmpresa;
+
     public Alumno(int idCurso, int idEstudios, String nombre, char cv, char carta, int idEmpresa, Date inicioPr, Date finPr) {
         this.idCurso = idCurso;
         this.idEstudios = idEstudios;
@@ -55,5 +61,20 @@ public class Alumno {
         this.idEmpresa = idEmpresa;
         this.inicioPr = inicioPr;
         this.finPr = finPr;
+    }
+
+    @Override
+    public String toString() {
+        return "Alumno{" +
+                "id=" + id +
+                ", idCurso=" + idCurso +
+                ", idEstudios=" + idEstudios +
+                ", nombre='" + nombre + '\'' +
+                ", cv=" + cv +
+                ", carta=" + carta +
+                ", idEmpresa=" + idEmpresa +
+                ", inicioPr=" + inicioPr +
+                ", finPr=" + finPr +
+                '}';
     }
 }
