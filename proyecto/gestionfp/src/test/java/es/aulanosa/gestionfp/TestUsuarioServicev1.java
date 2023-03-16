@@ -10,6 +10,8 @@ import org.junit.jupiter.api.TestClassOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Optional;
+
 @TestClassOrder(ClassOrderer.OrderAnnotation.class)
 @SpringBootTest
 public class TestUsuarioServicev1 {
@@ -76,8 +78,8 @@ public class TestUsuarioServicev1 {
     @Test
     @Order(5)
     void borrarUsuario() {
-        Usuario usuarioConsultado = usuarioService.listarPorId(15);
-        if (usuarioConsultado != null) {
+        Optional<Usuario> usuarioConsultado = usuarioService.listarPorId(15);
+        if (!usuarioConsultado.isPresent()) {
             usuarioService.borrarPorId(15);
             if (usuarioService.listarPorId(15) == null)
                 System.out.println("Usuario borrado");
