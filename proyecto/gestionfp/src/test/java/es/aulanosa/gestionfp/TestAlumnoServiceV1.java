@@ -25,7 +25,7 @@ public class TestAlumnoServiceV1 {
 
     @Test()
     @Order(1)
-    void insertarUsuario() {
+    void insertarAlumno() {
         Alumno alumno = new Alumno();
         alumno.setIdCurso(1);
         alumno.setIdEstudios(3);
@@ -44,36 +44,14 @@ public class TestAlumnoServiceV1 {
     @Test
     @Order(2)
     void bucarPorId(){
-        Alumno alumno = new Alumno();
-        alumno.setIdCurso(1);
-        alumno.setIdEstudios(3);
-        alumno.setNombre("alumnoNuevo2");
-        alumno.setCv('a');
-        alumno.setCarta('b');
-        alumno.setIdEmpresa(100);
-        alumno.setInicioPr(new Timestamp(new GregorianCalendar(2014, 3, 24).getTimeInMillis()));
-        alumno.setFinPr(new Timestamp(new GregorianCalendar(2016, 2, 1).getTimeInMillis()));
 
-
-
-        System.out.println(service.buscarPorId(alumno.getId()));
+        System.out.println(service.buscarPorId(3));
 
     }
 
     @Test
     @Order(3)
     void buscarTodo(){
-        Alumno alumno = new Alumno();
-        alumno.setIdCurso(1);
-        alumno.setIdEstudios(3);
-        alumno.setNombre("alumnoNuevo");
-        alumno.setCv('a');
-        alumno.setCarta('b');
-        alumno.setIdEmpresa(100);
-        alumno.setInicioPr(new Timestamp(new GregorianCalendar(2014, 3, 24).getTimeInMillis()));
-        alumno.setFinPr(new Timestamp(new GregorianCalendar(2016, 2, 1).getTimeInMillis()));
-
-
 
         System.out.println(service.buscarTodo());
 
@@ -81,7 +59,7 @@ public class TestAlumnoServiceV1 {
 
     @Test
     @Order(4)
-    void modificarUsuario() throws NoSeHaEncontradoException {
+    void modificarAlumno() throws NoSeHaEncontradoException {
         Optional<Alumno> optionalAlumno = service.buscarPorId(4);
 
         if(optionalAlumno.isPresent()){
@@ -95,13 +73,16 @@ public class TestAlumnoServiceV1 {
     }
     @Test
     @Order(5)
-    void eliminarUsuario(){
+    void eliminarAlumno(){
 
         try{
-            service.eliminarAlumno(1);
+            service.eliminarAlumno(3);
+            System.out.println("Alumno eliminado con exito");
 
         }catch (DataIntegrityViolationException e){
             System.out.println("No se puede eliminar porque existen relaciones con la entidad");
+        }catch (NoSeHaEncontradoException e){
+            System.out.println("No se ha encontrado el alumno");
         }
 
     }
