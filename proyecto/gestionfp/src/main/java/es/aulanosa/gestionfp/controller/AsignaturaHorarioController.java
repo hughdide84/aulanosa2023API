@@ -25,9 +25,9 @@ public class AsignaturaHorarioController {
     //API para dar de alta, se le pasa un objeto DTO por POST, lo convierte al model y lo inserta
     public ResponseEntity<?> alta(@RequestBody AsignaturaHorarioDTO asignaturaHorarioDTO){
         try{
-            AsignaturaHorario asignaturahorario = asignaturaHorarioDTO.convertirModel();
-            AsignaturaHorario asignaturahorarioGuardado = service.insertarAsignaturaHorario(asignaturahorario);
-            asignaturaHorarioDTO.convertirDTO(asignaturahorarioGuardado);
+            AsignaturaHorario asignaturaHorarioGuardado = asignaturaHorarioDTO.convertirModel();
+            AsignaturaHorario asignaturaHorarioGuardadoInsertado = service.insertarAsignaturaHorario(asignaturaHorarioGuardado);
+            asignaturaHorarioDTO.convertirDTO(asignaturaHorarioGuardadoInsertado);
             return ResponseEntity.status(HttpStatus.CREATED).body(asignaturaHorarioDTO);
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
@@ -62,10 +62,12 @@ public class AsignaturaHorarioController {
             return ResponseEntity.status(HttpStatus.CREATED).body(asignaturaHorarioDTO);
 
         }catch (NoSeHaEncontradoException e){
-            ErrorDTO errorDTO = new ErrorDTO("E0002", "AsignatutraHorario no encontrado");
+            ErrorDTO errorDTO = new ErrorDTO("E0002", "AsignaturaHorario no encontrado");
+            System.out.println("s");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
         }catch (Exception e){
             ErrorDTO errorDTO = new ErrorDTO("E0004", "No se ha introducido una asignaturaHorario válida");
+            System.out.println("s");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDTO);
 
         }

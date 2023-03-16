@@ -64,7 +64,20 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.AsignaturaHorarioTextV1.comprobarActualizacion">
+  <component name="RunManager" selected="Application.GestionfpApplication">
+    <configuration name="GestionfpApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.GestionfpApplication" />
+      <module name="gestionfp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="es.aulanosa.gestionfp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AsignaturaHorarioTextV1.buscarPorIdAsignaturaHorario" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gestionfp" />
       <extension name="coverage">
@@ -129,29 +142,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestUsuarioServicev1.insertarUsuario" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="gestionfp" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="es.aulanosa.gestionfp.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
-      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestUsuarioServicev1" />
-      <option name="METHOD_NAME" value="insertarUsuario" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.GestionfpApplication" />
+        <item itemvalue="JUnit.AsignaturaHorarioTextV1.buscarPorIdAsignaturaHorario" />
         <item itemvalue="JUnit.AsignaturaHorarioTextV1.comprobarActualizacion" />
         <item itemvalue="JUnit.AsignaturaHorarioTextV1.listarTodoAsignaturaHorario" />
-        <item itemvalue="JUnit.AsignaturaHorarioTextV1.buscarPorIdAsignaturaHorario" />
         <item itemvalue="JUnit.AsignaturaHorarioTextV1.insertarAsignaturaHorario" />
-        <item itemvalue="JUnit.TestUsuarioServicev1.insertarUsuario" />
       </list>
     </recent_temporary>
   </component>
