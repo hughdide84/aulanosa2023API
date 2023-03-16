@@ -73,12 +73,21 @@ public class UsuarioServiceImp implements UsuarioService {
     public Usuario actualizar(Usuario usuario) throws NoSeHaEncontradoException {
         Optional<Usuario> usuarioConsultado = usuarioRepository.findById(usuario.getId());
 
+        // Comprobamos si existe un usuario con el ID introducido
         if (usuarioConsultado.isPresent()) {
-            Optional<Usuario> usuarioModificado = usuarioRepository.findByNombre(usuario.getNombre());
-            if (!usuarioModificado.isPresent()) {
-                return usuarioRepository.save(usuario);
+            Optional<Usuario> usuarioMismoNombreConsultado = usuarioRepository.findByNombre(usuario.getNombre());
+            // Comprobamos si existe un usuario con el nombre introducido
+            if (usuarioMismoNombreConsultado.isPresent()) {
+                Usuario usuarioMismoNombre = usuarioMismoNombreConsultado.get();
+                // Permitimos la actualización si el nombre ya existe pero pertenece al usuario que deseamos modificar
+                if (usuarioMismoNombre.getId() == usuario.getId()) {
+                    return usuarioRepository.save(usuario);
+                } else {
+                    throw new NoSeHaEncontradoException("Ya existe un usuario con el mismo nombre");
+                }
             } else {
-                throw new NoSeHaEncontradoException("Ya existe un usuario con ese nombre");
+                // Permitimos la actualización si el nombre introducido no existe
+                return usuarioRepository.save(usuario);
             }
         } else {
             throw new NoSeHaEncontradoException("No se ha encontrado el usuario");

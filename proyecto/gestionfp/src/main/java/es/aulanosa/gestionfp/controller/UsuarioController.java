@@ -22,7 +22,7 @@ public class UsuarioController {
 
     // Crea un nuevo usuario
     @PostMapping("")
-    public ResponseEntity<?> crear(@RequestBody UsuarioDTO usuarioDTO) throws NoSeHaEncontradoException {
+    public ResponseEntity<?> crearUsuario(@RequestBody UsuarioDTO usuarioDTO) throws NoSeHaEncontradoException {
         if (comprobarLongitudCampos(usuarioDTO).equals("")) {
             Usuario usuarioGuardado = usuarioDTO.toModel();
             service.crear(usuarioGuardado);
@@ -36,7 +36,7 @@ public class UsuarioController {
 
     // Lista el usuario cuyo id coincida con el introducido
     @GetMapping("/{id}")
-    public ResponseEntity<?> listarPorId(@PathVariable Integer id) {
+    public ResponseEntity<?> listarUsuarioPorId(@PathVariable Integer id) {
         Optional<Usuario> usuarioConsultado = service.listarPorId(id);
 
         if (usuarioConsultado != null) {
@@ -48,7 +48,7 @@ public class UsuarioController {
 
     // Lista el usuario cuyo nombre coincida con el introducido
     @GetMapping("/nombreEs/{nombre}")
-    public ResponseEntity<?> listarPorNombre(@PathVariable String nombre) {
+    public ResponseEntity<?> listarUsuarioPorNombre(@PathVariable String nombre) {
         Optional<Usuario> usuarioConsultado = service.consultarPorNombre(nombre);
 
         if (usuarioConsultado.isPresent()) {
@@ -60,8 +60,8 @@ public class UsuarioController {
 
     // Lista los usuarios cuyo rol coincida con el introducido
     @GetMapping("/rolEs/{rol}")
-    public ResponseEntity<?> listarPorRol(@PathVariable String rol) {
-        List<Usuario> usuariosConsultados = service.listarPorNombre(rol);
+    public ResponseEntity<?> listarUsuariosPorRol(@PathVariable String rol) {
+        List<Usuario> usuariosConsultados = service.consultarPorRol(rol);
 
         if (!usuariosConsultados.isEmpty()) {
             return ResponseEntity.ok(usuariosConsultados);
@@ -70,22 +70,10 @@ public class UsuarioController {
         }
     }
 
-    // Lista todos los usuarios
-    @GetMapping("")
-    public ResponseEntity<?> listarTodo() {
-        List<Usuario> usuarios = service.listarTodo();
-
-        if (!usuarios.isEmpty()) {
-            return ResponseEntity.ok(usuarios);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontraron usuarios");
-        }
-    }
-
     // Lista los usuarios que contengan en su nombre la cadena introducida
     @GetMapping("/nombreContiene/{nombre}")
-    public ResponseEntity<?> compararPorNombre(@PathVariable String cadenaNombre) {
-        List<Usuario> usuariosConsultados = service.listarPorNombre(cadenaNombre);
+    public ResponseEntity<?> compararUsuariosPorNombre(@PathVariable String nombre) {
+        List<Usuario> usuariosConsultados = service.listarPorNombre(nombre);
 
         if (!usuariosConsultados.isEmpty()) {
             return ResponseEntity.ok(usuariosConsultados);
@@ -96,8 +84,8 @@ public class UsuarioController {
 
     // Lista los usuarios que contengan en su email la cadena introducida
     @GetMapping("/emailContiene/{email}")
-    public ResponseEntity<?> compararPorEmail(@PathVariable String cadenaEmail) {
-        List<Usuario> usuariosConsultados = service.listarPorEmail(cadenaEmail);
+    public ResponseEntity<?> compararUsuariosPorEmail(@PathVariable String email) {
+        List<Usuario> usuariosConsultados = service.listarPorEmail(email);
 
         if (!usuariosConsultados.isEmpty()) {
             return ResponseEntity.ok(usuariosConsultados);
@@ -108,13 +96,13 @@ public class UsuarioController {
 
     // Actualiza un usuario ya existente
     @PutMapping("")
-    public ResponseEntity<?> actualizar(@RequestBody UsuarioDTO usuarioDTO) throws NoSeHaEncontradoException {
+    public ResponseEntity<?> actualizarUsuario(@RequestBody UsuarioDTO usuarioDTO) throws NoSeHaEncontradoException {
         Optional<Usuario> usuarioConsultado = service.listarPorId(usuarioDTO.getId());
 
-        if (usuarioConsultado != null && comprobarLongitudCampos(usuarioDTO).equals("")) {
+        if (usuarioConsultado.isPresent() && comprobarLongitudCampos(usuarioDTO).equals("")) {
             Usuario usuarioActualizado = usuarioDTO.toModel();
-            service.crear(usuarioActualizado);
-            return ResponseEntity.status(HttpStatus.CREATED).body(usuarioActualizado);
+            service.actualizar(usuarioActualizado);
+            return ResponseEntity.ok(usuarioActualizado);
         } else if (!comprobarLongitudCampos(usuarioDTO).equals("")) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Longitud excedida en el/los siguiente/-s campo/-s: " + comprobarLongitudCampos(usuarioDTO));
         } else {
@@ -122,17 +110,28 @@ public class UsuarioController {
         }
     }
 
-
     // Borra el usuario cuyo id coincide con el introducido
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> borrarPorId(@PathVariable Integer id) {
+    public ResponseEntity<?> borrarUsuarioPorId(@PathVariable Integer id) {
         Optional<Usuario> usuarioConsultado = service.listarPorId(id);
 
         if (usuarioConsultado != null) {
             service.borrarPorId(id);
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body("El usuario ha sido eliminado correctamente");
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El usuario que desea eliminar no existe");
+        }
+    }
+
+    // Lista todos los usuarios
+    @GetMapping("")
+    public ResponseEntity<?> listarTodosUsuarios() {
+        List<Usuario> usuarios = service.listarTodo();
+
+        if (!usuarios.isEmpty()) {
+            return ResponseEntity.ok(usuarios);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontraron usuarios");
         }
     }
 
