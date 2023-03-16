@@ -25,15 +25,27 @@ public class TestUsuarioServicev1 {
         usuario.setPassword("Pérez");
         usuario.setRol("ROLE_ADM");
         usuario.setEmail("pepe@gmial.com");
-        var a = usuarioService.save(usuario);
-        System.out.println(a);
+        Usuario usuarioCreado = null;
+        try {
+            usuarioCreado = usuarioService.crear(usuario);
+            System.out.println(usuarioCreado);
+        } catch (NoSeHaEncontradoException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Test
     @Order(2)
     void consultarUsuarioPorId() {
-        var a = usuarioService.findById(17);
-        System.out.println(a);
+        var usuarioConsultado = usuarioService.listarPorId(17);
+        System.out.println(usuarioConsultado);
+    }
+
+    @Test
+    @Order(3)
+    void consultarUsuarioPorNombre() {
+        var usuarioConsultado = usuarioService.consultarPorNombre("Pepe");
+        System.out.println(usuarioConsultado);
     }
 
     @Test
@@ -47,40 +59,32 @@ public class TestUsuarioServicev1 {
         usuario.setEmail("nada@nada");
         Usuario a = null;
         try {
-            a = usuarioService.update(usuario);
+            a = usuarioService.actualizar(usuario);
             System.out.println(a);
         } catch (NoSeHaEncontradoException e) {
             System.out.println(e.getMessage());
         }
-
     }
 
     @Test
     @Order(4)
     void consultarTodosUsuarios() {
-        var a = usuarioService.findAll();
+        var a = usuarioService.listarTodo();
         System.out.println(a);
     }
 
     @Test
     @Order(5)
     void borrarUsuario() {
-        Usuario usuarioConsultado = usuarioService.findById(15);
+        Usuario usuarioConsultado = usuarioService.listarPorId(15);
         if (usuarioConsultado != null) {
-            usuarioService.deleteById(15);
-            if (usuarioService.findById(15) == null)
+            usuarioService.borrarPorId(15);
+            if (usuarioService.listarPorId(15) == null)
                 System.out.println("Usuario borrado");
             else
                 System.out.println("Usuario no borrado");
         } else {
             System.out.println("Usuario no encontrado");
         }
-    }
-
-    @Test
-    @Order(6)
-    void consultarUsuarioPorNombre() {
-        var a = usuarioService.findAllByNombre("Pepe");
-        System.out.println(a);
     }
 }

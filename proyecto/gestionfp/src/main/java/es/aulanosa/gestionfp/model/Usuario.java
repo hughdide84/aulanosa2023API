@@ -15,7 +15,7 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @Column(name = "nombre")
     @NotBlank(message = "El nombre no puede estar vacío")
     @Size(max = 50, message = "El nombre no puede tener más de 50 caracteres")
