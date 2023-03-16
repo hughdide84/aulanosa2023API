@@ -100,6 +100,11 @@ public class AsignaturaHorarioController {
         }
     }
 
+    @GetMapping("api/asignaturaHorario/curso/{curso}/estudio/{estudio}/nivel/{nivel}")
+    public ResponseEntity<?> listarCursoEstudiosYNivel(){
+        if(!service.buscarPorCursoAsignaturaHorario())
+    }
+
 
 
 
