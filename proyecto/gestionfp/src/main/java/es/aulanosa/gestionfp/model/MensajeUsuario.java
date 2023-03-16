@@ -26,6 +26,14 @@ public class MensajeUsuario {
     @NotNull
     private char estado;
 
+    @ManyToOne
+    @JoinColumn(name = "idMensaje", insertable = false, updatable = false, referencedColumnName = "id")
+    private Mensaje mensaje;
+
+    @ManyToOne
+    @JoinColumn(name = "idUsuario", insertable = false, updatable = false, referencedColumnName = "id")
+    private Usuario usuario;
+
     public MensajeUsuario(Integer idMensaje, Integer idUsuario, char estado) {
         this.idMensaje = idMensaje;
         this.idUsuario = idUsuario;

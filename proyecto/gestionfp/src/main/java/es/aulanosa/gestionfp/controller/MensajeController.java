@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/mensaje")
 public class MensajeController {
 
-    @Autowired
-     service;
+
 
 
 }
