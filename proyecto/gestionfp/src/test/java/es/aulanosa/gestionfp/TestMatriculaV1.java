@@ -1,6 +1,7 @@
 package es.aulanosa.gestionfp;
 
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
+import es.aulanosa.gestionfp.model.Curso;
 import es.aulanosa.gestionfp.model.Matriculas;
 import es.aulanosa.gestionfp.service.MatriculasService;
 import net.bytebuddy.implementation.bytecode.Throw;
@@ -13,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
 
 @TestClassOrder(ClassOrderer.OrderAnnotation.class)
 @SpringBootTest
@@ -33,10 +35,11 @@ public class TestMatriculaV1 {
         matriculas.setIdCurso(23);
         matriculas.setObservaciones("Observado");
         matriculas.setIdUsuario(14);
-        Timestamp timestamp = new Timestamp(1956,2,30,16,30,21,1);
+        Timestamp timestamp = new Timestamp(122,2,30,16,30,21,1);
         matriculas.setFecha(timestamp);
         try {
             var a = matriculasService.insertar(matriculas);
+            System.out.println(a);
         }
         catch (Exception e) {
             throw new NoSeHaEncontradoException("No se ha podido ejecutar el insertado");
@@ -46,14 +49,14 @@ public class TestMatriculaV1 {
     @Test
     @Order(2)
     void consultarMatriculasPorId() {
-        var a = matriculasService.consultarPorId(1);
+        var a = matriculasService.consultarPorId(32);
         System.out.println(a);
     }
 
     @Test
     @Order(3)
     void consultarTodos() {
-        var a = matriculasService.consultarTodos();
+        List<Matriculas> a = matriculasService.consultarTodos();
         System.out.println(a);
     }
 
@@ -61,11 +64,11 @@ public class TestMatriculaV1 {
     @Order(4)
     void modificarMatricula() throws NoSeHaEncontradoException {
 
-        var a = matriculasService.consultarPorId(1);
+        var a = matriculasService.consultarPorId(32);
 
         if (a.isPresent()) {
             Matriculas matriculas = new Matriculas();
-            matriculas.setId(1);
+            matriculas.setId(32);
             matriculas.setFactura("Alguna");
             matriculas.setNombre("Alguni");
             matriculas.setNif("Si");
@@ -74,10 +77,11 @@ public class TestMatriculaV1 {
             matriculas.setIdCurso(41);
             matriculas.setObservaciones("No observado");
             matriculas.setIdUsuario(14);
-            Timestamp timestamp = new Timestamp(1906,5,15,16,30,21,1);
+            Timestamp timestamp = new Timestamp(102,5,15,16,30,21,1);
             matriculas.setFecha(timestamp);
 
             var g = matriculasService.insertar(matriculas);
+            System.out.println(g);
         }
 
         else {
@@ -104,14 +108,14 @@ public class TestMatriculaV1 {
     @Test
     @Order(6)
     void buscarMatriculaPorNombre() {
-        var a = matriculasService.buscarPorNombreDeMatricula("Ninguna");
+        List<Matriculas> a = matriculasService.buscarPorNombreDeMatricula("No");
         System.out.println(a);
     }
 
     @Test
     @Order(7)
     void buscarCursosDeMatricula() {
-        var a = matriculasService.buscarTodosCursosPorId(23);
+        List<Curso> a = matriculasService.buscarTodosCursosPorId(23);
         System.out.println(a);
     }
 

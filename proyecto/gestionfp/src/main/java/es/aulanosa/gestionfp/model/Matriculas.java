@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -71,4 +72,17 @@ public class Matriculas {
     @ManyToOne
     @JoinColumn(name = "idCurso", insertable = false, updatable = false)
     private Curso curso;
+
+    public Matriculas(String factura, String nombre, String nif, float cuota, float matricula, Integer idCurso, String observaciones, Timestamp fechaBaja, Integer idUsuario, Timestamp fecha) {
+        this.factura = factura;
+        this.nombre = nombre;
+        this.nif = nif;
+        this.cuota = cuota;
+        this.matricula = matricula;
+        this.idCurso = idCurso;
+        this.observaciones = observaciones;
+        this.fechaBaja = fechaBaja;
+        this.idUsuario = idUsuario;
+        this.fecha = fecha;
+    }
 }

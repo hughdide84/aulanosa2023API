@@ -10,6 +10,8 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.List;
@@ -42,7 +44,8 @@ public class Curso {
         private char estado;
 
         @JsonIgnore
-        @OneToMany(mappedBy = "idCurso", cascade = CascadeType.REMOVE)
+        @OneToMany(mappedBy = "idCurso", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+        @ToString.Exclude
         private List<Matriculas> matriculas;
         //constructor sin id
         public Curso(String nombre, Timestamp inicio, Timestamp fin, char estado) {

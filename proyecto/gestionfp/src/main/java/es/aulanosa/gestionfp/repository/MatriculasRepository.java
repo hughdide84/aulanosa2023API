@@ -15,6 +15,6 @@ public interface MatriculasRepository extends JpaRepository<Matriculas,Integer> 
     @Query("SELECT m FROM Matriculas m WHERE m.nombre = ?1")
     public List<Matriculas> buscarPorNombre (String nombre);
 
-    @Query("SELECT c FROM Cursos c join fetch c.Matriculas cm WHERE cm.idCurso = ?1")
+    @Query("SELECT c FROM Curso c join fetch c.matriculas cm WHERE cm.idCurso = ?1")
     public List<Curso> buscarTodosCursosPorId (Integer id);
 }

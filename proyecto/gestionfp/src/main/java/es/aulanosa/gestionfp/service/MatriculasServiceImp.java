@@ -3,6 +3,8 @@ package es.aulanosa.gestionfp.service;
 import es.aulanosa.gestionfp.model.Curso;
 import es.aulanosa.gestionfp.model.Matriculas;
 import es.aulanosa.gestionfp.repository.MatriculasRepository;
+import org.hibernate.Hibernate;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,13 +54,13 @@ public class MatriculasServiceImp implements MatriculasService{
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     public List<Matriculas> buscarPorNombreDeMatricula(String nombre) {
         return matriculasRepository.buscarPorNombre(nombre);
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     public List<Curso> buscarTodosCursosPorId(Integer idCurso) {
         return matriculasRepository.buscarTodosCursosPorId(idCurso);
     }
