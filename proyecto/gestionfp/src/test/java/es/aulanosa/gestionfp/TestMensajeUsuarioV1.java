@@ -36,7 +36,7 @@ public class TestMensajeUsuarioV1 {
     @Test
     @Order(2)
     void consultarMensajeUsuarioPorId() throws NoSeHaEncontradoException {
-        var a = mensajeUsuarioService.consultarPorId(1);
+        var a = mensajeUsuarioService.consultarPorId(13);
         if (a.isPresent()) {
             System.out.println(a);
         } else {

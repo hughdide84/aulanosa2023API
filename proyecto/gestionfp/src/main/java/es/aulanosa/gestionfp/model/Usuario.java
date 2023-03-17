@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -39,6 +40,7 @@ public class Usuario {
     @NotNull(message = "El rol no puede ser nulo")
     private String rol;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "usuario")
     private List<MensajeUsuario> mensajeUsuario;
 

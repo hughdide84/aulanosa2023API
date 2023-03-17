@@ -39,4 +39,5 @@ public class MensajeUsuario {
         this.idUsuario = idUsuario;
         this.estado = estado;
     }
+
 }
