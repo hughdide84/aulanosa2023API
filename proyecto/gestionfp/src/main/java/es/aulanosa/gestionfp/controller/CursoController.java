@@ -24,7 +24,7 @@ public class CursoController {
      private CursoService serviceCur;
 
     //Operacion para insertar los datos correspondientes a la tabla cursos
-    @PostMapping
+    @PostMapping("")
     public ResponseEntity<?> altaCurso(@RequestBody CursoDTO cursoDTO) {
         Curso cursoComprobar = serviceCur.buscarPorId(cursoDTO.getId());
 
@@ -54,7 +54,7 @@ public class CursoController {
     }
 
     //Operacion correspondiente para cambiar los datos de un curso
-    @PutMapping
+    @PutMapping("")
     public ResponseEntity<?> editarCurso(@RequestBody CursoDTO curso) {
         Curso cursoConsultar = serviceCur.buscarPorId(curso.getId());
 
