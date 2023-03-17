@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
 
 @Entity
@@ -57,7 +58,7 @@ public class Matriculas {
     private String observaciones;
 
     @Column(name = "fechaBaja")
-    private Date fechaBaja;
+    private Timestamp fechaBaja;
 
     @Column(name = "idUsuario")
     @NotNull
@@ -66,4 +67,8 @@ public class Matriculas {
     @Column(name = "fecha")
     @NotNull
     private Timestamp fecha;
+
+    @ManyToOne
+    @JoinColumn(name = "idCurso", insertable = false, updatable = false)
+    private Curso curso;
 }

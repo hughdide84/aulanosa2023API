@@ -1,7 +1,8 @@
 package es.aulanosa.gestionfp.service;
 
-import es.aulanosa.gestionfp.model.Estudios;
+import es.aulanosa.gestionfp.model.Curso;
 import es.aulanosa.gestionfp.model.Matriculas;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,5 +18,7 @@ public interface MatriculasService {
 
     public void eliminar(Integer id);
 
-    public List<Matriculas> buscarPorNombre (String nombre);
+    List<Matriculas> buscarPorNombreDeMatricula(String nombre);
+
+    public List<Curso> buscarTodosCursosPorId (Integer id);
 }

@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.service;
 
+import es.aulanosa.gestionfp.model.Curso;
 import es.aulanosa.gestionfp.model.Matriculas;
 import es.aulanosa.gestionfp.repository.MatriculasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +53,13 @@ public class MatriculasServiceImp implements MatriculasService{
 
     @Override
     @Transactional(readOnly = true)
-    public List<Matriculas> buscarPorNombre(String nombre) {
+    public List<Matriculas> buscarPorNombreDeMatricula(String nombre) {
         return matriculasRepository.buscarPorNombre(nombre);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Curso> buscarTodosCursosPorId(Integer idCurso) {
+        return matriculasRepository.buscarTodosCursosPorId(idCurso);
     }
 }
