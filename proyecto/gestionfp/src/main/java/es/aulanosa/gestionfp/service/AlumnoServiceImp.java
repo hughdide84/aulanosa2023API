@@ -41,7 +41,6 @@ public class AlumnoServiceImp implements AlumnoService{
         }else {
             throw new NoSeHaEncontradoException("No existe en alumno");
         }
-
     }
     //metodo para insertar un alumno en la BD
     @Transactional
@@ -62,5 +61,14 @@ public class AlumnoServiceImp implements AlumnoService{
             throw new NoSeHaEncontradoException("No se ha encontrado el alumno especificado");
         }
         return alumno;
+    }
+    @Transactional
+    @Override
+    public List<Alumno> buscarPorEstado(String estado) throws NoSeHaEncontradoException {
+        if(estado.equals("A")) {
+            return repositorio.findAllAlumnoActivos(estado);
+        }else{
+            throw new NoSeHaEncontradoException("No se ha encontrado el alumno especificado");
+        }
     }
 }

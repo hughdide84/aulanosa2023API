@@ -87,4 +87,15 @@ public class TestAlumnoServiceV1 {
 
     }
 
+    @Test
+    @Order(6)
+    void testBuscarPorEstado() {
+        try {
+            service.buscarPorEstado("A");
+            System.out.println("Alumno encontrado");
+        }catch (NoSeHaEncontradoException e){
+            System.out.println("No se ha encontrado el alumno");
+        }
+    }
+
 }

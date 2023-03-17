@@ -120,8 +120,6 @@ public class AlumnoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontraron empresas asignadas al alumno consultado");
 
         }
-
     }
-
 
 }

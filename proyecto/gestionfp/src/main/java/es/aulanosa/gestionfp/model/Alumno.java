@@ -51,6 +51,9 @@ public class Alumno {
     @JsonIgnore
     @OneToMany(mappedBy = "idAlumno",cascade = CascadeType.REMOVE)
     private List<AlumnoEmpresa> alumnoEmpresa;
+    @ManyToOne
+    @JoinColumn(name = "idCurso", insertable = false, updatable = false)
+    private Curso curso;
 
     public Alumno(int idCurso, int idEstudios, String nombre, char cv, char carta, int idEmpresa, Date inicioPr, Date finPr) {
         this.idCurso = idCurso;
