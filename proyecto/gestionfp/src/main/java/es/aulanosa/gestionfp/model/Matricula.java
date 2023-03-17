@@ -1,6 +1,5 @@
 package es.aulanosa.gestionfp.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -9,8 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
-import java.sql.Time;
 import java.sql.Timestamp;
 
 @Entity
@@ -18,7 +15,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor //lombok - Crea
 @AllArgsConstructor
 @Data
-public class Matriculas {
+public class Matricula {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -73,7 +70,7 @@ public class Matriculas {
     @JoinColumn(name = "idCurso", insertable = false, updatable = false)
     private Curso curso;
 
-    public Matriculas(String factura, String nombre, String nif, float cuota, float matricula, Integer idCurso, String observaciones, Timestamp fechaBaja, Integer idUsuario, Timestamp fecha) {
+    public Matricula(String factura, String nombre, String nif, float cuota, float matricula, Integer idCurso, String observaciones, Timestamp fechaBaja, Integer idUsuario, Timestamp fecha) {
         this.factura = factura;
         this.nombre = nombre;
         this.nif = nif;

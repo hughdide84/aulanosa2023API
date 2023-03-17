@@ -2,9 +2,8 @@ package es.aulanosa.gestionfp;
 
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Curso;
-import es.aulanosa.gestionfp.model.Matriculas;
+import es.aulanosa.gestionfp.model.Matricula;
 import es.aulanosa.gestionfp.service.MatriculasService;
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.junit.jupiter.api.ClassOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -12,7 +11,6 @@ import org.junit.jupiter.api.TestClassOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -26,19 +24,19 @@ public class TestMatriculaV1 {
     @Test
     @Order(1)
     void insertarMatricula() throws NoSeHaEncontradoException {
-        Matriculas matriculas = new Matriculas();
-        matriculas.setFactura("Ninguna");
-        matriculas.setNombre("No");
-        matriculas.setNif("No");
-        matriculas.setCuota(56);
-        matriculas.setMatricula(236);
-        matriculas.setIdCurso(23);
-        matriculas.setObservaciones("Observado");
-        matriculas.setIdUsuario(14);
+        Matricula matricula = new Matricula();
+        matricula.setFactura("Ninguna");
+        matricula.setNombre("No");
+        matricula.setNif("No");
+        matricula.setCuota(56);
+        matricula.setMatricula(236);
+        matricula.setIdCurso(23);
+        matricula.setObservaciones("Observado");
+        matricula.setIdUsuario(14);
         Timestamp timestamp = new Timestamp(122,2,30,16,30,21,1);
-        matriculas.setFecha(timestamp);
+        matricula.setFecha(timestamp);
         try {
-            var a = matriculasService.insertar(matriculas);
+            var a = matriculasService.insertar(matricula);
             System.out.println(a);
         }
         catch (Exception e) {
@@ -56,7 +54,7 @@ public class TestMatriculaV1 {
     @Test
     @Order(3)
     void consultarTodos() {
-        List<Matriculas> a = matriculasService.consultarTodos();
+        List<Matricula> a = matriculasService.consultarTodos();
         System.out.println(a);
     }
 
@@ -67,20 +65,20 @@ public class TestMatriculaV1 {
         var a = matriculasService.consultarPorId(32);
 
         if (a.isPresent()) {
-            Matriculas matriculas = new Matriculas();
-            matriculas.setId(32);
-            matriculas.setFactura("Alguna");
-            matriculas.setNombre("Alguni");
-            matriculas.setNif("Si");
-            matriculas.setCuota(45);
-            matriculas.setMatricula(4165);
-            matriculas.setIdCurso(41);
-            matriculas.setObservaciones("No observado");
-            matriculas.setIdUsuario(14);
+            Matricula matricula = new Matricula();
+            matricula.setId(32);
+            matricula.setFactura("Alguna");
+            matricula.setNombre("Alguni");
+            matricula.setNif("Si");
+            matricula.setCuota(45);
+            matricula.setMatricula(4165);
+            matricula.setIdCurso(41);
+            matricula.setObservaciones("No observado");
+            matricula.setIdUsuario(14);
             Timestamp timestamp = new Timestamp(102,5,15,16,30,21,1);
-            matriculas.setFecha(timestamp);
+            matricula.setFecha(timestamp);
 
-            var g = matriculasService.insertar(matriculas);
+            var g = matriculasService.insertar(matricula);
             System.out.println(g);
         }
 
@@ -108,7 +106,7 @@ public class TestMatriculaV1 {
     @Test
     @Order(6)
     void buscarMatriculaPorNombre() {
-        List<Matriculas> a = matriculasService.buscarPorNombreDeMatricula("No");
+        List<Matricula> a = matriculasService.buscarPorNombreDeMatricula("No");
         System.out.println(a);
     }
 
@@ -118,5 +116,12 @@ public class TestMatriculaV1 {
         List<Curso> a = matriculasService.buscarTodosCursosPorId(23);
         System.out.println(a);
     }
+    @Test
+    @Order(7)
+    void buscarMatriculaPorMes() {
+        List<Matricula> a = matriculasService.bu(23);
+        System.out.println(a);
+    }
+
 
 }

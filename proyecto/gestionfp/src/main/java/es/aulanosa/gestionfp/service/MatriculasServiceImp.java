@@ -1,14 +1,13 @@
 package es.aulanosa.gestionfp.service;
 
 import es.aulanosa.gestionfp.model.Curso;
-import es.aulanosa.gestionfp.model.Matriculas;
+import es.aulanosa.gestionfp.model.Matricula;
 import es.aulanosa.gestionfp.repository.MatriculasRepository;
-import org.hibernate.Hibernate;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,30 +19,30 @@ public class MatriculasServiceImp implements MatriculasService{
 
     @Override
     @Transactional
-    public Matriculas insertar(Matriculas matriculas) {
-        return matriculasRepository.save(matriculas);
+    public Matricula insertar(Matricula matricula) {
+        return matriculasRepository.save(matricula);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<Matriculas> consultarPorId(Integer id) {
+    public Optional<Matricula> consultarPorId(Integer id) {
         return matriculasRepository.findById(id);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<Matriculas> consultarTodos() {
+    public List<Matricula> consultarTodos() {
         return matriculasRepository.findAll();
     }
 
     @Override
     @Transactional
-    public Matriculas modificar(Matriculas matriculas) throws NoSuchFieldException {
-        if (matriculasRepository.findById(matriculas.getId()).isPresent()){
-            return matriculasRepository.save(matriculas);
+    public Matricula modificar(Matricula matricula) throws NoSuchFieldException {
+        if (matriculasRepository.findById(matricula.getId()).isPresent()){
+            return matriculasRepository.save(matricula);
         }
         else{
-            throw new NoSuchFieldException("No existe la matricula con id: " + matriculas.getId());
+            throw new NoSuchFieldException("No existe la matricula con id: " + matricula.getId());
         }
     }
 
@@ -55,7 +54,7 @@ public class MatriculasServiceImp implements MatriculasService{
 
     @Override
     @Transactional
-    public List<Matriculas> buscarPorNombreDeMatricula(String nombre) {
+    public List<Matricula> buscarPorNombreDeMatricula(String nombre) {
         return matriculasRepository.buscarPorNombre(nombre);
     }
 
@@ -63,5 +62,24 @@ public class MatriculasServiceImp implements MatriculasService{
     @Transactional
     public List<Curso> buscarTodosCursosPorId(Integer idCurso) {
         return matriculasRepository.buscarTodosCursosPorId(idCurso);
+    }
+    @Override
+    @Transactional
+    public List<Matricula> buscarPorMesDeMatricula(String mes) {
+
+        List<Matricula> matriculas = new ArrayList<>();
+
+        matriculas = matriculasRepository.buscarPorMes(mes);
+
+        List<Matricula> matriculaFecha = new ArrayList<>();
+
+        for (Matricula: matriculas
+             matriculasFecha) {
+
+        }
+
+
+
+
     }
 }
