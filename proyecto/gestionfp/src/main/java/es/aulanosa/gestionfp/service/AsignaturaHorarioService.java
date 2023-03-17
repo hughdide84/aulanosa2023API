@@ -18,4 +18,6 @@ public interface AsignaturaHorarioService {
 
     List<AsignaturaHorario> listarTodoAsignaturaHorario();
 
+    List<AsignaturaHorario> listarHorariosSegunCursoEstudioNivel(int idCurso, int idEstudio, int nivel);
+
 }

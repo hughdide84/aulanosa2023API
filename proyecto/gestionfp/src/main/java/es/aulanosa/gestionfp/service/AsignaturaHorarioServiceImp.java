@@ -85,4 +85,12 @@ public class AsignaturaHorarioServiceImp implements AsignaturaHorarioService{
         List<AsignaturaHorario> lista = repository.findAll();
         return lista;
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    List<AsignaturaHorario> listarHorariosSegunCursoEstudioNivel(int idCurso, int idEstudio, int nivel){
+        try{
+            List<AsignaturaHorario> asignaturaHorarios = repository.
+        }
+    }
 }

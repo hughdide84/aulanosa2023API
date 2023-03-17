@@ -1,6 +1,7 @@
 package es.aulanosa.gestionfp.controller;
 
 import es.aulanosa.gestionfp.dto.AsignaturaHorarioDTO;
+import es.aulanosa.gestionfp.dto.CursoEstudioNivelDTO;
 import es.aulanosa.gestionfp.dto.ErrorDTO;
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.AsignaturaHorario;
@@ -21,10 +22,10 @@ public class AsignaturaHorarioController {
     @Autowired
     private AsignaturaHorarioServiceImp service;
 
-    @PostMapping("/")
+    @PostMapping("")
     //falta @operation
     //API para dar de alta, se le pasa un objeto DTO por POST, lo convierte al model y lo inserta
-    public ResponseEntity<?> alta(@RequestBody AsignaturaHorarioDTO asignaturaHorarioDTO){
+    public ResponseEntity<?> altaAsignaturaHorario(@RequestBody AsignaturaHorarioDTO asignaturaHorarioDTO){
         try{
             AsignaturaHorario asignaturaHorarioGuardado = asignaturaHorarioDTO.convertirModel();
             AsignaturaHorario asignaturaHorarioGuardadoInsertado = service.insertarAsignaturaHorario(asignaturaHorarioGuardado);
@@ -37,7 +38,7 @@ public class AsignaturaHorarioController {
 
     @GetMapping("/{id}")
     //consulta por id, se le pasa como variable el mismo, consulta si existe y en caso de que lo haga devuelve el objeto recuperado de la BD
-    public ResponseEntity<?> consulta(@PathVariable Integer id){
+    public ResponseEntity<?> consultaAsignaturaHorario(@PathVariable Integer id){
         try{
             Optional<AsignaturaHorario> asignaturahorario = service.buscarPorIdAsignaturaHorario(id);
             AsignaturaHorarioDTO asignaturaHorarioDTO = new AsignaturaHorarioDTO();
@@ -51,9 +52,9 @@ public class AsignaturaHorarioController {
         }
     }
 
-    @PutMapping("/")
+    @PutMapping("")
     //se le pasa un objeto completo por POST, el programa comprueba que su ID exista en la BD y en caso de que lo haga cambia los valores que estén diferentes
-    public ResponseEntity<?> editar(@RequestBody AsignaturaHorarioDTO asignaturaHorarioDTO){
+    public ResponseEntity<?> editarAsignaturaHorario(@RequestBody AsignaturaHorarioDTO asignaturaHorarioDTO){
         try{
             Optional<AsignaturaHorario> asignaturaHorario = service.buscarPorIdAsignaturaHorario(asignaturaHorarioDTO.getId());
             service.insertarAsignaturaHorario(asignaturaHorario.get());
@@ -75,7 +76,7 @@ public class AsignaturaHorarioController {
     }
     @DeleteMapping("/{id}")
     //se le pasa un ID por API, el programa comprueba que exista en la BD y en caso afirmativo se borra de la misma
-    public ResponseEntity<?> eliminar(@PathVariable int id){
+    public ResponseEntity<?> eliminarAsignaturaHorario(@PathVariable int id){
         try{
             Optional<AsignaturaHorario> asignaturaHorario = service.buscarPorIdAsignaturaHorario(id);
             service.eliminarAsignaturaHorario(asignaturaHorario.get().getId());
@@ -90,9 +91,9 @@ public class AsignaturaHorarioController {
         }
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     //lista todos los campos de la BD, en caso de que esta este vacia, devuelve un error personalizado
-    public ResponseEntity<?> listarTodo(){
+    public ResponseEntity<?> listarTodoAsignaturaHorario(){
         if(!service.listarTodoAsignaturaHorario().isEmpty()){
             List<AsignaturaHorario> asignaturaHorarioLista = service.listarTodoAsignaturaHorario();
 
@@ -111,10 +112,13 @@ public class AsignaturaHorarioController {
         }
     }
 
-    @GetMapping("api/asignaturaHorario/curso/{curso}/estudio/{estudio}/nivel/{nivel}")
+    @GetMapping("curso/{curso}/estudio/{estudio}/nivel/{nivel}")
+    //se le pasan las IDs del curso y estudio, además del nivel, desde AsignaturaHorario relaciona con Asignatura, que es la tabla que tiene--
+    //los campos necesarios para hacer la respuesta, compruebo que lo que me devuelve no esté vacío y luego lo devuelvo en caso afirmativo
     public ResponseEntity<?> listarCursoEstudiosYNivel(@PathVariable(value = "curso") int idCurso, @PathVariable(value = "estudio") int idEstudio, @PathVariable(value = "nivel")int nivel) throws NoSeHaEncontradoException {
+        CursoEstudioNivelDTO cursoEstudioNivelDTO = new CursoEstudioNivelDTO(idCurso, idEstudio, nivel);
             if(!service.buscarPorCursoAsignaturaHorario(idCurso, idEstudio, nivel).isEmpty()){
-                return ResponseEntity.status(HttpStatus.OK).body(service.buscarPorCursoAsignaturaHorario(idCurso, idEstudio, nivel));
+                return ResponseEntity.status(HttpStatus.OK).body(cursoEstudioNivelDTO);
             }else{
                 ErrorDTO errorDTO = new ErrorDTO("E0005", "Los registros de la base de datos no coinciden con los insertados");
 
