@@ -3,7 +3,9 @@ package es.aulanosa.gestionfp;
 
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Alumno;
+import es.aulanosa.gestionfp.model.Pago;
 import es.aulanosa.gestionfp.service.AlumnoService;
+import es.aulanosa.gestionfp.service.PagoService;
 import org.junit.jupiter.api.ClassOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -13,7 +15,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Optional;
 
 @TestClassOrder(ClassOrderer.OrderAnnotation.class)
@@ -21,7 +25,8 @@ import java.util.Optional;
 public class TestAlumnoServiceV1 {
 
     @Autowired
-    private AlumnoService service;
+    private PagoService service;
+    private MatriculaService matriculaService;
 
     @Test()
     @Order(1)
@@ -84,6 +89,20 @@ public class TestAlumnoServiceV1 {
         }catch (NoSeHaEncontradoException e){
             System.out.println("No se ha encontrado el alumno");
         }
+
+    }
+
+    @Test
+    @Order(6)
+    List<Pago> pagosPorId(Integer id){
+
+        List<Pago> pagos = new ArrayList<>();
+
+        if(service.buscarPorId(id).isPresent()){
+
+        }
+
+
 
     }
 

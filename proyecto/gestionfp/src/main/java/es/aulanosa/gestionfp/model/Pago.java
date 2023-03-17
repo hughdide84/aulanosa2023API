@@ -34,7 +34,7 @@ public class Pago {
     @Column (name = "estado")
     @NotNull
     private char estado;
-    @Column (name = "recibo")
+    @Column (name = "observaciones")
     @Size(max = 200, message = "Observaciones no puede tener mas de 200 caracteres")
     private String observaciones;
     @Column (name = "idUsuario")
