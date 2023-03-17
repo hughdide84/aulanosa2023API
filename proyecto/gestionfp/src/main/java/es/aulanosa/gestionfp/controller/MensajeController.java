@@ -28,11 +28,10 @@ public class MensajeController {
     // Crea un nuevo mensaje
     @PostMapping("")
     public ResponseEntity<?> crear(@RequestBody MensajeDTO mensajeDTO) {
-        Optional<Mensaje> mensajeConsultado = service.consultarPorIdMensaje(mensajeDTO.getId());
+
 
             try{
-                if(!mensajeConsultado.isPresent()){
-                    if(mensajeConsultado.get().getIdUsuario() > 0){
+                    if(serviceUsu.findById(mensajeDTO.getIdUsuario()) != null){
                         Mensaje mensajeGuardado = mensajeDTO.toModel();
                         service.insertarMensaje(mensajeGuardado);
                         return ResponseEntity.status(HttpStatus.CREATED).body(mensajeDTO.toDTO(mensajeGuardado));
@@ -40,10 +39,6 @@ public class MensajeController {
                         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El idUsuario no existe");
                     }
 
-                }else{
-                    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El usuario ya ha sido añadido");
-
-                }
 
             }catch (NoSuchElementException e){
                 ErrorDTO errorDTO = new ErrorDTO("E001","Error con un campo usado como clave foranea");
