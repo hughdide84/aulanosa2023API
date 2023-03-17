@@ -116,17 +116,13 @@ public class AsignaturaHorarioController {
     //se le pasan las IDs del curso y estudio, además del nivel, desde AsignaturaHorario relaciona con Asignatura, que es la tabla que tiene--
     //los campos necesarios para hacer la respuesta, compruebo que lo que me devuelve no esté vacío y luego lo devuelvo en caso afirmativo
     public ResponseEntity<?> listarCursoEstudiosYNivel(@PathVariable(value = "curso") int idCurso, @PathVariable(value = "estudio") int idEstudio, @PathVariable(value = "nivel")int nivel) throws NoSeHaEncontradoException {
-        CursoEstudioNivelDTO cursoEstudioNivelDTO = new CursoEstudioNivelDTO(idCurso, idEstudio, nivel);
-            if(!service.buscarPorCursoAsignaturaHorario(idCurso, idEstudio, nivel).isEmpty()){
-                return ResponseEntity.status(HttpStatus.OK).body(cursoEstudioNivelDTO);
-            }else{
-                ErrorDTO errorDTO = new ErrorDTO("E0005", "Los registros de la base de datos no coinciden con los insertados");
-
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
-            }
+        try{
+            CursoEstudioNivelDTO cursoEstudioNivelDTO = new CursoEstudioNivelDTO(idCurso, idEstudio, nivel);
+                List<AsignaturaHorario> asignaturaHorariosRelacionados = service.listarHorariosSegunCursoEstudioNivel(cursoEstudioNivelDTO);
+                return ResponseEntity.status(HttpStatus.OK).body(asignaturaHorariosRelacionados);
+        }catch (NoSeHaEncontradoException e){
+            ErrorDTO errorDTO = new ErrorDTO("E0005", "Los registros de la base de datos no coinciden con los insertados");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
+        }
     }
-
-
-
-
 }

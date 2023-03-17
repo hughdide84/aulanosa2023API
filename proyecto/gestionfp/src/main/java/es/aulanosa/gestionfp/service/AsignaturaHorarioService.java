@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.service;
 
+import es.aulanosa.gestionfp.dto.CursoEstudioNivelDTO;
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.AsignaturaHorario;
 
@@ -18,6 +19,6 @@ public interface AsignaturaHorarioService {
 
     List<AsignaturaHorario> listarTodoAsignaturaHorario();
 
-    List<AsignaturaHorario> listarHorariosSegunCursoEstudioNivel(int idCurso, int idEstudio, int nivel);
+    List<AsignaturaHorario> listarHorariosSegunCursoEstudioNivel(CursoEstudioNivelDTO cursoEstudioNivelDTO) throws NoSeHaEncontradoException;
 
 }

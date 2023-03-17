@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.service;
 
+import es.aulanosa.gestionfp.dto.CursoEstudioNivelDTO;
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.AsignaturaHorario;
 import es.aulanosa.gestionfp.repository.AsignaturaHorarioRepository;
@@ -88,9 +89,12 @@ public class AsignaturaHorarioServiceImp implements AsignaturaHorarioService{
 
     @Override
     @Transactional(readOnly = true)
-    List<AsignaturaHorario> listarHorariosSegunCursoEstudioNivel(int idCurso, int idEstudio, int nivel){
-        try{
-            List<AsignaturaHorario> asignaturaHorarios = repository.
+    public List<AsignaturaHorario> listarHorariosSegunCursoEstudioNivel(CursoEstudioNivelDTO cursoEstudioNivelDTO) throws NoSeHaEncontradoException {
+        if(!repository.findByIdAsignatura(cursoEstudioNivelDTO.getIdCurso(), cursoEstudioNivelDTO.getIdEstudio(), cursoEstudioNivelDTO.getNivel()).isEmpty()){
+            List<AsignaturaHorario> asignaturaHorarios = repository.findByIdAsignatura(cursoEstudioNivelDTO.getIdCurso(), cursoEstudioNivelDTO.getIdEstudio(), cursoEstudioNivelDTO.getNivel());
+            return asignaturaHorarios;
+        }else{
+            throw new NoSeHaEncontradoException("Los datos proporcionados no contienen relación");
         }
     }
 }
