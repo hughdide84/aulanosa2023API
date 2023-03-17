@@ -142,6 +142,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.GestionfpApplication" />
+      <item itemvalue="JUnit.TestAsignaturaHorarioServiceV1.actualizarAsignaturaHorario" />
+      <item itemvalue="JUnit.TestAsignaturaHorarioServiceV1.comprobarActualizacion" />
+      <item itemvalue="JUnit.TestAsignaturaHorarioServiceV1.eliminarAsignaturaHorario" />
+      <item itemvalue="JUnit.TestAsignaturaHorarioServiceV1.insertarAsignaturaHorario" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.GestionfpApplication" />

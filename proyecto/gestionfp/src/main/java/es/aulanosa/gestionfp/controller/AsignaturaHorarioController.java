@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -97,12 +98,16 @@ public class AsignaturaHorarioController {
         if(!service.listarTodoAsignaturaHorario().isEmpty()){
             List<AsignaturaHorario> asignaturaHorarioLista = service.listarTodoAsignaturaHorario();
 
-            List<AsignaturaHorarioDTO> asignaturaHorarioDTOLista = null;
+            List<AsignaturaHorarioDTO> asignaturaHorarioDTOLista = new ArrayList<AsignaturaHorarioDTO>();
+
 
             for (AsignaturaHorario asig:
                  asignaturaHorarioLista) {
                 int cont = 0;
-                asignaturaHorarioDTOLista.get(cont).convertirDTO(asig);
+                AsignaturaHorarioDTO asignaturaHorarioDTO = new AsignaturaHorarioDTO();
+                asignaturaHorarioDTO.convertirDTO(asig);
+                asignaturaHorarioDTOLista.add(asignaturaHorarioDTO);
+
             }
 
             return ResponseEntity.status(HttpStatus.OK).body(asignaturaHorarioDTOLista);
