@@ -64,11 +64,7 @@ public class AlumnoServiceImp implements AlumnoService{
     }
     @Transactional
     @Override
-    public List<Alumno> buscarPorEstado(String estado) throws NoSeHaEncontradoException {
-        if(estado.equals("A")) {
-            return repositorio.findAllAlumnoActivos(estado);
-        }else{
-            throw new NoSeHaEncontradoException("No se ha encontrado el alumno especificado");
+    public List<Alumno> buscarPorEstado() throws NoSeHaEncontradoException {
+            return repositorio.findAllAlumnoActivos();
         }
-    }
 }

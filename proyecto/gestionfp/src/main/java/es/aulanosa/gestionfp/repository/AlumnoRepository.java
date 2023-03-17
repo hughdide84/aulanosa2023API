@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface AlumnoRepository extends JpaRepository <Alumno, Integer> {
 
-    @Query("select a from Alumno a where a.estado = ?1")
-    List<Alumno> findAllAlumnoActivos(String estado);
+    @Query("select a from Alumno a join fetch a.curso c where c.estado = 'A'")
+    List<Alumno> findAllAlumnoActivos();
 
 }
