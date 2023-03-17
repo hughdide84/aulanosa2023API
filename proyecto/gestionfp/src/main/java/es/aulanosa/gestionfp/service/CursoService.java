@@ -14,6 +14,7 @@ public interface CursoService {
     Curso modificarCurso(Curso curso) throws NoSeHaEncontradoException;
      void eliminarCurso(int id) throws NoSeHaEncontradoException;
 
+     List<Curso> buscarTodoPorEstadoActivo();
 
 
 

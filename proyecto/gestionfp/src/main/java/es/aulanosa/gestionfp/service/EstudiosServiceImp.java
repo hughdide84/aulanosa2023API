@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.service;
 
+import es.aulanosa.gestionfp.model.Curso;
 import es.aulanosa.gestionfp.model.Estudios;
 import es.aulanosa.gestionfp.repository.EstudiosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +56,6 @@ public class EstudiosServiceImp implements EstudiosService {
     public void eliminar(Integer id) {
         repositorio.deleteById(id);
     }
+
 
 }

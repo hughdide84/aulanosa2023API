@@ -66,5 +66,12 @@ public class CursoServiceImp implements CursoService {
 
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    //Metodo para consultar estados activos
+    public List<Curso> buscarTodoPorEstadoActivo() {
+        return repositorio.buscarTodoPorEstadoActivo();
+    }
+
 
 }

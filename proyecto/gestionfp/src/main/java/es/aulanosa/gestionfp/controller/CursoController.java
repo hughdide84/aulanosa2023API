@@ -27,29 +27,28 @@ public class CursoController {
     @PostMapping
     public ResponseEntity<?> altaCurso(@RequestBody CursoDTO cursoDTO) {
         Curso cursoComprobar = serviceCur.buscarPorId(cursoDTO.getId());
-        if (cursoComprobar == null && checkFieldSize(cursoDTO).equals("")) {
-            Curso cursoGuardado = serviceCur.insertarCurso(cursoDTO.convertirModel());
-            cursoDTO.crearDTO(cursoGuardado);
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(cursoDTO);
-        } else if (!checkFieldSize(cursoDTO).equals("")) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El campo nombre supera el numero de caracteres");
-        }
-        else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Campo ya existente");
+        if (cursoComprobar == null) {
+            try {
+                Curso curso = cursoDTO.convertirModel();
+                serviceCur.insertarCurso(curso);
+                return ResponseEntity.status(HttpStatus.CREATED).body(curso);
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al insertar el curso");
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El curso ya existe");
         }
     }
 
     //Operacion correspondiente para consultar un curso determinado por id
-    @GetMapping("{id}")
-    public ResponseEntity<?> consultarCurso(@PathVariable("id") Integer id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<?> consultarCurso(@PathVariable Integer id) {
         Curso curso = serviceCur.buscarPorId(id);
 
         if (curso != null) {
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body(curso);
-        }
-
-        else {
+            return ResponseEntity.status(HttpStatus.OK).body(curso);
+        } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Campo no encontrado");
         }
     }
@@ -59,61 +58,48 @@ public class CursoController {
     public ResponseEntity<?> editarCurso(@RequestBody CursoDTO curso) {
         Curso cursoConsultar = serviceCur.buscarPorId(curso.getId());
 
-        if (cursoConsultar != null && checkFieldSize(curso).equals("")) {
-            Curso cursoActualizar = curso.convertirModel();
-            serviceCur.insertarCurso(cursoActualizar);
-            return ResponseEntity.status(HttpStatus.CREATED).body(cursoActualizar);
-        } else if (!checkFieldSize(curso).equals("")) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El campo nombre excede el numero de caracteres permitidos");
+        if (cursoConsultar != null) {
+            try {
+                Curso cursoActualizar = curso.convertirModel();
+                serviceCur.insertarCurso(cursoActualizar);
+                return ResponseEntity.status(HttpStatus.OK).body(cursoActualizar);
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al modificar el curso");
+            }
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se ha encontrado el campo a modificar.");
         }
     }
 
     //Operación correspondiente para borrar un curso en concreto por id
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> borrarCurso (@PathVariable Integer id) throws NoSeHaEncontradoException {
         Curso curso = serviceCur.buscarPorId(id);
 
         if (curso != null) {
-            serviceCur.eliminarCurso(id);
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body("Borrado con exito");
-        }
-
-        else {
+            try {
+                serviceCur.eliminarCurso(id);
+                return ResponseEntity.status(HttpStatus.ACCEPTED).body("Borrado con exito");
+            } catch (NoSeHaEncontradoException e) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al borrar el curso");
+            }
+        } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Campo no encontrado");
         }
     }
 
     //Operacion correspondiente para listar todos los datos de la tabla Cursos
-    @GetMapping
-    public ResponseEntity<?> listarTodosCursos(@RequestBody CursoDTO cursoDTO) {
+    @GetMapping("/all")
+    public ResponseEntity<?> listarTodosCursos() {
         List<Curso> curso = serviceCur.buscarTodo();
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(curso);
+        return ResponseEntity.status(HttpStatus.OK).body(curso);
     }
 
-    public String checkFieldSize(CursoDTO cursoDTO) {
-        List<String> invalidFields = new ArrayList<>();
-        String msg = "";
-
-        if (cursoDTO.getNombre().length() > 100) {
-            invalidFields.add("nombre");
-        } else {
-
-        }
-
-        if (invalidFields.size() != 0) {
-            for (int i = 0; i < invalidFields.size(); i++) {
-                if (i != invalidFields.size() - 1) {
-                    msg += invalidFields.get(i) + ", ";
-                } else {
-                    msg += invalidFields.get(i);
-                }
-            }
-            return msg;
-        } else {
-            return msg;
-        }
+    //Operacion correspondiente para listar todos los datos de la tabla Cursos que esten activos
+    @GetMapping("/cursosActivos")
+    public ResponseEntity<?> listarCursosActivos() {
+        List<Curso> cursos = serviceCur.buscarTodoPorEstadoActivo();
+        return ResponseEntity.status(HttpStatus.OK).body(cursos);
     }
 
 }
