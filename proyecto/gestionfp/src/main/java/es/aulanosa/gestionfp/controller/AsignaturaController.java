@@ -17,7 +17,7 @@ public class AsignaturaController {
     @Autowired
     private AsignaturaService asignaturaService;
 
-    @PostMapping
+    @PostMapping("")
     public ResponseEntity<?> insertarAsignatura(@RequestBody AsignaturaDTO asignaturaDTO) {
 
         Asignatura asignaturaConsultada = asignaturaService.findById(asignaturaDTO.getId());
@@ -54,7 +54,7 @@ public class AsignaturaController {
         }
     }
 
-    @PutMapping("update")
+    @PutMapping("/update")
     public ResponseEntity<?> modificarAsignatura(@RequestBody AsignaturaDTO asignaturaDTO) {
         Asignatura asignaturaConsultada = asignaturaService.findById(asignaturaDTO.getId());
 
@@ -74,8 +74,12 @@ public class AsignaturaController {
     public ResponseEntity<?> borrarAsignatura(@PathVariable int id) {
         Asignatura asignaturaConsultada = asignaturaService.findById(id);
         if (asignaturaConsultada != null) {
-            asignaturaService.deleteById(id);
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            try {
+                asignaturaService.deleteById(id);
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al borrar la asignatura");
+            }
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se ha encontrado la asignatura");
         }

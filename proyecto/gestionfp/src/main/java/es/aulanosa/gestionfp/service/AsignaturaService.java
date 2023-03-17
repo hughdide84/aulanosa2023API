@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface AsignaturaService {
 
-    List<Asignatura> findAll();
-    List<Asignatura> findAllByNombre(String nombre);
-    Asignatura findById(int id);
-    Asignatura save(Asignatura asignatura);
-    void deleteById(int id);
-    Asignatura update(Asignatura asignatura);
+    List<Asignatura> buscarTodoAsignatura();
+    List<Asignatura> buscarTodoPorNombreAsignaturaConteniendoNombreAsignatura(String nombre);
+    Asignatura buscarPorIdAsignatura(int id);
+    Asignatura guardarAsignatura(Asignatura asignatura);
+    void borrarPorIdAsignatura(int id);
+    Asignatura modificarAsignatura(Asignatura asignatura);
 
 }

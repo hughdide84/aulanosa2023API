@@ -62,6 +62,17 @@ public class TestAsignatura {
 
     @Test
     @Order(4)
+    public void findAll1() throws NoSeHaEncontradoException {
+        try {
+            List<Asignatura> asignaturas = asignaturaService.findAll();
+            System.out.println(asignaturas);
+        } catch (Exception e) {
+            throw new NoSeHaEncontradoException("No se ha encontrado el usuario", e);
+        }
+    }
+
+    @Test
+    @Order(5)
     public void delete() throws NoSeHaEncontradoException {
         var asignaturaConsultada = asignaturaService.findById(1);
         if (asignaturaConsultada != null) {
@@ -75,7 +86,7 @@ public class TestAsignatura {
     }
 
     @Test
-    @Order(5)
+    @Order(6)
     public void findAll() throws NoSeHaEncontradoException {
         try {
             List<Asignatura> asignaturas = asignaturaService.findAll();
@@ -86,7 +97,7 @@ public class TestAsignatura {
     }
 
     @Test
-    @Order(6)
+    @Order(7)
     public void findAllByNombre() throws NoSeHaEncontradoException {
         try {
             List<Asignatura> asignaturas = asignaturaService.findAllByNombre("Programación");
