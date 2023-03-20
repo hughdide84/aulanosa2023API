@@ -33,7 +33,8 @@ public class AsignaturaHorarioController {
             asignaturaHorarioDTO.convertirDTO(asignaturaHorarioGuardadoInsertado);
             return ResponseEntity.status(HttpStatus.CREATED).body(asignaturaHorarioDTO);
         }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            ErrorDTO errorDTO = new ErrorDTO("E0005", "Los datos facilitados no satisfacen los requisitos");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDTO);
         }
     }
 
@@ -54,13 +55,16 @@ public class AsignaturaHorarioController {
     }
 
     @PutMapping("")
-    //se le pasa un objeto completo por POST, el programa comprueba que su ID exista en la BD y en caso de que lo haga cambia los valores que estén diferentes
+    //se le pasa un objeto completo por PUT, el programa comprueba que su ID exista en la BD y en caso de que lo haga cambia los valores que estén diferentes
     public ResponseEntity<?> editarAsignaturaHorario(@RequestBody AsignaturaHorarioDTO asignaturaHorarioDTO){
         try{
+            //compruebo que exista, si no, salta el error del service
             Optional<AsignaturaHorario> asignaturaHorario = service.buscarPorIdAsignaturaHorario(asignaturaHorarioDTO.getId());
-            service.insertarAsignaturaHorario(asignaturaHorario.get());
+
+            AsignaturaHorario asignaturaHorarioEditada = asignaturaHorarioDTO.convertirModel();
+            service.modificarAsignaturaHorario(asignaturaHorarioEditada);
             AsignaturaHorarioDTO asignaturaHorarioDTORecuperado = new AsignaturaHorarioDTO();
-            asignaturaHorarioDTO.convertirDTO(asignaturaHorario.get());
+            asignaturaHorarioDTO.convertirDTO(asignaturaHorarioEditada);
 
             return ResponseEntity.status(HttpStatus.CREATED).body(asignaturaHorarioDTO);
 
@@ -117,7 +121,7 @@ public class AsignaturaHorarioController {
         }
     }
 
-    @GetMapping("curso/{curso}/estudio/{estudio}/nivel/{nivel}")
+    @GetMapping("/curso/{curso}/estudio/{estudio}/nivel/{nivel}")
     //se le pasan las IDs del curso y estudio, además del nivel, desde AsignaturaHorario relaciona con Asignatura, que es la tabla que tiene--
     //los campos necesarios para hacer la respuesta, compruebo que lo que me devuelve no esté vacío y luego lo devuelvo en caso afirmativo
     public ResponseEntity<?> listarCursoEstudiosYNivel(@PathVariable(value = "curso") int idCurso, @PathVariable(value = "estudio") int idEstudio, @PathVariable(value = "nivel")int nivel) throws NoSeHaEncontradoException {
