@@ -1,10 +1,13 @@
 package es.aulanosa.gestionfp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "Usuarios")
@@ -37,10 +40,25 @@ public class Usuario {
     @NotNull(message = "El rol no puede ser nulo")
     private String rol;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario")
+    private List<MensajeUsuario> mensajeUsuario;
+
     public Usuario(String nombre, String password, String email, String rol) {
         this.nombre = nombre;
         this.password = password;
         this.email = email;
         this.rol = rol;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", rol='" + rol + '\'' +
+                '}';
     }
 }
