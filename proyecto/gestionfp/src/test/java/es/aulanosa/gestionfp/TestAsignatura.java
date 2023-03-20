@@ -46,7 +46,7 @@ public class TestAsignatura {
 
     @Test
     @Order(3)
-    public void update() throws NoSeHaEncontradoException {
+    public void modificar() throws NoSeHaEncontradoException {
 
         var asignaturaConsultada = asignaturaService.buscarPorIdAsignatura(1);
         if (asignaturaConsultada != null) {
@@ -55,14 +55,16 @@ public class TestAsignatura {
                 var a = asignaturaService.modificarAsignatura(asignaturaConsultada);
                 System.out.println(a);
             } catch (Exception e) {
-                throw new NoSeHaEncontradoException("No se ha encontrado el usuario", e);
+                throw new NoSeHaEncontradoException("Error al modificar", e);
             }
+        } else {
+            throw new NoSeHaEncontradoException("No se ha encontrado el usuario");
         }
     }
 
     @Test
     @Order(4)
-    public void findAll1() throws NoSeHaEncontradoException {
+    public void buscarTodo() throws NoSeHaEncontradoException {
         try {
             List<Asignatura> asignaturas = asignaturaService.buscarTodoAsignatura();
             System.out.println(asignaturas);
@@ -73,21 +75,23 @@ public class TestAsignatura {
 
     @Test
     @Order(5)
-    public void delete() throws NoSeHaEncontradoException {
+    public void borrar() throws NoSeHaEncontradoException {
         var asignaturaConsultada = asignaturaService.buscarPorIdAsignatura(1);
         if (asignaturaConsultada != null) {
             try {
                 asignaturaService.borrarPorIdAsignatura(asignaturaConsultada.getId());
                 System.out.println("Se ha borrado correctamente");
             } catch (Exception e) {
-                throw new NoSeHaEncontradoException("No se ha encontrado el usuario", e);
+                throw new NoSeHaEncontradoException("Error al borrar", e);
             }
+        } else {
+            throw new NoSeHaEncontradoException("No se ha encontrado el usuario");
         }
     }
 
     @Test
     @Order(6)
-    public void findAll() throws NoSeHaEncontradoException {
+    public void buscarTodo1() throws NoSeHaEncontradoException {
         try {
             List<Asignatura> asignaturas = asignaturaService.buscarTodoAsignatura();
             System.out.println(asignaturas);
@@ -98,7 +102,7 @@ public class TestAsignatura {
 
     @Test
     @Order(7)
-    public void findAllByNombre() throws NoSeHaEncontradoException {
+    public void buscarTodoPorNombre() throws NoSeHaEncontradoException {
         try {
             List<Asignatura> asignaturas = asignaturaService.buscarTodoPorNombreAsignaturaConteniendoNombreAsignatura("Programación");
             System.out.println(asignaturas);
