@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -20,8 +21,8 @@ public class AlumnoExternoDTO {
     private String universidad;
     private String titulacion;
     private String especialidad;
-    private Timestamp inicio;
-    private Timestamp fin;
+    private Date inicio;
+    private Date fin;
     private char cv;
     private char convenio;
     private char evaluacion;

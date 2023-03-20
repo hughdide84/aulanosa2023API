@@ -56,10 +56,12 @@ public class AlumnoExternoController {
     //se le pasa un objeto completo por POST, el programa comprueba que su ID exista en la BD y en caso de que lo haga cambia los valores que estén diferentes
     public ResponseEntity<?> editar(@RequestBody AlumnoExternoDTO alumnoExternoDTO){
         try{
-            Optional<AlumnoExterno> alumnosExternos = service.listarPorId(alumnoExternoDTO.getId());
-            service.guardar(alumnosExternos.get());
+            AlumnoExterno alumnosExternos = alumnoExternoDTO.convertirModel();
+            //no hay control de errore porque al listar por id si no existe ese id, salta un error directamente avisandolo
+            Optional<AlumnoExterno> alumnoExternoRercuperado = service.listarPorId(alumnoExternoDTO.getId());
+            service.guardar(alumnosExternos);
             AlumnoExternoDTO alumnoExternoDTORecuperado = new AlumnoExternoDTO();
-            alumnoExternoDTO.crearDTO(alumnosExternos.get());
+            alumnoExternoDTO.crearDTO(alumnosExternos);
 
             return ResponseEntity.status(HttpStatus.CREATED).body(alumnoExternoDTO);
 
