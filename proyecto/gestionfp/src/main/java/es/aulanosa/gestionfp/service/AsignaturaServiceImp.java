@@ -14,39 +14,45 @@ public class AsignaturaServiceImp implements AsignaturaService{
     @Autowired
     private AsignaturaRepository asignaturaRepository;
 
+    //buscar todo
     @Override
     @Transactional(readOnly = true)
-    public List<Asignatura> findAll() {
+    public List<Asignatura> buscarTodoAsignatura() {
         return asignaturaRepository.findAll();
     }
 
+    //buscar por id
     @Override
     @Transactional(readOnly = true)
-    public Asignatura findById(int id) {
+    public Asignatura buscarPorIdAsignatura(int id) {
         return asignaturaRepository.findById(id).orElse(null);
     }
 
+    //buscar por nombre
     @Override
     @Transactional(readOnly = true)
-    public List<Asignatura> findAllByNombre(String nombre) {
-        return asignaturaRepository.findAllByNombre(nombre);
+    public List<Asignatura> buscarTodoPorNombreAsignaturaConteniendoNombreAsignatura(String nombre) {
+        return asignaturaRepository.findAllByNombreContaining(nombre);
     }
 
+    //guardar
     @Override
     @Transactional
-    public Asignatura save(Asignatura asignatura) {
+    public Asignatura guardarAsignatura(Asignatura asignatura) {
         return asignaturaRepository.save(asignatura);
     }
 
+    //borrar
     @Override
     @Transactional
-    public void deleteById(int id) {
+    public void borrarPorIdAsignatura(int id) {
         asignaturaRepository.deleteById(id);
     }
 
+    //modificar
     @Override
     @Transactional
-    public Asignatura update(Asignatura asignatura) {
+    public Asignatura modificarAsignatura(Asignatura asignatura) {
         var asignaturaEncontrada = asignaturaRepository.findById(asignatura.getId());
         if (!asignaturaEncontrada.isEmpty()) {
             return asignaturaRepository.save(asignatura);

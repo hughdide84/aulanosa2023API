@@ -20,11 +20,11 @@ public class AsignaturaController {
     @PostMapping("")
     public ResponseEntity<?> insertarAsignatura(@RequestBody AsignaturaDTO asignaturaDTO) {
 
-        Asignatura asignaturaConsultada = asignaturaService.findById(asignaturaDTO.getId());
+        Asignatura asignaturaConsultada = asignaturaService.buscarPorIdAsignatura(asignaturaDTO.getId());
 
         if (asignaturaConsultada == null) {
             try {
-                Asignatura asignatura = asignaturaService.save(asignaturaDTO.toAsignatura());
+                Asignatura asignatura = asignaturaService.guardarAsignatura(asignaturaDTO.toAsignatura());
                 return ResponseEntity.status(HttpStatus.CREATED).body(asignatura);
             } catch (Exception e) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al crear la asignatura");
@@ -36,7 +36,7 @@ public class AsignaturaController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> buscarAsignaturaPorId(@PathVariable int id) {
-        Asignatura asignatura = asignaturaService.findById(id);
+        Asignatura asignatura = asignaturaService.buscarPorIdAsignatura(id);
         if (asignatura != null) {
             return ResponseEntity.status(HttpStatus.OK).body(asignatura);
         } else {
@@ -46,7 +46,7 @@ public class AsignaturaController {
 
     @GetMapping("/all")
     public ResponseEntity<?> buscarTodasAsignaturas() {
-        List<Asignatura> asignaturas = asignaturaService.findAll();
+        List<Asignatura> asignaturas = asignaturaService.buscarTodoAsignatura();
         if (asignaturas != null && !asignaturas.isEmpty()) {
             return ResponseEntity.status(HttpStatus.OK).body(asignaturas);
         } else {
@@ -56,11 +56,11 @@ public class AsignaturaController {
 
     @PutMapping("/update")
     public ResponseEntity<?> modificarAsignatura(@RequestBody AsignaturaDTO asignaturaDTO) {
-        Asignatura asignaturaConsultada = asignaturaService.findById(asignaturaDTO.getId());
+        Asignatura asignaturaConsultada = asignaturaService.buscarPorIdAsignatura(asignaturaDTO.getId());
 
         if (asignaturaConsultada != null) {
             try {
-                asignaturaService.update(asignaturaDTO.toAsignatura());
+                asignaturaService.modificarAsignatura(asignaturaDTO.toAsignatura());
                 return ResponseEntity.status(HttpStatus.OK).body(asignaturaDTO);
             } catch (Exception e) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al modificar la asignatura");
@@ -72,10 +72,10 @@ public class AsignaturaController {
 
     @DeleteMapping("delete/{id}")
     public ResponseEntity<?> borrarAsignatura(@PathVariable int id) {
-        Asignatura asignaturaConsultada = asignaturaService.findById(id);
+        Asignatura asignaturaConsultada = asignaturaService.buscarPorIdAsignatura(id);
         if (asignaturaConsultada != null) {
             try {
-                asignaturaService.deleteById(id);
+                asignaturaService.borrarPorIdAsignatura(id);
                 return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
             } catch (Exception e) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al borrar la asignatura");
