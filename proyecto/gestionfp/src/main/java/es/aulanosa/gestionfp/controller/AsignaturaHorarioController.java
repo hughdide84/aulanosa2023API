@@ -7,6 +7,9 @@ import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.AsignaturaHorario;
 import es.aulanosa.gestionfp.service.AsignaturaHorarioService;
 import es.aulanosa.gestionfp.service.AsignaturaHorarioServiceImp;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import org.hibernate.exception.SQLGrammarException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,17 +29,20 @@ public class AsignaturaHorarioController {
     @PostMapping("")
     //falta @operation
     //API para dar de alta, se le pasa un objeto DTO por POST, lo convierte al model y lo inserta
-    public ResponseEntity<?> altaAsignaturaHorario(@RequestBody AsignaturaHorarioDTO asignaturaHorarioDTO){
-        try{
+    public ResponseEntity<?> altaAsignaturaHorario(@RequestBody AsignaturaHorarioDTO asignaturaHorarioDTO) {
+        AsignaturaHorario asignaturaHorarioGuardadoInsertado = null;
+        try {
             AsignaturaHorario asignaturaHorarioGuardado = asignaturaHorarioDTO.convertirModel();
             //lo pongo a 0 para que me lo auto incremente y no me edite los demas campos
             asignaturaHorarioGuardado.setId(0);
-            AsignaturaHorario asignaturaHorarioGuardadoInsertado = service.insertarAsignaturaHorario(asignaturaHorarioGuardado);
+            asignaturaHorarioGuardadoInsertado = service.insertarAsignaturaHorario(asignaturaHorarioGuardado);
             asignaturaHorarioDTO.convertirDTO(asignaturaHorarioGuardadoInsertado);
             return ResponseEntity.status(HttpStatus.CREATED).body(asignaturaHorarioDTO);
-        }catch (Exception e){
-            ErrorDTO errorDTO = new ErrorDTO("E0005", "Los datos facilitados no satisfacen los requisitos");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e);
+        } catch (SQLGrammarException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
 

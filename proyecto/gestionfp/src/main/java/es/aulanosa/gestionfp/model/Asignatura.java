@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import es.aulanosa.gestionfp.repository.EstudiosRepository;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
