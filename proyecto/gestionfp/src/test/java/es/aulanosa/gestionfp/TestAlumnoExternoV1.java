@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Optional;
@@ -29,8 +30,8 @@ public class TestAlumnoExternoV1 {
 		alumnosExternos.setCv('a');
 		alumnosExternos.setNombre("nose");
 		alumnosExternos.setEmail("a");
-		alumnosExternos.setFin(new Timestamp(new GregorianCalendar(2022, 3, 23).getTimeInMillis()));
-		alumnosExternos.setInicio(new Timestamp(new GregorianCalendar(2022, 3, 23).getTimeInMillis()));
+		alumnosExternos.setFin(new Date(2023, 2, 1));
+		alumnosExternos.setInicio(new Date(2023, 2, 1));
 		alumnosExternos.setConvenio('a');
 		alumnosExternos.setEspecialidad("s");
 		alumnosExternos.setIdCurso(1);
