@@ -40,6 +40,7 @@ public class TestPagoServiceV1 {
         pago.setIdUsuario(14);
         pago.setFecha(new Timestamp(new GregorianCalendar(2014, 3, 24).getTimeInMillis()));
         var insertado = servicio.guardarPago(pago);
+        System.out.println(insertado);
 
     }
     @Test
@@ -76,9 +77,16 @@ public class TestPagoServiceV1 {
     @Order(5)
     void eliminarPago(){
 
+        var a = servicio.buscarPorIdPago(40);
+
         try{
-            servicio.borrarPago(32);
-            System.out.println("Pago eliminado con exito");
+            if(a.isPresent()){
+                servicio.borrarPago(a.get().getId());
+                System.out.println("Pago eliminado con exito");
+            }else{
+                System.out.println("No existe el id del pago especificado");
+            }
+
 
         }catch (DataIntegrityViolationException e){
             System.out.println("No se puede eliminar porque existen relaciones con la entidad");

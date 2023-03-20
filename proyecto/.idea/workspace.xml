@@ -5,10 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d4a2c64-3f78-4c0b-8447-bb3f5e392635" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/model/Pago.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/model/Pago.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/PagoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/PagoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/PagoServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/PagoServiceImp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gestionfp/src/test/java/es/aulanosa/gestionfp/TestPagoServiceV1.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/test/java/es/aulanosa/gestionfp/TestPagoServiceV1.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,7 +49,7 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.TestPagoServiceV1.listarPorIdMatricula (1)">
+  <component name="RunManager" selected="JUnit.TestPagoServiceV1.eliminarPago">
     <configuration name="TestPagoServiceV1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gestionfp" />
       <extension name="coverage">
@@ -142,11 +138,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestPagoServiceV1.eliminarPago" />
+        <item itemvalue="JUnit.TestPagoServiceV1.insertarPago" />
         <item itemvalue="JUnit.TestPagoServiceV1.listarPorIdMatricula (1)" />
         <item itemvalue="JUnit.TestPagoServiceV1.listarPorIdMatricula" />
         <item itemvalue="JUnit.TestPagoServiceV1" />
-        <item itemvalue="JUnit.TestPagoServiceV1.insertarPago" />
-        <item itemvalue="JUnit.TestPagoServiceV1.eliminarPago" />
       </list>
     </recent_temporary>
   </component>
