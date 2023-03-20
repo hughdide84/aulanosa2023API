@@ -4,6 +4,7 @@ import es.aulanosa.gestionfp.dto.ErrorDTO;
 import es.aulanosa.gestionfp.util.Errores;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -33,4 +34,19 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         return new ResponseEntity<>(listaErrores, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    protected ResponseEntity<Object> handleDataIntegrityViolationException(DataIntegrityViolationException exception) {
+        List<ErrorDTO> listaErrores = new ArrayList<>();
+        ErrorDTO errorDTO = new ErrorDTO(Errores.COD_ERROR_INTEGRIDAD,"Error de integridad.");
+        listaErrores.add(errorDTO);
+        return new ResponseEntity<>(listaErrores, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(Exception.class)
+    protected ResponseEntity<Object> handleDataIntegrityViolationException(Exception exception) {
+        List<ErrorDTO> listaErrores = new ArrayList<>();
+        ErrorDTO errorDTO = new ErrorDTO(Errores.COD_ERROR_INTERNO,"Error interno del sistema.");
+        listaErrores.add(errorDTO);
+        return new ResponseEntity<>(listaErrores, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }
