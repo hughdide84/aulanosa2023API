@@ -3,7 +3,9 @@ package es.aulanosa.gestionfp;
 
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Alumno;
+import es.aulanosa.gestionfp.model.Pago;
 import es.aulanosa.gestionfp.service.AlumnoService;
+import es.aulanosa.gestionfp.service.PagoService;
 import org.junit.jupiter.api.ClassOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -13,7 +15,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Optional;
 
 @TestClassOrder(ClassOrderer.OrderAnnotation.class)
@@ -43,7 +47,7 @@ public class TestAlumnoServiceV1 {
 
     @Test
     @Order(2)
-    void bucarPorId(){
+    void bucarPorId() {
 
         System.out.println(service.buscarPorId(3));
 
@@ -51,7 +55,7 @@ public class TestAlumnoServiceV1 {
 
     @Test
     @Order(3)
-    void buscarTodo(){
+    void buscarTodo() {
 
         System.out.println(service.buscarTodo());
 
@@ -62,26 +66,27 @@ public class TestAlumnoServiceV1 {
     void modificarAlumno() throws NoSeHaEncontradoException {
         Optional<Alumno> optionalAlumno = service.buscarPorId(4);
 
-        if(optionalAlumno.isPresent()){
+        if (optionalAlumno.isPresent()) {
             optionalAlumno.get().setNombre("AlumnoMOD");
             Alumno alumno1 = service.modificarAlumno(optionalAlumno.get());
 
             System.out.println("Alumno modificado a: " + optionalAlumno);
-        }else{
+        } else {
             throw new NoSeHaEncontradoException("No se ha encontrado el alumno especificado");
         }
     }
+
     @Test
     @Order(5)
-    void eliminarAlumno(){
+    void eliminarAlumno() {
 
-        try{
+        try {
             service.eliminarAlumno(3);
             System.out.println("Alumno eliminado con exito");
 
-        }catch (DataIntegrityViolationException e){
+        } catch (DataIntegrityViolationException e) {
             System.out.println("No se puede eliminar porque existen relaciones con la entidad");
-        }catch (NoSeHaEncontradoException e){
+        } catch (NoSeHaEncontradoException e) {
             System.out.println("No se ha encontrado el alumno");
         }
 
@@ -96,5 +101,6 @@ public class TestAlumnoServiceV1 {
             System.out.println("No se ha encontrado el alumno");
         }
     }
+
 
 }
