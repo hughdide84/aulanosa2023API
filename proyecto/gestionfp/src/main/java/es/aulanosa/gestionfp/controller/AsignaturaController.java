@@ -70,7 +70,7 @@ public class AsignaturaController {
         }
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> borrarAsignatura(@PathVariable int id) {
         Asignatura asignaturaConsultada = asignaturaService.buscarPorIdAsignatura(id);
         if (asignaturaConsultada != null) {
