@@ -20,35 +20,35 @@ public class AlumnoEmpresaServiceImp implements AlumnoEmpresaService {
     //busca todo
     @Override
     @Transactional(readOnly = true)
-    public List<AlumnoEmpresa> buscarTodo() {
+    public List<AlumnoEmpresa> buscarTodoAlumnoEmpresa() {
         return alumnoEmpresaRepository.findAll();
     }
 
     //busca por id
     @Override
     @Transactional(readOnly = true)
-    public AlumnoEmpresa buscarPorId(int id) {
+    public AlumnoEmpresa buscarPorIdAlumnoEmpresa(int id) {
         return alumnoEmpresaRepository.findById(id).orElse(null);
     }
 
     //guarda
     @Override
     @Transactional
-    public AlumnoEmpresa guardar(AlumnoEmpresa alumnosEmpresas) {
+    public AlumnoEmpresa guardarAlumnoEmpresa(AlumnoEmpresa alumnosEmpresas) {
         return alumnoEmpresaRepository.save(alumnosEmpresas);
     }
 
     //borra por id
     @Override
     @Transactional
-    public void borrarPorId(int id) {
+    public void borrarPorIdAlumnoEmpresa(int id) {
         alumnoEmpresaRepository.deleteById(id);
     }
 
     //modifica
     @Override
     @Transactional
-    public AlumnoEmpresa modificar(AlumnoEmpresa alumnosEmpresas) throws NoSeHaEncontradoException {
+    public AlumnoEmpresa modificarAlumnoEmpresa(AlumnoEmpresa alumnosEmpresas) throws NoSeHaEncontradoException {
         var a = alumnoEmpresaRepository.findById(alumnosEmpresas.getId());
         if (!a.isEmpty()) {
             return alumnoEmpresaRepository.save(alumnosEmpresas);
