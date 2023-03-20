@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -53,31 +54,23 @@ public class MatriculasServiceImp implements MatriculasService{
     }
 
     @Override
-    @Transactional
+    @Transactional (readOnly = true)
     public List<Matricula> buscarPorNombreDeMatricula(String nombre) {
         return matriculasRepository.buscarPorNombre(nombre);
     }
 
     @Override
-    @Transactional
-    public List<Curso> buscarTodosCursosPorId(Integer idCurso) {
-        return matriculasRepository.buscarTodosCursosPorId(idCurso);
+    @Transactional (readOnly = true)
+    public List<Matricula> buscarTodosCursosPorId(Integer idCurso) {
+        return matriculasRepository.findAllByidCurso(idCurso);
     }
     @Override
-    @Transactional
-    public List<Matricula> buscarPorMesDeMatricula(String mes) {
+    @Transactional (readOnly = true)
+    public List<Matricula> buscarPorMesDeMatricula(Integer mes) {
 
-        List<Matricula> matriculas = new ArrayList<>();
+        List<Matricula> matriculaFecha = matriculasRepository.buscarPorMes(mes);
 
-        matriculas = matriculasRepository.buscarPorMes(mes);
-
-        List<Matricula> matriculaFecha = new ArrayList<>();
-
-        for (Matricula: matriculas
-             matriculasFecha) {
-
-
-        }
+       return matriculaFecha;
 
 
 

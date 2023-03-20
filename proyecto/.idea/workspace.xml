@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d4a2c64-3f78-4c0b-8447-bb3f5e392635" name="Changes" comment="" />
+    <list default="true" id="2d4a2c64-3f78-4c0b-8447-bb3f5e392635" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/repository/MatriculasRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/repository/MatriculasRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/MatriculasService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/MatriculasService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/MatriculasServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/MatriculasServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gestionfp/src/test/java/es/aulanosa/gestionfp/TestMatriculaV1.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/test/java/es/aulanosa/gestionfp/TestMatriculaServiceV1.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,21 +53,8 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.GestionfpApplication">
-    <configuration name="GestionfpApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.GestionfpApplication" />
-      <module name="gestionfp" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="es.aulanosa.gestionfp.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestAlumnoServiceV1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.TestMatriculaServiceV1.buscarMatriculaPorMes">
+    <configuration name="TestMatriculaServiceV1.buscarCursosDeMatricula" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gestionfp" />
       <extension name="coverage">
         <pattern>
@@ -70,29 +63,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
-      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestAlumnoServiceV1" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestAlumnoServiceV1.eliminarAlumno" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="gestionfp" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="es.aulanosa.gestionfp.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
-      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestAlumnoServiceV1" />
-      <option name="METHOD_NAME" value="eliminarAlumno" />
+      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestMatriculaServiceV1" />
+      <option name="METHOD_NAME" value="buscarCursosDeMatricula" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestAlumnoServiceV1.insertarAlumno" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestMatriculaServiceV1.buscarMatriculaPorMes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gestionfp" />
       <extension name="coverage">
         <pattern>
@@ -101,14 +79,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
-      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestAlumnoServiceV1" />
-      <option name="METHOD_NAME" value="insertarAlumno" />
+      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestMatriculaServiceV1" />
+      <option name="METHOD_NAME" value="buscarMatriculaPorMes" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestAlumnoServiceV1.modificar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestMatriculaServiceV1.buscarMatriculaPorNombre" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gestionfp" />
       <extension name="coverage">
         <pattern>
@@ -117,27 +95,59 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
-      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestAlumnoServiceV1" />
-      <option name="METHOD_NAME" value="modificar" />
+      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestMatriculaServiceV1" />
+      <option name="METHOD_NAME" value="buscarMatriculaPorNombre" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestMatriculaServiceV1.eliminarMatricula" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="gestionfp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="es.aulanosa.gestionfp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
+      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestMatriculaServiceV1" />
+      <option name="METHOD_NAME" value="eliminarMatricula" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestMatriculaServiceV1.modificarMatricula" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="gestionfp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="es.aulanosa.gestionfp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
+      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestMatriculaServiceV1" />
+      <option name="METHOD_NAME" value="modificarMatricula" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.GestionfpApplication" />
-      <item itemvalue="JUnit.TestAlumnoServiceV1.insertarAlumno" />
-      <item itemvalue="JUnit.TestAlumnoServiceV1" />
-      <item itemvalue="JUnit.TestAlumnoServiceV1.eliminarAlumno" />
-      <item itemvalue="JUnit.TestAlumnoServiceV1.modificar" />
+      <item itemvalue="JUnit.TestMatriculaServiceV1.buscarCursosDeMatricula" />
+      <item itemvalue="JUnit.TestMatriculaServiceV1.buscarMatriculaPorMes" />
+      <item itemvalue="JUnit.TestMatriculaServiceV1.buscarMatriculaPorNombre" />
+      <item itemvalue="JUnit.TestMatriculaServiceV1.eliminarMatricula" />
+      <item itemvalue="JUnit.TestMatriculaServiceV1.modificarMatricula" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GestionfpApplication" />
-        <item itemvalue="JUnit.TestAlumnoServiceV1.insertarAlumno" />
-        <item itemvalue="JUnit.TestAlumnoServiceV1.eliminarAlumno" />
-        <item itemvalue="JUnit.TestAlumnoServiceV1" />
-        <item itemvalue="JUnit.TestAlumnoServiceV1.modificar" />
+        <item itemvalue="JUnit.TestMatriculaServiceV1.buscarMatriculaPorMes" />
+        <item itemvalue="JUnit.TestMatriculaServiceV1.buscarCursosDeMatricula" />
+        <item itemvalue="JUnit.TestMatriculaServiceV1.buscarMatriculaPorNombre" />
+        <item itemvalue="JUnit.TestMatriculaServiceV1.eliminarMatricula" />
+        <item itemvalue="JUnit.TestMatriculaServiceV1.modificarMatricula" />
       </list>
     </recent_temporary>
   </component>

@@ -18,7 +18,7 @@ public interface MatriculasService {
     public void eliminar(Integer id);
 
     List<Matricula> buscarPorNombreDeMatricula(String nombre);
-    List<Matricula> buscarPorMesDeMatricula(String nombre);
+    List<Matricula> buscarPorMesDeMatricula(Integer numMes);
 
-    public List<Curso> buscarTodosCursosPorId (Integer id);
+    public List<Matricula> buscarTodosCursosPorId (Integer id);
 }

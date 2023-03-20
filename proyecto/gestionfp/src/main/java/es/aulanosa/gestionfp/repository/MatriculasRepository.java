@@ -11,11 +11,10 @@ import java.util.List;
 @Repository
 public interface MatriculasRepository extends JpaRepository<Matricula,Integer> {
 
-    @Query("SELECT m FROM Matriculas m WHERE m.nombre = ?1")
+    @Query("SELECT m FROM Matricula m WHERE m.nombre = ?1")
     public List<Matricula> buscarPorNombre (String nombre);
 
-    @Query("SELECT m FROM Matriculas m WHERE m.fecha = ?1")
-    public List<Matricula> buscarPorMes (String mes);
-    @Query("SELECT c FROM Curso c join fetch c.matriculas cm WHERE cm.idCurso = ?1")
-    public List<Curso> buscarTodosCursosPorId (Integer id);
+    @Query("SELECT m FROM Matricula m WHERE month(fecha) = ?1")
+    public List<Matricula> buscarPorMes (Integer mes);
+    public List<Matricula> findAllByidCurso (Integer id);
 }

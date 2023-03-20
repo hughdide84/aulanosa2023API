@@ -16,7 +16,7 @@ import java.util.List;
 
 @TestClassOrder(ClassOrderer.OrderAnnotation.class)
 @SpringBootTest
-public class TestMatriculaV1 {
+public class TestMatriculaServiceV1 {
 
     @Autowired
     MatriculasService matriculasService;
@@ -93,7 +93,7 @@ public class TestMatriculaV1 {
         var a = matriculasService.consultarPorId(1);
 
         if (a != null) {
-            matriculasService.eliminar(1);
+            matriculasService.eliminar(31);
             System.out.println("Eliminado");
         }
 
@@ -113,13 +113,13 @@ public class TestMatriculaV1 {
     @Test
     @Order(7)
     void buscarCursosDeMatricula() {
-        List<Curso> a = matriculasService.buscarTodosCursosPorId(23);
-        System.out.println(a);
+        List<Matricula> matriculasPorIdCurso = matriculasService.buscarTodosCursosPorId(23);
+        System.out.println(matriculasPorIdCurso);
     }
     @Test
-    @Order(7)
+    @Order(8)
     void buscarMatriculaPorMes() {
-        List<Matricula> a = matriculasService.buscarPorMesDeMatricula("enero");
+        List<Matricula> a = matriculasService.buscarPorMesDeMatricula(3);
         System.out.println(a);
     }
 
