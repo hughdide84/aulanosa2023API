@@ -15,6 +15,8 @@ public class UsuarioServiceImp implements UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+    @Autowired
+    private
 
     // Crea un nuevo usuario
     @Override

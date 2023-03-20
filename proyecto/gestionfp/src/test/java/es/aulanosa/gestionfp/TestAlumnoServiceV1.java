@@ -25,8 +25,7 @@ import java.util.Optional;
 public class TestAlumnoServiceV1 {
 
     @Autowired
-    private PagoService service;
-    private MatriculaService matriculaService;
+    private AlumnoService service;
 
     @Test()
     @Order(1)
@@ -48,7 +47,7 @@ public class TestAlumnoServiceV1 {
 
     @Test
     @Order(2)
-    void bucarPorId(){
+    void bucarPorId() {
 
         System.out.println(service.buscarPorId(3));
 
@@ -56,7 +55,7 @@ public class TestAlumnoServiceV1 {
 
     @Test
     @Order(3)
-    void buscarTodo(){
+    void buscarTodo() {
 
         System.out.println(service.buscarTodo());
 
@@ -67,43 +66,31 @@ public class TestAlumnoServiceV1 {
     void modificarAlumno() throws NoSeHaEncontradoException {
         Optional<Alumno> optionalAlumno = service.buscarPorId(4);
 
-        if(optionalAlumno.isPresent()){
+        if (optionalAlumno.isPresent()) {
             optionalAlumno.get().setNombre("AlumnoMOD");
             Alumno alumno1 = service.modificarAlumno(optionalAlumno.get());
 
             System.out.println("Alumno modificado a: " + optionalAlumno);
-        }else{
+        } else {
             throw new NoSeHaEncontradoException("No se ha encontrado el alumno especificado");
         }
     }
+
     @Test
     @Order(5)
-    void eliminarAlumno(){
+    void eliminarAlumno() {
 
-        try{
+        try {
             service.eliminarAlumno(3);
             System.out.println("Alumno eliminado con exito");
 
-        }catch (DataIntegrityViolationException e){
+        } catch (DataIntegrityViolationException e) {
             System.out.println("No se puede eliminar porque existen relaciones con la entidad");
-        }catch (NoSeHaEncontradoException e){
+        } catch (NoSeHaEncontradoException e) {
             System.out.println("No se ha encontrado el alumno");
         }
 
     }
 
-    @Test
-    @Order(6)
-    List<Pago> pagosPorId(Integer id){
-
-        List<Pago> pagos = new ArrayList<>();
-
-        if(service.buscarPorId(id).isPresent()){
-
-        }
-
-
-
-    }
 
 }
