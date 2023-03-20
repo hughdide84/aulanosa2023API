@@ -59,28 +59,14 @@ public class MatriculasServiceImp implements MatriculasService{
     }
 
     @Override
+    public List<Matricula> buscarPorMesDeMatricula(String nombre) {
+        return null;
+    }
+
+    @Override
     @Transactional
     public List<Curso> buscarTodosCursosPorId(Integer idCurso) {
         return matriculasRepository.buscarTodosCursosPorId(idCurso);
     }
-    @Override
-    @Transactional
-    public List<Matricula> buscarPorMesDeMatricula(String mes) {
 
-        List<Matricula> matriculas = new ArrayList<>();
-
-        matriculas = matriculasRepository.buscarPorMes(mes);
-
-        List<Matricula> matriculaFecha = new ArrayList<>();
-
-        for (Matricula: matriculas
-             matriculasFecha) {
-
-
-        }
-
-
-
-
-    }
 }

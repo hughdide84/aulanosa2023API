@@ -16,7 +16,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Optional;
 
 @TestClassOrder(ClassOrderer.OrderAnnotation.class)
@@ -29,12 +31,12 @@ public class TestPagoServiceV1 {
 
     @Test
     @Order(1)
-    public void testInsertar(){
+    public void insertarPago(){
         Pago pago = new Pago();
-        pago.setIdMatricula(31);
-        pago.setRecibo("A0001");
+        pago.setIdMatricula(32);
+        pago.setRecibo("A0003");
         pago.setEstado('a');
-        pago.setObservaciones("hola");
+        pago.setObservaciones("adios");
         pago.setIdUsuario(14);
         pago.setFecha(new Timestamp(new GregorianCalendar(2014, 3, 24).getTimeInMillis()));
         var insertado = servicio.guardar(pago);
@@ -42,8 +44,8 @@ public class TestPagoServiceV1 {
     }
     @Test
     @Order(2)
-    void consultarProyectoPorId() {
-        System.out.println(servicio.buscarPorId(31));
+    void buscarPagoPorId() {
+        System.out.println(servicio.buscarPorId(32));
     }
 
     @Test
@@ -57,7 +59,7 @@ public class TestPagoServiceV1 {
     @Test
     @Order(4)
     void modificarPago() throws NoSeHaEncontradoException, NoSuchFieldException {
-        Optional<Pago> optionalPago = servicio.buscarPorId(31);
+        Optional<Pago> optionalPago = servicio.buscarPorId(33);
 
 
 
@@ -73,15 +75,29 @@ public class TestPagoServiceV1 {
 
     @Test
     @Order(5)
-    void eliminarAlumno(){
+    void eliminarPago(){
 
         try{
-            servicio.borrar(31);
+            servicio.borrar(32);
             System.out.println("Pago eliminado con exito");
 
         }catch (DataIntegrityViolationException e){
             System.out.println("No se puede eliminar porque existen relaciones con la entidad");
         }
+
+    }
+    @Test
+    @Order(6)
+    public void listarPorIdMatricula() throws NoSeHaEncontradoException {
+
+
+        try {
+            System.out.println(servicio.listarPorMatricula(35));
+        }catch (NoSeHaEncontradoException e){
+            System.out.println("No se a encontrado el idMatricula especificado");
+        }
+
+
 
     }
 }

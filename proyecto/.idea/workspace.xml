@@ -6,7 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="2d4a2c64-3f78-4c0b-8447-bb3f5e392635" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gestionfp/src/test/java/es/aulanosa/gestionfp/TestAlumnoServiceV1.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/test/java/es/aulanosa/gestionfp/TestAlumnoServiceV1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/repository/MatriculasRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/repository/MatriculasRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/repository/PagoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/repository/PagoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/MatriculasServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/MatriculasServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/PagoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/PagoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/PagoServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/PagoServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/UsuarioServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/UsuarioServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gestionfp/src/test/java/es/aulanosa/gestionfp/TestPagoServiceV1.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/test/java/es/aulanosa/gestionfp/TestPagoServiceV1.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,8 +56,8 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.TestPagoServiceV1.eliminarAlumno">
-    <configuration name="TestPagoServiceV1.buscarTodo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.TestPagoServiceV1.listarPorIdMatricula (1)">
+    <configuration name="TestPagoServiceV1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gestionfp" />
       <extension name="coverage">
         <pattern>
@@ -61,13 +67,28 @@
       </extension>
       <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
       <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestPagoServiceV1" />
-      <option name="METHOD_NAME" value="buscarTodo" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestPagoServiceV1.eliminarPago" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="gestionfp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="es.aulanosa.gestionfp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
+      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestPagoServiceV1" />
+      <option name="METHOD_NAME" value="eliminarPago" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestPagoServiceV1.consultarProyectoPorId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestPagoServiceV1.insertarPago" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gestionfp" />
       <extension name="coverage">
         <pattern>
@@ -77,13 +98,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
       <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestPagoServiceV1" />
-      <option name="METHOD_NAME" value="consultarProyectoPorId" />
+      <option name="METHOD_NAME" value="insertarPago" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestPagoServiceV1.eliminarAlumno" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestPagoServiceV1.listarPorIdMatricula (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gestionfp" />
       <extension name="coverage">
         <pattern>
@@ -93,13 +114,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
       <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestPagoServiceV1" />
-      <option name="METHOD_NAME" value="eliminarAlumno" />
+      <option name="METHOD_NAME" value="listarPorIdMatricula" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestPagoServiceV1.modificarPago" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestPagoServiceV1.listarPorIdMatricula" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gestionfp" />
       <extension name="coverage">
         <pattern>
@@ -109,42 +130,26 @@
       </extension>
       <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
       <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestPagoServiceV1" />
-      <option name="METHOD_NAME" value="modificarPago" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestPagoServiceV1.testInsertar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="gestionfp" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="es.aulanosa.gestionfp.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
-      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestPagoServiceV1" />
-      <option name="METHOD_NAME" value="testInsertar" />
+      <option name="METHOD_NAME" value="listarPorIdMatricula(java.lang.Integer)" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.TestPagoServiceV1.buscarTodo" />
-      <item itemvalue="JUnit.TestPagoServiceV1.consultarProyectoPorId" />
-      <item itemvalue="JUnit.TestPagoServiceV1.eliminarAlumno" />
-      <item itemvalue="JUnit.TestPagoServiceV1.modificarPago" />
-      <item itemvalue="JUnit.TestPagoServiceV1.testInsertar" />
+      <item itemvalue="JUnit.TestPagoServiceV1" />
+      <item itemvalue="JUnit.TestPagoServiceV1.eliminarPago" />
+      <item itemvalue="JUnit.TestPagoServiceV1.insertarPago" />
+      <item itemvalue="JUnit.TestPagoServiceV1.listarPorIdMatricula" />
+      <item itemvalue="JUnit.TestPagoServiceV1.listarPorIdMatricula (1)" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestPagoServiceV1.eliminarAlumno" />
-        <item itemvalue="JUnit.TestPagoServiceV1.modificarPago" />
-        <item itemvalue="JUnit.TestPagoServiceV1.buscarTodo" />
-        <item itemvalue="JUnit.TestPagoServiceV1.consultarProyectoPorId" />
-        <item itemvalue="JUnit.TestPagoServiceV1.testInsertar" />
+        <item itemvalue="JUnit.TestPagoServiceV1.listarPorIdMatricula (1)" />
+        <item itemvalue="JUnit.TestPagoServiceV1.listarPorIdMatricula" />
+        <item itemvalue="JUnit.TestPagoServiceV1" />
+        <item itemvalue="JUnit.TestPagoServiceV1.insertarPago" />
+        <item itemvalue="JUnit.TestPagoServiceV1.eliminarPago" />
       </list>
     </recent_temporary>
   </component>

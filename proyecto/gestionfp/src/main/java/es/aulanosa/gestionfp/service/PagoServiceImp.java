@@ -2,11 +2,13 @@ package es.aulanosa.gestionfp.service;
 
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Pago;
+import es.aulanosa.gestionfp.repository.MatriculasRepository;
 import es.aulanosa.gestionfp.repository.PagoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +17,6 @@ public class PagoServiceImp implements PagoService {
 
     @Autowired
     private PagoRepository repositorio;
-
     @Transactional
     @Override
     public Pago guardar(Pago pago) {
@@ -48,9 +49,17 @@ public class PagoServiceImp implements PagoService {
         }
     @Transactional(readOnly = true)
     @Override
-    public List<Pago> listarPorMatricula(int idMatricula) {
+    public List<Pago> listarPorMatricula(int idMatricula) throws NoSeHaEncontradoException {
 
-        return null;
+
+        List<Pago> pagos = new ArrayList<>();
+
+        if(!repositorio.findAllByIdMatricula(idMatricula).isEmpty()){
+            pagos = repositorio.findAllByIdMatricula(idMatricula);
+            return pagos;
+        }else{
+            throw new NoSeHaEncontradoException("No existe el idMatricula");
+        }
 
     }
 }

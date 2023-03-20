@@ -16,5 +16,5 @@ public interface PagoService {
     public void borrar(Integer id);
 
     @Transactional(readOnly = true)
-    List<Pago> listarPorMatricula(int idMatricula);
+    List<Pago> listarPorMatricula(int idMatricula) throws NoSeHaEncontradoException;
 }

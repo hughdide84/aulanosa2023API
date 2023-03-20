@@ -2,6 +2,7 @@ package es.aulanosa.gestionfp.service;
 
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Usuario;
+import es.aulanosa.gestionfp.repository.MatriculasRepository;
 import es.aulanosa.gestionfp.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,7 @@ public class UsuarioServiceImp implements UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
-    @Autowired
-    private
+
 
     // Crea un nuevo usuario
     @Override
