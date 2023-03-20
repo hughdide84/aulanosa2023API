@@ -15,10 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.GregorianCalendar;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @TestClassOrder(ClassOrderer.OrderAnnotation.class)
 @SpringBootTest
@@ -100,6 +97,13 @@ public class TestAlumnoServiceV1 {
         }catch (NoSeHaEncontradoException e){
             System.out.println("No se ha encontrado el alumno");
         }
+    }
+
+    @Test
+    @Order(7)
+    void findX() {
+        var a =service.buscarPorCursoEstudioEstado(3, 3);
+        System.out.println(a);
     }
 
 

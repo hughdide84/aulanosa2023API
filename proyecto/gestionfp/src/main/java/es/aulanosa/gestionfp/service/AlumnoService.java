@@ -2,9 +2,11 @@ package es.aulanosa.gestionfp.service;
 
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Alumno;
+import es.aulanosa.gestionfp.model.AlumnoEmpresa;
 import es.aulanosa.gestionfp.model.Curso;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface AlumnoService {
@@ -20,5 +22,6 @@ public interface AlumnoService {
     Alumno buscarPorUsuario(String nombre);
 
     List<Alumno> buscarPorEstado() throws NoSeHaEncontradoException;
+    List<AlumnoEmpresa> buscarPorCursoEstudioEstado(int idCurso, int idEstudios);
 
 }

@@ -2,12 +2,14 @@ package es.aulanosa.gestionfp.service;
 
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Alumno;
+import es.aulanosa.gestionfp.model.AlumnoEmpresa;
 import es.aulanosa.gestionfp.repository.AlumnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -74,4 +76,10 @@ public class AlumnoServiceImp implements AlumnoService{
     public List<Alumno> buscarPorEstado() throws NoSeHaEncontradoException {
             return repositorio.findAllAlumnoActivos();
         }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<AlumnoEmpresa> buscarPorCursoEstudioEstado(int idCurso, int idEstudios) {
+        return repositorio.buscarPorCursoEstudioEstado(idCurso, idEstudios);
+    }
 }

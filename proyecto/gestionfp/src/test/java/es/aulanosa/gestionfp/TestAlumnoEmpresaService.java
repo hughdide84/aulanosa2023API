@@ -21,9 +21,9 @@ public class TestAlumnoEmpresaService {
     @Order(1)
     void insertarAlumnosEmpresas() throws NoSeHaEncontradoException {
         AlumnoEmpresa alumnosEmpresas = new AlumnoEmpresa();
-        alumnosEmpresas.setIdAlumno(3);
-        alumnosEmpresas.setIdEmpresa(8);
-        alumnosEmpresas.setEstado('a');
+        alumnosEmpresas.setIdAlumno(40);
+        alumnosEmpresas.setIdEmpresa(19);
+        alumnosEmpresas.setEstado('C');
         try {
             var a = alumnoEmpresaService.guardarAlumnoEmpresa(alumnosEmpresas);
             System.out.println(a);

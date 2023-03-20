@@ -1,9 +1,11 @@
 package es.aulanosa.gestionfp.service;
 
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
+import es.aulanosa.gestionfp.model.Alumno;
 import es.aulanosa.gestionfp.model.Empresa;
 
 import java.util.List;
+import java.util.Map;
 
 public interface EmpresaService {
 
@@ -13,4 +15,6 @@ public interface EmpresaService {
     void deleteById(int id);
     List<Empresa> findAll();
     List<Empresa> findAllByNombre(String nombre);
+
+    Map<Empresa, List<Alumno>> buscarEmpresaConAlumnosPorCursoEstudio(int idCurso, int idEstudios);
 }
