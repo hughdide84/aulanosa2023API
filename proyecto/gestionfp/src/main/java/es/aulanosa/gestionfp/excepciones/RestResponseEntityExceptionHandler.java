@@ -45,7 +45,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     @ExceptionHandler(Exception.class)
     protected ResponseEntity<Object> handleDataIntegrityViolationException(Exception exception) {
         List<ErrorDTO> listaErrores = new ArrayList<>();
-        ErrorDTO errorDTO = new ErrorDTO(Errores.COD_ERROR_INTERNO,"Error interno del sistema.");
+        ErrorDTO errorDTO = new ErrorDTO(Errores.COD_ERROR_INTERNO,"Error interno del sistema : "+exception.getMessage());
         listaErrores.add(errorDTO);
         return new ResponseEntity<>(listaErrores, HttpStatus.INTERNAL_SERVER_ERROR);
     }
