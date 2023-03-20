@@ -36,7 +36,7 @@ public class TestMatriculaServiceV1 {
         Timestamp timestamp = new Timestamp(122,2,30,16,30,21,1);
         matricula.setFecha(timestamp);
         try {
-            var a = matriculasService.insertar(matricula);
+            var a = matriculasService.insertarMatricula(matricula);
             System.out.println(a);
         }
         catch (Exception e) {
@@ -47,14 +47,14 @@ public class TestMatriculaServiceV1 {
     @Test
     @Order(2)
     void consultarMatriculasPorId() {
-        var a = matriculasService.consultarPorId(32);
+        var a = matriculasService.consultarPorIdMatricula(32);
         System.out.println(a);
     }
 
     @Test
     @Order(3)
     void consultarTodos() {
-        List<Matricula> a = matriculasService.consultarTodos();
+        List<Matricula> a = matriculasService.consultarTodasMatriculas();
         System.out.println(a);
     }
 
@@ -62,7 +62,7 @@ public class TestMatriculaServiceV1 {
     @Order(4)
     void modificarMatricula() throws NoSeHaEncontradoException {
 
-        var a = matriculasService.consultarPorId(32);
+        var a = matriculasService.consultarPorIdMatricula(32);
 
         if (a.isPresent()) {
             Matricula matricula = new Matricula();
@@ -78,7 +78,7 @@ public class TestMatriculaServiceV1 {
             Timestamp timestamp = new Timestamp(102,5,15,16,30,21,1);
             matricula.setFecha(timestamp);
 
-            var g = matriculasService.insertar(matricula);
+            var g = matriculasService.insertarMatricula(matricula);
             System.out.println(g);
         }
 
@@ -90,10 +90,10 @@ public class TestMatriculaServiceV1 {
     @Test
     @Order(5)
     void eliminarMatricula() throws NoSeHaEncontradoException {
-        var a = matriculasService.consultarPorId(1);
+        var a = matriculasService.consultarPorIdMatricula(1);
 
         if (a != null) {
-            matriculasService.eliminar(31);
+            matriculasService.eliminarMatricula(31);
             System.out.println("Eliminado");
         }
 
