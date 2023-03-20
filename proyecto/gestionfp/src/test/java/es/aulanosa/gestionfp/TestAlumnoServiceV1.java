@@ -27,7 +27,7 @@ public class TestAlumnoServiceV1 {
     @Order(1)
     void insertarAlumno() {
         Alumno alumno = new Alumno();
-        alumno.setIdCurso(1);
+        alumno.setIdCurso(3);
         alumno.setIdEstudios(3);
         alumno.setNombre("holsa");
         alumno.setCv('a');
@@ -85,6 +85,16 @@ public class TestAlumnoServiceV1 {
             System.out.println("No se ha encontrado el alumno");
         }
 
+    }
+    @Test
+    @Order(6)
+    void testBuscarPorEstado() {
+        try {
+            var a =service.buscarPorEstado();
+            System.out.println(a);
+        }catch (NoSeHaEncontradoException e){
+            System.out.println("No se ha encontrado el alumno");
+        }
     }
 
 }
