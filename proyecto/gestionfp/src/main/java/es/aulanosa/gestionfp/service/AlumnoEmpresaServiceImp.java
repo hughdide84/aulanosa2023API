@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.service;
 
+import es.aulanosa.gestionfp.dto.AlumnoEmpresaDTO;
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Alumno;
 import es.aulanosa.gestionfp.model.AlumnoEmpresa;
@@ -71,6 +72,16 @@ public class AlumnoEmpresaServiceImp implements AlumnoEmpresaService {
         return alumnoEmpresaRepository.findAllEmpresaByAlumnoId(alumnoId);
     }
 
+    //busca todas la relaciones de alumnos y empresas ordenadas por alumno
+    @Override
+    @Transactional(readOnly = true)
+    public List<AlumnoEmpresa> buscarAlumnosEmpresa(int idCurso, int idEstudio) {
+        return alumnoEmpresaRepository.findAlumnosEmpresas(idCurso, idEstudio);
+    }
 
+    @Override
+    public List<AlumnoEmpresa> buscarEmpresasAlumnos(int idCurso, int idEstudio) {
+        return alumnoEmpresaRepository.findEmpresasAlumnos(idCurso, idEstudio);
+    }
 
 }

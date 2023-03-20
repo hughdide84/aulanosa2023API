@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.service;
 
+import es.aulanosa.gestionfp.dto.AlumnoEmpresaDTO;
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Alumno;
 import es.aulanosa.gestionfp.model.AlumnoEmpresa;
@@ -18,5 +19,6 @@ public interface AlumnoEmpresaService {
     List<Alumno> buscarTodosAlumnosPorIdEmpresa(int EmpresaId);
     List<Empresa> buscarTodasEmpresasPorIdAlumno(int AlumnoId);
 
-
+    List<AlumnoEmpresa> buscarAlumnosEmpresa(int idCurso, int idEstudio);
+    List<AlumnoEmpresa> buscarEmpresasAlumnos(int idCurso, int idEstudio);
 }

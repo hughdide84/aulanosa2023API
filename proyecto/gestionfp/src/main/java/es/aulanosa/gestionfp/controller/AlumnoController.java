@@ -2,10 +2,12 @@ package es.aulanosa.gestionfp.controller;
 
 
 import es.aulanosa.gestionfp.dto.AlumnoDTO;
+import es.aulanosa.gestionfp.dto.AlumnoEmpresaDTO;
 import es.aulanosa.gestionfp.dto.EmpresaDTO;
 import es.aulanosa.gestionfp.dto.UsuarioDTO;
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Alumno;
+import es.aulanosa.gestionfp.model.AlumnoEmpresa;
 import es.aulanosa.gestionfp.model.Empresa;
 import es.aulanosa.gestionfp.model.Usuario;
 import es.aulanosa.gestionfp.service.AlumnoEmpresaService;
@@ -144,5 +146,20 @@ public class AlumnoController {
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontraron alumnos");
         }
+    }
+
+    @GetMapping("/empresa/{idCurso}/{idEstudio}")
+    //Devuelve un listado de alumnos que tengan el estado activo
+    public ResponseEntity<?> buscarAlumnoEmpresa(@PathVariable int idCurso, @PathVariable int idEstudio) {
+        List<AlumnoEmpresa> listaAlumnosEmpresas = serviceAlumnoEmpresa.buscarAlumnosEmpresa(idCurso,idEstudio);
+
+        List<AlumnoEmpresaDTO> listaAlumnoEmpresaDTO = new ArrayList<>();
+        for(AlumnoEmpresa alumnoEmpresa : listaAlumnosEmpresas) {
+            AlumnoEmpresaDTO alumnoEmpresaDTO = new AlumnoEmpresaDTO();
+            alumnoEmpresaDTO.crearDTO(alumnoEmpresa);
+            listaAlumnoEmpresaDTO.add(alumnoEmpresaDTO);
+        }
+
+        return ResponseEntity.ok(listaAlumnoEmpresaDTO);
     }
 }
