@@ -41,7 +41,6 @@ public class AlumnoServiceImp implements AlumnoService{
         }else {
             throw new NoSeHaEncontradoException("No existe en alumno");
         }
-
     }
     //metodo para insertar un alumno en la BD
     @Transactional
@@ -69,4 +68,10 @@ public class AlumnoServiceImp implements AlumnoService{
     public Alumno buscarPorUsuario(String nombre) {
         return repositorio.findByUsuario(nombre);
     }
+
+    @Transactional
+    @Override
+    public List<Alumno> buscarPorEstado() throws NoSeHaEncontradoException {
+            return repositorio.findAllAlumnoActivos();
+        }
 }

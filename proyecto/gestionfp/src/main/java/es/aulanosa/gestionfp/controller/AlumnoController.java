@@ -134,6 +134,15 @@ public class AlumnoController {
         }
     }
 
+    @GetMapping("/estado")
+    //Devuelve un listado de alumnos que tengan el estado activo
+    public ResponseEntity<?> buscarPorEstado() throws NoSeHaEncontradoException {
+        List<Alumno> alumnos = service.buscarPorEstado();
 
-
+        if (!alumnos.isEmpty()) {
+            return ResponseEntity.ok(alumnos);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontraron alumnos");
+        }
+    }
 }
