@@ -92,8 +92,8 @@ public class TestMatriculaServiceV1 {
     void eliminarMatricula() throws NoSeHaEncontradoException {
         var a = matriculasService.consultarPorIdMatricula(1);
 
-        if (a != null) {
-            matriculasService.eliminarMatricula(31);
+        if (a.isPresent()) {
+            matriculasService.eliminarMatricula(a.get().getId());
             System.out.println("Eliminado");
         }
 
