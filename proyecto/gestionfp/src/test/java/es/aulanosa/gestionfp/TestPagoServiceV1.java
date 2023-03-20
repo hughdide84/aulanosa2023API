@@ -39,33 +39,27 @@ public class TestPagoServiceV1 {
         pago.setObservaciones("adios");
         pago.setIdUsuario(14);
         pago.setFecha(new Timestamp(new GregorianCalendar(2014, 3, 24).getTimeInMillis()));
-        var insertado = servicio.guardar(pago);
+        var insertado = servicio.guardarPago(pago);
 
     }
     @Test
     @Order(2)
     void buscarPagoPorId() {
-        System.out.println(servicio.buscarPorId(32));
+        System.out.println(servicio.buscarPorIdPago(32));
     }
+
+
 
     @Test
     @Order(3)
-    void buscarTodo(){
-
-        System.out.println(servicio.buscarTodo());
-
-    }
-
-    @Test
-    @Order(4)
     void modificarPago() throws NoSeHaEncontradoException, NoSuchFieldException {
-        Optional<Pago> optionalPago = servicio.buscarPorId(33);
+        Optional<Pago> optionalPago = servicio.buscarPorIdPago(33);
 
 
 
         if(optionalPago.isPresent()){
             optionalPago.get().setPago(238);
-            Pago pago = servicio.modificar(optionalPago.get());
+            Pago pago = servicio.modificarPago(optionalPago.get());
 
             System.out.println("Pago modificado a: " + optionalPago);
         }else{
@@ -74,11 +68,16 @@ public class TestPagoServiceV1 {
     }
 
     @Test
+    @Order(4)
+    void buscarPagoPorIdModificado() {
+        System.out.println(servicio.buscarPorIdPago(32));
+    }
+    @Test
     @Order(5)
     void eliminarPago(){
 
         try{
-            servicio.borrar(32);
+            servicio.borrarPago(32);
             System.out.println("Pago eliminado con exito");
 
         }catch (DataIntegrityViolationException e){
@@ -98,6 +97,14 @@ public class TestPagoServiceV1 {
         }
 
 
+
+    }
+
+    @Test
+    @Order(7)
+    void buscarTodoLosPagos(){
+
+        System.out.println(servicio.buscarTodosPagos());
 
     }
 }

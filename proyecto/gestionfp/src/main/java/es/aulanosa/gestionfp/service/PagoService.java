@@ -9,11 +9,11 @@ import java.util.Optional;
 
 public interface PagoService {
 
-    public Pago guardar(Pago pago);
-    public List<Pago> buscarTodo();
-    public Optional<Pago> buscarPorId(Integer id);
-    public Pago modificar(Pago pago) throws NoSeHaEncontradoException, NoSuchFieldException;
-    public void borrar(Integer id);
+    public Pago guardarPago(Pago pago);
+    public List<Pago> buscarTodosPagos();
+    public Optional<Pago> buscarPorIdPago(Integer id);
+    public Pago modificarPago(Pago pago) throws NoSeHaEncontradoException, NoSuchFieldException;
+    public void borrarPago(Integer id);
 
     @Transactional(readOnly = true)
     List<Pago> listarPorMatricula(int idMatricula) throws NoSeHaEncontradoException;

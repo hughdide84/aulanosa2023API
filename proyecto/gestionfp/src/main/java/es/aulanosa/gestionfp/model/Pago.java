@@ -27,6 +27,7 @@ public class Pago {
     @Column (name = "recibo")
     @Size(max = 20, message = "El nombre debe tener entre 1 y 50 caracteres")
     @NotNull
+    @NotBlank
     private String recibo;
     @Column (name = "pago")
     @NotNull

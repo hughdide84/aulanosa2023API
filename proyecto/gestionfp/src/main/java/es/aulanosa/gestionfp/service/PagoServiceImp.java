@@ -19,22 +19,26 @@ public class PagoServiceImp implements PagoService {
     private PagoRepository repositorio;
     @Transactional
     @Override
-    public Pago guardar(Pago pago) {
+    //guarda un pago nuevo en la BD
+    public Pago guardarPago(Pago pago) {
         return repositorio.save(pago);
     }
     @Transactional(readOnly = true)
     @Override
-    public List<Pago> buscarTodo() {
+    //devuelve una lista de todos los pagos
+    public List<Pago> buscarTodosPagos() {
         return repositorio.findAll();
     }
     @Transactional(readOnly = true)
     @Override
-    public Optional<Pago> buscarPorId(Integer id) {
+    //devuelve el pago que coincida con el id introducido
+    public Optional<Pago> buscarPorIdPago(Integer id) {
         return repositorio.findById(id);
     }
     @Transactional
     @Override
-    public Pago modificar(Pago pago) throws NoSeHaEncontradoException, NoSuchFieldException {
+    //modifica un pago existente
+    public Pago modificarPago(Pago pago) throws NoSeHaEncontradoException, NoSuchFieldException {
         if (repositorio.findById(pago.getId()).isPresent()) {
             return repositorio.save(pago);
         } else{
@@ -44,11 +48,13 @@ public class PagoServiceImp implements PagoService {
     }
     @Transactional
     @Override
-    public void borrar (Integer id){
+    //borra un pago existente a partir de el id proporcionado
+    public void borrarPago(Integer id){
             repositorio.deleteById(id);
         }
     @Transactional(readOnly = true)
     @Override
+    //devuelve una lista de pagos a partir de un idMatricula que se le pase
     public List<Pago> listarPorMatricula(int idMatricula) throws NoSeHaEncontradoException {
 
 
