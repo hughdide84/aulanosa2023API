@@ -100,4 +100,14 @@ public class AlumnoExternoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
         }
     }
+    @GetMapping("/estado")
+    public ResponseEntity<?> buscarPorEstado() throws NoSeHaEncontradoException {
+        if(!service.buscarPorEstado().isEmpty()){
+            return ResponseEntity.status(HttpStatus.OK).body(service.buscarPorEstado());
+        }else{
+            ErrorDTO errorDTO = new ErrorDTO("E0003", "No hay registros en la base de datos");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
+        }
+    }
+
 }

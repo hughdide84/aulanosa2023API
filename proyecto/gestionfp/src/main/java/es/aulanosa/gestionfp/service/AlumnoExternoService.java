@@ -15,5 +15,6 @@ public interface AlumnoExternoService {
     public AlumnoExterno guardar(AlumnoExterno alumnoExterno);
     public AlumnoExterno modificar(AlumnoExterno alumnoExterno) throws NoSeHaEncontradoException;
     public Optional<AlumnoExterno> listarPorId(Integer id) throws NoSeHaEncontradoException;
+    List<AlumnoExterno> buscarPorEstado() throws NoSeHaEncontradoException;
 
 }

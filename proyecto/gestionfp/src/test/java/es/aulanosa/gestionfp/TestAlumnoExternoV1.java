@@ -33,7 +33,7 @@ public class TestAlumnoExternoV1 {
 		alumnosExternos.setInicio(new Timestamp(new GregorianCalendar(2022, 3, 23).getTimeInMillis()));
 		alumnosExternos.setConvenio('a');
 		alumnosExternos.setEspecialidad("s");
-		alumnosExternos.setIdCurso(1);
+		alumnosExternos.setIdCurso(4);
 		alumnosExternos.setHorario('a');
 		alumnosExternos.setTelefono("1");
 		alumnosExternos.setEvaluacion('a');

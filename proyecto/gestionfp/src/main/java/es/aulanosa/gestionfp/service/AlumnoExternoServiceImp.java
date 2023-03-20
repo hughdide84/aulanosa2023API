@@ -6,7 +6,6 @@ import es.aulanosa.gestionfp.repository.AlumnoExternoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.support.StandardMultipartHttpServletRequest;
 
 import java.util.List;
 import java.util.Optional;
@@ -63,5 +62,10 @@ public class AlumnoExternoServiceImp implements AlumnoExternoService {
         }else{
             throw new NoSeHaEncontradoException("No se ha encontrado el alumno especificado con ese ID");
         }
+    }
+    @Transactional
+    @Override
+    public List<AlumnoExterno> buscarPorEstado() throws NoSeHaEncontradoException {
+        return repository.findAllAlumnoExternosActivos();
     }
 }
