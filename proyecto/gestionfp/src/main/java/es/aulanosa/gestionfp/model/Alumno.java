@@ -48,6 +48,9 @@ public class Alumno {
     @Column(name = "finPr")
     private Date finPr;
 
+    @Column(name = "usuario")
+    private String usuario;
+
     @JsonIgnore
     @OneToMany(mappedBy = "idAlumno",cascade = CascadeType.REMOVE)
     private List<AlumnoEmpresa> alumnoEmpresa;

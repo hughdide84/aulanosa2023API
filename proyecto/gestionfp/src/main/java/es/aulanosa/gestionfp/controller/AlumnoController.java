@@ -120,8 +120,20 @@ public class AlumnoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontraron empresas asignadas al alumno consultado");
 
         }
-
     }
+
+    //devuelve alumno por usuario
+    @GetMapping("/usuario/{usuario}")
+    public ResponseEntity<?> alumnoPorUsuario(@PathVariable String usuario) {
+        Alumno alumnoConsultado = service.buscarPorUsuario(usuario);
+
+        if (alumnoConsultado != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(alumnoConsultado);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe ningún alumno con ese usuario");
+        }
+    }
+
 
 
 }

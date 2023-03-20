@@ -15,5 +15,7 @@ public interface AlumnoService {
     Alumno modificarAlumno(Alumno alumno) throws NoSeHaEncontradoException;
     void eliminarAlumno(int id) throws NoSeHaEncontradoException;
 
+    Alumno buscarPorUsuario(String nombre);
+
 
 }

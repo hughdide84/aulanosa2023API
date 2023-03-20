@@ -63,4 +63,10 @@ public class AlumnoServiceImp implements AlumnoService{
         }
         return alumno;
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Alumno buscarPorUsuario(String nombre) {
+        return repositorio.findByUsuario(nombre);
+    }
 }
