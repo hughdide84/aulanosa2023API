@@ -54,8 +54,8 @@ public class TestAlumnoEmpresaService {
 
     @Test
     @Order(4)
-    void consultarTodos() {
-        var a = alumnoEmpresaService.buscarTodoAlumnoEmpresa();
+    void consultarAlumnosEmpresasPorId1() {
+        var a = alumnoEmpresaService.buscarPorIdAlumnoEmpresa(1);
         System.out.println(a);
     }
 
