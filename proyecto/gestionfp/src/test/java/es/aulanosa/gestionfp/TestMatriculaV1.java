@@ -119,7 +119,7 @@ public class TestMatriculaV1 {
     @Test
     @Order(7)
     void buscarMatriculaPorMes() {
-        List<Matricula> a = matriculasService.bu(23);
+        List<Matricula> a = matriculasService.buscarPorMesDeMatricula("enero");
         System.out.println(a);
     }
 
