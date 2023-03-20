@@ -29,12 +29,14 @@ public class AsignaturaHorarioController {
     public ResponseEntity<?> altaAsignaturaHorario(@RequestBody AsignaturaHorarioDTO asignaturaHorarioDTO){
         try{
             AsignaturaHorario asignaturaHorarioGuardado = asignaturaHorarioDTO.convertirModel();
+            //lo pongo a 0 para que me lo auto incremente y no me edite los demas campos
+            asignaturaHorarioGuardado.setId(0);
             AsignaturaHorario asignaturaHorarioGuardadoInsertado = service.insertarAsignaturaHorario(asignaturaHorarioGuardado);
             asignaturaHorarioDTO.convertirDTO(asignaturaHorarioGuardadoInsertado);
             return ResponseEntity.status(HttpStatus.CREATED).body(asignaturaHorarioDTO);
         }catch (Exception e){
             ErrorDTO errorDTO = new ErrorDTO("E0005", "Los datos facilitados no satisfacen los requisitos");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDTO);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e);
         }
     }
 
