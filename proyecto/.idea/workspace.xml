@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d4a2c64-3f78-4c0b-8447-bb3f5e392635" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/MatriculasService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/MatriculasService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/MatriculasServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/MatriculasServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gestionfp/src/test/java/es/aulanosa/gestionfp/TestMatriculaServiceV1.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/test/java/es/aulanosa/gestionfp/TestMatriculaServiceV1.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,7 +50,7 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.TestMatriculaServiceV1.eliminarMatricula">
+  <component name="RunManager" selected="JUnit.TestMatriculaServiceV1.modificarMatricula">
     <configuration name="TestMatriculaServiceV1.buscarCursosDeMatricula" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gestionfp" />
       <extension name="coverage">
@@ -141,11 +140,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestMatriculaServiceV1.modificarMatricula" />
         <item itemvalue="JUnit.TestMatriculaServiceV1.eliminarMatricula" />
         <item itemvalue="JUnit.TestMatriculaServiceV1.buscarMatriculaPorMes" />
         <item itemvalue="JUnit.TestMatriculaServiceV1.buscarCursosDeMatricula" />
         <item itemvalue="JUnit.TestMatriculaServiceV1.buscarMatriculaPorNombre" />
-        <item itemvalue="JUnit.TestMatriculaServiceV1.modificarMatricula" />
       </list>
     </recent_temporary>
   </component>

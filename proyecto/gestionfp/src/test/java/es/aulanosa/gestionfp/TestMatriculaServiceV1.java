@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 @TestClassOrder(ClassOrderer.OrderAnnotation.class)
 @SpringBootTest
@@ -53,38 +54,26 @@ public class TestMatriculaServiceV1 {
 
     @Test
     @Order(3)
-    void consultarTodos() {
-        List<Matricula> a = matriculasService.consultarTodasMatriculas();
-        System.out.println(a);
-    }
-
-    @Test
-    @Order(4)
     void modificarMatricula() throws NoSeHaEncontradoException {
 
-        var a = matriculasService.consultarPorIdMatricula(32);
+        Optional<Matricula> a = matriculasService.consultarPorIdMatricula(58);
 
         if (a.isPresent()) {
-            Matricula matricula = new Matricula();
-            matricula.setId(32);
-            matricula.setFactura("Alguna");
-            matricula.setNombre("Alguni");
-            matricula.setNif("Si");
-            matricula.setCuota(45);
-            matricula.setMatricula(4165);
-            matricula.setIdCurso(41);
-            matricula.setObservaciones("No observado");
-            matricula.setIdUsuario(14);
-            Timestamp timestamp = new Timestamp(102,5,15,16,30,21,1);
-            matricula.setFecha(timestamp);
-
-            var g = matriculasService.insertarMatricula(matricula);
-            System.out.println(g);
+            a.get().setNombre("NombreModificado");
+             matriculasService.insertarMatricula(a.get());
+            System.out.println(a);
         }
 
         else {
             throw new NoSeHaEncontradoException("No se ha encontrado la matricula");
         }
+    }
+
+    @Test
+    @Order(4)
+    void consultarMatriculaModificadaPorId() {
+        var a = matriculasService.consultarPorIdMatricula(32);
+        System.out.println(a);
     }
 
     @Test
@@ -105,19 +94,30 @@ public class TestMatriculaServiceV1 {
 
     @Test
     @Order(6)
+    void consultarTodos() {
+        List<Matricula> a = matriculasService.consultarTodasMatriculas();
+        System.out.println(a);
+    }
+
+
+
+
+
+    @Test
+    @Order(7)
     void buscarMatriculaPorNombre() {
         List<Matricula> a = matriculasService.buscarPorNombreDeMatricula("No");
         System.out.println(a);
     }
 
     @Test
-    @Order(7)
+    @Order(8)
     void buscarCursosDeMatricula() {
         List<Matricula> matriculasPorIdCurso = matriculasService.buscarTodosCursosPorId(23);
         System.out.println(matriculasPorIdCurso);
     }
     @Test
-    @Order(8)
+    @Order(9)
     void buscarMatriculaPorMes() {
         List<Matricula> a = matriculasService.buscarPorMesDeMatricula(3);
         System.out.println(a);
