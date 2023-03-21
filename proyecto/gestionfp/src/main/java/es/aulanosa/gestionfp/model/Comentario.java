@@ -20,21 +20,21 @@ public class Comentario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "sistema")
-    @NotNull
+    @NotNull(message = "El campo sistema no puede contener valores nulos")
     private char sistema;
     @Column(name = "referencia")
-    @NotNull
+    @NotNull(message = "El campo referencia no puede contener valores nulos")
     private int referencia;
     @Column(name = "texto")
     @NotBlank(message = "El texto no puede estar vacío")
     @Size(max = 500, message = "El texto no puede tener más de 500 caracteres")
-    @NotNull
+    @NotNull(message = "El campo texto no puede contener valores nulos")
     private String texto;
     @Column(name = "idUsuarioComentario")
-    @NotNull
+    @NotNull(message = "El campo idUsuarioComentario no puede contener valores nulos")
     private Integer idUsuarioComentario;
     @Column(name = "fecha")
-    @NotNull
+    @NotNull(message = "El campo fecha no puede contener valores nulos")
     private Date fecha;
 
     public Comentario(char sistema, int referencia, String texto, Date fecha) {
