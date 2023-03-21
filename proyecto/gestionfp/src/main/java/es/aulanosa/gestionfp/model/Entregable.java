@@ -2,6 +2,7 @@ package es.aulanosa.gestionfp.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +21,7 @@ public class Entregable {
     private int id;
     @Column(name = "tipo")
     @NotNull(message = "El id de la asignatura no puede estar vacío")
+    @Pattern(message = "Los valores solo pueden ser P o E" ,regexp = "(^([EP]){1}$)")
     private char tipo;
     @Column(name = "idAsignatura")
     @NotNull(message = "El id de la asignatura no puede estar vacío")

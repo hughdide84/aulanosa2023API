@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d4a2c64-3f78-4c0b-8447-bb3f5e392635" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/EntregableService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/EntregableServiceImp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gestionfp/src/test/java/es/aulanosa/gestionfp/TestEntregableServiceV1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/model/Entregables.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/model/Entregables.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/model/Entregable.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/model/Entregable.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +53,7 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.app">
+  <component name="RunManager" selected="JUnit.TestEntregableServiceV1.insertarEntregable">
     <configuration name="app" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="19" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -83,22 +86,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestAlumnoServiceV1.bucarPorId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="gestionfp" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="es.aulanosa.gestionfp.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
-      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestAlumnoServiceV1" />
-      <option name="METHOD_NAME" value="bucarPorId" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="TestAlumnoServiceV1.eliminarAlumno" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gestionfp" />
       <extension name="coverage">
@@ -115,22 +102,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestAlumnoServiceV1.insertarUsuario" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="gestionfp" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="es.aulanosa.gestionfp.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
-      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestAlumnoServiceV1" />
-      <option name="METHOD_NAME" value="insertarUsuario" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="TestAlumnoServiceV1.modificar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gestionfp" />
       <extension name="coverage">
@@ -142,6 +113,38 @@
       <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
       <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestAlumnoServiceV1" />
       <option name="METHOD_NAME" value="modificar" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestEntregableServiceV1.insertarEmpresa" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="gestionfp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="es.aulanosa.gestionfp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
+      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestEntregableServiceV1" />
+      <option name="METHOD_NAME" value="insertarEmpresa" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestEntregableServiceV1.insertarEntregable" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="gestionfp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="es.aulanosa.gestionfp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="es.aulanosa.gestionfp" />
+      <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.TestEntregableServiceV1" />
+      <option name="METHOD_NAME" value="insertarEntregable" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -173,20 +176,20 @@
     <list>
       <item itemvalue="Application.main" />
       <item itemvalue="Application.app" />
+      <item itemvalue="JUnit.TestEntregableServiceV1.insertarEmpresa" />
+      <item itemvalue="JUnit.TestEntregableServiceV1.insertarEntregable" />
       <item itemvalue="JUnit.TestAlumnoServiceV1" />
-      <item itemvalue="JUnit.TestAlumnoServiceV1.bucarPorId" />
       <item itemvalue="JUnit.TestAlumnoServiceV1.eliminarAlumno" />
-      <item itemvalue="JUnit.TestAlumnoServiceV1.insertarUsuario" />
       <item itemvalue="JUnit.TestAlumnoServiceV1.modificar" />
       <item itemvalue="Maven.gestionfp" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestEntregableServiceV1.insertarEntregable" />
+        <item itemvalue="JUnit.TestEntregableServiceV1.insertarEmpresa" />
         <item itemvalue="JUnit.TestAlumnoServiceV1.eliminarAlumno" />
         <item itemvalue="JUnit.TestAlumnoServiceV1" />
         <item itemvalue="JUnit.TestAlumnoServiceV1.modificar" />
-        <item itemvalue="JUnit.TestAlumnoServiceV1.bucarPorId" />
-        <item itemvalue="JUnit.TestAlumnoServiceV1.insertarUsuario" />
       </list>
     </recent_temporary>
   </component>
