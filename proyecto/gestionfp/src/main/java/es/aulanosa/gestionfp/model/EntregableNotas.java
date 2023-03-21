@@ -29,8 +29,6 @@ public class EntregableNotas {
     private Integer idAlumno;
 
     @Column(name = "nota")
-    @NotBlank(message = "La nota no puede estar vacía")
     @NotNull
-    @Size(min = 1, max = 2, message = "La nota debe tener entre 1 y 2 caracteres")
     private float nota;
 }
