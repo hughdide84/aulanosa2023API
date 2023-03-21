@@ -91,7 +91,7 @@ public class PagoController {
 
                 PagoDTO pagoDTO = new PagoDTO();
                 pagoDTO.convertirDTO(pago.get());
-                return ResponseEntity.status(HttpStatus.OK).body(pagoDTO);
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).body(pagoDTO);
             }else{
                 ErrorDTO errorDTO = new ErrorDTO("E0006", "Pago no encontrado");
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
