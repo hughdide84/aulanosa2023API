@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class EntregablesNotasServiceImp implements EntregableNotasService {
 
@@ -22,8 +24,8 @@ public class EntregablesNotasServiceImp implements EntregableNotasService {
     @Override
     @Transactional(readOnly = true)
     //Consultar EntregableNotas por id
-    public EntregableNotas buscarEntregablesNotasPorId(int id) {
-        return repository.findById(id).orElse(null);
+    public Optional<EntregableNotas> buscarEntregablesNotasPorId(Integer id) {
+        return repository.findById(id);
     }
     @Override
     @Transactional
@@ -44,7 +46,7 @@ public class EntregablesNotasServiceImp implements EntregableNotasService {
     @Override
     @Transactional(readOnly = true)
     //Consultar todas las EntregableNotas
-    public List<EntregableNotas> buscarEntregablesNotas(EntregableNotas entregableNotas) {
+    public List<EntregableNotas> buscarEntregablesNotas() {
         return repository.findAll();
     }
 
