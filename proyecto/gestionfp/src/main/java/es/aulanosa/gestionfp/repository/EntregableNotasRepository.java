@@ -1,7 +1,7 @@
 package es.aulanosa.gestionfp.repository;
 
-import es.aulanosa.gestionfp.model.EntregableNotas;
+import es.aulanosa.gestionfp.model.EntregableNota;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface EntregableNotasRepository extends JpaRepository<EntregableNotas, Integer> {
+public interface EntregableNotasRepository extends JpaRepository<EntregableNota, Integer> {
 }

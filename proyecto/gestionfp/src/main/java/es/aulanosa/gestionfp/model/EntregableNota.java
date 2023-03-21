@@ -1,9 +1,7 @@
 package es.aulanosa.gestionfp.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class EntregableNotas {
+public class EntregableNota {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +27,6 @@ public class EntregableNotas {
     private Integer idAlumno;
 
     @Column(name = "nota")
-    @NotNull
+    @NotNull(message = "La nota no puede estar vacía")
     private float nota;
 }
