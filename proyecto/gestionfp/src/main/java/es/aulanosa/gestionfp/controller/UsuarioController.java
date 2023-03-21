@@ -17,12 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
-@RequestMapping("/api/usuario")
-@Tag(name = "Usuario", description = "API de usuarios")
 /**
  * Controlador de usuarios
  */
+@RestController
+@RequestMapping("/api/usuario")
+@Tag(name = "Usuario", description = "API de usuarios")
 public class UsuarioController {
 
     @Autowired

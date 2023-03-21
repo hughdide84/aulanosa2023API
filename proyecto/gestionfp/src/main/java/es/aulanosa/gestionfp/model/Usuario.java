@@ -9,14 +9,14 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * Clase que representa la tabla Usuarios de la base de datos
+ */
 @Entity
 @Table(name = "Usuarios")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-/**
- * Clase que representa la tabla Usuarios de la base de datos
- */
 public class Usuario {
 
     @Id
