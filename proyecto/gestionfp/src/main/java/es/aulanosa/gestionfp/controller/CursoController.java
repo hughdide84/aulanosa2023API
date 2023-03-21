@@ -28,7 +28,7 @@ public class CursoController {
 
     /**
      * Recibe un objeto cursoDTO como parametro para insertarlo en la BD
-     * @param cursoDTO Se le pasa un objeto de tipo curso
+     * @param cursoDTO Se le pasa un objeto de tipo cursoDTO
      * @return se devuelve el curso creado con el id asignado en la BD
      */
 
@@ -52,9 +52,15 @@ public class CursoController {
 
     //Operacion correspondiente para consultar un curso determinado por id
 
-    
+
+    /**
+     * Devuelve un curso de la BD a partir de un id existente que se le pasa como parametro
+      * @param id Se le pasa un id existente en la BD
+     * @return devulve el curso buscado a traves del id
+     */
     @GetMapping("/{id}")
     @Operation(summary = "Busca un curso por id")
+
     public ResponseEntity<?> consultarCurso(@PathVariable Integer id) {
         Curso curso = serviceCur.buscarPorId(id);
 
@@ -66,6 +72,12 @@ public class CursoController {
     }
 
     //Operacion correspondiente para cambiar los datos de un curso
+
+    /**
+     * Comprueba si el curso existe en la BD y en ese caso cambia los valores que se le especifiquen
+     * @param curso Se le pasa un objeto de tipo curso
+     * @return devuelve un objeto curso dto modificado
+     */
     @PutMapping("")
     @Operation(summary = "Edita un curso")
     public ResponseEntity<?> editarCurso(@RequestBody CursoDTO curso) {
