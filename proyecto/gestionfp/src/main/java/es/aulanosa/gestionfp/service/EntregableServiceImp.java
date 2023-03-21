@@ -17,12 +17,14 @@ public class EntregableServiceImp implements EntregableService{
 
     @Override
     @Transactional
+    //insertar un entregable en la BD
     public Entregable insertarEntregable(Entregable entregable) {
         return repositorio.save(entregable);
     }
 
     @Override
     @Transactional(readOnly = true)
+    //consultar un entregable en la BD dado un id existente
     public Optional<Entregable> consultarPorIdEntregable(Integer id) {
         return repositorio.findById(id);
     }
@@ -35,6 +37,7 @@ public class EntregableServiceImp implements EntregableService{
 
     @Override
     @Transactional
+    //actualizar entregable  dado un id existente
     public Entregable modificarEntregable(Entregable entregable) throws NoSuchFieldException {
         if (repositorio.findById(entregable.getId()).isPresent()){
             return repositorio.save(entregable);
@@ -46,6 +49,7 @@ public class EntregableServiceImp implements EntregableService{
 
     @Override
     @Transactional
+    //eliminar un entregable existente
     public void eliminarEnregable(Integer id) {
         repositorio.deleteById(id);
     }

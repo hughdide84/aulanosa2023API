@@ -28,7 +28,6 @@ public class TestEntregableServiceV1 {
 
     @Test
     @Order(1)
-    //insertar un entregable en la BD
     void insertarEntregable() throws NoSeHaEncontradoException {
         Entregable entregable = new Entregable();
         entregable.setId(3);
@@ -43,7 +42,6 @@ public class TestEntregableServiceV1 {
 
     @Test
     @Order(2)
-    //consultar un entregable en la BD dado un id existente
     void consultarEntregablePorId() {
         var a = service.consultarPorIdEntregable(1);
         System.out.println(a);
@@ -51,7 +49,6 @@ public class TestEntregableServiceV1 {
 
     @Test
     @Order(3)
-    //actualizar entregable  dado un id existente
     void actualizarEntregable() throws NoSeHaEncontradoException {
 
         Optional<Entregable> a = service.consultarPorIdEntregable(14);
@@ -67,7 +64,6 @@ public class TestEntregableServiceV1 {
     }
     @Test
     @Order(4)
-    //volver a consultar el entregable que se ha modificado
     void consultarEntregablePorIdModificado() {
         var a = service.consultarPorIdEntregable(1);
         System.out.println(a);
@@ -75,7 +71,6 @@ public class TestEntregableServiceV1 {
 
     @Test
     @Order(5)
-    //eliminar un entregable existente
     void eliminarMatricula() throws NoSeHaEncontradoException {
         var a = service.consultarPorIdEntregable(1);
 
