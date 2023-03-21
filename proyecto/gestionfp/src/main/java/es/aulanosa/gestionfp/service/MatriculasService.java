@@ -20,5 +20,7 @@ public interface MatriculasService {
     List<Matricula> buscarPorNombreDeMatricula(String nombre);
     List<Matricula> buscarPorMesDeMatricula(Integer numMes);
 
-    public List<Matricula> buscarTodosCursosPorId (Integer id);
+    List<Matricula> buscarPorMesDeMatricula(String nombre);
+
+    public List<Curso> buscarTodosCursosPorId (Integer id);
 }

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,25 +18,25 @@ public class MatriculasServiceImp implements MatriculasService{
 
     @Override
     @Transactional
-    public Matricula insertar(Matricula matricula) {
+    public Matricula insertarMatricula(Matricula matricula) {
         return matriculasRepository.save(matricula);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<Matricula> consultarPorId(Integer id) {
+    public Optional<Matricula> consultarPorIdMatricula(Integer id) {
         return matriculasRepository.findById(id);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<Matricula> consultarTodos() {
+    public List<Matricula> consultarTodasMatriculas() {
         return matriculasRepository.findAll();
     }
 
     @Override
     @Transactional
-    public Matricula modificar(Matricula matricula) throws NoSuchFieldException {
+    public Matricula modificarMatricula(Matricula matricula) throws NoSuchFieldException {
         if (matriculasRepository.findById(matricula.getId()).isPresent()){
             return matriculasRepository.save(matricula);
         }
@@ -48,7 +47,7 @@ public class MatriculasServiceImp implements MatriculasService{
 
     @Override
     @Transactional
-    public void eliminar(Integer id) {
+    public void eliminarMatricula(Integer id) {
         matriculasRepository.deleteById(id);
     }
 
@@ -56,6 +55,11 @@ public class MatriculasServiceImp implements MatriculasService{
     @Transactional
     public List<Matricula> buscarPorNombreDeMatricula(String nombre) {
         return matriculasRepository.buscarPorNombre(nombre);
+    }
+
+    @Override
+    public List<Matricula> buscarPorMesDeMatricula(Integer numMes) {
+        return null;
     }
 
     @Override
