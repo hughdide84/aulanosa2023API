@@ -37,7 +37,7 @@ public class AlumnoExternoController {
     }
 
     @GetMapping("/{id}")
-    //consulta por id, se le pasa como variable el mismo, consulta si existe y en caso de que l ohaga devuelve el objeto recuperado de la BD
+    //consulta por id, se le pasa como variable el mismo, consulta si existe y en caso de que lo haga devuelve el objeto recuperado de la BD
     public ResponseEntity<?> consulta(@PathVariable Integer id){
         try{
             Optional<AlumnoExterno> alumnosExternos = service.listarPorId(id);
