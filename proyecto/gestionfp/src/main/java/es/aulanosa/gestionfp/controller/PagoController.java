@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/estudios")
+@RequestMapping("/api/pagos")
 @Tag(name = "Estudios", description = "Estudios")
 public class PagoController {
 
