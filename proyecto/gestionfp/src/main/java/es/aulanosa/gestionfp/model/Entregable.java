@@ -21,7 +21,7 @@ public class Entregable {
     private int id;
     @Column(name = "tipo")
     @NotNull(message = "El id de la asignatura no puede estar vacío")
-    @Pattern(message = "Los valores solo pueden ser P o E" ,regexp = "(^([EP]){1}$)")
+    //@Pattern(message = "Los valores solo pueden ser P o E" ,regexp = "(^([EP]){1}$)")
     private char tipo;
     @Column(name = "idAsignatura")
     @NotNull(message = "El id de la asignatura no puede estar vacío")

@@ -1,7 +1,6 @@
 package es.aulanosa.gestionfp.service;
 
 import es.aulanosa.gestionfp.model.Entregable;
-import es.aulanosa.gestionfp.model.Matricula;
 
 import java.util.List;
 import java.util.Optional;

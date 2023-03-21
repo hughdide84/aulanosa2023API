@@ -1,9 +1,7 @@
 package es.aulanosa.gestionfp.service;
 
 import es.aulanosa.gestionfp.model.Entregable;
-import es.aulanosa.gestionfp.model.Matricula;
 import es.aulanosa.gestionfp.repository.EntregableRepository;
-import es.aulanosa.gestionfp.repository.EstudiosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
