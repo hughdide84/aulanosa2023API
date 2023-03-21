@@ -6,6 +6,8 @@ import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Curso;
 import es.aulanosa.gestionfp.service.CursoService;
 import es.aulanosa.gestionfp.util.Errores;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -18,13 +20,20 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/curso")
+@Tag(name = "Curso", description = "Cursos")
 public class CursoController {
 
     @Autowired
      private CursoService serviceCur;
 
-    //Operacion para insertar los datos correspondientes a la tabla cursos
+    /**
+     * Recibe un objeto cursoDTO como parametro para insertarlo en la BD
+     * @param cursoDTO Se le pasa un objeto de tipo curso
+     * @return se devuelve el curso creado con el id asignado en la BD
+     */
+
     @PostMapping("")
+    @Operation(summary = "Inserta un curso")
     public ResponseEntity<?> altaCurso(@RequestBody CursoDTO cursoDTO) {
         Curso cursoComprobar = serviceCur.buscarPorId(cursoDTO.getId());
 
@@ -42,7 +51,10 @@ public class CursoController {
     }
 
     //Operacion correspondiente para consultar un curso determinado por id
+
+    
     @GetMapping("/{id}")
+    @Operation(summary = "Busca un curso por id")
     public ResponseEntity<?> consultarCurso(@PathVariable Integer id) {
         Curso curso = serviceCur.buscarPorId(id);
 
@@ -55,6 +67,7 @@ public class CursoController {
 
     //Operacion correspondiente para cambiar los datos de un curso
     @PutMapping("")
+    @Operation(summary = "Edita un curso")
     public ResponseEntity<?> editarCurso(@RequestBody CursoDTO curso) {
         Curso cursoConsultar = serviceCur.buscarPorId(curso.getId());
 
@@ -73,6 +86,7 @@ public class CursoController {
 
     //Operación correspondiente para borrar un curso en concreto por id
     @DeleteMapping("/{id}")
+    @Operation(summary = "Borra un curso por id")
     public ResponseEntity<?> borrarCurso (@PathVariable Integer id) throws NoSeHaEncontradoException {
         Curso curso = serviceCur.buscarPorId(id);
 
@@ -90,6 +104,7 @@ public class CursoController {
 
     //Operacion correspondiente para listar todos los datos de la tabla Cursos
     @GetMapping("/all")
+    @Operation(summary = "Listar todos los cursos")
     public ResponseEntity<?> listarTodosCursos() {
         List<Curso> curso = serviceCur.buscarTodo();
         return ResponseEntity.status(HttpStatus.OK).body(curso);
@@ -97,6 +112,7 @@ public class CursoController {
 
     //Operacion correspondiente para listar todos los datos de la tabla Cursos que esten activos
     @GetMapping("/cursosActivos")
+    @Operation(summary = "Listar todos los cursos activos")
     public ResponseEntity<?> listarCursosActivos() {
         List<Curso> cursos = serviceCur.buscarTodoPorEstadoActivo();
         return ResponseEntity.status(HttpStatus.OK).body(cursos);
