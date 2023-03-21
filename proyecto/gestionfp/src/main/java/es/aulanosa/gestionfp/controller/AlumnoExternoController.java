@@ -25,17 +25,22 @@ public class AlumnoExternoController {
     //falta @operation
 
     //API para dar de alta, se le pasa un objeto DTO por POST, lo convierte al model y lo inserta
-    public ResponseEntity<?> altaAlumnosExternos(@RequestBody AlumnoExternoDTO alumnoExternoDTO){
-        try{
-            AlumnoExterno alumnosExternos = alumnoExternoDTO.convertirModel();
-            AlumnoExterno alumnosExternosGuardado = service.guardar(alumnosExternos);
-            alumnoExternoDTO.crearDTO(alumnosExternosGuardado);
-            return ResponseEntity.status(HttpStatus.CREATED).body(alumnoExternoDTO);
-        }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+    public ResponseEntity<?> altaAlumnosExternos(@RequestBody AlumnoExternoDTO alumnoExternoDTO) throws NoSeHaEncontradoException {
+        AlumnoExterno alumnoExterno = service.listarPorId(alumnoExternoDTO.getId()).get();
+
+        if (alumnoExterno == null) {
+            try {
+                AlumnoExterno alumnosExternos = alumnoExternoDTO.convertirModel();
+                AlumnoExterno alumnosExternosGuardado = service.guardar(alumnosExternos);
+                alumnoExternoDTO.crearDTO(alumnosExternosGuardado);
+                return ResponseEntity.status(HttpStatus.CREATED).body(alumnoExternoDTO);
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Ya existe un alumno externo con ese id");
         }
     }
-
     @GetMapping("/{id}")
     //consulta por id, se le pasa como variable el mismo, consulta si existe y en caso de que l ohaga devuelve el objeto recuperado de la BD
     public ResponseEntity<?> consultaAlumnosExternos(@PathVariable Integer id){
