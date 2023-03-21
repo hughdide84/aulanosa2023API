@@ -22,8 +22,10 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/alumno")
+/**
+ * Controlador de alumnos
+ */
 public class AlumnoController {
-
     @Autowired
     AlumnoService service;
     @Autowired

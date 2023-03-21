@@ -18,7 +18,9 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-
+/**
+ * Clase para la entidad Alumno
+ */
 public class Alumno {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,10 +49,8 @@ public class Alumno {
     private Date inicioPr;
     @Column(name = "finPr")
     private Date finPr;
-
     @Column(name = "usuario")
     private String usuario;
-
     @JsonIgnore
     @OneToMany(mappedBy = "idAlumno",cascade = CascadeType.REMOVE)
     private List<AlumnoEmpresa> alumnoEmpresa;
@@ -74,7 +74,6 @@ public class Alumno {
         this.inicioPr = inicioPr;
         this.finPr = finPr;
     }
-
     @Override
     public String toString() {
         return "Alumno{" +

@@ -13,6 +13,9 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+/**
+ * Clase DTO para la entidad Alumno
+ */
 public class AlumnoDTO {
 
     private int id;

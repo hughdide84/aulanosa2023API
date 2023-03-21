@@ -7,6 +7,9 @@ import es.aulanosa.gestionfp.model.Curso;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Interfaz de servicio para Alumno
+ */
 public interface AlumnoService {
 
     //definicion de metodos CRUD para Alumno
