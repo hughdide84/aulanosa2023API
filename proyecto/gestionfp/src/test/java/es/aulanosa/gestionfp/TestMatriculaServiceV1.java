@@ -105,22 +105,38 @@ public class TestMatriculaServiceV1 {
 
     @Test
     @Order(7)
-    void buscarMatriculaPorNombre() {
+    void buscarMatriculaPorNombre() throws NoSeHaEncontradoException {
         List<Matricula> a = matriculasService.buscarPorNombreDeMatricula("No");
-        System.out.println(a);
+        if(!a.isEmpty()){
+            System.out.println(a);
+        }else{
+            throw new NoSeHaEncontradoException("El nombre de matricula no existe");
+        }
+
+
     }
 
     @Test
     @Order(8)
-    void buscarCursosDeMatricula() {
-        List<Matricula> matriculasPorIdCurso = matriculasService.buscarTodosCursosPorId(23);
-        System.out.println(matriculasPorIdCurso);
+    void buscarCursosDeMatricula() throws NoSeHaEncontradoException {
+        List<Matricula> a = matriculasService.buscarTodosCursosPorId(23);
+
+        if(!a.isEmpty()){
+            System.out.println(a);
+        }else{
+            throw new NoSeHaEncontradoException("El id proporcionado no existe");
+        }
+
     }
     @Test
     @Order(9)
-    void buscarMatriculaPorMes() {
+    void buscarMatriculaPorMes() throws NoSeHaEncontradoException {
         List<Matricula> a = matriculasService.buscarPorMesDeMatricula(3);
-        System.out.println(a);
+        if(!a.isEmpty()){
+            System.out.println(a);
+        }else{
+            throw new NoSeHaEncontradoException("El mes no tiene matriculas asignadas");
+        }
     }
 
 
