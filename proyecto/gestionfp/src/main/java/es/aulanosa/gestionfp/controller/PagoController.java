@@ -4,6 +4,7 @@ import es.aulanosa.gestionfp.dto.AlumnoExternoDTO;
 import es.aulanosa.gestionfp.dto.ErrorDTO;
 import es.aulanosa.gestionfp.dto.PagoDTO;
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
+import es.aulanosa.gestionfp.excepciones.RestResponseEntityExceptionHandler;
 import es.aulanosa.gestionfp.model.AlumnoExterno;
 import es.aulanosa.gestionfp.model.Pago;
 import es.aulanosa.gestionfp.repository.PagoRepository;
@@ -126,9 +127,13 @@ public class PagoController {
             }
             return ResponseEntity.status(HttpStatus.OK).body(pagosDTO);
 
+        }catch (RestResponseEntityExceptionHandler e){
+            ErrorDTO errorDTO = new ErrorDTO("E0005", "No se ha encontrado la matrícula especificada");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
         }catch (NoSeHaEncontradoException e){
             ErrorDTO errorDTO = new ErrorDTO("E0005", "No se ha encontrado la matrícula especificada");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
+
         }
     }
 }
