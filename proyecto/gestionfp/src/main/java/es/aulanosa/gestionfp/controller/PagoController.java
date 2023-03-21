@@ -21,8 +21,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/estudios")
-@Tag(name = "Estudios", description = "Estudios")
+@RequestMapping("/api/pago")
+@Tag(name = "Pagos", description = "Pagos")
 public class PagoController {
 
     @Autowired
@@ -92,7 +92,7 @@ public class PagoController {
 
                 PagoDTO pagoDTO = new PagoDTO();
                 pagoDTO.convertirDTO(pago.get());
-                return ResponseEntity.status(HttpStatus.NO_CONTENT).body(pagoDTO);
+                return ResponseEntity.status(HttpStatus.OK).body(pagoDTO);
 
             }else{
                 ErrorDTO errorDTO = new ErrorDTO("E0002", "Alumno no encontrado");
@@ -122,7 +122,7 @@ public class PagoController {
             List<PagoDTO> pagosDTO = new ArrayList<>();
             for (Pago pago:
                  pagos) {
-                pagosDTO.get(cont).convertirDTO(pago);
+                pagosDTO.add(new PagoDTO().convertirDTO(pago));
                 cont++;
             }
             return ResponseEntity.status(HttpStatus.OK).body(pagosDTO);
