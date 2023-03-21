@@ -14,6 +14,9 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+/**
+ * Clase que representa la tabla Usuarios de la base de datos
+ */
 public class Usuario {
 
     @Id

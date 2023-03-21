@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+/**
+ * Clase que representa el objeto de transferencia de datos de la entidad Usuario
+ */
 public class UsuarioDTO {
     private Integer id;
     private String nombre;

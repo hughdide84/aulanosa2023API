@@ -6,6 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Interfaz que extiende de JpaRepository para poder realizar las operaciones
+ */
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
     /**

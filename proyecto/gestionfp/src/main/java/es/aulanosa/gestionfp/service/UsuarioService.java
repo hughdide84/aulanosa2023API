@@ -6,6 +6,9 @@ import es.aulanosa.gestionfp.model.Usuario;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Interfaz que define los métodos que se pueden utilizar para gestionar los usuarios
+ */
 public interface UsuarioService {
     /**
      * Lista el usuario cuyo id coincida con el introducido

@@ -20,6 +20,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/usuario")
 @Tag(name = "Usuario", description = "API de usuarios")
+/**
+ * Controlador de usuarios
+ */
 public class UsuarioController {
 
     @Autowired
