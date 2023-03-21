@@ -15,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -32,7 +34,7 @@ public class PagoController {
     public ResponseEntity<?> alta(@RequestBody PagoDTO pagoDTO){
         try{
             Pago pago = pagoDTO.convertirModel();
-            Pago PagoGuardado = service.guardar(pago);
+            Pago PagoGuardado = service.guardarPago(pago);
             pagoDTO.convertirDTO(PagoGuardado);
             return ResponseEntity.status(HttpStatus.CREATED).body(pagoDTO);
         }catch (Exception e){
@@ -46,7 +48,7 @@ public class PagoController {
     //hay que hacerlo con try/catch
 
     public ResponseEntity<?> consulta(@PathVariable Integer id){
-            Optional<Pago> alumnosExternos = service.buscarPorId(id);
+            Optional<Pago> alumnosExternos = service.buscarPorIdPago(id);
 
             if(alumnosExternos.isPresent()){
                 PagoDTO pagoDTO = new PagoDTO();
@@ -65,8 +67,8 @@ public class PagoController {
 
     public ResponseEntity<?> editar(@RequestBody PagoDTO pagoDTO){
         try{
-            Optional<Pago> pago = service.buscarPorId(pagoDTO.getId());
-            service.guardar(pago.get());
+            Optional<Pago> pago = service.buscarPorIdPago(pagoDTO.getId());
+            service.borrarPago(pago.get().getId());
             PagoDTO pagoDTORecuperado = new PagoDTO();
             pagoDTORecuperado.convertirDTO(pago.get());
 
@@ -83,9 +85,9 @@ public class PagoController {
 
     //hay que hacerlo con try/catch
     public ResponseEntity<?> eliminar(@PathVariable int id){
-            Optional<Pago> pago = service.buscarPorId(id);
+            Optional<Pago> pago = service.buscarPorIdPago(id);
             if(pago.isPresent()){
-                service.borrar(pago.get().getId());
+                service.borrarPago(pago.get().getId());
 
                 PagoDTO pagoDTO = new PagoDTO();
                 pagoDTO.convertirDTO(pago.get());
@@ -101,8 +103,8 @@ public class PagoController {
     @GetMapping("")
     //lista todos los campos de la BD, en caso de que esta este vacia, devuelve un error personalizado
     public ResponseEntity<?> listarTodo(){
-        if(!service.buscarTodo().isEmpty()){
-            return ResponseEntity.status(HttpStatus.OK).body(service.buscarTodo());
+        if(!service.buscarTodosPagos().isEmpty()){
+            return ResponseEntity.status(HttpStatus.OK).body(service.buscarTodosPagos());
         }else{
             ErrorDTO errorDTO = new ErrorDTO("E0003", "No hay registros en la base de datos");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
@@ -110,9 +112,23 @@ public class PagoController {
     }
 
     @GetMapping("/matricula/{matricula}")
+    //recupera un idMatricula y la consulta con los datos de labase de datos, ésta devuelve una lista y la convierto a DTO para mostrarlo
     public ResponseEntity<?> listarPorMatricula(@PathVariable int matricula){
+        int cont = 0;
+        try{
+            List<Pago> pagos = service.listarPorMatricula(matricula);
 
+            List<PagoDTO> pagosDTO = new ArrayList<>();
+            for (Pago pago:
+                 pagos) {
+                pagosDTO.get(cont).convertirDTO(pago);
+                cont++;
+            }
+            return ResponseEntity.status(HttpStatus.OK).body(pagosDTO);
+
+        }catch (NoSeHaEncontradoException e){
+            ErrorDTO errorDTO = new ErrorDTO("E0005", "No se ha encontrado la matrícula especificada");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
+        }
     }
-
-
 }
