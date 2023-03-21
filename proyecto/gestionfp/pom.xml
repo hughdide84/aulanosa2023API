@@ -9,6 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>es.aulanosa</groupId>
+    <packaging>war</packaging>
     <artifactId>gestionfp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>gestionfp</name>
@@ -61,9 +62,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
         </dependency>
+        <!-- Para tomcat -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
+        <finalName>aulanosa</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
