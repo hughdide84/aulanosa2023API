@@ -20,7 +20,7 @@ public class TestAsignatura {
 
     @Test
     @Order(1)
-    public void insertar() throws NoSeHaEncontradoException {
+    public void insertarAsignatura() throws NoSeHaEncontradoException {
 
         Asignatura asignatura = new Asignatura();
         asignatura.setNombre("Programación");
@@ -37,7 +37,7 @@ public class TestAsignatura {
 
     @Test
     @Order(2)
-    public void consultarPorId() throws NoSeHaEncontradoException {
+    public void consultarPorIdAsignatura() throws NoSeHaEncontradoException {
 
         var a = asignaturaService.buscarPorIdAsignatura(1);
         System.out.println(a);
@@ -46,7 +46,7 @@ public class TestAsignatura {
 
     @Test
     @Order(3)
-    public void modificar() throws NoSeHaEncontradoException {
+    public void modificarAsignatura() throws NoSeHaEncontradoException {
 
         var asignaturaConsultada = asignaturaService.buscarPorIdAsignatura(1);
         if (asignaturaConsultada != null) {
@@ -64,7 +64,7 @@ public class TestAsignatura {
 
     @Test
     @Order(4)
-    public void buscarTodo() throws NoSeHaEncontradoException {
+    public void buscarTodoAsignatura() throws NoSeHaEncontradoException {
         try {
             List<Asignatura> asignaturas = asignaturaService.buscarTodoAsignatura();
             System.out.println(asignaturas);
@@ -75,7 +75,7 @@ public class TestAsignatura {
 
     @Test
     @Order(5)
-    public void borrar() throws NoSeHaEncontradoException {
+    public void borrarAsignatura() throws NoSeHaEncontradoException {
         var asignaturaConsultada = asignaturaService.buscarPorIdAsignatura(1);
         if (asignaturaConsultada != null) {
             try {
@@ -91,7 +91,7 @@ public class TestAsignatura {
 
     @Test
     @Order(6)
-    public void buscarTodo1() throws NoSeHaEncontradoException {
+    public void buscarTodo1Asignatura() throws NoSeHaEncontradoException {
         try {
             List<Asignatura> asignaturas = asignaturaService.buscarTodoAsignatura();
             System.out.println(asignaturas);
@@ -102,7 +102,7 @@ public class TestAsignatura {
 
     @Test
     @Order(7)
-    public void buscarTodoPorNombre() throws NoSeHaEncontradoException {
+    public void buscarTodoPorNombreAsignatura() throws NoSeHaEncontradoException {
         try {
             List<Asignatura> asignaturas = asignaturaService.buscarTodoPorNombreAsignaturaConteniendoNombreAsignatura("Programación");
             System.out.println(asignaturas);
