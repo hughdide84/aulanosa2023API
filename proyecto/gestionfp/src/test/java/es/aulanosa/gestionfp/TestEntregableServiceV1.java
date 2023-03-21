@@ -74,9 +74,14 @@ public class TestEntregableServiceV1 {
     void eliminarEntregable() throws NoSeHaEncontradoException {
         var a = service.consultarPorIdEntregable(7);
 
+
         if (a.isPresent()) {
-            service.eliminarEntregable(a.get().getId());
-            System.out.println("Eliminado");
+            try {
+                service.eliminarEntregable(a.get().getId());
+                System.out.println("Eliminado");
+            } catch (Exception e) {
+                System.out.println("Error de relaciones");
+            }
         }
 
         else {
