@@ -1,9 +1,13 @@
 package es.aulanosa.gestionfp.controller;
 
+import es.aulanosa.gestionfp.dto.ErrorDTO;
 import es.aulanosa.gestionfp.dto.UsuarioDTO;
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
+import es.aulanosa.gestionfp.excepciones.RestResponseEntityExceptionHandler;
 import es.aulanosa.gestionfp.model.Usuario;
 import es.aulanosa.gestionfp.service.UsuarioService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,77 +19,124 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/usuario")
+@Tag(name = "Usuario", description = "API de usuarios")
 public class UsuarioController {
 
     @Autowired
     UsuarioService service;
 
-    // Crea un nuevo usuario
+    /**
+     * crea un usuario
+     * @param usuarioDTO
+     * @return codigo 201 si se ha creado correctamente y el usuario con el id insertado, codigo 400 si no se ha podido crear y la lista de errores
+     */
     @PostMapping("")
-    public ResponseEntity<?> crearUsuario(@RequestBody UsuarioDTO usuarioDTO) throws NoSeHaEncontradoException {
+    @Operation(summary = "Crear un usuario")
+    public ResponseEntity<?> crearUsuario(@RequestBody UsuarioDTO usuarioDTO) {
         Optional<Usuario> usuarioConsultado = service.consultarPorNombre(usuarioDTO.getNombre());
 
-        if (comprobarLongitudCampos(usuarioDTO).equals("") && !usuarioConsultado.isPresent()) {
-            Usuario usuarioGuardado = usuarioDTO.toModel();
-            service.crear(usuarioGuardado);
-            return ResponseEntity.status(HttpStatus.CREATED).body(usuarioGuardado);
-        } else if (!comprobarLongitudCampos(usuarioDTO).equals("")) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Longitud excedida en el/los siguiente/-s campo/-s: " + comprobarLongitudCampos(usuarioDTO));
+        if (!usuarioConsultado.isPresent()) {
+            try {
+                Usuario usuarioGuardado = usuarioDTO.toModel();
+                service.crear(usuarioGuardado);
+                return ResponseEntity.status(HttpStatus.CREATED).body(usuarioGuardado);
+            } catch (NoSeHaEncontradoException e) {
+                List<ErrorDTO> errores = new ArrayList<>();
+                errores.add(new ErrorDTO("E001", e.getMessage()));
+
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errores);
+            }
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El usuario que desea crear contiene un nombre que ya existe");
+            List<ErrorDTO> errores = new ArrayList<>();
+            errores.add(new ErrorDTO("E001", "Ya existe un usuario con ese nombre o id"));
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errores);
         }
     }
 
-    // Lista el usuario cuyo id coincida con el introducido
+    /**
+     * Lista el usuario cuyo id coincida con el introducido
+     * @param id del usuario que se busca consultar
+     * @return codigo 200 y usuario con el id introducido, codigo 404 si no se ha encontrado y lista de errores
+     */
     @GetMapping("/{id}")
+    @Operation(summary = "Lista el usuario cuyo id coincida con el introducido")
     public ResponseEntity<?> listarUsuarioPorId(@PathVariable Integer id) {
         Optional<Usuario> usuarioConsultado = service.listarPorId(id);
 
-        if (usuarioConsultado != null) {
+        if (usuarioConsultado.isPresent()) {
             return ResponseEntity.ok(usuarioConsultado);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe ningún usuario con ese ID");
+            List<ErrorDTO> errores = new ArrayList<>();
+            errores.add(new ErrorDTO("E002", "No existe ningún usuario con ese id"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errores);
         }
     }
 
-    // Lista el usuario cuyo nombre coincida con el introducido
+    /**
+     * Lista los usuarios cuyo nombre coincida con el introducido
+     * @param nombre del usuario que se busca consultar
+     * @return codigo 200 y usuario con el nombre introducido, codigo 404 si no se ha encontrado y lista de errores
+     */
     @GetMapping("/nombreEs/{nombre}")
+    @Operation(summary = "Lista los usuarios cuyo nombre coincida con el introducido")
     public ResponseEntity<?> listarUsuarioPorNombre(@PathVariable String nombre) {
         Optional<Usuario> usuarioConsultado = service.consultarPorNombre(nombre);
 
         if (usuarioConsultado.isPresent()) {
             return ResponseEntity.ok(usuarioConsultado);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe ningún usuario con ese nombre");
+            List<ErrorDTO> errores = new ArrayList<>();
+            errores.add(new ErrorDTO("E003", "No existe ningún usuario con ese nombre"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errores);
         }
     }
 
-    // Lista los usuarios cuyo rol coincida con el introducido
+    /**
+     * Lista los usuarios cuyo rol coincida con el introducido
+     * @param rol de los usuarios que se busca consultar
+     * @return codigo 200 y lista de usuarios con el rol introducido, codigo 404 si no se ha encontrado y lista de errores
+     */
     @GetMapping("/rolEs/{rol}")
+    @Operation(summary = "Lista los usuarios cuyo rol coincida con el introducido")
     public ResponseEntity<?> listarUsuariosPorRol(@PathVariable String rol) {
         List<Usuario> usuariosConsultados = service.consultarPorRol(rol);
 
         if (!usuariosConsultados.isEmpty()) {
             return ResponseEntity.ok(usuariosConsultados);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe ningún usuario con ese rol");
+            List<ErrorDTO> errores = new ArrayList<>();
+            errores.add(new ErrorDTO("E004", "No existe ningún usuario con ese rol"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errores);
         }
     }
 
-    // Lista los usuarios que contengan en su nombre la cadena introducida
+    /**
+     * Lista los usuarios cuyo nombre contenga el nombre introducido
+     * @param nombre de los usuarios que se busca consultar
+     * @return codigo 200 y lista de usuarios cuyo nombre contenga el introducido, codigo 404 si no se ha encontrado y lista de errores
+     */
     @GetMapping("/nombreContiene/{nombre}")
+    @Operation(summary = "Lista los usuarios cuyo nombre contenga el nombre introducido")
     public ResponseEntity<?> compararUsuariosPorNombre(@PathVariable String nombre) {
         List<Usuario> usuariosConsultados = service.listarPorNombre(nombre);
 
         if (!usuariosConsultados.isEmpty()) {
             return ResponseEntity.ok(usuariosConsultados);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontraron usuarios");
+            List<ErrorDTO> errores = new ArrayList<>();
+            errores.add(new ErrorDTO("E005", "No existe ningún usuario que contenga ese nombre"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errores);
         }
     }
 
-    // Lista los usuarios que contengan en su email la cadena introducida
+    /**
+     * Lista los usuarios cuyo email contenga el email introducido
+     * @param email de los usuarios que se busca consultar
+     * @return codigo 200 y usuarios cuyo email contenga el introducido, codigo 404 si no se ha encontrado y lista de errores
+     */
     @GetMapping("/emailContiene/{email}")
+    @Operation(summary = "Lista los usuarios cuyo email contenga el email introducido")
     public ResponseEntity<?> compararUsuariosPorEmail(@PathVariable String email) {
         List<Usuario> usuariosConsultados = service.listarPorEmail(email);
 
@@ -96,13 +147,19 @@ public class UsuarioController {
         }
     }
 
-    // Actualiza un usuario ya existente
+    /**
+     * Modifica un usuario existente
+     * @param usuarioDTO con los datos del usuario que se desea modificar
+     * @return codigo 200 y usuario modificado, codigo 404 si no se ha encontrado y lista de errores, codigo 400 si suceden errores de validación
+     * @throws NoSeHaEncontradoException
+     */
     @PutMapping("")
+    @Operation(summary = "Modifica un usuario existente")
     public ResponseEntity<?> actualizarUsuario(@RequestBody UsuarioDTO usuarioDTO) throws NoSeHaEncontradoException {
         Optional<Usuario> usuarioConsultado = service.listarPorId(usuarioDTO.getId());
 
         // Comprobamos si existe un usuario con el ID introducido
-        if (usuarioConsultado.isPresent() && comprobarLongitudCampos(usuarioDTO).equals("")) {
+        if (usuarioConsultado.isPresent()) {
             Optional<Usuario> usuarioMismoNombreConsultado = service.consultarPorNombre(usuarioDTO.getNombre());
             // Comprobamos si existe un usuario con el nombre introducido
             if (usuarioMismoNombreConsultado.isPresent()) {
@@ -113,7 +170,9 @@ public class UsuarioController {
                     service.actualizar(usuarioActualizado);
                     return ResponseEntity.ok(usuarioActualizado);
                 } else {
-                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El nombre al que desea actualizar ya existe para otro usuario");
+                    List<ErrorDTO> errores = new ArrayList<>();
+                    errores.add(new ErrorDTO("E006", "El nombre al que desea actualizar ya existe para otro usuario"));
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errores);
                 }
             } else {
                 // Permitimos la actualización si el nombre introducido no existe
@@ -121,15 +180,20 @@ public class UsuarioController {
                 service.actualizar(usuarioActualizado);
                 return ResponseEntity.ok(usuarioActualizado);
             }
-        } else if (!comprobarLongitudCampos(usuarioDTO).equals("")) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Longitud excedida en el/los siguiente/-s campo/-s: " + comprobarLongitudCampos(usuarioDTO));
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El usuario que desea modificar no existe");
+            List<ErrorDTO> errores = new ArrayList<>();
+            errores.add(new ErrorDTO("E002", "No existe ningún usuario con ese id"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errores);
         }
     }
 
-    // Borra el usuario cuyo id coincide con el introducido
+    /**
+     * Elimina un usuario existente
+     * @param id del usuario que se desea eliminar
+     * @return codigo 204 si se ha eliminado correctamente, codigo 404 si no se ha encontrado y lista de errores
+     */
     @DeleteMapping("/{id}")
+    @Operation(summary = "Elimina un usuario existente")
     public ResponseEntity<?> borrarUsuarioPorId(@PathVariable Integer id) {
         Optional<Usuario> usuarioConsultado = service.listarPorId(id);
 
@@ -137,50 +201,27 @@ public class UsuarioController {
             service.borrarPorId(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body("El usuario ha sido eliminado correctamente");
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El usuario que desea eliminar no existe");
+            List<ErrorDTO> errores = new ArrayList<>();
+            errores.add(new ErrorDTO("E002", "No existe ningún usuario con ese id"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errores);
         }
     }
 
-    // Lista todos los usuarios
+    /**
+     * Lista todos los usuarios
+     * @return codigo 200 y lista de usuarios, codigo 404 si no se ha encontrado y lista de errores
+     */
     @GetMapping("")
+    @Operation(summary = "Lista todos los usuarios")
     public ResponseEntity<?> listarTodosUsuarios() {
         List<Usuario> usuarios = service.listarTodo();
 
         if (!usuarios.isEmpty()) {
             return ResponseEntity.ok(usuarios);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontraron usuarios");
-        }
-    }
-
-    // Función para gestionar el tamaño de los campos introducidos
-    public String comprobarLongitudCampos(UsuarioDTO usuarioDTO) {
-        List<String> camposInvalidos = new ArrayList<>();
-        String msg = "";
-
-        if (usuarioDTO.getNombre().length() > 50) {
-            camposInvalidos.add("nombre");
-        } else if (usuarioDTO.getPassword().length() > 100) {
-            camposInvalidos.add("password");
-        } else if (usuarioDTO.getRol().length() > 10) {
-            camposInvalidos.add("rol");
-        } else if (usuarioDTO.getEmail().length() > 50) {
-            camposInvalidos.add("email");
-        } else {
-
-        }
-
-        if (camposInvalidos.size() != 0) {
-            for (int i = 0; i < camposInvalidos.size(); i++) {
-                if (i != camposInvalidos.size() - 1) {
-                    msg += camposInvalidos.get(i) + ", ";
-                } else {
-                    msg += camposInvalidos.get(i);
-                }
-            }
-            return msg;
-        } else {
-            return msg;
+            List<ErrorDTO> errores = new ArrayList<>();
+            errores.add(new ErrorDTO("E007", "No existen usuarios"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errores);
         }
     }
 }
