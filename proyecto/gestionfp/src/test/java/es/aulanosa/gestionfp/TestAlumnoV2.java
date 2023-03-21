@@ -52,5 +52,11 @@ public class TestAlumnoV2 {
         }
     }
 
+    @Test
+    @Order(3)
+    void buscarPorCursoYEstudios() {
 
+        var a = service.buscarPorCursoYEstudios(4,3);
+        System.out.println(a);
+    }
 }
