@@ -28,7 +28,7 @@ public class TestAsignatura {
         asignatura.setIdEstudios(3);
         asignatura.setNivel(1);
         try {
-            var a = asignaturaService.guardar(asignatura);
+            var a = asignaturaService.guardarAsignatura(asignatura);
             System.out.println(a);
         } catch (Exception e) {
             throw new NoSeHaEncontradoException("No se ha encontrado la asignatura", e);
@@ -39,7 +39,7 @@ public class TestAsignatura {
     @Order(2)
     public void consultarPorId() throws NoSeHaEncontradoException {
 
-        var a = asignaturaService.buscarPorId(1);
+        var a = asignaturaService.buscarPorIdAsignatura(1);
         System.out.println(a);
 
     }
@@ -48,11 +48,11 @@ public class TestAsignatura {
     @Order(3)
     public void modificar() throws NoSeHaEncontradoException {
 
-        var asignaturaConsultada = asignaturaService.buscarPorId(1032);
+        var asignaturaConsultada = asignaturaService.buscarPorIdAsignatura(1032);
         if (asignaturaConsultada != null) {
             asignaturaConsultada.setNombre("Programación333");
             try {
-                var a = asignaturaService.modificar(asignaturaConsultada);
+                var a = asignaturaService.modificarAsignatura(asignaturaConsultada);
                 System.out.println(a);
             } catch (Exception e) {
                 throw new NoSeHaEncontradoException("No se ha encontrado la asignatura", e);
@@ -65,10 +65,10 @@ public class TestAsignatura {
     @Test
     @Order(4)
     public void borrar() throws NoSeHaEncontradoException {
-        var asignaturaConsultada = asignaturaService.buscarPorId(1);
+        var asignaturaConsultada = asignaturaService.buscarPorIdAsignatura(1);
         if (asignaturaConsultada != null) {
             try {
-                asignaturaService.borrarPorId(asignaturaConsultada.getId());
+                asignaturaService.borrarPorIdAsignatura(asignaturaConsultada.getId());
                 System.out.println("Se ha borrado correctamente");
             } catch (Exception e) {
                 throw new NoSeHaEncontradoException("No se ha encontrado la asignatura", e);
@@ -82,7 +82,7 @@ public class TestAsignatura {
     @Order(5)
     public void buscarTodo() throws NoSeHaEncontradoException {
         try {
-            List<Asignatura> asignaturas = asignaturaService.buscarTodo();
+            List<Asignatura> asignaturas = asignaturaService.buscarTodoAsignatura();
             System.out.println(asignaturas);
         } catch (Exception e) {
             throw new NoSeHaEncontradoException("No se han encontrado asignaturas", e);
@@ -93,7 +93,7 @@ public class TestAsignatura {
     @Order(6)
     public void buscarTodosPorNombreCon() throws NoSeHaEncontradoException {
         try {
-            List<Asignatura> asignaturas = asignaturaService.buscarTodoPorNombreCon("Programación");
+            List<Asignatura> asignaturas = asignaturaService.buscarTodoPorNombreAsignaturaConteniendoNombreAsignatura("Programación");
             System.out.println(asignaturas);
         } catch (Exception e) {
             throw new NoSeHaEncontradoException("No se ha encontrado el asignaturas", e);
