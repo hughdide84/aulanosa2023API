@@ -26,9 +26,9 @@ public class AlumnoExternoController {
 
     //API para dar de alta, se le pasa un objeto DTO por POST, lo convierte al model y lo inserta
     public ResponseEntity<?> altaAlumnosExternos(@RequestBody AlumnoExternoDTO alumnoExternoDTO) throws NoSeHaEncontradoException {
-        AlumnoExterno alumnoExterno = service.listarPorId(alumnoExternoDTO.getId()).get();
+        var consulta = service.listarPorId(alumnoExternoDTO.getId()).get();
 
-        if (alumnoExterno == null) {
+        if(consulta == null) {
             try {
                 AlumnoExterno alumnosExternos = alumnoExternoDTO.convertirModel();
                 AlumnoExterno alumnosExternosGuardado = service.guardar(alumnosExternos);

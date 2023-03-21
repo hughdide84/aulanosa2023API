@@ -57,11 +57,9 @@ public class AlumnoExternoServiceImp implements AlumnoExternoService {
     @Transactional(readOnly = true)
     //lista seguna la id que se le pasa
     public Optional<AlumnoExterno> listarPorId(Integer id) throws NoSeHaEncontradoException {
-        if(repository.findById(id).isPresent()){
+
             return repository.findById(id);
-        }else{
-            throw new NoSeHaEncontradoException("No se ha encontrado el alumno especificado con ese ID");
-        }
+
     }
     @Transactional
     @Override
