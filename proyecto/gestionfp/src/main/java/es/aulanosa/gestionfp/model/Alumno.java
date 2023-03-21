@@ -57,6 +57,12 @@ public class Alumno {
     @ManyToOne
     @JoinColumn(name = "idCurso", insertable = false, updatable = false)
     private Curso curso;
+    @ManyToOne
+    @JoinColumn(name = "idEstudios", insertable = false, updatable = false)
+    private Estudios estudios;
+    @ManyToOne
+    @JoinColumn(name = "idEmpresa", insertable = false, updatable = false)
+    private Empresa empresa;
 
     public Alumno(int idCurso, int idEstudios, String nombre, char cv, char carta, int idEmpresa, Date inicioPr, Date finPr) {
         this.idCurso = idCurso;

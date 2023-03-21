@@ -92,4 +92,18 @@ public class TestAlumnoEmpresaService {
         System.out.println(a);
     }
 
+    @Test
+    @Order(9)
+    void buscarAlumnosEmpresa() {
+        var a = alumnoEmpresaService.buscarAlumnosEmpresa(1,3);
+        System.out.println(a);
+    }
+
+    @Test
+    @Order(10)
+    void buscarEmpresasAlumnos() {
+        var a = alumnoEmpresaService.buscarEmpresasAlumnos(1,3);
+        System.out.println(a);
+    }
+
 }

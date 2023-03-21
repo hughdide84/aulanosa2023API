@@ -20,5 +20,5 @@ public interface AlumnoService {
     Alumno buscarPorUsuario(String nombre);
 
     List<Alumno> buscarPorEstado() throws NoSeHaEncontradoException;
-
+    List<Alumno> buscarPorCursoYEstudios(int idCurso, int idEstudios);
 }

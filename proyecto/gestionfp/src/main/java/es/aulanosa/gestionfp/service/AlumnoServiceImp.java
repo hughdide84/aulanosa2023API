@@ -74,4 +74,9 @@ public class AlumnoServiceImp implements AlumnoService{
     public List<Alumno> buscarPorEstado() throws NoSeHaEncontradoException {
             return repositorio.findAllAlumnoActivos();
         }
+
+    @Override
+    public List<Alumno> buscarPorCursoYEstudios(int idCurso, int idEstudios) {
+        return repositorio.findByIdCursoAndIdEstudios(idCurso, idEstudios);
+    }
 }

@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.controller;
 
+import es.aulanosa.gestionfp.dto.AlumnoEmpresaDTO;
 import es.aulanosa.gestionfp.dto.EmpresaDTO;
 import es.aulanosa.gestionfp.model.Alumno;
 import es.aulanosa.gestionfp.model.AlumnoEmpresa;
@@ -161,5 +162,20 @@ public class EmpresaController {
         } else {
             return msg;
         }
+    }
+
+    @GetMapping("/alumno/{idCurso}/{idEstudio}")
+    //Devuelve un listado de alumnos que tengan el estado activo
+    public ResponseEntity<?> buscarEmpresaAlumno(@PathVariable int idCurso, @PathVariable int idEstudio) {
+        List<AlumnoEmpresa> listaAlumnosEmpresas = alumnoEmpresaService.buscarEmpresasAlumnos(idCurso,idEstudio);
+
+        List<AlumnoEmpresaDTO> listaAlumnoEmpresaDTO = new ArrayList<>();
+        for(AlumnoEmpresa alumnoEmpresa : listaAlumnosEmpresas) {
+            AlumnoEmpresaDTO alumnoEmpresaDTO = new AlumnoEmpresaDTO();
+            alumnoEmpresaDTO.crearDTO(alumnoEmpresa);
+            listaAlumnoEmpresaDTO.add(alumnoEmpresaDTO);
+        }
+
+        return ResponseEntity.ok(listaAlumnoEmpresaDTO);
     }
 }
