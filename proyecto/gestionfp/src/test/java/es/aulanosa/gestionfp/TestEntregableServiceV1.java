@@ -71,17 +71,25 @@ public class TestEntregableServiceV1 {
 
     @Test
     @Order(5)
-    void eliminarMatricula() throws NoSeHaEncontradoException {
-        var a = service.consultarPorIdEntregable(1);
+    void eliminarEntregable() throws NoSeHaEncontradoException {
+        var a = service.consultarPorIdEntregable(7);
 
         if (a.isPresent()) {
-            service.eliminarEnregable(a.get().getId());
+            service.eliminarEntregable(a.get().getId());
             System.out.println("Eliminado");
         }
 
         else {
             throw new NoSeHaEncontradoException("El entregable buscado no existe");
         }
+
+    }
+
+    @Test
+    @Order(6)
+    void buscarTodoLosPagos(){
+
+        System.out.println(service.consultarTodosEntregables());
 
     }
 

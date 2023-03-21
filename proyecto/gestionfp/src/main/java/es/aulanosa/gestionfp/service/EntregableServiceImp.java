@@ -1,6 +1,8 @@
 package es.aulanosa.gestionfp.service;
 
+import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Entregable;
+import es.aulanosa.gestionfp.repository.AsignaturaRepository;
 import es.aulanosa.gestionfp.repository.EntregableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,12 +16,19 @@ public class EntregableServiceImp implements EntregableService{
 
     @Autowired
     private EntregableRepository repositorio;
+    @Autowired
+    private AsignaturaRepository asignaturaRepository;
 
     @Override
     @Transactional
     //insertar un entregable en la BD
-    public Entregable insertarEntregable(Entregable entregable) {
-        return repositorio.save(entregable);
+    public Entregable insertarEntregable(Entregable entregable) throws NoSeHaEncontradoException {
+
+        if(asignaturaRepository.findById(entregable.getIdAsignatura()).isPresent()){
+            return repositorio.save(entregable);
+        }else{
+            throw new NoSeHaEncontradoException("El idAsignatura no existe");
+        }
     }
 
     @Override
@@ -50,7 +59,7 @@ public class EntregableServiceImp implements EntregableService{
     @Override
     @Transactional
     //eliminar un entregable existente
-    public void eliminarEnregable(Integer id) {
+    public void eliminarEntregable(Integer id) {
         repositorio.deleteById(id);
     }
 }

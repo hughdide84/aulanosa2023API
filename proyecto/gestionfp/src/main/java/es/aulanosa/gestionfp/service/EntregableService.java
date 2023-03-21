@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.service;
 
+import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Entregable;
 
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.Optional;
 
 public interface EntregableService {
 
-    public Entregable insertarEntregable(Entregable entregable);
+    public Entregable insertarEntregable(Entregable entregable) throws NoSeHaEncontradoException;
 
     public Optional<Entregable> consultarPorIdEntregable(Integer id);
 
@@ -15,7 +16,7 @@ public interface EntregableService {
 
     public Entregable modificarEntregable(Entregable entregable) throws NoSuchFieldException;
 
-    public void eliminarEnregable(Integer id);
+    public void eliminarEntregable(Integer id);
 
 
 }

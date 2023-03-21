@@ -1,6 +1,7 @@
 package es.aulanosa.gestionfp.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -18,6 +19,7 @@ public class Entregable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
     @Column(name = "tipo")
     @NotNull(message = "El id de la asignatura no puede estar vacío")
@@ -27,7 +29,7 @@ public class Entregable {
     @NotNull(message = "El id de la asignatura no puede estar vacío")
     private int idAsignatura;
     @Column(name = "descripcion")
-    @NotNull(message = "La descripcion no puede estar vacía")
+    @NotBlank(message = "La descripcion no puede estar vacia")
     @Size(max = 100, message = "La descripcion debe tener menos de 100 caracteres")
     private String descripcion;
     @Column(name = "fecha")
