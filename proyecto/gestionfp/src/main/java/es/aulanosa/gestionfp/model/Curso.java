@@ -24,8 +24,9 @@ public class Curso {
 
         //atributos objeto curso
         //id autogenerado
-        //atributos objeto curso
-        //id autogenerado
+        /**
+         * Atributos para el objeto curso
+         */
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "id")

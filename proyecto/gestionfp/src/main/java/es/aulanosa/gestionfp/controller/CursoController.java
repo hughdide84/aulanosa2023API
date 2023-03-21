@@ -76,7 +76,7 @@ public class CursoController {
     /**
      * Comprueba si el curso existe en la BD y en ese caso cambia los valores que se le especifiquen
      * @param curso Se le pasa un objeto de tipo curso
-     * @return devuelve un objeto curso dto modificado
+     * @return devuelve un objeto cursoDTO modificado
      */
     @PutMapping("")
     @Operation(summary = "Edita un curso")
@@ -96,7 +96,12 @@ public class CursoController {
         }
     }
 
-    //Operación correspondiente para borrar un curso en concreto por id
+    /**
+     * Comprueba si el id de un curso existe en la BD y en ese caso borra todo el registro
+     * @param id se le pasa el id del curso como parametro
+     * @return devuelve un mensaje de exito o de error depende de si se ha podido borrar el curso
+     * @throws NoSeHaEncontradoException salta esta excepcion si el id pasado no existe
+     */
     @DeleteMapping("/{id}")
     @Operation(summary = "Borra un curso por id")
     public ResponseEntity<?> borrarCurso (@PathVariable Integer id) throws NoSeHaEncontradoException {
@@ -114,7 +119,10 @@ public class CursoController {
         }
     }
 
-    //Operacion correspondiente para listar todos los datos de la tabla Cursos
+    /**
+     * metodo para listar todos los cursos existentes en la BD
+     * @return devuelve una lista de todos los cursos
+     */
     @GetMapping("/all")
     @Operation(summary = "Listar todos los cursos")
     public ResponseEntity<?> listarTodosCursos() {
@@ -122,7 +130,10 @@ public class CursoController {
         return ResponseEntity.status(HttpStatus.OK).body(curso);
     }
 
-    //Operacion correspondiente para listar todos los datos de la tabla Cursos que esten activos
+    /**
+     * metodo para listar todos los cursos activos
+     * @return devuelve una lista de todos los cursos que estan activos en la BD
+     */
     @GetMapping("/cursosActivos")
     @Operation(summary = "Listar todos los cursos activos")
     public ResponseEntity<?> listarCursosActivos() {
