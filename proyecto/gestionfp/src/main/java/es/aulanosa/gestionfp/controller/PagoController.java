@@ -127,9 +127,6 @@ public class PagoController {
             }
             return ResponseEntity.status(HttpStatus.OK).body(pagosDTO);
 
-        }catch (RestResponseEntityExceptionHandler e){
-            ErrorDTO errorDTO = new ErrorDTO("E0005", "No se ha encontrado la matrícula especificada");
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
         }catch (NoSeHaEncontradoException e){
             ErrorDTO errorDTO = new ErrorDTO("E0005", "No se ha encontrado la matrícula especificada");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
