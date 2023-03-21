@@ -5,14 +5,21 @@ import es.aulanosa.gestionfp.model.Usuario;
 import es.aulanosa.gestionfp.repository.MatriculasRepository;
 import es.aulanosa.gestionfp.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UsuarioServiceImp implements UsuarioService {
+public class UsuarioServiceImp implements UsuarioService, UserDetailsService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -101,5 +108,16 @@ public class UsuarioServiceImp implements UsuarioService {
     @Transactional
     public void borrarPorId(Integer id) {
         usuarioRepository.deleteById(id);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<Usuario> usuario = usuarioRepository.findByNombre(username);
+
+        List<GrantedAuthority> roles = new ArrayList<>();
+        roles.add(new SimpleGrantedAuthority("ADMIN"));
+
+        UserDetails userDetails = new User(usuario.get().getNombre(), usuario.get().getPassword(),roles);
+        return userDetails;
     }
 }
