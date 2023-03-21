@@ -15,6 +15,9 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+/**
+ * Modelo de la table Comentarios de la BD
+ */
 public class Comentario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

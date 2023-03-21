@@ -13,10 +13,18 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/comentario")
+/**
+ * Controller para el API de comentario
+ */
 public class ComentarioController {
     @Autowired
     private ComentarioService service;
 
+    /**
+     * Funcion para insertar datos a la BD, con una comprobación de longitud
+     * @param comentarioDTO 
+     * @return
+     */
     // Crea un nuevo comentario
     @PostMapping("")
     public ResponseEntity<?> crear(@RequestBody ComentarioDTO comentarioDTO) {

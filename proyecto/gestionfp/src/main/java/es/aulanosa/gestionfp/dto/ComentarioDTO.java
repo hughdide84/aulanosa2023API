@@ -10,6 +10,9 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+/**
+ * Clase DTO como el modelo, hacha para mostrar y recoger los datos del controller, y así hacer de intermediario
+ */
 public class ComentarioDTO {
     private Integer id;
     private char sistema;
