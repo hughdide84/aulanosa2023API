@@ -47,6 +47,11 @@ public class Asignatura {
         this.nivel = nivel;
     }
 
-
-
+    public Asignatura(int id, int idCurso, int idEstudios, String nombre, int nivel) {
+        this.id = id;
+        this.idCurso = idCurso;
+        this.idEstudios = idEstudios;
+        this.nombre = nombre;
+        this.nivel = nivel;
+    }
 }
