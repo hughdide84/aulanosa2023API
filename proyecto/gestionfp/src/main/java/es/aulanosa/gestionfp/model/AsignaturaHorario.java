@@ -34,7 +34,6 @@ public class AsignaturaHorario {
 
     @NotNull
     @Column(name = "inicio")
-    @Pattern()
     private Time inicio;
 
     @NotNull
