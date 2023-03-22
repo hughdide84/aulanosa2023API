@@ -7,11 +7,6 @@
     <list default="true" id="2d4a2c64-3f78-4c0b-8447-bb3f5e392635" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/controller/AsignaturaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/controller/AsignaturaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/dto/AsignaturaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/dto/AsignaturaDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/model/Asignatura.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/model/Asignatura.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/repository/AsignaturaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/repository/AsignaturaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/AsignaturaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/AsignaturaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/AsignaturaServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/AsignaturaServiceImp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

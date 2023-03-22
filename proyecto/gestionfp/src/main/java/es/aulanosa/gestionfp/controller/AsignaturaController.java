@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Clase controler para asignatura define las operaciones CRUD básicas para la entidad Asignatura.
+ * Clase controladora para asignatura define las operaciones CRUD básicas para la entidad Asignatura.
  */
 @RestController
 @RequestMapping("api/asignaturas")
