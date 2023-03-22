@@ -92,7 +92,7 @@ public class TestEntregableServiceV1 {
 
     @Test
     @Order(6)
-    void buscarTodoLosPagos(){
+    void buscarTodoLosEntregables(){
 
         System.out.println(service.consultarTodosEntregables());
 
