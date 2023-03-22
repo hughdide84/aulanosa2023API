@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class EntregablesNotaServiceImp implements EntregableNotaService {
+public class EntregableNotaServiceImp implements EntregableNotaService {
 
     @Autowired
     private EntregableNotasRepository repository;
@@ -18,21 +18,21 @@ public class EntregablesNotaServiceImp implements EntregableNotaService {
     @Override
     @Transactional
     //Insertar EntregableNotas
-    public EntregableNota insertarEntregablesNotas(EntregableNota entregableNotas) {
-        return repository.save(entregableNotas);
+    public EntregableNota insertarEntregableNota(EntregableNota entregableNota) {
+        return repository.save(entregableNota);
     }
     @Override
     @Transactional(readOnly = true)
     //Consultar EntregableNotas por id
-    public Optional<EntregableNota> buscarEntregablesNotasPorId(Integer id) {
+    public Optional<EntregableNota> buscarEntregableNotaPorId(Integer id) {
         return repository.findById(id);
     }
     @Override
     @Transactional
     //Modificar EntregableNotas
-    public EntregableNota modificarEntregablesNotas(EntregableNota entregableNotas) {
-        if (repository.findById(entregableNotas.getId()) == null) {
-            return repository.save(entregableNotas);
+    public EntregableNota modificarEntregableNota(EntregableNota entregableNota) {
+        if (repository.findById(entregableNota.getId()) == null) {
+            return repository.save(entregableNota);
         } else {
             return null;
         }
@@ -40,13 +40,13 @@ public class EntregablesNotaServiceImp implements EntregableNotaService {
     @Override
     @Transactional
     //Eliminar EntregableNotas
-    public void eliminarEntregablesNotas(EntregableNota entregableNotas) {
-        repository.delete(entregableNotas);
+    public void eliminarEntregableNota(EntregableNota entregableNota) {
+        repository.delete(entregableNota);
     }
     @Override
     @Transactional(readOnly = true)
     //Consultar todas las EntregableNotas
-    public List<EntregableNota> buscarEntregablesNotas() {
+    public List<EntregableNota> buscarEntregableNota() {
         return repository.findAll();
     }
 

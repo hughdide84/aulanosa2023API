@@ -9,16 +9,16 @@ import java.util.Optional;
 
 public interface EntregableNotaService {
 
-    EntregableNota insertarEntregablesNotas (EntregableNota entregableNotas);
+    EntregableNota insertarEntregableNota (EntregableNota entregableNota);
 
     @Transactional(readOnly = true)
     //Consultar EntregableNotas por id
-    Optional<EntregableNota> buscarEntregablesNotasPorId(Integer id);
+    Optional<EntregableNota> buscarEntregableNotaPorId(Integer id);
 
-    EntregableNota modificarEntregablesNotas (EntregableNota entregableNotas) throws NoSeHaEncontradoException;
+    EntregableNota modificarEntregableNota (EntregableNota entregableNota) throws NoSeHaEncontradoException;
 
-    void eliminarEntregablesNotas (EntregableNota entregableNotas);
+    void eliminarEntregableNota (EntregableNota entregableNota);
 
-    List<EntregableNota> buscarEntregablesNotas ();
+    List<EntregableNota> buscarEntregableNota ();
 
 }

@@ -2,7 +2,7 @@ package es.aulanosa.gestionfp;
 
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.EntregableNota;
-import es.aulanosa.gestionfp.service.EntregablesNotaServiceImp;
+import es.aulanosa.gestionfp.service.EntregableNotaServiceImp;
 import org.junit.jupiter.api.ClassOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -15,73 +15,92 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class TestEntregableNota {
 
     @Autowired
-    private EntregablesNotaServiceImp servicio;
+    private EntregableNotaServiceImp servicio;
 
     @Test
     @Order(1)
-    public void testInsertarEntregableNotas() throws NoSeHaEncontradoException {
+    public void testInsertarEntregableNota() throws NoSeHaEncontradoException {
 
-        EntregableNota entregableNotas = new EntregableNota();
-        entregableNotas.setIdEntregable(1);
-        entregableNotas.setIdAlumno(4);
-        entregableNotas.setNota(9);
+        EntregableNota entregableNota = new EntregableNota();
+        entregableNota.setIdEntregable(1);
+        entregableNota.setIdAlumno(4);
+        entregableNota.setNota(9);
         try {
-            var a = servicio.insertarEntregablesNotas(entregableNotas);
+            var a = servicio.insertarEntregableNota(entregableNota);
             System.out.println(a);
         } catch (Exception e) {
-            throw new NoSeHaEncontradoException("No existe la entrega de notas", e);
+            throw new NoSeHaEncontradoException("No se ha encontrado ese dato al insertar", e);
         }
     }
+
     @Test
     @Order(2)
-    public void testModificarEntregableNotas(){
-        var consultado = servicio.buscarEntregablesNotasPorId(2);
-        if (consultado.isPresent()){
-            EntregableNota entregableNotas = consultado.get();
-            entregableNotas.setNota(5);
-            var modificado = servicio.modificarEntregablesNotas(entregableNotas);
-            System.out.println(modificado);
-        }
-        else{
-            System.out.println("Fallo al modificar Entregable Notas");
-        }
-    }
-    @Test
-    @Order(3)
-    public void testConsultarEntregableNotasId(){
-        var consultado = servicio.buscarEntregablesNotasPorId(2);
-        if (consultado.isPresent()){
-            EntregableNota entregableNotas = consultado.get();
-            System.out.println(entregableNotas);
-        }
-        else{
+    public void testConsultarEntregableNotaId() {
+        var consultado = servicio.buscarEntregableNotaPorId(2);
+        if (consultado.isPresent()) {
+            EntregableNota entregableNota = consultado.get();
+            System.out.println(entregableNota);
+        } else {
             System.out.println("No se ha encontrado el Entregable Notas");
         }
     }
+
+    @Test
+    @Order(3)
+    public void testModificarEntregableNota() {
+        var consultado = servicio.buscarEntregableNotaPorId(2);
+        if (consultado.isPresent()) {
+            EntregableNota entregableNota = new EntregableNota();
+            entregableNota.setId(2);
+            entregableNota.setIdEntregable(1);
+            entregableNota.setIdAlumno(4);
+            entregableNota.setNota(10);
+            try {
+                var modificado = servicio.modificarEntregableNota(entregableNota);
+                System.out.println(modificado);
+            } catch (Exception e) {
+                System.out.println("Fallo al modificar Entregable Notas");
+            }
+        } else {
+            System.out.println("Fallo al modificar Entregable Notas");
+        }
+    }
+
     @Test
     @Order(4)
-    public void testEliminarEntregableNotas(){
-        var consultado = servicio.buscarEntregablesNotasPorId(2);
-        if (consultado.isPresent()){
-            EntregableNota entregableNotas = consultado.get();
-            servicio.eliminarEntregablesNotas(entregableNotas);
-            System.out.println("Entregable Notas eliminado");
+    public void testConsultarEntregableNotaId1() {
+        var consultado = servicio.buscarEntregableNotaPorId(2);
+        if (consultado.isPresent()) {
+            EntregableNota entregableNota = consultado.get();
+            System.out.println(entregableNota);
+        } else {
+            System.out.println("No se ha encontrado el Entregable Notas");
         }
-        else{
+    }
+
+    @Test
+    @Order(5)
+    public void testEliminarEntregableNota() {
+        var consultado = servicio.buscarEntregableNotaPorId(2);
+        if (consultado.isPresent()) {
+            EntregableNota entregableNota = consultado.get();
+            servicio.eliminarEntregableNota(entregableNota);
+            System.out.println("Entregable Notas eliminado");
+        } else {
             System.out.println("Entregable Notas no eliminado");
         }
     }
+
     @Test
-    @Order(5)
-    public void testConsultarTodosEntregableNotas(){
-        var consultado = servicio.buscarEntregablesNotas();
-        if (consultado.isEmpty()){
+    @Order(6)
+    public void testConsultarTodosEntregableNota() {
+        var consultado = servicio.buscarEntregableNota();
+        if (consultado.isEmpty()) {
             System.out.println("Nos se ha encontrado Entregable Notas");
-        }
-        else{
+        } else {
             System.out.println("Entregable Notas consultado");
-            for (EntregableNota entregableNotas : consultado) {
-                System.out.println(entregableNotas);
+            for (EntregableNota entregableNota : consultado) {
+                System.out.println(entregableNota);
             }
         }
     }
