@@ -137,6 +137,14 @@ public class ComentarioController {
         }
     }
 
+
+    /**
+     * Devuelve una lista con los campos que coincidan con el sistema e id proporcionados en los parámetros
+     * @param sistema Variable char para representar el campo sistema de la BD
+     * @param id Variable int para representar el campo ID de la BD
+     * @return Devuelve una lista con los registros que coinciden con lo especificado
+     * @throws NoSeHaEncontradoException Error que salta en caso de no encontrar campos en la BD
+     */
     @GetMapping("/sistema/{sistema}/id/{id}")
     @Operation(summary = "Devuelve una lista con los campos que coincidan con el sistema e id proporcionados en los parámetros")
     public ResponseEntity<?> listarPorSistemaEId(@PathVariable(value = "sistema") char sistema, @PathVariable(value = "id") int id) throws NoSeHaEncontradoException {
