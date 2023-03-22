@@ -28,14 +28,15 @@ public class PagoController {
     @Autowired
     PagoServiceImp service;
 
-    @PostMapping("")
-    @Operation(summary = "Inserta un pago")
+
 
     /**
      API para dar de alta un pago. Se le pasa un objeto DTO por POST, lo convierte al modelo y lo inserta.
      @param pagoDTO DTO de pago a insertar.
      @return ResponseEntity con el pago insertado en caso de éxito, o un error en caso contrario.
      */
+    @PostMapping("")
+    @Operation(summary = "Inserta un pago")
     public ResponseEntity<?> alta(@RequestBody PagoDTO pagoDTO){
         try{
             Pago pago = pagoDTO.convertirModel();
@@ -47,13 +48,14 @@ public class PagoController {
         }
     }
 
-    @GetMapping("/{id}")
-    @Operation(summary = "Consulta un pago")
+
     /**
      Consulta de un pago por ID.
      @param id ID del pago a consultar.
      @return ResponseEntity con el pago consultado en caso de éxito, o un error en caso contrario.
      */
+    @GetMapping("/{id}")
+    @Operation(summary = "Consulta un pago")
 
     public ResponseEntity<?> consulta(@PathVariable Integer id){
             Optional<Pago> alumnosExternos = service.buscarPorIdPago(id);
@@ -68,8 +70,7 @@ public class PagoController {
             }
     }
 
-    @PutMapping("")
-    @Operation(summary = "Edita un pago")
+
     //hay que hacerlo con try/catch
 
     /**
@@ -77,7 +78,8 @@ public class PagoController {
      * @param pagoDTO DTO del pago a editar.
      * @return ResponseEntity con el DTO del pago editado o un mensaje de error si hay un problema.
      */
-
+    @PutMapping("")
+    @Operation(summary = "Edita un pago")
     public ResponseEntity<?> editar(@RequestBody PagoDTO pagoDTO){
         try{
             Optional<Pago> pago = service.buscarPorIdPago(pagoDTO.getId());
@@ -93,14 +95,14 @@ public class PagoController {
         }
     }
 
-    @DeleteMapping("/{id}")
-    @Operation(summary = "Elimina un pago")
+
     /**
      * Endpoint para eliminar un pago existente.
      * @param id ID del pago a eliminar.
      * @return ResponseEntity con el DTO del pago eliminado o un mensaje de error si el pago no existe.
      */
-
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Elimina un pago")
     //hay que hacerlo con try/catch
     public ResponseEntity<?> eliminar(@PathVariable int id){
             Optional<Pago> pago = service.buscarPorIdPago(id);
@@ -118,13 +120,13 @@ public class PagoController {
         }
 
 
-    @GetMapping("")
-    @Operation(summary = "Consulta todos los pagos")
+
     /**
      * Endpoint para listar todos los pagos almacenados en la base de datos.
      * @return ResponseEntity que contiene una lista de todos los pagos o un mensaje de error si la lista está vacía.
      */
-
+    @GetMapping("")
+    @Operation(summary = "Consulta todos los pagos")
     public ResponseEntity<?> listarTodo(){
         if(!service.buscarTodosPagos().isEmpty()){
             return ResponseEntity.status(HttpStatus.OK).body(service.buscarTodosPagos());
