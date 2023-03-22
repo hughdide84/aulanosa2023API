@@ -24,12 +24,16 @@ public class ProyectoController {
     @Operation(summary = "Alta")
     //Guarda un nuevo proyecto
     public ResponseEntity<?> altaProyecto(@RequestBody ProyectoDTO proyectosDTO) {
-        Proyectos proyectosGuardado = service.guardar(proyectosDTO.toModel());
+        Proyectos proyectosConsultado = service.buscarPorId(proyectosDTO.getId());
 
-        if (proyectosGuardado != null) {
+        if (proyectosConsultado == null) {
+            Proyectos proyectosGuardado = proyectosDTO.toModel();
+            service.guardar(proyectosGuardado);
             return ResponseEntity.status(HttpStatus.CREATED).body(proyectosGuardado);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El proyecto ya existe");
+            List<ErrorDTO> errores = new ArrayList<>();
+            errores.add(new ErrorDTO("E0004", "Ya existe un proyecto con ese ID"));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errores);
         }
     }
     @GetMapping("")
