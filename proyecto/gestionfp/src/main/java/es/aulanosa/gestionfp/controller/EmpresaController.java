@@ -31,6 +31,7 @@ public class EmpresaController {
 
     //Metodo para insertar datos a la tabla empresa
     @PostMapping("")
+
     public ResponseEntity<?> altaEmpresa(@RequestBody EmpresaDTO empresaDTO) {
 
         Empresa consultarEmpresa = empService.findById(empresaDTO.getId());
