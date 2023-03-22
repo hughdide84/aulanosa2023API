@@ -95,7 +95,7 @@ import java.util.Optional;
                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
            }
        }
-
+        //Lista los datos que contengan el id del curso filtrado
        @GetMapping("cursoEs/{idCurso}")
         public ResponseEntity<?> listarPorCurso(@PathVariable Integer idCurso){
             List<Matricula> listadoCurso = service.buscarTodosCursosPorId(idCurso);
@@ -106,7 +106,7 @@ import java.util.Optional;
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Matricula no encontrado");
             }
        }
-
+        //Lista los datos que contengan el mes filtrado dentro del campo fecha
        @GetMapping("mesEs/{mes}")
         public ResponseEntity<?> listarPorMes(@PathVariable Integer mes){
             List<Matricula> listadoMes = service.buscarPorMesDeMatricula(mes);
@@ -117,7 +117,7 @@ import java.util.Optional;
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Matricula no encontrada");
             }
        }
-
+        //Lista los datos de las filas que contengan el nombre filtrado
        @GetMapping("nombreContiene/{nombre}")
         public ResponseEntity<?> listarPorNombre(@PathVariable String nombre) {
             List<Matricula> listarNombre = service.buscarPorNombreDeMatricula(nombre);
