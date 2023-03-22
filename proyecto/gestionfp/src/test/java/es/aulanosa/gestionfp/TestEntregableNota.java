@@ -2,7 +2,6 @@ package es.aulanosa.gestionfp;
 
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.EntregableNota;
-import es.aulanosa.gestionfp.service.EntregableNotaService;
 import es.aulanosa.gestionfp.service.EntregablesNotaServiceImp;
 import org.junit.jupiter.api.ClassOrderer;
 import org.junit.jupiter.api.Order;
@@ -13,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @TestClassOrder(ClassOrderer.OrderAnnotation.class)
 @SpringBootTest
-public class TestEntregableNotas {
+public class TestEntregableNota {
 
     @Autowired
     private EntregablesNotaServiceImp servicio;
@@ -26,7 +25,6 @@ public class TestEntregableNotas {
         entregableNotas.setIdEntregable(1);
         entregableNotas.setIdAlumno(4);
         entregableNotas.setNota(9);
-        var insertado = servicio.insertarEntregablesNotas(entregableNotas);
         try {
             var a = servicio.insertarEntregablesNotas(entregableNotas);
             System.out.println(a);
@@ -45,7 +43,7 @@ public class TestEntregableNotas {
             System.out.println(modificado);
         }
         else{
-            System.out.println("Entregable Notas no consultado");
+            System.out.println("Fallo al modificar Entregable Notas");
         }
     }
     @Test
@@ -57,7 +55,7 @@ public class TestEntregableNotas {
             System.out.println(entregableNotas);
         }
         else{
-            System.out.println("Entregable Notas no consultado");
+            System.out.println("No se ha encontrado el Entregable Notas");
         }
     }
     @Test
@@ -70,7 +68,7 @@ public class TestEntregableNotas {
             System.out.println("Entregable Notas eliminado");
         }
         else{
-            System.out.println("Entregable Notas no consultado");
+            System.out.println("Entregable Notas no eliminado");
         }
     }
     @Test
@@ -78,7 +76,7 @@ public class TestEntregableNotas {
     public void testConsultarTodosEntregableNotas(){
         var consultado = servicio.buscarEntregablesNotas();
         if (consultado.isEmpty()){
-            System.out.println("Entregable Notas no consultado");
+            System.out.println("Nos se ha encontrado Entregable Notas");
         }
         else{
             System.out.println("Entregable Notas consultado");
