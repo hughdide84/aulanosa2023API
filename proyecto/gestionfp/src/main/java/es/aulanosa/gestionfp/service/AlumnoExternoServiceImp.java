@@ -88,7 +88,7 @@ public class AlumnoExternoServiceImp implements AlumnoExternoService {
     @Override
     @Transactional(readOnly = true)
     public AlumnoExterno buscarPorEmailEs(String email) {
-        return repository.findByEmail(email);
+        return repository.findFirstByEmail(email);
     }
 
     @Override
