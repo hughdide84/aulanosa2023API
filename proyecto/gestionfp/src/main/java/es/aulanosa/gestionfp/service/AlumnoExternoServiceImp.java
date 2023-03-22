@@ -66,4 +66,73 @@ public class AlumnoExternoServiceImp implements AlumnoExternoService {
     public List<AlumnoExterno> buscarPorEstado() throws NoSeHaEncontradoException {
         return repository.findAllAlumnoExternosActivos();
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<AlumnoExterno> buscarPorNombreConteniendo(String nombre) {
+        return repository.findByNombreContaining(nombre);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public AlumnoExterno buscarPorNombreEs(String nombre) {
+        return repository.findByNombre(nombre);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<AlumnoExterno> buscarPorEmailConteniendo(String email) {
+        return repository.findByEmailContaining(email);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public AlumnoExterno buscarPorEmailEs(String email) {
+        return repository.findByEmail(email);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public AlumnoExterno buscarPorTelefono (String telefono) {
+        return repository.findByTelefono(telefono);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public AlumnoExterno buscarPorUniversidadEs(String universidad) {
+        return repository.findByUniversidad(universidad);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<AlumnoExterno> buscarPorUniversidadConteniendo(String universidad) {
+        return repository.findByUniversidadContaining(universidad);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<AlumnoExterno> buscarPorTitulacionConteniendo(String titulacion) {
+        return repository.findByTitulacionContaining(titulacion);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public AlumnoExterno buscarPorTitulacionEs(String titulacion) {
+        return repository.findByTitulacion(titulacion);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<AlumnoExterno> buscarPorEspecialidadConteniendo(String especialidad) {
+        return repository.findByEspecialidadContaining(especialidad);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public AlumnoExterno buscarPorEspecialidadEs(String especialidad) {
+        return repository.findByEspecialidad(especialidad);
+    }
+
+
+
 }

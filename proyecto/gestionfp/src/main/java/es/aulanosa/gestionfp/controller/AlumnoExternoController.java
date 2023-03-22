@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -45,14 +47,14 @@ public class AlumnoExternoController {
     //consulta por id, se le pasa como variable el mismo, consulta si existe y en caso de que l ohaga devuelve el objeto recuperado de la BD
     public ResponseEntity<?> consultaAlumnosExternos(@PathVariable Integer id){
         if (id == null)
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         else {
         try{
             Optional<AlumnoExterno> alumnosExternos = service.listarPorId(id);
             AlumnoExternoDTO alumnoExternoDTO = new AlumnoExternoDTO();
             alumnoExternoDTO.crearDTO(alumnosExternos.get());
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(alumnoExternoDTO);
+            return ResponseEntity.status(HttpStatus.OK).body(alumnoExternoDTO);
         }catch (NoSeHaEncontradoException e) {
             ErrorDTO errorDTO = new ErrorDTO("E0001", "ID no encontrado");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
@@ -66,9 +68,9 @@ public class AlumnoExternoController {
             AlumnoExterno alumnosExternos = alumnoExternoDTO.convertirModel();
             AlumnoExterno alumnosExternosGuardado = service.modificar(alumnosExternos);
             alumnoExternoDTO.crearDTO(alumnosExternosGuardado);
-            return ResponseEntity.status(HttpStatus.CREATED).body(alumnoExternoDTO);
+            return ResponseEntity.status(HttpStatus.OK).body(alumnoExternoDTO);
         }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
     @DeleteMapping("/{id}")
@@ -107,5 +109,150 @@ public class AlumnoExternoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
         }
     }
+
+    @GetMapping("/nombreEs/{nombre}")
+    public ResponseEntity<?> buscarPorNombreEsAlumnosExternos(@PathVariable String nombre) throws NoSeHaEncontradoException {
+        AlumnoExterno alumnoExternoConsultado = service.buscarPorNombreEs(nombre);
+
+        if(alumnoExternoConsultado != null){
+            AlumnoExternoDTO alumnoExternoDTO = new AlumnoExternoDTO();
+            alumnoExternoDTO.crearDTO(alumnoExternoConsultado);
+            return ResponseEntity.status(HttpStatus.OK).body(alumnoExternoDTO);
+        }else{
+            List<ErrorDTO> errorDTO = new ArrayList<>();
+            errorDTO.add(new ErrorDTO("E0003", "No hay registros en la base de datos"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
+        }
+    }
+
+    @GetMapping("/nombreContiene/{nombre}")
+    public ResponseEntity<?> buscarPorNombreConteniendoAlumnosExternos(@PathVariable String nombre) throws NoSeHaEncontradoException {
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(service.buscarPorNombreConteniendo(nombre));
+        }catch (Exception e){
+            ErrorDTO errorDTO = new ErrorDTO("E0003", "No hay registros en la base de datos");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
+        }
+    }
+
+    @GetMapping("/emailEs/{email}")
+    public ResponseEntity<?> buscarPorEmailEsAlumnosExternos(@PathVariable String email) throws NoSeHaEncontradoException {
+        AlumnoExterno alumnoExternoConsultado = service.buscarPorEmailEs(email);
+
+        if(alumnoExternoConsultado != null){
+            AlumnoExternoDTO alumnoExternoDTO = new AlumnoExternoDTO();
+            alumnoExternoDTO.crearDTO(alumnoExternoConsultado);
+            return ResponseEntity.status(HttpStatus.OK).body(alumnoExternoDTO);
+        }else{
+            List<ErrorDTO> errorDTO = new ArrayList<>();
+            errorDTO.add(new ErrorDTO("E0003", "No hay registros en la base de datos"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
+        }
+    }
+
+    @GetMapping("/emailContiene/{email}")
+    public ResponseEntity<?> buscarPorEmailConteniendoAlumnosExternos(@PathVariable String email) throws NoSeHaEncontradoException {
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(service.buscarPorEmailConteniendo(email));
+        }catch (Exception e){
+            ErrorDTO errorDTO = new ErrorDTO("E0003", "No hay registros en la base de datos");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
+        }
+    }
+
+    @GetMapping("/telefono/{telefono}")
+    public ResponseEntity<?> buscarPorTelefono(String telefono) {
+
+        AlumnoExterno alumnoExternoConsultado = service.buscarPorTelefono(telefono);
+
+        if(alumnoExternoConsultado != null){
+            AlumnoExternoDTO alumnoExternoDTO = new AlumnoExternoDTO();
+            alumnoExternoDTO.crearDTO(alumnoExternoConsultado);
+            return ResponseEntity.status(HttpStatus.OK).body(alumnoExternoDTO);
+        }else{
+            List<ErrorDTO> errorDTO = new ArrayList<>();
+            errorDTO.add(new ErrorDTO("E0003", "No hay registros en la base de datos"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
+        }
+    }
+
+    @GetMapping("/universidadEs/{universidad}")
+    public ResponseEntity<?> buscarPorUniversidadEsAlumnosExternos(@PathVariable String universidad) throws NoSeHaEncontradoException {
+        AlumnoExterno alumnoExternoConsultado = service.buscarPorUniversidadEs(universidad);
+
+        if(alumnoExternoConsultado != null){
+            AlumnoExternoDTO alumnoExternoDTO = new AlumnoExternoDTO();
+            alumnoExternoDTO.crearDTO(alumnoExternoConsultado);
+            return ResponseEntity.status(HttpStatus.OK).body(alumnoExternoDTO);
+        }else{
+            List<ErrorDTO> errorDTO = new ArrayList<>();
+            errorDTO.add(new ErrorDTO("E0003", "No hay registros en la base de datos"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
+        }
+    }
+
+    @GetMapping("/universidadContiene/{universidad}")
+    public ResponseEntity<?> buscarPorUniversidadConteniendoAlumnosExternos(@PathVariable String universidad) throws NoSeHaEncontradoException {
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(service.buscarPorUniversidadConteniendo(universidad));
+        }catch (Exception e){
+            List<ErrorDTO> errorDTO = new ArrayList<>();
+            errorDTO.add(new ErrorDTO("E0003", "No hay registros en la base de datos"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
+        }
+    }
+
+    @GetMapping("/titulacionEs/{titulacion}")
+    public ResponseEntity<?> buscarPorTitulacionEsAlumnosExternos(@PathVariable String titulacion) throws NoSeHaEncontradoException {
+        AlumnoExterno alumnoExternoConsultado = service.buscarPorTitulacionEs(titulacion);
+
+        if(alumnoExternoConsultado != null){
+            AlumnoExternoDTO alumnoExternoDTO = new AlumnoExternoDTO();
+            alumnoExternoDTO.crearDTO(alumnoExternoConsultado);
+            return ResponseEntity.status(HttpStatus.OK).body(alumnoExternoDTO);
+        }else{
+            List<ErrorDTO> errorDTO = new ArrayList<>();
+            errorDTO.add(new ErrorDTO("E0003", "No hay registros en la base de datos"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
+        }
+    }
+
+    @GetMapping("/titulacionContiene/{titulacion}")
+    public ResponseEntity<?> buscarPorTitulacionConteniendoAlumnosExternos(@PathVariable String titulacion) throws NoSeHaEncontradoException {
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(service.buscarPorTitulacionConteniendo(titulacion));
+        }catch (Exception e){
+            List<ErrorDTO> errorDTO = new ArrayList<>();
+            errorDTO.add(new ErrorDTO("E0003", "No hay registros en la base de datos"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
+        }
+    }
+
+    @GetMapping("/especialidadEs/{especialidad}")
+    public ResponseEntity<?> buscarEspecialidadEsAlumnosExternos(@PathVariable String especialidad) throws NoSeHaEncontradoException {
+        AlumnoExterno alumnoExternoConsultado = service.buscarPorEspecialidadEs(especialidad);
+
+        if(alumnoExternoConsultado != null){
+            AlumnoExternoDTO alumnoExternoDTO = new AlumnoExternoDTO();
+            alumnoExternoDTO.crearDTO(alumnoExternoConsultado);
+            return ResponseEntity.status(HttpStatus.OK).body(alumnoExternoDTO);
+        }else{
+            List<ErrorDTO> errorDTO = new ArrayList<>();
+            errorDTO.add(new ErrorDTO("E0003", "No hay registros en la base de datos"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
+        }
+    }
+
+    @GetMapping("/especialidadContiene/{especialidad}")
+    public ResponseEntity<?> buscarPorEspecialidadConteniendoAlumnosExternos(@PathVariable String especialidad) throws NoSeHaEncontradoException {
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(service.buscarPorEspecialidadConteniendo(especialidad));
+        }catch (Exception e){
+            List<ErrorDTO> errorDTO = new ArrayList<>();
+            errorDTO.add(new ErrorDTO("E0003", "No hay registros en la base de datos"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
+        }
+    }
+
 
 }
