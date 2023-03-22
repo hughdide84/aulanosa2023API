@@ -106,6 +106,7 @@ public class MensajeController {
      */
     //elimina el mensaje existente que tenga el id que se le pasa
     @DeleteMapping("/{id}")
+    @Operation(summary = "Método para borrar registros de la BD con el ID que se le proporciona como parámetro")
     public ResponseEntity<?> borrarMensajePorId(@PathVariable Integer id) {
         Optional<Mensaje> mensajeConsultado = service.consultarPorIdMensaje(id);
 
