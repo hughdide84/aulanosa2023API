@@ -4,7 +4,9 @@ import es.aulanosa.gestionfp.model.Asignatura;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+/**
+ * Esta clase representa una asignatura como objeto DTO
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
