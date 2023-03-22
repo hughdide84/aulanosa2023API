@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Repositorio para la recuperación de datos de Comentario, extiende de JPA, lo que hace que muchos de los métodos no sea necesario especificar una query
+ */
 @Repository
 public interface ComentarioRepository extends JpaRepository<Comentario, Integer> {
 

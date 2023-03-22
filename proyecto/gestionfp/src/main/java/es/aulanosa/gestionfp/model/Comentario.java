@@ -16,7 +16,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Data
 /**
- * Modelo de la table Comentarios de la BD
+ * Modelo de la tabla Comentarios de la BD
  */
 public class Comentario {
     @Id
