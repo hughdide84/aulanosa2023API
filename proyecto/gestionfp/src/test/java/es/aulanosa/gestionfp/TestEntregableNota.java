@@ -47,7 +47,7 @@ public class TestEntregableNota {
 
     @Test
     @Order(3)
-    public void testModificarEntregableNota() {
+    public void testModificarEntregableNota() throws NoSeHaEncontradoException {
         var consultado = servicio.buscarEntregableNotaPorId(3);
         if (consultado.isPresent()) {
             EntregableNota entregableNota = new EntregableNota();
@@ -59,7 +59,7 @@ public class TestEntregableNota {
                 var modificado = servicio.modificarEntregableNota(entregableNota);
                 System.out.println(modificado);
             } catch (Exception e) {
-                System.out.println("Fallo al modificar Entregable Notas");
+                throw new NoSeHaEncontradoException("No se ha encontrado ese dato al modificar", e);
             }
         } else {
             System.out.println("No existe el Entregable Notas");
