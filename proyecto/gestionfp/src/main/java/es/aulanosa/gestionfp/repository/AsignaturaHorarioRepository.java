@@ -6,6 +6,9 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
+/**
+ * Repositorio de asignaturas horario
+ */
 public interface AsignaturaHorarioRepository extends JpaRepository<AsignaturaHorario, Integer> {
 
     /**

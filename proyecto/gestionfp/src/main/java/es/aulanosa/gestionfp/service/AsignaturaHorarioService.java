@@ -7,6 +7,9 @@ import es.aulanosa.gestionfp.model.AsignaturaHorario;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Interfaz que define los métodos de la capa de servicio de AsignaturaHorario
+ */
 public interface AsignaturaHorarioService {
 
     /**
@@ -32,7 +35,20 @@ public interface AsignaturaHorarioService {
      */
     AsignaturaHorario modificarAsignaturaHorario(AsignaturaHorario asignaturaHorario) throws NoSeHaEncontradoException;
 
+    /**
+     * 
+     * @param idAsignatura
+     * @param idCurso
+     * @param nivel
+     * @return
+     * @throws NoSeHaEncontradoException
+     */
     List<AsignaturaHorario> buscarPorCursoAsignaturaHorario(int idAsignatura, int idCurso, int nivel) throws NoSeHaEncontradoException;
+    /**
+     * Elimina un AsignaturaHorario de la base de datos
+     * @param id del AsignaturaHorario a eliminar
+     * @throws NoSeHaEncontradoException si no se encuentra el AsignaturaHorario
+     */
     void eliminarAsignaturaHorario(int id) throws NoSeHaEncontradoException;
 
     List<AsignaturaHorario> listarTodoAsignaturaHorario();
