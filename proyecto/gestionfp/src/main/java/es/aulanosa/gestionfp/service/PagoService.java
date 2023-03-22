@@ -6,7 +6,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-
+/**
+ Esta interfaz define los métodos que deben implementar los servicios de pago en la aplicación.
+ */
 public interface PagoService {
     /**
      * Guarda un pago en la base de datos.
