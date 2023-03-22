@@ -10,6 +10,9 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 
+/**
+ * Clase que representa la entidad Matriculas
+ */
 @Entity
 @Table(name = "Matriculas")
 @NoArgsConstructor //lombok - Crea

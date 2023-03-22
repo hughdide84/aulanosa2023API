@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 
+/**
+ * Clase que representa la entidad Matriculas en formato DTO
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

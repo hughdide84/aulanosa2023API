@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Clase que implementa la interfaz de la capa de servicio de matriculas
+ */
 @Service
 public class MatriculasServiceImp implements MatriculasService{
 
