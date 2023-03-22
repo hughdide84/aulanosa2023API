@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -93,5 +94,41 @@ import java.util.Optional;
                ErrorDTO errorDTO = new ErrorDTO("E0003", "No hay registros en la base de datos");
                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
            }
+       }
+
+       @GetMapping("cursoEs/{idCurso}")
+        public ResponseEntity<?> listarPorCurso(@PathVariable Integer idCurso){
+            List<Matricula> listadoCurso = service.buscarTodosCursosPorId(idCurso);
+            if (!listadoCurso.isEmpty()) {
+                return  ResponseEntity.status(HttpStatus.OK).body(listadoCurso);
+            }
+            else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Matricula no encontrado");
+            }
+       }
+
+       @GetMapping("mesEs/{mes}")
+        public ResponseEntity<?> listarPorMes(@PathVariable Integer mes){
+            List<Matricula> listadoMes = service.buscarPorMesDeMatricula(mes);
+            if (!listadoMes.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.OK).body(listadoMes);
+            }
+            else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Matricula no encontrada");
+            }
+       }
+
+       @GetMapping("nombreContiene/{nombre}")
+        public ResponseEntity<?> listarPorNombre(@PathVariable String nombre) {
+            List<Matricula> listarNombre = service.buscarPorNombreDeMatricula(nombre);
+
+            if(!listarNombre.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.OK).body(listarNombre);
+            }
+            else {
+               return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Matricula no encontrada");
+            }
+
+
        }
 }
