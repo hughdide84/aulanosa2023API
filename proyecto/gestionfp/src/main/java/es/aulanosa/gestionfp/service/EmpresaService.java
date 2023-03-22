@@ -13,4 +13,5 @@ public interface EmpresaService {
     void deleteById(int id);
     List<Empresa> findAll();
     List<Empresa> findAllByNombre(String nombre);
+    List<Empresa> buscarPorCurso(int idCurso);
 }

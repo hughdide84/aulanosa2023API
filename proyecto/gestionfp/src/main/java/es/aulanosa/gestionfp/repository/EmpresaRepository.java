@@ -8,4 +8,5 @@ import java.util.List;
 public interface EmpresaRepository extends JpaRepository<Empresa, Integer> {
 
     List<Empresa> findAllByNombre(String nombre);
+    List<Empresa> findByIdCurso(int idCurso);
 }

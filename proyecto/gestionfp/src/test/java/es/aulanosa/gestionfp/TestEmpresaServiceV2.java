@@ -91,4 +91,11 @@ public class TestEmpresaServiceV2 {
         System.out.println(a);
     }
 
+    @Test
+    @Order(7)
+    void consultarEmpresaPorCurso() {
+        var a = empresaService.buscarPorCurso(3);
+        System.out.println(a);
+    }
+
 }

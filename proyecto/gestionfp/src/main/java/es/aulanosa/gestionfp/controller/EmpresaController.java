@@ -2,6 +2,7 @@ package es.aulanosa.gestionfp.controller;
 
 import es.aulanosa.gestionfp.dto.AlumnoEmpresaDTO;
 import es.aulanosa.gestionfp.dto.EmpresaDTO;
+import es.aulanosa.gestionfp.dto.ErrorDTO;
 import es.aulanosa.gestionfp.model.Alumno;
 import es.aulanosa.gestionfp.model.AlumnoEmpresa;
 import es.aulanosa.gestionfp.model.Empresa;
@@ -177,5 +178,18 @@ public class EmpresaController {
         }
 
         return ResponseEntity.ok(listaAlumnoEmpresaDTO);
+    }
+
+    @GetMapping("/curso/{idCurso}")
+    public ResponseEntity<?> buscarEmpresaCurso(@PathVariable int idCurso) {
+        List<Empresa> listaEmpresas = empService.buscarPorCurso(idCurso);
+
+        try {
+            return ResponseEntity.ok(listaEmpresas);
+        } catch (Exception e) {
+            List<ErrorDTO> errores = new ArrayList<>();
+            errores.add(new ErrorDTO("E008", "No se ha podido ejecutar esta funcion"));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error, no se ha podido ejecutar esta funcion");
+        }
     }
 }
