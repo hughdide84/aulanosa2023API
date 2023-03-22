@@ -11,6 +11,7 @@ import es.aulanosa.gestionfp.service.AlumnoEmpresaService;
 import es.aulanosa.gestionfp.service.AlumnoService;
 import es.aulanosa.gestionfp.service.EmpresaService;
 import es.aulanosa.gestionfp.service.UsuarioService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +20,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-@RestController
-@RequestMapping("/api/alumno")
 /**
  * Controlador de alumnos
  */
+@RestController
+@RequestMapping("/api/alumno")
 public class AlumnoController {
     @Autowired
     AlumnoService service;
@@ -38,6 +38,7 @@ public class AlumnoController {
      * @return ResponseEntity<?> codigo 201 con el alumno creado o codigo 404 con lista de errores
      */
     @PostMapping("")
+    @Operation(summary = "Crear un nuevo alumno")
     public ResponseEntity<?> crear(@RequestBody AlumnoDTO alumnoDTO) {
         Optional<Alumno> alumnoConsultado = service.buscarPorId(alumnoDTO.getId());
 
@@ -58,6 +59,7 @@ public class AlumnoController {
      */
     // Devuelve el usuario cuyo id coincide con el introducido
     @GetMapping("/{id}")
+    @Operation(summary = "Devuelve un alumno por su id")
     public ResponseEntity<?> alumnoPorId(@PathVariable Integer id) {
         Optional<Alumno> alumnoConsultado = service.buscarPorId(id);
 
@@ -76,6 +78,7 @@ public class AlumnoController {
      */
     // Actualiza un usuario ya existente
     @PutMapping("")
+    @Operation(summary = "Edita un alumno ya existente")
     public ResponseEntity<?> editar(@RequestBody AlumnoDTO alumnoDTO) {
         Optional<Alumno> alumnoConusltado = service.buscarPorId(alumnoDTO.getId());
 
@@ -97,6 +100,7 @@ public class AlumnoController {
      */
     // Borra el usuario cuyo id coincide con el introducido
     @DeleteMapping("/{id}")
+    @Operation(summary = "Borra un alumno por su id")
     public ResponseEntity<?> borrarPorid(@PathVariable Integer id) throws NoSeHaEncontradoException {
         Optional<Alumno> alumnoConusltado = service.buscarPorId(id);
         if (alumnoConusltado.isPresent()) {
@@ -114,11 +118,25 @@ public class AlumnoController {
      */
     // Devuelve un listado con todos los usuarios
     @GetMapping("")
+    @Operation(summary = "Devuelve un listado de todos los alumnos")
     public ResponseEntity<?> buscarTodo() {
         List<Alumno> alumnos = service.buscarTodo();
 
         if (!alumnos.isEmpty()) {
             return ResponseEntity.ok(alumnos);
+
+
+
+
+
+
+
+
+
+
+
+
+
         } else {
             List<ErrorDTO> errores = new ArrayList<>();
             errores.add(new ErrorDTO("E0003", "No existen alumnos"));

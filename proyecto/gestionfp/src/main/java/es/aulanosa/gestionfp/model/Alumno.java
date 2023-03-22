@@ -13,14 +13,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Clase para la entidad Alumno
+ */
 @Entity
 @Table(name = "Alumnos")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-/**
- * Clase para la entidad Alumno
- */
 public class Alumno {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

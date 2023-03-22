@@ -10,12 +10,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 /**
  * Clase DTO para la entidad Alumno
  */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class AlumnoDTO {
 
     private int id;
