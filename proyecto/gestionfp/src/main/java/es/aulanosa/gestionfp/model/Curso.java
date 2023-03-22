@@ -51,7 +51,6 @@ public class Curso {
         //constructor sin id
         /**
          * Constructor para la clase Curso sin el id.
-         *
          * @param nombre Nombre del curso.
          * @param inicio Fecha de inicio del curso.
          * @param fin Fecha de fin del curso.
