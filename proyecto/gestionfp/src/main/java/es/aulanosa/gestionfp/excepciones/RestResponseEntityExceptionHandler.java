@@ -61,7 +61,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     }
 
     /**
-     * Método para controlar fallor en las ejecuciones no controlada anteriormente
+     * Método para controlar fallos en las ejecuciones no controlada anteriormente
      * @param exception En este parámetro se especifica qué tipo de error controla, en el que se recoge en este caso un Exception
      * @return Devuelve un body preparado para el Controller en el que se especifica el error/errores
      */
