@@ -26,7 +26,7 @@ import java.util.Optional;
 
         // Crea una nueva matricula
         @PostMapping("")
-        public ResponseEntity<?> crear(@RequestBody MatriculaDTO matriculaDTO) {
+        public ResponseEntity<?> crearMatricula(@RequestBody MatriculaDTO matriculaDTO) {
 
 
             try{
@@ -49,7 +49,7 @@ import java.util.Optional;
 
         // Devuelve la matricula del mensaje cuyo id coincide con el introducido
         @GetMapping("/{id}")
-        public ResponseEntity<?> obtenerUsuarioPorId(@PathVariable Integer id) {
+        public ResponseEntity<?> obtenerMatriculaPorId(@PathVariable Integer id) {
             Optional<Matricula> matriculaConsultado = service.consultarPorIdMatricula(id);
 
             if (matriculaConsultado.isPresent()) {
@@ -84,7 +84,8 @@ import java.util.Optional;
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("La matricula que desea eliminar no existe");
             }
         }
-       @GetMapping("/")
+        //Lista todos los datos de la tabla matriculas
+       @GetMapping("")
         public ResponseEntity<?> listarTodo() {
            if (!service.consultarTodasMatriculas().isEmpty()) {
                return ResponseEntity.status(HttpStatus.OK).body(service.consultarTodasMatriculas());
