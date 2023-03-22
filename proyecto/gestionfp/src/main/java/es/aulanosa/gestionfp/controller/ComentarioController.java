@@ -1,6 +1,7 @@
 package es.aulanosa.gestionfp.controller;
 
 import es.aulanosa.gestionfp.dto.ComentarioDTO;
+import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Comentario;
 import es.aulanosa.gestionfp.service.ComentarioService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 /**
@@ -125,7 +127,7 @@ public class ComentarioController {
     // Devuelve un listado con todos los comentarios cuyo sistema y referencia coincidan con los introducidos
     @GetMapping("/sistema/{sistema}/referencia/{referencia}")
     @Operation(summary = "Devuelve una lista con los campos relacionados con el Sistema y Referencia proporcionados")
-    public ResponseEntity<?> listarPorSistemaYReferencia(@PathVariable char sistema, @PathVariable int referencia) {
+    public ResponseEntity<?> listarPorSistemaYReferencia(@PathVariable(value = "sistema") char sistema, @PathVariable(value = "referencia") int referencia) {
         List<Comentario> comentarios = service.listarPorSistemaYReferencia(sistema, referencia);
 
         if (!comentarios.isEmpty()) {
@@ -133,5 +135,25 @@ public class ComentarioController {
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontraron comentarios");
         }
+    }
+
+    @GetMapping("/sistema/{sistema}/id/{id}")
+    @Operation(summary = "Devuelve una lista con los campos que coincidan con el sistema e id proporcionados en los parámetros")
+    public ResponseEntity<?> listarPorSistemaEId(@PathVariable(value = "sistema") char sistema, @PathVariable(value = "id") int id) throws NoSeHaEncontradoException {
+        int cont = 0;
+
+        List<Comentario> comentarios = service.listarPorSistemaEId(sistema, id);
+
+        List<ComentarioDTO> comentariosDTO = new ArrayList<>();
+
+        for (Comentario comentario :
+                comentarios) {
+            comentariosDTO.add(new ComentarioDTO().toDTO(comentario));
+                    cont++;
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(comentariosDTO);
+
+
     }
 }

@@ -53,4 +53,12 @@ public interface ComentarioService {
      * @param id Dato representativo en la BD
      */
     void borrarPorId(Integer id);
+
+    /**
+     * Lista los registros que contengan el sistema e Id proporcionados
+     * @param sistema variable char para representar el campo Sistema de la BD
+     * @param id variable int para representar el campo ID de la BD
+     * @return Devuelve una lista de comentarios para mostrar todos los registros que coincidan
+     */
+    List<Comentario> listarPorSistemaEId(char sistema, int id) throws NoSeHaEncontradoException;
 }

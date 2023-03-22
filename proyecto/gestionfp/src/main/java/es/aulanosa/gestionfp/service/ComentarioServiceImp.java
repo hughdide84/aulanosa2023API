@@ -83,4 +83,19 @@ public class ComentarioServiceImp implements ComentarioService {
     public void borrarPorId(Integer id) {
         comentarioRepository.deleteById(id);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    //devuelve una lista con los campos de la BD que coincidan con los parametros de entrada, comprueba que haya campos en la BD
+    @Override
+    @Transactional(readOnly = true)
+    public List<Comentario> listarPorSistemaEId(char sistema, int id) throws NoSeHaEncontradoException {
+        if(comentarioRepository.findBySitemaAndId(sistema, id).isEmpty()){
+            return comentarioRepository.findBySitemaAndId(sistema, id);
+        }else{
+            throw  new NoSeHaEncontradoException("No hay campos en la BD");
+        }
+    }
+
 }
