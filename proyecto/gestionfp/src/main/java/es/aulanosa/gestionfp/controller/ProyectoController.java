@@ -18,8 +18,8 @@ public class ProyectoController {
     @Autowired
     private ProyectosService service;
 
-    @PostMapping("/alta")
-    @Operation(summary = "Alta")
+    @PostMapping("")
+    @Operation(summary = "Inserta un nuevo proyecto")
     //Guarda un nuevo proyecto
     public ResponseEntity<?> altaProyecto(@RequestBody ProyectoDTO proyectosDTO) {
         Proyectos proyectosGuardado = service.guardar(proyectosDTO.toModel());

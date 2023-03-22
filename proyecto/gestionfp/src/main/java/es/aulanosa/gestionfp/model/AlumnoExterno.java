@@ -9,8 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
-import java.util.List;
+import java.util.Date;
 
 @Entity
 @Table(name = "AlumnosExternos")
@@ -63,10 +62,10 @@ public class AlumnoExterno {
     private String especialidad;
 
     @Column(name = "inicio")
-    private Timestamp inicio;
+    private Date inicio;
 
     @Column(name = "fin")
-    private Timestamp fin;
+    private Date fin;
 
     @NotNull(message = "El cv no puede estar vacío")
     @Column(name = "cv")
