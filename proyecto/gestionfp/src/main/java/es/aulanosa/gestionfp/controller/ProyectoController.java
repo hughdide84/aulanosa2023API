@@ -57,6 +57,12 @@ public class ProyectoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No hay proyectos");
         }
     }
+
+    /**
+     * Método para buscar un registro en concreto en la BD con lo parámetros que se le pasan
+     * @param id Parámetro para representar el campo ID de la BD
+     * @return Devuelve un body con el registro en concreto o un error
+     */
     @GetMapping("/{id}")
     @Operation(summary = "Consultar")
     //Consulta un proyecto por su ID
@@ -69,6 +75,12 @@ public class ProyectoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe ningún proyecto con ese ID");
         }
     }
+
+    /**
+     * Método para editar campos de la BD, se le pasa un objeto entero, comprueba el id y cambia el registro según los datos del objeto
+     * @param proyectosDTO Objeto completo con el ID del registro que se quiere cambiar y las ediciones del mismo
+     * @return Devuelve el objeto editado, de forma que el usuario puede ver lo que ha editado en la BD
+     */
     @PutMapping("")
     @Operation(summary = "Editar")
     //Edita un proyecto
@@ -83,6 +95,12 @@ public class ProyectoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe ningún proyecto con ese ID");
         }
     }
+
+    /**
+     * Método para eliminar registros de la BD, se comprueba que el id exista y se elimina el id especificado en el parámetro
+     * @param id Parámetro que representa el campo de la BD que se quiere elminiar
+     * @return Devuelve un body con los datos que acaban de ser eliminados o un error
+     */
     @DeleteMapping("/{id}")
     @Operation(summary = "Eliminar")
     //Elimina un proyecto
