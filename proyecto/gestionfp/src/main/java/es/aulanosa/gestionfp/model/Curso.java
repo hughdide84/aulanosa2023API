@@ -14,6 +14,9 @@ import lombok.ToString;
 
 import java.sql.Timestamp;
 import java.util.List;
+/**
+ * Atributos para el objeto curso
+ */
 
 @Entity
 @Table(name = "Cursos")
@@ -24,9 +27,7 @@ public class Curso {
 
         //atributos objeto curso
         //id autogenerado
-        /**
-         * Atributos para el objeto curso
-         */
+
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "id")
