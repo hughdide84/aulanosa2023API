@@ -63,14 +63,12 @@ public class PagoController {
     @PutMapping("")
     //se le pasa un objeto completo por POST, el programa comprueba que su ID exista en la BD y en caso de que lo haga cambia los valores que estén diferentes
 
-    //hay que hacerlo con try/catch
-
     public ResponseEntity<?> editarPago(@RequestBody PagoDTO pagoDTO){
         try{
             Optional<Pago> pago = service.buscarPorIdPago(pagoDTO.getId());
-            service.borrarPago(pago.get().getId());
+            service.modificarPago(pagoDTO.convertirModel());
             PagoDTO pagoDTORecuperado = new PagoDTO();
-            pagoDTORecuperado.convertirDTO(pago.get());
+            pagoDTORecuperado.convertirDTO(service.buscarPorIdPago(pagoDTO.getId()).get());
 
             return ResponseEntity.status(HttpStatus.CREATED).body(pagoDTORecuperado);
 
