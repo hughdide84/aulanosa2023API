@@ -8,6 +8,8 @@ import es.aulanosa.gestionfp.model.Mensaje;
 import es.aulanosa.gestionfp.model.Usuario;
 import es.aulanosa.gestionfp.service.MensajeService;
 import es.aulanosa.gestionfp.service.UsuarioService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +23,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/api/mensaje")
+@Tag(name = "Mensajes", description = "Mensajes")
 public class MensajeController {
 
     @Autowired
@@ -36,6 +39,7 @@ public class MensajeController {
      */
     // Crea un nuevo mensaje
     @PostMapping("")
+    @Operation(summary = "Método para insertar datos en la BD con el objeto que se le pasa como parámetro")
     public ResponseEntity<?> crear(@RequestBody MensajeDTO mensajeDTO) {
 
 
@@ -57,8 +61,14 @@ public class MensajeController {
 
     }
 
+    /**
+     * Método para obtener los datos de la BD que correspondan con el ID parámetro
+     * @param id Variable Integer que representa el campo ID de la BD
+     * @return Devuelve los campos de la BD que coincidan con el ID, o un error
+     */
     // Devuelve el mensaje cuyo id coincide con el introducido
     @GetMapping("/{id}")
+    @Operation(summary = "Método para obtener los datos de la BD que correspondan con el ID parámetro")
     public ResponseEntity<?> obtenerUsuarioPorId(@PathVariable Integer id) {
         Optional<Mensaje> mensajeConsultado = service.consultarPorIdMensaje(id);
 
@@ -68,8 +78,15 @@ public class MensajeController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe ningún mensaje con ese ID");
         }
     }
+
+    /**
+     * Método para editar un registro de la BD a través de un objeto que se le pasa como body
+     * @param mensajeDTO Objeto que contiene el ID del registro a editar y los campos ya cambiados
+     * @return Devuelve el objeto editado para que el usuario los compruebe, o un error
+     */
     //edita el mensaje ya existente
     @PutMapping("")
+    @Operation(summary = "Método para editar un registro de la BD")
     public ResponseEntity<?> editarMensaje(@RequestBody MensajeDTO mensajeDTO) {
         Optional<Mensaje> mensajeConsultar = service.consultarPorIdMensaje(mensajeDTO.getId());
 
@@ -82,6 +99,11 @@ public class MensajeController {
         }
     }
 
+    /**
+     * Método para borrar registros de la BD con el ID que se le proporciona como parámetro
+     * @param id Parámetro que representa el campo ID de la tabla en la BD
+     * @return Devuelve un body con os datos eliminado o un error
+     */
     //elimina el mensaje existente que tenga el id que se le pasa
     @DeleteMapping("/{id}")
     public ResponseEntity<?> borrarMensajePorId(@PathVariable Integer id) {
