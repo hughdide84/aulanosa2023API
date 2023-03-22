@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Clase DTO para la presentación y recepción de datos en el controller
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

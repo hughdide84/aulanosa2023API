@@ -4,6 +4,7 @@ import es.aulanosa.gestionfp.dto.ProyectoDTO;
 import es.aulanosa.gestionfp.model.Proyectos;
 import es.aulanosa.gestionfp.service.ProyectosService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,13 +12,22 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Clase para los EndPoint de Proyectos
+ */
 @RestController
 @RequestMapping("/api/proyectos")
+@Tag(name = "Proyectos", description = "Clase para los apis de proyectos")
 public class ProyectoController {
 
     @Autowired
     private ProyectosService service;
 
+    /**
+     * Método para insertar nuevos campos en la BD
+     * @param proyectosDTO Objeto completo con los campos necesarios para la inserción en la BD,
+     * @return Devuelve un body con los datos insertados o un error en caso de que falle algo
+     */
     @PostMapping("/alta")
     @Operation(summary = "Alta")
     //Guarda un nuevo proyecto
@@ -30,6 +40,11 @@ public class ProyectoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El proyecto ya existe");
         }
     }
+
+    /**
+     * Método parta listar todos los registros de la table proyectos
+     * @return Devuelve un body con una lista de proyectos representando los registros, o un error
+     */
     @GetMapping("")
     @Operation(summary = "Listar")
     //Lista todos los proyectos
