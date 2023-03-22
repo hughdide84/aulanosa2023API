@@ -7,6 +7,7 @@ import es.aulanosa.gestionfp.model.AlumnoEmpresa;
 import es.aulanosa.gestionfp.model.Empresa;
 import es.aulanosa.gestionfp.service.AlumnoEmpresaService;
 import es.aulanosa.gestionfp.service.EmpresaService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.Table;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api/empresa")
-@Tag(name = "Empresas",description = "Clase para ")
+@Tag(name = "Empresas",description = "Operaciones con empresas ")
 public class EmpresaController {
 
     @Autowired
@@ -39,6 +40,7 @@ public class EmpresaController {
      * @return ResponseEntity que indica si se ha insertado la empresa correctamente o no.
      */
     @PostMapping("")
+    @Operation(summary = "Inserta una empresa")
     public ResponseEntity<?> altaEmpresa(@RequestBody EmpresaDTO empresaDTO) {
 
         Empresa consultarEmpresa = empService.findById(empresaDTO.getId());
@@ -60,6 +62,7 @@ public class EmpresaController {
      * @return ResponseEntity con la empresa encontrada o un mensaje de error si no se ha encontrado.
      */
     @GetMapping("{id}")
+    @Operation(summary = "Consulta una empresa")
     public ResponseEntity<?> consultarEmpresa(@PathVariable("id") Integer id) {
         Empresa empresa = empService.findById(id);
 
@@ -77,6 +80,7 @@ public class EmpresaController {
      * @return ResponseEntity que indica si se ha modificado la empresa correctamente o no.
      */
     @PutMapping("")
+    @Operation(summary = "Edita una empresa")
     public ResponseEntity<?> editarEmpresa(@RequestBody EmpresaDTO empresaDTO) {
         Empresa empresaParaActualizar = empService.findById(empresaDTO.getId());
 
@@ -97,6 +101,7 @@ public class EmpresaController {
      * @return ResponseEntity que indica si se ha eliminado la empresa correctamente o no.
      */
     @DeleteMapping("{id}")
+    @Operation(summary = "Elimina una empresa por id")
     public ResponseEntity<?> eliminarEmpresa(@PathVariable("id") Integer id) {
         Empresa empresa = empService.findById(id);
 
@@ -121,6 +126,7 @@ public class EmpresaController {
      * @return ResponseEntity con la lista de empresas encontradas o un mensaje de error si no se han encontrado.
      */
     @GetMapping("")
+    @Operation(summary = "Lista todas las empresas")
     public ResponseEntity<?> listarTodasEmpresas() {
         List<Empresa> empresa = empService.findAll();
 
@@ -138,6 +144,7 @@ public class EmpresaController {
      * @return ResponseEntity con la lista de alumnos encontrados o un mensaje de error si no se han encontrado.
      */
     @GetMapping("{id}/alumno")
+    @Operation(summary = "Lista alumnos asociados a una empresa")
     public ResponseEntity<?> listarAlumnosEnEmpresa(@PathVariable("id") Integer id) {
         List<Alumno> alumnoEmp = alumnoEmpresaService.buscarTodosAlumnosPorIdEmpresa(id);
 
@@ -198,7 +205,7 @@ public class EmpresaController {
      @return ResponseEntity con la lista de AlumnoEmpresaDTO encontrados
      */
     @GetMapping("/alumno/{idCurso}/{idEstudio}")
-    //Devuelve un listado de alumnos que tengan el estado activo
+    @Operation(summary = "Lista empresas en las que esta un alumno")
     public ResponseEntity<?> buscarEmpresaAlumno(@PathVariable int idCurso, @PathVariable int idEstudio) {
         List<AlumnoEmpresa> listaAlumnosEmpresas = alumnoEmpresaService.buscarEmpresasAlumnos(idCurso,idEstudio);
 
