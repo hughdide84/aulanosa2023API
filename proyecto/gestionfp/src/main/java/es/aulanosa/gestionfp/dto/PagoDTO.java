@@ -10,7 +10,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
-
+/**
+ * Clase que representa una versión simplificada de la entidad Pago, utilizada para transferir datos entre la capa de controladores y la capa de servicios.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -8,6 +8,7 @@ import es.aulanosa.gestionfp.model.AlumnoExterno;
 import es.aulanosa.gestionfp.model.Pago;
 import es.aulanosa.gestionfp.repository.PagoRepository;
 import es.aulanosa.gestionfp.service.PagoServiceImp;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,19 +17,25 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
-
+/**
+ Controlador de la API de pagos.
+ */
 @RestController
 @RequestMapping("/api/pagos")
-@Tag(name = "Estudios", description = "Estudios")
+@Tag(name = "Pago", description = "Operaciones con pagos")
 public class PagoController {
 
     @Autowired
     PagoServiceImp service;
 
     @PostMapping("")
-    //falta @operation
+    @Operation(summary = "Inserta un pago")
 
-    //API para dar de alta, se le pasa un objeto DTO por POST, lo convierte al model y lo inserta
+    /**
+     API para dar de alta un pago. Se le pasa un objeto DTO por POST, lo convierte al modelo y lo inserta.
+     @param pagoDTO DTO de pago a insertar.
+     @return ResponseEntity con el pago insertado en caso de éxito, o un error en caso contrario.
+     */
     public ResponseEntity<?> alta(@RequestBody PagoDTO pagoDTO){
         try{
             Pago pago = pagoDTO.convertirModel();
@@ -41,9 +48,12 @@ public class PagoController {
     }
 
     @GetMapping("/{id}")
-    //consulta por id, se le pasa como variable el mismo, consulta si existe y en caso de que lo haga devuelve el objeto recuperado de la BD
-
-    //hay que hacerlo con try/catch
+    @Operation(summary = "Consulta un pago")
+    /**
+     Consulta de un pago por ID.
+     @param id ID del pago a consultar.
+     @return ResponseEntity con el pago consultado en caso de éxito, o un error en caso contrario.
+     */
 
     public ResponseEntity<?> consulta(@PathVariable Integer id){
             Optional<Pago> alumnosExternos = service.buscarPorIdPago(id);
@@ -59,9 +69,14 @@ public class PagoController {
     }
 
     @PutMapping("")
-    //se le pasa un objeto completo por POST, el programa comprueba que su ID exista en la BD y en caso de que lo haga cambia los valores que estén diferentes
-
+    @Operation(summary = "Edita un pago")
     //hay que hacerlo con try/catch
+
+    /**
+     * Endpoint para editar un pago existente.
+     * @param pagoDTO DTO del pago a editar.
+     * @return ResponseEntity con el DTO del pago editado o un mensaje de error si hay un problema.
+     */
 
     public ResponseEntity<?> editar(@RequestBody PagoDTO pagoDTO){
         try{
@@ -79,7 +94,12 @@ public class PagoController {
     }
 
     @DeleteMapping("/{id}")
-    //se le pasa un ID por API, el programa comprueba que exista en la BD y en caso afirmativo se borra de la misma
+    @Operation(summary = "Elimina un pago")
+    /**
+     * Endpoint para eliminar un pago existente.
+     * @param id ID del pago a eliminar.
+     * @return ResponseEntity con el DTO del pago eliminado o un mensaje de error si el pago no existe.
+     */
 
     //hay que hacerlo con try/catch
     public ResponseEntity<?> eliminar(@PathVariable int id){
@@ -99,7 +119,12 @@ public class PagoController {
 
 
     @GetMapping("")
-    //lista todos los campos de la BD, en caso de que esta este vacia, devuelve un error personalizado
+    @Operation(summary = "Consulta todos los pagos")
+    /**
+     * Endpoint para listar todos los pagos almacenados en la base de datos.
+     * @return ResponseEntity que contiene una lista de todos los pagos o un mensaje de error si la lista está vacía.
+     */
+
     public ResponseEntity<?> listarTodo(){
         if(!service.buscarTodosPagos().isEmpty()){
             return ResponseEntity.status(HttpStatus.OK).body(service.buscarTodosPagos());

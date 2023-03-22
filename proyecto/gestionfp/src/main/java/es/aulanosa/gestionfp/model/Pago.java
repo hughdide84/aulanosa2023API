@@ -1,5 +1,9 @@
 package es.aulanosa.gestionfp.model;
+/**
 
+ Modelo de la tabla Pagos de la base de datos.
+ La tabla Pagos se utiliza para almacenar información sobre los pagos.
+ */
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
