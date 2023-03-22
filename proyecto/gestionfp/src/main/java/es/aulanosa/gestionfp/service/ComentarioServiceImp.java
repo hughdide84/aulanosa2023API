@@ -10,18 +10,27 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Implementación de la interfaz de comentario, en la que se especifica qué hará cada cosa
+ */
 @Service
 public class ComentarioServiceImp implements ComentarioService {
     @Autowired
     ComentarioRepository comentarioRepository;
 
     // Guarda un comentario
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional
     public Comentario crear(Comentario comentario) {
         return comentarioRepository.save(comentario);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     // Lista un comentario por ID
     @Override
     @Transactional(readOnly = true)
@@ -29,6 +38,9 @@ public class ComentarioServiceImp implements ComentarioService {
         return comentarioRepository.findById(id);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     // Lista todos los comentarios
     @Override
     @Transactional(readOnly = true)
@@ -36,6 +48,9 @@ public class ComentarioServiceImp implements ComentarioService {
         return comentarioRepository.findAll();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     // Lista todos los comentarios con un sistema y referencia concretos
     @Override
     @Transactional(readOnly = true)
@@ -43,6 +58,9 @@ public class ComentarioServiceImp implements ComentarioService {
         return comentarioRepository.findBySistemaAndReferencia(sistema, referencia);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     // Actualiza un comentario
     @Override
     @Transactional
@@ -56,10 +74,24 @@ public class ComentarioServiceImp implements ComentarioService {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     // Borra un comentario por ID
     @Override
     @Transactional
     public void borrarPorId(Integer id) {
         comentarioRepository.deleteById(id);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    //devuelve una lista con los campos de la BD que coincidan con los parametros de entrada
+    @Override
+    @Transactional(readOnly = true)
+    public List<Comentario> listarPorSistemaEIdUsuarioComentario(char sistema, int idUC) throws NoSeHaEncontradoException {
+            return comentarioRepository.findBySistemaAndIdUsuarioComentario(sistema, idUC);
+    }
+
 }

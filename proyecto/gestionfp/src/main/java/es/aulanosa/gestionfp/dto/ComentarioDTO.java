@@ -6,7 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
-
+/**
+ * Clase DTO como el modelo, hacha para mostrar y recoger los datos del controller, y así hacer de intermediario
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
