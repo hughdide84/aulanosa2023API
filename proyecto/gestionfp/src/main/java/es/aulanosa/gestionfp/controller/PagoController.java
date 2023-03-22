@@ -100,8 +100,18 @@ public class PagoController {
     @GetMapping("")
     //lista todos los campos de la BD, en caso de que esta este vacia, devuelve un error personalizado
     public ResponseEntity<?> listarTodoPago(){
+        int cont = 0;
+
         if(!service.buscarTodosPagos().isEmpty()){
-            return ResponseEntity.status(HttpStatus.OK).body(service.buscarTodosPagos());
+            List<Pago> pagos = service.buscarTodosPagos();
+
+            List<PagoDTO> pagosDTO = new ArrayList<>();
+            for (Pago pago:
+                    pagos) {
+                pagosDTO.add(new PagoDTO().convertirDTO(pago));
+                cont++;
+            }
+            return ResponseEntity.status(HttpStatus.OK).body(pagosDTO);
         }else{
             ErrorDTO errorDTO = new ErrorDTO("E0007", "No hay registros en la base de datos");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
