@@ -19,7 +19,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 /**
- * Clase controller para la formación de los EndPoints necesarios
+ * Clase controladora de los Endpoints de la API, en la que se especifican los mismos para crear, modificar, listar y eliminar
  */
 @RestController
 @RequestMapping("/api/mensaje")
