@@ -19,7 +19,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/pagos")
-@Tag(name = "Estudios", description = "Estudios")
+@Tag(name = "Pagos", description = "Pagos")
 public class PagoController {
 
     @Autowired
