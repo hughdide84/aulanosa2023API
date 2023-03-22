@@ -7,6 +7,7 @@ import es.aulanosa.gestionfp.model.AlumnoEmpresa;
 import es.aulanosa.gestionfp.model.Empresa;
 import es.aulanosa.gestionfp.service.AlumnoEmpresaService;
 import es.aulanosa.gestionfp.service.EmpresaService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.Table;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api/empresa")
+@Tag(name = "Empresas",description = "Clase para ")
 public class EmpresaController {
 
     @Autowired
