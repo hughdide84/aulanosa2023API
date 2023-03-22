@@ -29,7 +29,7 @@ public class ProyectoController {
      * @return Devuelve un body con los datos insertados o un error en caso de que falle algo
      */
     @PostMapping("/alta")
-    @Operation(summary = "Alta")
+    @Operation(summary = "Método para insertar nuevos campos en la BD")
     //Guarda un nuevo proyecto
     public ResponseEntity<?> altaProyecto(@RequestBody ProyectoDTO proyectosDTO) {
         Proyectos proyectosGuardado = service.guardar(proyectosDTO.toModel());
@@ -46,7 +46,7 @@ public class ProyectoController {
      * @return Devuelve un body con una lista de proyectos representando los registros, o un error
      */
     @GetMapping("")
-    @Operation(summary = "Listar")
+    @Operation(summary = "Método parta listar todos los registros de la table proyectos")
     //Lista todos los proyectos
     public ResponseEntity<?> listarTodoProyecto(){
         List<Proyectos> proyectos = service.buscarTodo();
@@ -64,7 +64,7 @@ public class ProyectoController {
      * @return Devuelve un body con el registro en concreto o un error
      */
     @GetMapping("/{id}")
-    @Operation(summary = "Consultar")
+    @Operation(summary = "Método para buscar un registro en concreto en la BD con lo parámetros que se le pasan")
     //Consulta un proyecto por su ID
     public ResponseEntity<?> consultarProyectoId(@PathVariable Integer id){
         Proyectos proyectosConsultado = service.buscarPorId(id);
@@ -82,7 +82,7 @@ public class ProyectoController {
      * @return Devuelve el objeto editado, de forma que el usuario puede ver lo que ha editado en la BD
      */
     @PutMapping("")
-    @Operation(summary = "Editar")
+    @Operation(summary = "Método para editar campos de la BD, se le pasa un objeto entero, comprueba el id y cambia el registro según los datos del objeto")
     //Edita un proyecto
     public ResponseEntity<?> editarProyecto(@RequestBody ProyectoDTO proyectosDTO){
         Proyectos proyectosConsultado = service.buscarPorId(proyectosDTO.getId());
@@ -102,7 +102,7 @@ public class ProyectoController {
      * @return Devuelve un body con los datos que acaban de ser eliminados o un error
      */
     @DeleteMapping("/{id}")
-    @Operation(summary = "Eliminar")
+    @Operation(summary = "Método para eliminar registros de la BD, se comprueba que el id exista y se elimina el id especificado en el parámetro")
     //Elimina un proyecto
     public ResponseEntity<?> eliminarProyecto(@PathVariable Integer id){
         Proyectos proyectosConsultado = service.buscarPorId(id);
