@@ -25,59 +25,55 @@ public class AlumnoExternoController {
     //falta @operation
 
     //API para dar de alta, se le pasa un objeto DTO por POST, lo convierte al model y lo inserta
-    public ResponseEntity<?> alta(@RequestBody AlumnoExternoDTO alumnoExternoDTO){
-        try{
-            AlumnoExterno alumnosExternos = alumnoExternoDTO.convertirModel();
-            AlumnoExterno alumnosExternosGuardado = service.guardar(alumnosExternos);
-            alumnoExternoDTO.crearDTO(alumnosExternosGuardado);
-            return ResponseEntity.status(HttpStatus.CREATED).body(alumnoExternoDTO);
-        }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+    public ResponseEntity<?> altaAlumnosExternos(@RequestBody AlumnoExternoDTO alumnoExternoDTO) throws NoSeHaEncontradoException {
+        var consulta = service.listarPorId(alumnoExternoDTO.getId()).get();
+
+        if(consulta == null) {
+            try {
+                AlumnoExterno alumnosExternos = alumnoExternoDTO.convertirModel();
+                AlumnoExterno alumnosExternosGuardado = service.guardar(alumnosExternos);
+                alumnoExternoDTO.crearDTO(alumnosExternosGuardado);
+                return ResponseEntity.status(HttpStatus.CREATED).body(alumnoExternoDTO);
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Ya existe un alumno externo con ese id");
         }
     }
-
     @GetMapping("/{id}")
-    //consulta por id, se le pasa como variable el mismo, consulta si existe y en caso de que lo haga devuelve el objeto recuperado de la BD
-    public ResponseEntity<?> consulta(@PathVariable Integer id){
+    //consulta por id, se le pasa como variable el mismo, consulta si existe y en caso de que l ohaga devuelve el objeto recuperado de la BD
+    public ResponseEntity<?> consultaAlumnosExternos(@PathVariable Integer id){
+        if (id == null)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        else {
         try{
             Optional<AlumnoExterno> alumnosExternos = service.listarPorId(id);
             AlumnoExternoDTO alumnoExternoDTO = new AlumnoExternoDTO();
             alumnoExternoDTO.crearDTO(alumnosExternos.get());
 
             return ResponseEntity.status(HttpStatus.CREATED).body(alumnoExternoDTO);
-        }catch (NoSeHaEncontradoException e){
+        }catch (NoSeHaEncontradoException e) {
             ErrorDTO errorDTO = new ErrorDTO("E0001", "ID no encontrado");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
-
+          }
         }
     }
-
     @PutMapping("/")
     //se le pasa un objeto completo por POST, el programa comprueba que su ID exista en la BD y en caso de que lo haga cambia los valores que estén diferentes
-    public ResponseEntity<?> editar(@RequestBody AlumnoExternoDTO alumnoExternoDTO){
+    public ResponseEntity<?> editarAlumnosExternos(@RequestBody AlumnoExternoDTO alumnoExternoDTO){
         try{
             AlumnoExterno alumnosExternos = alumnoExternoDTO.convertirModel();
-            //no hay control de errore porque al listar por id si no existe ese id, salta un error directamente avisandolo
-            Optional<AlumnoExterno> alumnoExternoRercuperado = service.listarPorId(alumnoExternoDTO.getId());
-            service.guardar(alumnosExternos);
-            AlumnoExternoDTO alumnoExternoDTORecuperado = new AlumnoExternoDTO();
-            alumnoExternoDTO.crearDTO(alumnosExternos);
-
+            AlumnoExterno alumnosExternosGuardado = service.modificar(alumnosExternos);
+            alumnoExternoDTO.crearDTO(alumnosExternosGuardado);
             return ResponseEntity.status(HttpStatus.CREATED).body(alumnoExternoDTO);
-
-        }catch (NoSeHaEncontradoException e){
-            ErrorDTO errorDTO = new ErrorDTO("E0002", "Alumno no encontrado");
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
         }catch (Exception e){
-            ErrorDTO errorDTO = new ErrorDTO("E0004", "No se ha introducido un Alumno válido");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDTO);
-
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
     }
-
     @DeleteMapping("/{id}")
     //se le pasa un ID por API, el programa comprueba que exista en la BD y en caso afirmativo se borra de la misma
-    public ResponseEntity<?> eliminar(@PathVariable int id){
+    public ResponseEntity<?> eliminarAlumnosExternos(@PathVariable int id){
         try{
             Optional<AlumnoExterno> alumnosExternos = service.listarPorId(id);
             service.eliminar(alumnosExternos.get().getId());
@@ -94,7 +90,7 @@ public class AlumnoExternoController {
 
     @GetMapping("/")
     //lista todos los campos de la BD, en caso de que esta este vacia, devuelve un error personalizado
-    public ResponseEntity<?> listarTodo(){
+    public ResponseEntity<?> listarTodosAlumnosExternos(){
         if(!service.listarTodo().isEmpty()){
             return ResponseEntity.status(HttpStatus.OK).body(service.listarTodo());
         }else{
@@ -102,4 +98,14 @@ public class AlumnoExternoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
         }
     }
+    @GetMapping("/estado")
+    public ResponseEntity<?> buscarPorEstadoAlumnosExternos() throws NoSeHaEncontradoException {
+        if(!service.buscarPorEstado().isEmpty()){
+            return ResponseEntity.status(HttpStatus.OK).body(service.buscarPorEstado());
+        }else{
+            ErrorDTO errorDTO = new ErrorDTO("E0003", "No hay registros en la base de datos");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
+        }
+    }
+
 }

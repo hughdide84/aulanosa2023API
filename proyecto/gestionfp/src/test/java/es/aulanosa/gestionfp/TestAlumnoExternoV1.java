@@ -34,7 +34,7 @@ public class TestAlumnoExternoV1 {
 		alumnosExternos.setInicio(new Date(2023, 2, 1));
 		alumnosExternos.setConvenio('a');
 		alumnosExternos.setEspecialidad("s");
-		alumnosExternos.setIdCurso(1);
+		alumnosExternos.setIdCurso(4);
 		alumnosExternos.setHorario('a');
 		alumnosExternos.setTelefono("1");
 		alumnosExternos.setEvaluacion('a');

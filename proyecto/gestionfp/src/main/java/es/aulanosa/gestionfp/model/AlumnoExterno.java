@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -9,7 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
-import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "AlumnosExternos")
@@ -62,10 +63,10 @@ public class AlumnoExterno {
     private String especialidad;
 
     @Column(name = "inicio")
-    private Date inicio;
+    private Timestamp inicio;
 
     @Column(name = "fin")
-    private Date fin;
+    private Timestamp fin;
 
     @NotNull(message = "El cv no puede estar vacío")
     @Column(name = "cv")
@@ -82,6 +83,9 @@ public class AlumnoExterno {
     @NotNull(message = "El horario no puede estar vacío")
     @Column(name = "horario")
     private char horario;
+    @ManyToOne
+    @JoinColumn(name = "idCurso", insertable = false, updatable = false)
+    private Curso curso;
 
 
 }
