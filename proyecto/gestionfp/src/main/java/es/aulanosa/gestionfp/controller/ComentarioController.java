@@ -12,13 +12,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
-@RestController
-@RequestMapping("/api/comentario")
-@Tag(name = "Comentarios", description = "Comentarios")
 /**
  * Controller para el API de comentario
  */
+@RestController
+@RequestMapping("/api/comentario")
+@Tag(name = "Comentarios", description = "Comentarios")
 public class ComentarioController {
     @Autowired
     private ComentarioService service;

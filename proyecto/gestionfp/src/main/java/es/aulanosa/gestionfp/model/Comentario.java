@@ -9,15 +9,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
-
+/**
+ * Modelo de la tabla Comentarios de la BD
+ */
 @Entity
 @Table(name = "Comentarios")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-/**
- * Modelo de la tabla Comentarios de la BD
- */
 public class Comentario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

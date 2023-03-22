@@ -19,7 +19,6 @@ public class ComentarioServiceImp implements ComentarioService {
     ComentarioRepository comentarioRepository;
 
     // Guarda un comentario
-
     /**
      * {@inheritDoc}
      */
