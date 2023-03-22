@@ -21,11 +21,11 @@ public interface AlumnoExternoService {
     List<AlumnoExterno> buscarPorEmailConteniendo(String email);
     AlumnoExterno buscarPorEmailEs(String email);
     AlumnoExterno buscarPorTelefono(String telefono);
-    AlumnoExterno buscarPorUniversidadEs(String universidad);
+    List<AlumnoExterno> buscarPorUniversidadEs(String universidad);
     List<AlumnoExterno> buscarPorUniversidadConteniendo(String universidad);
     List<AlumnoExterno> buscarPorTitulacionConteniendo(String titulacion);
-    AlumnoExterno buscarPorTitulacionEs(String titulacion);
+    List<AlumnoExterno> buscarPorTitulacionEs(String titulacion);
     List<AlumnoExterno> buscarPorEspecialidadConteniendo(String especialidad);
-    AlumnoExterno buscarPorEspecialidadEs(String especialidad);
+    List<AlumnoExterno> buscarPorEspecialidadEs(String especialidad);
 
 }

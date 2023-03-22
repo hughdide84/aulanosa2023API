@@ -99,7 +99,7 @@ public class AlumnoExternoServiceImp implements AlumnoExternoService {
 
     @Override
     @Transactional(readOnly = true)
-    public AlumnoExterno buscarPorUniversidadEs(String universidad) {
+    public List<AlumnoExterno> buscarPorUniversidadEs(String universidad) {
         return repository.findByUniversidad(universidad);
     }
 
@@ -117,7 +117,7 @@ public class AlumnoExternoServiceImp implements AlumnoExternoService {
 
     @Override
     @Transactional(readOnly = true)
-    public AlumnoExterno buscarPorTitulacionEs(String titulacion) {
+    public List<AlumnoExterno> buscarPorTitulacionEs(String titulacion) {
         return repository.findByTitulacion(titulacion);
     }
 
@@ -129,7 +129,7 @@ public class AlumnoExternoServiceImp implements AlumnoExternoService {
 
     @Override
     @Transactional(readOnly = true)
-    public AlumnoExterno buscarPorEspecialidadEs(String especialidad) {
+    public List<AlumnoExterno> buscarPorEspecialidadEs(String especialidad) {
         return repository.findByEspecialidad(especialidad);
     }
 
