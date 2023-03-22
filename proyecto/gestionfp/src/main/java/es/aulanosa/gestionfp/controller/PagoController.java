@@ -63,19 +63,13 @@ public class PagoController {
     @PutMapping("")
     //se le pasa un objeto completo por POST, el programa comprueba que su ID exista en la BD y en caso de que lo haga cambia los valores que estén diferentes
 
-    public ResponseEntity<?> editarPago(@RequestBody PagoDTO pagoDTO){
-        try{
+    public ResponseEntity<?> editarPago(@RequestBody PagoDTO pagoDTO) throws NoSeHaEncontradoException, NoSuchFieldException {
             Optional<Pago> pago = service.buscarPorIdPago(pagoDTO.getId());
             service.modificarPago(pagoDTO.convertirModel());
             PagoDTO pagoDTORecuperado = new PagoDTO();
             pagoDTORecuperado.convertirDTO(service.buscarPorIdPago(pagoDTO.getId()).get());
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(pagoDTORecuperado);
-
-        }catch (Exception e){
-            ErrorDTO errorDTO = new ErrorDTO("E0005", "No se ha introducido un Pago válido");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDTO);
-        }
+            return ResponseEntity.status(HttpStatus.OK).body(pagoDTORecuperado);
     }
 
     @DeleteMapping("/{id}")
