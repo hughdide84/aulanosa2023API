@@ -11,6 +11,9 @@ import lombok.NoArgsConstructor;
 import java.sql.Timestamp;
 import java.util.List;
 
+/**
+ * Clase Model que representa la tabla Mensajes de la BD
+ */
 @Entity
 @Table(name = "Mensajes")
 @Data

@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+/**
+ * Clase controller para la formación de los EndPoints necesarios
+ */
 @RestController
 @RequestMapping("/api/mensaje")
 public class MensajeController {
@@ -26,6 +29,11 @@ public class MensajeController {
     UsuarioService serviceUsu;
 
 
+    /**
+     * Método para insertar datos en la BD con el objeto que se le pasa como parámetro
+     * @param mensajeDTO Objeto completo que representa los datos para insertar en la BD
+     * @return Devuelve un body con los datos que acaban de
+     */
     // Crea un nuevo mensaje
     @PostMapping("")
     public ResponseEntity<?> crear(@RequestBody MensajeDTO mensajeDTO) {
