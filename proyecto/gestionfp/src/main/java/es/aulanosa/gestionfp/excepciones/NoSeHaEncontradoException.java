@@ -1,5 +1,8 @@
 package es.aulanosa.gestionfp.excepciones;
 
+/**
+ * Clase para la excepción
+ */
 public class NoSeHaEncontradoException extends Exception{
 
     public NoSeHaEncontradoException(String mensaje){
