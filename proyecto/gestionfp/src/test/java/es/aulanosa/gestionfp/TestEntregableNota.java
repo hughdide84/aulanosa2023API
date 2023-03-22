@@ -48,10 +48,10 @@ public class TestEntregableNota {
     @Test
     @Order(3)
     public void testModificarEntregableNota() {
-        var consultado = servicio.buscarEntregableNotaPorId(2);
+        var consultado = servicio.buscarEntregableNotaPorId(3);
         if (consultado.isPresent()) {
             EntregableNota entregableNota = new EntregableNota();
-            entregableNota.setId(2);
+            entregableNota.setId(3);
             entregableNota.setIdEntregable(1);
             entregableNota.setIdAlumno(4);
             entregableNota.setNota(10);
@@ -62,7 +62,7 @@ public class TestEntregableNota {
                 System.out.println("Fallo al modificar Entregable Notas");
             }
         } else {
-            System.out.println("Fallo al modificar Entregable Notas");
+            System.out.println("No existe el Entregable Notas");
         }
     }
 

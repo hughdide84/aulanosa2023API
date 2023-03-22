@@ -31,7 +31,7 @@ public class EntregableNotaServiceImp implements EntregableNotaService {
     @Transactional
     //Modificar EntregableNotas
     public EntregableNota modificarEntregableNota(EntregableNota entregableNota) {
-        if (repository.findById(entregableNota.getId()) == null) {
+        if (repository.findById(entregableNota.getId()) != null) {
             return repository.save(entregableNota);
         } else {
             return null;
