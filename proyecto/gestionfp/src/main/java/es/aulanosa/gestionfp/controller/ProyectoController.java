@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.controller;
 
+import es.aulanosa.gestionfp.dto.ErrorDTO;
 import es.aulanosa.gestionfp.dto.ProyectoDTO;
 import es.aulanosa.gestionfp.model.Proyectos;
 import es.aulanosa.gestionfp.service.ProyectosService;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -79,6 +81,20 @@ public class ProyectoController {
             return ResponseEntity.status(HttpStatus.OK).body("Proyecto eliminado");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe ningún proyecto con ese ID");
+        }
+    }
+
+    @GetMapping("/curso/{idCurso}/estudios/{idEstudios}")
+    @Operation(summary = "Listar por curso y estudios")
+    public ResponseEntity<?> listarPorCursoYEstudios(@PathVariable Integer idCurso, @PathVariable Integer idEstudios){
+        List<Proyectos> proyectos = service.buscarPorCursoYEstudios(idCurso, idEstudios);
+
+        try {
+            return ResponseEntity.ok(proyectos);
+        } catch (Exception e){
+            List<ErrorDTO> errores = new ArrayList<>();
+            errores.add(new ErrorDTO("E004", "No hay proyectos "));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errores);
         }
     }
 }

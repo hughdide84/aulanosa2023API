@@ -13,4 +13,5 @@ public interface ProyectosService {
     public Proyectos buscarPorId(Integer id);
     public Proyectos modificar(Proyectos proyectos) throws NoSeHaEncontradoException;
     public void borrar(Integer id);
+    List<Proyectos> buscarPorCursoYEstudios(Integer idCurso, Integer idEstudios);
 }
