@@ -55,10 +55,10 @@ public interface ComentarioService {
     void borrarPorId(Integer id);
 
     /**
-     * Lista los registros que contengan el sistema e Id proporcionados
+     * Lista los registros que contengan el sistema e IdUsuarioComentario proporcionados
      * @param sistema variable char para representar el campo Sistema de la BD
-     * @param id variable int para representar el campo ID de la BD
+     * @param idUC variable int para representar el campo IdUsuarioComentario de la BD
      * @return Devuelve una lista de comentarios para mostrar todos los registros que coincidan
      */
-    List<Comentario> listarPorSistemaEId(char sistema, int id) throws NoSeHaEncontradoException;
+    List<Comentario> listarPorSistemaEIdUsuarioComentario(char sistema, int idUC) throws NoSeHaEncontradoException;
 }

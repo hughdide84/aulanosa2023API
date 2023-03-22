@@ -87,15 +87,11 @@ public class ComentarioServiceImp implements ComentarioService {
     /**
      * {@inheritDoc}
      */
-    //devuelve una lista con los campos de la BD que coincidan con los parametros de entrada, comprueba que haya campos en la BD
+    //devuelve una lista con los campos de la BD que coincidan con los parametros de entrada
     @Override
     @Transactional(readOnly = true)
-    public List<Comentario> listarPorSistemaEId(char sistema, int id) throws NoSeHaEncontradoException {
-        if(comentarioRepository.findBySitemaAndId(sistema, id).isEmpty()){
-            return comentarioRepository.findBySitemaAndId(sistema, id);
-        }else{
-            throw  new NoSeHaEncontradoException("No hay campos en la BD");
-        }
+    public List<Comentario> listarPorSistemaEIdUsuarioComentario(char sistema, int idUC) throws NoSeHaEncontradoException {
+            return comentarioRepository.findBySistemaAndIdUsuarioComentario(sistema, idUC);
     }
 
 }

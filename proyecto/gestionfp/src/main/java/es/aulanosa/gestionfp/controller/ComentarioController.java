@@ -142,7 +142,7 @@ public class ComentarioController {
     public ResponseEntity<?> listarPorSistemaEId(@PathVariable(value = "sistema") char sistema, @PathVariable(value = "id") int id) throws NoSeHaEncontradoException {
         int cont = 0;
 
-        List<Comentario> comentarios = service.listarPorSistemaEId(sistema, id);
+        List<Comentario> comentarios = service.listarPorSistemaEIdUsuarioComentario(sistema, id);
 
         List<ComentarioDTO> comentariosDTO = new ArrayList<>();
 

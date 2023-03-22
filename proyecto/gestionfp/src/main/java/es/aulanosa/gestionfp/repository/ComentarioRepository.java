@@ -21,11 +21,11 @@ public interface ComentarioRepository extends JpaRepository<Comentario, Integer>
     List<Comentario> findBySistemaAndReferencia(char sistema, int refencia);
 
     /**
-     * Query autogenerada por JPA a la que se le pasan los parametros sistema e ID
+     * Query autogenerada por JPA a la que se le pasan los parametros sistema e ID del usuarioComentario
      * @param sistema Variable char que se le pasa a la query
-     * @param id Variable representante del campo ID de la BD
+     * @param id Variable representante del campo IdUsuarioComentario de la BD
      * @return Devuelve na lista de comentarios listados por los anteriores parámetros
      */
-    List<Comentario> findBySitemaAndId(char sistema, int id);
+    List<Comentario> findBySistemaAndIdUsuarioComentario(char sistema, int id);
 
 }
