@@ -1,6 +1,7 @@
 package es.aulanosa.gestionfp.controller;
 
 import es.aulanosa.gestionfp.dto.ComentarioDTO;
+import es.aulanosa.gestionfp.dto.ErrorDTO;
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Comentario;
 import es.aulanosa.gestionfp.service.ComentarioService;
@@ -9,6 +10,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -142,26 +144,28 @@ public class ComentarioController {
      * Devuelve una lista con los campos que coincidan con el sistema e id proporcionados en los parámetros
      * @param sistema Variable char para representar el campo sistema de la BD
      * @param id Variable int para representar el campo ID de la BD
-     * @return Devuelve una lista con los registros que coinciden con lo especificado
-     * @throws NoSeHaEncontradoException Error que salta en caso de no encontrar campos en la BD
+     * @return Devuelve una lista con los registros que coinciden con lo especificado o un error en caso de que no haya campos que coincidan
      */
     @GetMapping("/sistema/{sistema}/id/{id}")
     @Operation(summary = "Devuelve una lista con los campos que coincidan con el sistema e id proporcionados en los parámetros")
     public ResponseEntity<?> listarPorSistemaEId(@PathVariable(value = "sistema") char sistema, @PathVariable(value = "id") int id) throws NoSeHaEncontradoException {
         int cont = 0;
 
-        List<Comentario> comentarios = service.listarPorSistemaEIdUsuarioComentario(sistema, id);
+        if(!service.listarPorSistemaEIdUsuarioComentario(sistema, id).isEmpty()){
+            List<Comentario> comentarios = service.listarPorSistemaEIdUsuarioComentario(sistema, id);
 
-        List<ComentarioDTO> comentariosDTO = new ArrayList<>();
+            List<ComentarioDTO> comentariosDTO = new ArrayList<>();
 
-        for (Comentario comentario :
-                comentarios) {
-            comentariosDTO.add(new ComentarioDTO().toDTO(comentario));
-                    cont++;
+            for (Comentario comentario :
+                    comentarios) {
+                comentariosDTO.add(new ComentarioDTO().toDTO(comentario));
+                cont++;
+            }
+            return ResponseEntity.status(HttpStatus.OK).body(comentariosDTO);
+
+        }else{
+            ErrorDTO errorDTO = new ErrorDTO("E0011", "No se ha encontrado un registro con los campos especificados");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
         }
-
-        return ResponseEntity.status(HttpStatus.OK).body(comentariosDTO);
-
-
     }
 }
