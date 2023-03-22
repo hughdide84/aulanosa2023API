@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Esta clase representa una empresa como objeto DTO
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

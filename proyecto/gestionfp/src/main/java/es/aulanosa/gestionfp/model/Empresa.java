@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * Esta clase representa una entidad de Empresa en la base de datos.
+ */
 @Entity
 @Table(name = "Empresas")
 @Data

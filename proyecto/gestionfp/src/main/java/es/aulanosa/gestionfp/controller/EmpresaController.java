@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Clase controladora de endpoints relacionados con la entidad Empresa.
+ */
 @RestController
 @RequestMapping("/api/empresa")
 public class EmpresaController {
@@ -29,7 +31,11 @@ public class EmpresaController {
 
 
 
-    //Metodo para insertar datos a la tabla empresa
+    /**
+     * Método para insertar datos a la tabla empresa.
+     * @param empresaDTO Objeto que contiene los datos de la empresa a insertar.
+     * @return ResponseEntity que indica si se ha insertado la empresa correctamente o no.
+     */
     @PostMapping("")
     public ResponseEntity<?> altaEmpresa(@RequestBody EmpresaDTO empresaDTO) {
 
@@ -46,7 +52,11 @@ public class EmpresaController {
         }
     }
 
-    //Este metodo busca un campo de la tabla empresa mediante su id
+    /**
+     * Este método busca un campo de la tabla empresa mediante su id.
+     * @param id Identificador de la empresa a buscar.
+     * @return ResponseEntity con la empresa encontrada o un mensaje de error si no se ha encontrado.
+     */
     @GetMapping("{id}")
     public ResponseEntity<?> consultarEmpresa(@PathVariable("id") Integer id) {
         Empresa empresa = empService.findById(id);
@@ -59,7 +69,11 @@ public class EmpresaController {
         }
     }
 
-    //Este metodo busca un campo por id para modificarlo a partir del body que se le pasa.
+    /**
+     * Este método busca un campo por id para modificarlo a partir del body que se le pasa.
+     * @param empresaDTO Objeto que contiene los datos de la empresa a modificar.
+     * @return ResponseEntity que indica si se ha modificado la empresa correctamente o no.
+     */
     @PutMapping("")
     public ResponseEntity<?> editarEmpresa(@RequestBody EmpresaDTO empresaDTO) {
         Empresa empresaParaActualizar = empService.findById(empresaDTO.getId());
@@ -75,7 +89,11 @@ public class EmpresaController {
         }
     }
 
-    //Este metodo busca un campo de la tabla empresa para eliminarlo.
+    /**
+     * Este método busca un campo de la tabla empresa para eliminarlo.
+     * @param id Identificador de la empresa a eliminar.
+     * @return ResponseEntity que indica si se ha eliminado la empresa correctamente o no.
+     */
     @DeleteMapping("{id}")
     public ResponseEntity<?> eliminarEmpresa(@PathVariable("id") Integer id) {
         Empresa empresa = empService.findById(id);
@@ -96,7 +114,10 @@ public class EmpresaController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No se ha encontrado el campo seleccionado");
         }
     }
-
+    /**
+     * Este método lista todas las empresas almacenadas en la base de datos.
+     * @return ResponseEntity con la lista de empresas encontradas o un mensaje de error si no se han encontrado.
+     */
     @GetMapping("")
     public ResponseEntity<?> listarTodasEmpresas() {
         List<Empresa> empresa = empService.findAll();
@@ -109,7 +130,11 @@ public class EmpresaController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error, no se ha podido ejecutar esta funcion");
         }
     }
-
+    /**
+     * Este método lista todos los alumnos asociados a una empresa determinada.
+     * @param id Identificador de la empresa a buscar.
+     * @return ResponseEntity con la lista de alumnos encontrados o un mensaje de error si no se han encontrado.
+     */
     @GetMapping("{id}/alumno")
     public ResponseEntity<?> listarAlumnosEnEmpresa(@PathVariable("id") Integer id) {
         List<Alumno> alumnoEmp = alumnoEmpresaService.buscarTodosAlumnosPorIdEmpresa(id);
@@ -163,7 +188,13 @@ public class EmpresaController {
             return msg;
         }
     }
-
+    /**
+     Método que busca las empresas de los alumnos asociados a un curso y estudio específico
+     y devuelve una lista de AlumnoEmpresaDTO que contiene la información de la relación entre el alumno y la empresa.
+     @param idCurso identificador del curso a buscar
+     @param idEstudio identificador del estudio a buscar
+     @return ResponseEntity con la lista de AlumnoEmpresaDTO encontrados
+     */
     @GetMapping("/alumno/{idCurso}/{idEstudio}")
     //Devuelve un listado de alumnos que tengan el estado activo
     public ResponseEntity<?> buscarEmpresaAlumno(@PathVariable int idCurso, @PathVariable int idEstudio) {
