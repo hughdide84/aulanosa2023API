@@ -16,6 +16,10 @@ public class EmpresaServiceImp implements EmpresaService {
     private EmpresaRepository empresaRepository;
 
     //busca todas las empresas
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional(readOnly = true)
     public List<Empresa> findAll() {
@@ -23,6 +27,9 @@ public class EmpresaServiceImp implements EmpresaService {
     }
 
     //busca una empresa por su id
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional(readOnly = true)
     public Empresa findById(int id) {
@@ -30,6 +37,9 @@ public class EmpresaServiceImp implements EmpresaService {
     }
 
     //busca todas las empresas por nombre
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional(readOnly = true)
     public List<Empresa> findAllByNombre(String nombre) {
@@ -37,6 +47,9 @@ public class EmpresaServiceImp implements EmpresaService {
     }
 
     //guarda una empresa
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional
     public Empresa save(Empresa empresa) {
@@ -44,6 +57,9 @@ public class EmpresaServiceImp implements EmpresaService {
     }
 
     //borra una empresa por id
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional
     public void deleteById(int id) {
@@ -51,6 +67,9 @@ public class EmpresaServiceImp implements EmpresaService {
     }
 
     //actualiza una empresa
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional
     public Empresa update(Empresa empresa) throws NoSeHaEncontradoException {
