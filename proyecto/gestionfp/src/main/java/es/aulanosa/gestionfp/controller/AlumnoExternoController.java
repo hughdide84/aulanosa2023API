@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 /**
- * Clase que implementa la interfaz AlumnoExternoService
+ * Clase que implementa la interfaz AlumnoExternoService.
  */
 @RestController
 @RequestMapping("api/alumnoExterno")
