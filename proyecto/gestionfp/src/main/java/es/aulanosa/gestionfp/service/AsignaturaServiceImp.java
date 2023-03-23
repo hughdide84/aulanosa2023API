@@ -7,49 +7,64 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
+/**
+ * Esta interfaz define los métodos que se pueden utilizar para interactuar con la entidad de asignatura.
+ */
 @Service
 public class AsignaturaServiceImp implements AsignaturaService{
 
     @Autowired
     private AsignaturaRepository asignaturaRepository;
 
-    //buscar todo
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional(readOnly = true)
+
     public List<Asignatura> buscarTodoAsignatura() {
         return asignaturaRepository.findAll();
     }
 
-    //buscar por id
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional(readOnly = true)
     public Asignatura buscarPorIdAsignatura(int id) {
         return asignaturaRepository.findById(id).orElse(null);
     }
 
-    //buscar por nombre
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional(readOnly = true)
     public List<Asignatura> buscarTodoPorNombreAsignaturaConteniendoNombreAsignatura(String nombre) {
         return asignaturaRepository.findAllByNombreContaining(nombre);
     }
 
-    //guardar
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional
     public Asignatura guardarAsignatura(Asignatura asignatura) {
         return asignaturaRepository.save(asignatura);
     }
 
-    //borrar
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional
     public void borrarPorIdAsignatura(int id) {
         asignaturaRepository.deleteById(id);
     }
 
-    //modificar
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional
     public Asignatura modificarAsignatura(Asignatura asignatura) {

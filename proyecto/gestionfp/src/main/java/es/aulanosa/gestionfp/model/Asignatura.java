@@ -8,7 +8,9 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+/**
+ La clase Asignatura representa una asignatura en la base de datos.
+ */
 @Entity
 @Table(name = "Asignatura")
 @Data
