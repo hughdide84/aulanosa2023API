@@ -13,12 +13,12 @@ public interface AlumnoExternoRepository extends JpaRepository<AlumnoExterno, In
     @Query("select a from AlumnoExterno a join fetch a.curso c where c.estado = 'A'")
     List<AlumnoExterno> findAllAlumnoExternosActivos();
 
-    AlumnoExterno findByNombre(String nombre);
+    AlumnoExterno findFirstByNombre(String nombre);
     List<AlumnoExterno> findByNombreContaining(String nombre);
     List<AlumnoExterno> findByEmailContaining(String email);
     AlumnoExterno findFirstByEmail(String email);
     @Query("select a from AlumnoExterno a where a.telefono = ?1")
-    AlumnoExterno findByTelefono(String telefono);
+    AlumnoExterno findFirstByTelefono(String telefono);
     List<AlumnoExterno> findByUniversidad(String universidad);
     List<AlumnoExterno> findByUniversidadContaining(String universidad);
     List<AlumnoExterno> findByTitulacion(String titulacion);

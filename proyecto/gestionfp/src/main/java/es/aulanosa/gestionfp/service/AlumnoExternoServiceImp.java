@@ -76,7 +76,7 @@ public class AlumnoExternoServiceImp implements AlumnoExternoService {
     @Override
     @Transactional(readOnly = true)
     public AlumnoExterno buscarPorNombreEs(String nombre) {
-        return repository.findByNombre(nombre);
+        return repository.findFirstByNombre(nombre);
     }
 
     @Override
@@ -94,7 +94,7 @@ public class AlumnoExternoServiceImp implements AlumnoExternoService {
     @Override
     @Transactional(readOnly = true)
     public AlumnoExterno buscarPorTelefono (String telefono) {
-        return repository.findByTelefono(telefono);
+        return repository.findFirstByTelefono(telefono);
     }
 
     @Override

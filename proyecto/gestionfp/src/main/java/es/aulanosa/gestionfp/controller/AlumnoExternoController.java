@@ -34,7 +34,9 @@ public class AlumnoExternoController {
             alumnoExternoDTO.crearDTO(alumnosExternosGuardado);
             return ResponseEntity.status(HttpStatus.CREATED).body(alumnoExternoDTO);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            List<ErrorDTO> errores = new ArrayList<>();
+            errores.add(new ErrorDTO("E0001", "Error al guardar el alumno externo"));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errores);
         }
     }
 
@@ -72,7 +74,7 @@ public class AlumnoExternoController {
             return ResponseEntity.status(HttpStatus.OK).body(alumnoExternoDTO);
         } catch (Exception e) {
             List<ErrorDTO> errores = new ArrayList<>();
-            errores.add(new ErrorDTO("E0001", "ID no encontrado"));
+            errores.add(new ErrorDTO("E0001", "Error al editar"));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errores);
         }
     }
@@ -84,7 +86,7 @@ public class AlumnoExternoController {
 
         if (alumnosExterno.isPresent()) {
             service.eliminar(id);
-            return ResponseEntity.status(HttpStatus.OK).build();
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         } else {
             ErrorDTO errorDTO = new ErrorDTO("E0001", "ID no encontrado");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
