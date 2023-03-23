@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 import java.util.Date;
-
+/**
+ * Clase que representa la tabla AlumnoExterno
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

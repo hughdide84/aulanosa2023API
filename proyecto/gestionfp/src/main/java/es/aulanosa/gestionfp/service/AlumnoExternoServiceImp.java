@@ -11,6 +11,9 @@ import org.springframework.web.multipart.support.StandardMultipartHttpServletReq
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Clase que implementa la interfaz AlumnoExternoService
+ */
 @Service
 public class AlumnoExternoServiceImp implements AlumnoExternoService {
     @Autowired

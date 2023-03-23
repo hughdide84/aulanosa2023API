@@ -10,7 +10,9 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 import java.util.Date;
-
+/**
+ * Clase con las propiedades de la tabla AlumnoExterno
+ */
 @Entity
 @Table(name = "AlumnosExternos")
 @Data
