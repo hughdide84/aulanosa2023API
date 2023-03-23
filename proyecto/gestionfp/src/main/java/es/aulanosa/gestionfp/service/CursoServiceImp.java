@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
+/**
+ * Clase que implementa los metodos definidos en la interfaz CursoService
+ */
 @Service
 public class CursoServiceImp implements CursoService {
 
@@ -15,22 +19,27 @@ public class CursoServiceImp implements CursoService {
     //llamar al repositorio e implementar metodos
     @Autowired
     private CursoRepository repositorio;
-
-    //devuelve una lista de todos los cursos
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional(readOnly = true)
     public List<Curso> buscarTodo() {
         return repositorio.findAll();
     }
 
-    //devuelve el curso con el id que se le pase
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional(readOnly = true)
     public Curso buscarPorId(int id) {
         return repositorio.findById(id).orElse(null);
     }
 
-    //elimina el curso con el id que se le pase
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional
     public void eliminarCurso(int id) throws NoSeHaEncontradoException {
@@ -41,20 +50,19 @@ public class CursoServiceImp implements CursoService {
             throw new NoSeHaEncontradoException("Curso no existe");
         }
 
-
-
-
-
-
     }
-    //inserta en la BD un objeto curso con los atributos que se le pase
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional
     public Curso insertarCurso(Curso curso) {
         return repositorio.save(curso);
     }
 
-    //modifica atributos de un objeto curso y lo sobreescribe
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional
     public Curso modificarCurso(Curso curso) throws NoSeHaEncontradoException {
@@ -65,7 +73,9 @@ public class CursoServiceImp implements CursoService {
         }
 
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional(readOnly = true)
     //Metodo para consultar estados activos

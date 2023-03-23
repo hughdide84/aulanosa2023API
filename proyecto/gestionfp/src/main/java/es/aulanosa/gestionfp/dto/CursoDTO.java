@@ -14,7 +14,9 @@ import java.util.Date;
 @NoArgsConstructor
 public class CursoDTO {
 
-    //Datos correspondientes a los que hay en la tabla cursos
+    /**
+     *Clase con los atributos y constructores necesarios para hacer la conversion del model a dto y viceversa
+     */
     private int id;
     private String nombre;
     private Timestamp inicio;
@@ -32,7 +34,7 @@ public class CursoDTO {
         return curso;
     }
 
-    //Creacion del DTO
+    //Conversion del DTO al model
     public CursoDTO crearDTO(Curso curso) {
         this.setId(curso.getId());
         this.setNombre(curso.getNombre());
