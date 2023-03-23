@@ -1,7 +1,9 @@
 package es.aulanosa.gestionfp.model;
+/**
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import es.aulanosa.gestionfp.validator.EstadoPagoConstraint;
+ Modelo de la tabla Pagos de la base de datos.
+ La tabla Pagos se utiliza para almacenar información sobre los pagos.
+ */
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -27,7 +29,7 @@ public class Pago {
     @NotNull
     private int idMatricula;
     @Column (name = "recibo")
-    @Size(max = 20, message = "El nombre debe tener entre 1 y 20 caracteres")
+    @Size(max = 20, message = "El nombre debe tener entre 1 y 50 caracteres")
     @NotNull
     @NotBlank
     private String recibo;
