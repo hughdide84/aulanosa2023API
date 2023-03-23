@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -8,7 +9,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
 import java.util.Date;
 /**
  * Clase con las propiedades de la tabla AlumnoExterno
@@ -84,6 +84,9 @@ public class AlumnoExterno {
     @NotNull(message = "El horario no puede estar vacío")
     @Column(name = "horario")
     private char horario;
+    @ManyToOne
+    @JoinColumn(name = "idCurso", insertable = false, updatable = false)
+    private Curso curso;
 
 
 }

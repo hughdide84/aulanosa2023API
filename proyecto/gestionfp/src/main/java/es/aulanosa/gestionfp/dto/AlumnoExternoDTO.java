@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
 import java.util.Date;
 /**
  * Clase que representa la tabla AlumnoExterno
@@ -71,8 +70,5 @@ public class AlumnoExternoDTO {
         return this;
 
     }
-
-
-
 
 }

@@ -6,7 +6,6 @@ import es.aulanosa.gestionfp.repository.AlumnoExternoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.support.StandardMultipartHttpServletRequest;
 
 import java.util.List;
 import java.util.Optional;
@@ -61,10 +60,82 @@ public class AlumnoExternoServiceImp implements AlumnoExternoService {
     @Transactional(readOnly = true)
     //lista seguna la id que se le pasa
     public Optional<AlumnoExterno> listarPorId(Integer id) throws NoSeHaEncontradoException {
-        if(repository.findById(id).isPresent()){
+
             return repository.findById(id);
-        }else{
-            throw new NoSeHaEncontradoException("No se ha encontrado el alumno especificado con ese ID");
-        }
+
     }
+    @Transactional
+    @Override
+    public List<AlumnoExterno> buscarPorEstado() throws NoSeHaEncontradoException {
+        return repository.findAllAlumnoExternosActivos();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<AlumnoExterno> buscarPorNombreConteniendo(String nombre) {
+        return repository.findByNombreContaining(nombre);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public AlumnoExterno buscarPorNombreEs(String nombre) {
+        return repository.findFirstByNombre(nombre);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<AlumnoExterno> buscarPorEmailConteniendo(String email) {
+        return repository.findByEmailContaining(email);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public AlumnoExterno buscarPorEmailEs(String email) {
+        return repository.findFirstByEmail(email);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public AlumnoExterno buscarPorTelefono (String telefono) {
+        return repository.findFirstByTelefono(telefono);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<AlumnoExterno> buscarPorUniversidadEs(String universidad) {
+        return repository.findByUniversidad(universidad);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<AlumnoExterno> buscarPorUniversidadConteniendo(String universidad) {
+        return repository.findByUniversidadContaining(universidad);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<AlumnoExterno> buscarPorTitulacionConteniendo(String titulacion) {
+        return repository.findByTitulacionContaining(titulacion);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<AlumnoExterno> buscarPorTitulacionEs(String titulacion) {
+        return repository.findByTitulacion(titulacion);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<AlumnoExterno> buscarPorEspecialidadConteniendo(String especialidad) {
+        return repository.findByEspecialidadContaining(especialidad);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<AlumnoExterno> buscarPorEspecialidadEs(String especialidad) {
+        return repository.findByEspecialidad(especialidad);
+    }
+
+
+
 }
