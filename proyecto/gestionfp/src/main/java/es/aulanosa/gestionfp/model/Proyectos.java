@@ -8,6 +8,10 @@ import lombok.NoArgsConstructor;
 import org.apache.logging.log4j.message.Message;
 
 //Constructor
+
+/**
+ * Clase modelo para especificar los campos de la tabla Proyectos
+ */
 @Entity
 @Table(name = "Proyectos")
 @NoArgsConstructor
