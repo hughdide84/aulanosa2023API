@@ -51,7 +51,7 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.app">
+  <component name="RunManager" selected="Application.main">
     <configuration name="app" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="19" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -65,6 +65,7 @@
       <option name="ALTERNATIVE_JRE_PATH" value="19" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="es.aulanosa.gestionfp.GestionfpApplication" />
+      <module name="gestionfp" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

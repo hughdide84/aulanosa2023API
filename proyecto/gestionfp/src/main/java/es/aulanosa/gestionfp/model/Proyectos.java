@@ -39,6 +39,7 @@ public class Proyectos {
     private Integer notaPres;
     @Column(name = "notaFinal")
     private Integer notaFinal;
+
     @Column(name = "tutoria1")
     private Timestamp tutoria1;
     @Column(name = "tutoria2")
