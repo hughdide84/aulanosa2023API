@@ -11,8 +11,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+/**
+ * Clase que implementa los metodos de la interfaz AlumnoService
+ */
 public class AlumnoServiceImp implements AlumnoService{
-
 
     //instanciar repositorio para usar sus metodos
     @Autowired
@@ -62,13 +64,11 @@ public class AlumnoServiceImp implements AlumnoService{
         }
         return alumno;
     }
-
     @Override
     @Transactional(readOnly = true)
     public Alumno buscarPorUsuario(String nombre) {
         return repositorio.findByUsuario(nombre);
     }
-
     @Transactional
     @Override
     public List<Alumno> buscarPorEstado() throws NoSeHaEncontradoException {

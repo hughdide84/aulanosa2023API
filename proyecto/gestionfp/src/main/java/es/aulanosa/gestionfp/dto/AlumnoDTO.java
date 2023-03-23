@@ -10,6 +10,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+/**
+ * Clase DTO para la entidad Alumno
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
