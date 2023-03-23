@@ -1,6 +1,7 @@
 package es.aulanosa.gestionfp.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import es.aulanosa.gestionfp.validator.EstadoPagoConstraint;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -44,7 +45,6 @@ public class Pago {
     private int idUsuario;
     @Column (name = "fecha")
     @NotNull
-    @JsonFormat(pattern = "MM/dd/yyyy HH:mm:ss")
     private Timestamp fecha;
 
 }
