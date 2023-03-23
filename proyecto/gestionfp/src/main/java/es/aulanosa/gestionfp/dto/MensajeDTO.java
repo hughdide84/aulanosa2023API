@@ -6,6 +6,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+
+/**
+ * Clase DTO para la recepción y muestra de datos en las API de controller
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
