@@ -5,6 +5,7 @@ import es.aulanosa.gestionfp.dto.ErrorDTO;
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.AlumnoExterno;
 import es.aulanosa.gestionfp.service.AlumnoExternoServiceImp;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +29,7 @@ public class AlumnoExternoController {
      * @return el alumno externo insertado
      */
     @PostMapping("/")
+    @Operation(summary = "Inserta un alumnoExterno a la tabla")
     //falta @operation
 
     //API para dar de alta, se le pasa un objeto DTO por POST, lo convierte al model y lo inserta
@@ -47,6 +49,7 @@ public class AlumnoExternoController {
      * @return un alumno externo
      */
     @GetMapping("/{id}")
+    @Operation(summary = "Devuelve un id de un alumno externo especifico")
     //consulta por id, se le pasa como variable el mismo, consulta si existe y en caso de que lo haga devuelve el objeto recuperado de la BD
     public ResponseEntity<?> consulta(@PathVariable Integer id){
         try{
@@ -67,6 +70,7 @@ public class AlumnoExternoController {
      * @return un alumno modificado
      */
     @PutMapping("/")
+    @Operation(summary = "Modifica una fila de la tabla alumnoExterno a partir del parametro que se le pasa")
     //se le pasa un objeto completo por POST, el programa comprueba que su ID exista en la BD y en caso de que lo haga cambia los valores que estén diferentes
     public ResponseEntity<?> editar(@RequestBody AlumnoExternoDTO alumnoExternoDTO){
         try{
@@ -94,6 +98,7 @@ public class AlumnoExternoController {
      * @return un alumno externo
      */
     @DeleteMapping("/{id}")
+    @Operation(summary = "Borra todos los alumnos externos")
     //se le pasa un ID por API, el programa comprueba que exista en la BD y en caso afirmativo se borra de la misma
     public ResponseEntity<?> eliminar(@PathVariable int id){
         try{
@@ -114,6 +119,7 @@ public class AlumnoExternoController {
      * @return Todos los  alumnos externos
      */
     @GetMapping("/")
+    @Operation(summary = "Lista todos los alumnos externos")
     //lista todos los campos de la BD, en caso de que esta este vacia, devuelve un error personalizado
     public ResponseEntity<?> listarTodo(){
         if(!service.listarTodo().isEmpty()){
