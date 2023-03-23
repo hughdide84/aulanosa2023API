@@ -13,8 +13,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="AnnotationType" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -206,7 +207,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="2d4a2c64-3f78-4c0b-8447-bb3f5e392635" name="Changes" comment="" />
+      <changelist id="b7fab804-a98a-4705-8fbc-4a6ccd0243eb" name="Changes" comment="" />
       <created>1678780855122</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />

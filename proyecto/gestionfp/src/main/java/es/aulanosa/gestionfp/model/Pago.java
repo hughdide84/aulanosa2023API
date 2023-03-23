@@ -1,5 +1,7 @@
 package es.aulanosa.gestionfp.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import es.aulanosa.gestionfp.validator.EstadoPagoConstraint;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -25,7 +27,7 @@ public class Pago {
     @NotNull
     private int idMatricula;
     @Column (name = "recibo")
-    @Size(max = 20, message = "El nombre debe tener entre 1 y 50 caracteres")
+    @Size(max = 20, message = "El nombre debe tener entre 1 y 20 caracteres")
     @NotNull
     @NotBlank
     private String recibo;
