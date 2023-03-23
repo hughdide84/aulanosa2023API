@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.service;
 
+import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Curso;
 import es.aulanosa.gestionfp.model.Matricula;
 
@@ -21,4 +22,6 @@ public interface MatriculasService {
     List<Matricula> buscarPorMesDeMatricula(Integer numMes);
 
     public List<Matricula> buscarTodosCursosPorId (Integer id);
+
+    public List<Matricula> buscaridCursoSaldoNegativo(Integer idCurso) throws NoSeHaEncontradoException;
 }

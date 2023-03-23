@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.service;
 
+import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Curso;
 import es.aulanosa.gestionfp.model.Matricula;
 import es.aulanosa.gestionfp.repository.MatriculasRepository;
@@ -71,6 +72,17 @@ public class MatriculasServiceImp implements MatriculasService{
     public List<Matricula> buscarTodosCursosPorId(Integer idCurso) {
         return matriculasRepository.findAllByidCurso(idCurso);
     }
+
+    //devuelve unal ista con las matriculas que tienen saldo menor que 0, o un error diciendo que no hay ninguna
+    @Override
+    public List<Matricula> buscaridCursoSaldoNegativo(Integer idCurso) throws NoSeHaEncontradoException {
+        if(!matriculasRepository.buscaridCursoSaldoNegativo(idCurso).isEmpty()){
+            return matriculasRepository.buscaridCursoSaldoNegativo(idCurso);
+        }else{
+            throw new NoSeHaEncontradoException("No hay ninguna matrícula con salgo negativo en el idCurso " + idCurso);
+        }
+    }
+
     @Override
     @Transactional (readOnly = true)
     //devuelve una lista de las matriculas a partir de un mes especificado

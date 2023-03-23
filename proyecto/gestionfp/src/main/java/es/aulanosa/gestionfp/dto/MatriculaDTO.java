@@ -3,6 +3,7 @@ package es.aulanosa.gestionfp.dto;
 import es.aulanosa.gestionfp.model.Curso;
 import es.aulanosa.gestionfp.model.Matricula;
 import es.aulanosa.gestionfp.model.Mensaje;
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,6 +37,10 @@ public class MatriculaDTO {
 
     private Timestamp fecha;
 
+    private float saldo;
+
+    private float totalPagos;
+
     public Matricula toModel(){
 
         Matricula matricula = new Matricula();
@@ -51,6 +56,8 @@ public class MatriculaDTO {
         matricula.setObservaciones(this.observaciones);
         matricula.setIdUsuario(this.idUsuario);
         matricula.setFecha(this.fecha);
+        matricula.setSaldo(this.getSaldo());
+        matricula.setTotalPagos(this.getTotalPagos());
 
         return matricula;
 
@@ -69,6 +76,8 @@ public class MatriculaDTO {
         this.setObservaciones(matricula.getObservaciones());
         this.setIdUsuario(matricula.getIdUsuario());
         this.setFecha(matricula.getFecha());
+        this.setSaldo(matricula.getSaldo());
+        this.setTotalPagos(matricula.getTotalPagos());
 
         return this;
     }

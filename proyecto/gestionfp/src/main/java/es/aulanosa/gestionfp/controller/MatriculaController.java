@@ -2,6 +2,7 @@ package es.aulanosa.gestionfp.controller;
 
 import es.aulanosa.gestionfp.dto.ErrorDTO;
 import es.aulanosa.gestionfp.dto.MatriculaDTO;
+import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Matricula;
 import es.aulanosa.gestionfp.service.MatriculasService;
 import es.aulanosa.gestionfp.service.UsuarioService;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.w3c.dom.html.HTMLTableCaptionElement;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -131,4 +133,17 @@ import java.util.Optional;
 
 
        }
+
+       //devuelve los saldos menores a 0 listados por un curso en especifico
+        @GetMapping("pagosAtrasados/{idCurso}")
+        public ResponseEntity<?> buscaridCursoSaldoNegativo(@PathVariable Integer idCurso) throws NoSeHaEncontradoException {
+            List<Matricula> listaNegativa = service.buscaridCursoSaldoNegativo(idCurso);
+
+            if(!listaNegativa.isEmpty()){
+                return ResponseEntity.status(HttpStatus.OK).body(listaNegativa);
+            }else{
+                ErrorDTO errorDTO = new ErrorDTO("E0001", "No se han encontrado saldos negativos para el IdCurso especificado");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
+            }
+        }
 }

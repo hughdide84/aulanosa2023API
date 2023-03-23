@@ -16,5 +16,9 @@ public interface MatriculasRepository extends JpaRepository<Matricula,Integer> {
 
     @Query("SELECT m FROM Matricula m WHERE month(fecha) = ?1")
     public List<Matricula> buscarPorMes (Integer mes);
+
+    @Query("SELECT m from Matricula m WHERE saldo < 0 AND idCurso = ?1")
+    public List<Matricula> buscaridCursoSaldoNegativo(Integer idCurso);
+
     public List<Matricula> findAllByidCurso (Integer id);
 }
