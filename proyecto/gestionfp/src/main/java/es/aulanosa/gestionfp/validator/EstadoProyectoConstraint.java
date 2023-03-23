@@ -14,10 +14,10 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })
 @Retention(RUNTIME)
 @Documented
-@Constraint(validatedBy = EstadoCursoValidator.class)
+@Constraint(validatedBy = EstadoProyectoValidator.class)
 public @interface EstadoProyectoConstraint {
 
-    String message() default "Estado del proyecto no válido";
+    String message() default "EstadoTutoria debe un de los siguientes valores (P|A|F)";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

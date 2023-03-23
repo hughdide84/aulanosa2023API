@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.model;
 
+import es.aulanosa.gestionfp.validator.EstadoProyectoConstraint;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -48,10 +49,13 @@ public class Proyectos {
     private Timestamp tutoria3;
 
     @Column(name = "estadoTutoria1")
+    @EstadoProyectoConstraint
     private Character estadoTutoria1;
     @Column(name = "estadoTutoria2")
+    @EstadoProyectoConstraint
     private Character estadoTutoria2;
     @Column(name = "estadoTutoria3")
+    @EstadoProyectoConstraint
     private Character estadoTutoria3;
 
 
