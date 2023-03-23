@@ -17,7 +17,6 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("api/alumnoExterno")
-//falta @tag
 
 public class AlumnoExternoController {
 
@@ -30,8 +29,6 @@ public class AlumnoExternoController {
      */
     @PostMapping("/")
     @Operation(summary = "Inserta un alumnoExterno a la tabla")
-    //falta @operation
-
     //API para dar de alta, se le pasa un objeto DTO por POST, lo convierte al model y lo inserta
     public ResponseEntity<?> alta(@RequestBody AlumnoExternoDTO alumnoExternoDTO){
         try{
