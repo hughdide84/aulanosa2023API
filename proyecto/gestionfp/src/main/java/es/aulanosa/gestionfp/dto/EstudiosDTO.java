@@ -5,7 +5,9 @@ import es.aulanosa.gestionfp.model.Estudios;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+/**
+ * Clase que representa el objeto de transferencia de datos de la entidad Estudios
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

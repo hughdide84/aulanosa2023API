@@ -9,6 +9,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Clase que representa la tabla Estudios de la base de datos
+ */
 @Entity
 @Table(name = "Estudios")
 @NoArgsConstructor //lombok - Crea
