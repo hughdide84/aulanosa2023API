@@ -13,4 +13,6 @@ public interface ProyectosService {
     public Proyectos buscarPorId(Integer id);
     public Proyectos modificar(Proyectos proyectos) throws NoSeHaEncontradoException;
     public void borrar(Integer id);
+    public List<Proyectos> buscarProyectosCursoyEstudios (int idCurso, int idEstudios);
+
 }

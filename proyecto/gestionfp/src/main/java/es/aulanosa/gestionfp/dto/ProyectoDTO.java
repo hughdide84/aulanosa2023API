@@ -33,9 +33,9 @@ public class ProyectoDTO {
     private Timestamp tutoria2;
     private Timestamp tutoria3;
 
-    private char estadoTutoria1;
-    private char estadoTutoria2;
-    private char estadoTutoria3;
+    private Character estadoTutoria1;
+    private Character estadoTutoria2;
+    private Character estadoTutoria3;
 
     public Proyectos toModel() {
         Proyectos proyectos = new Proyectos();

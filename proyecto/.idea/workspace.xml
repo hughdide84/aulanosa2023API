@@ -7,8 +7,9 @@
     <list default="true" id="2d4a2c64-3f78-4c0b-8447-bb3f5e392635" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/controller/ProyectoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/controller/ProyectoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/model/Proyectos.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/model/Proyectos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/repository/ProyectosRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/repository/ProyectosRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/dto/ProyectoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/dto/ProyectoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/ProyectosService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/ProyectosService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/ProyectosServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/gestionfp/src/main/java/es/aulanosa/gestionfp/service/ProyectosServiceImp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

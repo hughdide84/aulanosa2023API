@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.controller;
 
+import es.aulanosa.gestionfp.dto.ErrorDTO;
 import es.aulanosa.gestionfp.dto.ProyectoDTO;
 import es.aulanosa.gestionfp.model.Proyectos;
 import es.aulanosa.gestionfp.repository.ProyectosRepository;
@@ -11,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.EventObject;
 import java.util.List;
 
 /**
@@ -23,8 +26,7 @@ public class ProyectoController {
 
     @Autowired
     private ProyectosService service;
-    @Autowired
-    ProyectosRepository proyectosRepository;
+
 
     /**
      * Método para insertar nuevos campos en la BD
@@ -121,8 +123,26 @@ public class ProyectoController {
     @GetMapping("/cursoEs/{idCurso}/estudiosEs/{idEstudios}")
     @Operation(summary = "Método para buscar todos los proyectos de un curso y unos estudios")
     //Consulta un proyecto por su ID
-    public List<Proyectos> poryectosDeCursoyEstudios(@PathVariable Integer idCurso, @PathVariable Integer idEstudios){
+    public ResponseEntity<?> poryectosDeCursoyEstudios(@PathVariable Integer idCurso, @PathVariable Integer idEstudios){
 
-    return proyectosRepository.buscarProyectosCursoyEstudios(idCurso,idEstudios);
+
+        if(service.buscarProyectosCursoyEstudios(idCurso,idEstudios).isEmpty()){
+            ErrorDTO errorDTO = new ErrorDTO("E0003","No hay resultados para los criterios de busqueda");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
+        }else{
+            List<Proyectos> proyectos = service.buscarProyectosCursoyEstudios(idCurso,idEstudios);
+            List<ProyectoDTO> proyectosDTO = new ArrayList<>();
+
+            for (Proyectos p1: proyectos)
+            {
+                ProyectoDTO proyectoDTO = new ProyectoDTO();
+                proyectosDTO.add(proyectoDTO.toDTO(p1));
+            }
+
+            return ResponseEntity.status(HttpStatus.OK).body(proyectosDTO);
+        }
+
+
+
     }
 }
