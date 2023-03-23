@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Clase que representa el objeto de transferencia de datos de la entidad Usuario
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

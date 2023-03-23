@@ -11,6 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Clase que implementa los métodos de la interfaz UsuarioService
+ */
 @Service
 public class UsuarioServiceImp implements UsuarioService {
 

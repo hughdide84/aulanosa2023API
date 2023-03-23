@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * Clase que representa la tabla Usuarios de la base de datos
+ */
 @Entity
 @Table(name = "Usuarios")
 @Data
@@ -18,6 +21,7 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
     @Column(name = "nombre")
     @NotBlank(message = "El nombre no puede estar vacío")
