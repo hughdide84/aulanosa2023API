@@ -59,8 +59,13 @@ public class ProyectosServiceImp implements ProyectosService{
     }
 
     @Override
+<<<<<<< HEAD
     @Transactional(readOnly = true)
     public List<Proyectos> buscarPorCursoYEstudios(Integer idCurso, Integer idEstudios) {
         return repository.buscarPorCursoYEstudios(idCurso, idEstudios);
+=======
+    public List<Proyectos> buscarProyectosCursoyEstudios(int idCurso, int idEstudios) {
+        return repository.buscarProyectosCursoyEstudios(idCurso,idEstudios);
+>>>>>>> Añadir-endpoint-Proyectos
     }
 }

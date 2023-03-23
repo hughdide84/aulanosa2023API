@@ -15,7 +15,14 @@ import java.util.Optional;
 @Repository
 public interface ProyectosRepository extends JpaRepository<Proyectos, Integer> {
 
+<<<<<<< HEAD
     @Query("SELECT p FROM Proyectos p join fetch p.alumno a WHERE a.idCurso = ?1 and a.idEstudios = ?2")
     List<Proyectos> buscarPorCursoYEstudios(Integer idCurso, Integer idEstudios);
+=======
+   @Query("Select p from Proyectos p join fetch p.alumnos a where a.idCurso = ?1 AND a.idEstudios = ?2 ")
+   public List<Proyectos> buscarProyectosCursoyEstudios (int idCurso, int idEstudios);
+
+   //SELECT * FROM Proyectos AS p JOIN Alumnos AS a ON p.idAlumno = a.id WHERE a.idCurso = 4 and a.idEstudios = 3
+>>>>>>> Añadir-endpoint-Proyectos
 
 }
