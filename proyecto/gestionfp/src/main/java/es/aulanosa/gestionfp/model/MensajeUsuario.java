@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Clase con las propiedades de la tabla MensajesUsuarios
+ */
 @Entity
 @Table(name = "MensajesUsuarios")
 @NoArgsConstructor //lombok - Crea
