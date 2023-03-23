@@ -91,4 +91,11 @@ public class TestEmpresaServiceV2 {
         System.out.println(a);
     }
 
+    @Test
+    @Order(7)
+    void consultarEmpresaPorCursoYEstudios() {
+        var a = empresaService.findByIdCursoAndIdEstudio(3, 3);
+        System.out.println(a);
+    }
+
 }

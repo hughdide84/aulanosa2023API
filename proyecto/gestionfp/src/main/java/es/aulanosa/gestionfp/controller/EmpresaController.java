@@ -2,6 +2,7 @@ package es.aulanosa.gestionfp.controller;
 
 import es.aulanosa.gestionfp.dto.AlumnoEmpresaDTO;
 import es.aulanosa.gestionfp.dto.EmpresaDTO;
+import es.aulanosa.gestionfp.dto.ErrorDTO;
 import es.aulanosa.gestionfp.model.Alumno;
 import es.aulanosa.gestionfp.model.AlumnoEmpresa;
 import es.aulanosa.gestionfp.model.Empresa;
@@ -178,4 +179,17 @@ public class EmpresaController {
 
         return ResponseEntity.ok(listaAlumnoEmpresaDTO);
     }
+
+    @GetMapping("/empresa/{idCurso}/{idEstudio}")
+    public ResponseEntity<?> buscarAlumnoEmpresa(@PathVariable int idCurso, @PathVariable int idEstudio) {
+
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(empService.findByIdCursoAndIdEstudio(idCurso, idEstudio));
+        } catch (Exception e) {
+            List<ErrorDTO> error = new ArrayList<>();
+            error.add(new ErrorDTO("E004", "Error al buscar la empresa"));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al buscar la empresa");
+        }
+    }
+
 }

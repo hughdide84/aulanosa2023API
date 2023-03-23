@@ -61,4 +61,10 @@ public class EmpresaServiceImp implements EmpresaService {
         }
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public List<Empresa> findByIdCursoAndIdEstudio(int idCurso, int idEstudio) {
+        return empresaRepository.buscarPorIdCursoYEstudios(idCurso, idEstudio);
+    }
+
 }
