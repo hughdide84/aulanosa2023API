@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import es.aulanosa.gestionfp.validator.EstadoProyectoConstraint;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 import org.apache.logging.log4j.message.Message;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 //Constructor
 
@@ -57,6 +59,11 @@ public class Proyectos {
     @Column(name = "estadoTutoria3")
     @EstadoProyectoConstraint
     private Character estadoTutoria3;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "idAlumno", insertable = false, updatable = false, columnDefinition = "idAlumno")
+    private Alumno alumnos;
 
 
 

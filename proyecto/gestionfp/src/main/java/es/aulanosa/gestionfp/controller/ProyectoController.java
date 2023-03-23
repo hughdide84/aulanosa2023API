@@ -2,6 +2,7 @@ package es.aulanosa.gestionfp.controller;
 
 import es.aulanosa.gestionfp.dto.ProyectoDTO;
 import es.aulanosa.gestionfp.model.Proyectos;
+import es.aulanosa.gestionfp.repository.ProyectosRepository;
 import es.aulanosa.gestionfp.service.ProyectosService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -22,6 +23,8 @@ public class ProyectoController {
 
     @Autowired
     private ProyectosService service;
+    @Autowired
+    ProyectosRepository proyectosRepository;
 
     /**
      * Método para insertar nuevos campos en la BD
@@ -113,5 +116,13 @@ public class ProyectoController {
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe ningún proyecto con ese ID");
         }
+    }
+
+    @GetMapping("/cursoEs/{idCurso}/estudiosEs/{idEstudios}")
+    @Operation(summary = "Método para buscar todos los proyectos de un curso y unos estudios")
+    //Consulta un proyecto por su ID
+    public List<Proyectos> poryectosDeCursoyEstudios(@PathVariable Integer idCurso, @PathVariable Integer idEstudios){
+
+    return proyectosRepository.buscarProyectosCursoyEstudios(idCurso,idEstudios);
     }
 }
