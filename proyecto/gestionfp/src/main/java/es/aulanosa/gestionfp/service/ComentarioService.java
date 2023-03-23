@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.service;
 
+import es.aulanosa.gestionfp.dto.EventoDTO;
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Comentario;
 
@@ -61,4 +62,6 @@ public interface ComentarioService {
      * @return Devuelve una lista de comentarios para mostrar todos los registros que coincidan
      */
     List<Comentario> listarPorSistemaEIdUsuarioComentario(char sistema, int idUC) throws NoSeHaEncontradoException;
+
+    List<EventoDTO> listarEventosPorUsuario(int idUsuario);
 }

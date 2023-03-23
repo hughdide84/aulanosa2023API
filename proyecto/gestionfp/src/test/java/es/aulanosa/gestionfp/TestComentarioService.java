@@ -24,10 +24,10 @@ public class TestComentarioService {
     @Order(1)
     void crearComentario() {
         Comentario comentario = new Comentario();
-        comentario.setSistema('P');
+        comentario.setSistema('C');
         comentario.setReferencia(7);
         comentario.setTexto("ROLE_ADM");
-        comentario.setIdUsuarioComentario(14);
+        comentario.setIdUsuarioComentario(69);
         comentario.setFecha(new Date(2023, 2, 14));
         var comentarioCreado = comentarioService.crear(comentario);
         System.out.println(comentarioCreado);
@@ -88,5 +88,12 @@ public class TestComentarioService {
     void consultarComentarioPorSistemaYReferencia() {
         var comentariosConsultados = comentarioService.listarPorSistemaYReferencia('A', 21);
         System.out.println(comentariosConsultados);
+    }
+
+    @Test
+    @Order(7)
+    void listarEventosPorUsuario() {
+        var eventos = comentarioService.listarEventosPorUsuario(69);
+        System.out.println(eventos);
     }
 }

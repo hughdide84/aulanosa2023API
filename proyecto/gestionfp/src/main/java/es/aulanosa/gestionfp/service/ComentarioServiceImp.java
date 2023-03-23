@@ -1,12 +1,17 @@
 package es.aulanosa.gestionfp.service;
 
+import es.aulanosa.gestionfp.dto.EventoDTO;
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
+import es.aulanosa.gestionfp.model.Alumno;
 import es.aulanosa.gestionfp.model.Comentario;
+import es.aulanosa.gestionfp.repository.AlumnoEmpresaRepository;
+import es.aulanosa.gestionfp.repository.AlumnoRepository;
 import es.aulanosa.gestionfp.repository.ComentarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,8 +22,15 @@ import java.util.Optional;
 public class ComentarioServiceImp implements ComentarioService {
     @Autowired
     ComentarioRepository comentarioRepository;
+    @Autowired
+    AlumnoServiceImp alumnoServiceImp;
+    @Autowired
+    UsuarioServiceImp usuarioServiceImp;
+    @Autowired
+    private AlumnoEmpresaRepository alumnoEmpresaRepository;
 
     // Guarda un comentario
+
     /**
      * {@inheritDoc}
      */
@@ -91,7 +103,34 @@ public class ComentarioServiceImp implements ComentarioService {
     @Override
     @Transactional(readOnly = true)
     public List<Comentario> listarPorSistemaEIdUsuarioComentario(char sistema, int idUC) throws NoSeHaEncontradoException {
-            return comentarioRepository.findBySistemaAndIdUsuarioComentario(sistema, idUC);
+        return comentarioRepository.findBySistemaAndIdUsuarioComentario(sistema, idUC);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<EventoDTO> listarEventosPorUsuario(int idUsuario) {
+        var comentarios = comentarioRepository.buscarPorSistemaYUsuario(idUsuario);
+
+        List<EventoDTO> eventos = new ArrayList<>();
+
+        for (var comentario : comentarios) {
+            eventos.add(new EventoDTO(comentario.getTexto(), comentario.getFecha()));
+            var usuarioOptional = usuarioServiceImp.listarPorId(comentario.getIdUsuarioComentario());
+            if (usuarioOptional.isPresent()) {
+                var alumno = alumnoServiceImp.buscarPorUsuario(usuarioOptional.get().getNombre());
+                if (alumno != null) {
+                    String textoAlumnoInicio = "El alumno " + alumno.getNombre() + " comienza las prácticas el día " + alumno.getInicioPr();
+                    eventos.add(new EventoDTO(textoAlumnoInicio, alumno.getInicioPr()));
+                    String textoAlumnoFin = "El alumno " + alumno.getNombre() + " finaliza las prácticas el día " + alumno.getFinPr();
+                    eventos.add(new EventoDTO(textoAlumnoFin, alumno.getFinPr()));
+                }
+            }
+        }
+
+
+
+
+        return eventos;
     }
 
 }

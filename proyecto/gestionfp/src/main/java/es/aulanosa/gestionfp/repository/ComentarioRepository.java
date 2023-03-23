@@ -2,6 +2,7 @@ package es.aulanosa.gestionfp.repository;
 
 import es.aulanosa.gestionfp.model.Comentario;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -27,5 +28,8 @@ public interface ComentarioRepository extends JpaRepository<Comentario, Integer>
      * @return Devuelve na lista de comentarios listados por los anteriores parámetros
      */
     List<Comentario> findBySistemaAndIdUsuarioComentario(char sistema, int id);
+
+    @Query("select c from Comentario c where c.sistema = 'C' and c.idUsuarioComentario = ?1")
+    List<Comentario> buscarPorSistemaYUsuario(int id);
 
 }
