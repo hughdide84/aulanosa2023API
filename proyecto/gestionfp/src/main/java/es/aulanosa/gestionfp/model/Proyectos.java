@@ -38,6 +38,11 @@ public class Proyectos {
     @Column(name = "notaFinal")
     private Integer notaFinal;
 
+    //relacion entre las dos tablas, un alumno solo tiene un proyecto y viceversa
+    @OneToOne
+    @JoinColumn(name = "idAlumno", insertable = false, updatable = false, referencedColumnName = "id")
+    private Alumno alumno;
+
     public Proyectos(Integer idAlumno, char documento, char presentacion, Integer notaDoc, Integer notaPres, Integer notaFinal) {
         this.idAlumno = idAlumno;
         this.documento = documento;

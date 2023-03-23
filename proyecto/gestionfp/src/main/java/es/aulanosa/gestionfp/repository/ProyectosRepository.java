@@ -1,7 +1,9 @@
 package es.aulanosa.gestionfp.repository;
 
+import es.aulanosa.gestionfp.model.Alumno;
 import es.aulanosa.gestionfp.model.Proyectos;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
