@@ -1,5 +1,6 @@
 package es.aulanosa.gestionfp.controller;
 
+import es.aulanosa.gestionfp.dto.ErrorDTO;
 import es.aulanosa.gestionfp.dto.ProyectoDTO;
 import es.aulanosa.gestionfp.model.Proyectos;
 import es.aulanosa.gestionfp.service.ProyectosService;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,12 +34,16 @@ public class ProyectoController {
     @Operation(summary = "Método para insertar nuevos campos en la BD")
     //Guarda un nuevo proyecto
     public ResponseEntity<?> altaProyecto(@RequestBody ProyectoDTO proyectosDTO) {
-        Proyectos proyectosGuardado = service.guardar(proyectosDTO.toModel());
+        Proyectos proyectosConsultado = service.buscarPorId(proyectosDTO.getId());
 
-        if (proyectosGuardado != null) {
+        if (proyectosConsultado == null) {
+            Proyectos proyectosGuardado = proyectosDTO.toModel();
+            service.guardar(proyectosGuardado);
             return ResponseEntity.status(HttpStatus.CREATED).body(proyectosGuardado);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El proyecto ya existe");
+            List<ErrorDTO> errores = new ArrayList<>();
+            errores.add(new ErrorDTO("E0004", "Ya existe un proyecto con ese ID"));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errores);
         }
     }
 
@@ -112,6 +118,20 @@ public class ProyectoController {
             return ResponseEntity.status(HttpStatus.OK).body("Proyecto eliminado");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe ningún proyecto con ese ID");
+        }
+    }
+
+    @GetMapping("/curso/{idCurso}/estudios/{idEstudios}")
+    @Operation(summary = "Listar por curso y estudios")
+    public ResponseEntity<?> listarPorCursoYEstudios(@PathVariable Integer idCurso, @PathVariable Integer idEstudios){
+        List<Proyectos> proyectos = service.buscarPorCursoYEstudios(idCurso, idEstudios);
+
+        try {
+            return ResponseEntity.ok(proyectos);
+        } catch (Exception e){
+            List<ErrorDTO> errores = new ArrayList<>();
+            errores.add(new ErrorDTO("E004", "No hay proyectos "));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errores);
         }
     }
 }

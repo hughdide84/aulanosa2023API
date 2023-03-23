@@ -57,4 +57,10 @@ public class ProyectosServiceImp implements ProyectosService{
     public void borrar(Integer id) {
         repository.deleteById(id);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Proyectos> buscarPorCursoYEstudios(Integer idCurso, Integer idEstudios) {
+        return repository.buscarPorCursoYEstudios(idCurso, idEstudios);
+    }
 }

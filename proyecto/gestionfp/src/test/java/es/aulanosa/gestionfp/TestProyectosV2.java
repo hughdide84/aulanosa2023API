@@ -21,7 +21,7 @@ public class TestProyectosV2 {
     @Order(1)
     void insertarProyecto() throws NoSeHaEncontradoException {
         Proyectos proyectos = new Proyectos();
-        proyectos.setIdAlumno(3);
+        proyectos.setIdAlumno(38);
         proyectos.setDocumento('a');
         proyectos.setPresentacion('e');
         proyectos.setNotaDoc(9);
@@ -100,5 +100,12 @@ public class TestProyectosV2 {
         else {
             System.out.println("Proyecto no encontrado");
         }
+    }
+
+    @Test
+    @Order(6)
+    void consultarProyectoPorCursoYEstudios() {
+        var a = proyectosService.buscarPorCursoYEstudios(4, 3);
+        System.out.println(a);
     }
 }

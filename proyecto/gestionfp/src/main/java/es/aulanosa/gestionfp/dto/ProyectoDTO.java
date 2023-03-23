@@ -5,9 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * Clase DTO para la presentación y recepción de datos en el controller
- */
+import java.sql.Timestamp;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,6 +25,7 @@ public class ProyectoDTO {
     private int notaPres;
 
     private int notaFinal;
+    private Timestamp exposicion;
 
     public Proyectos toModel() {
         Proyectos proyectos = new Proyectos();
@@ -37,6 +37,7 @@ public class ProyectoDTO {
         proyectos.setNotaDoc(this.notaDoc);
         proyectos.setNotaPres(this.notaPres);
         proyectos.setNotaFinal(this.notaFinal);
+        proyectos.setExposicion(this.exposicion);
 
         return proyectos;
     }
@@ -49,6 +50,7 @@ public class ProyectoDTO {
         this.setNotaDoc(proyectos.getNotaDoc());
         this.setNotaPres(proyectos.getNotaPres());
         this.setNotaFinal(proyectos.getNotaFinal());
+        this.setExposicion(proyectos.getExposicion());
 
         return this;
     }
