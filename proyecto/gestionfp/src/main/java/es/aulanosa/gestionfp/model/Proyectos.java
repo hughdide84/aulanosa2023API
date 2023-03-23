@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.logging.log4j.message.Message;
 
+import java.sql.Timestamp;
+
 //Constructor
 
 /**
@@ -37,13 +39,20 @@ public class Proyectos {
     private Integer notaPres;
     @Column(name = "notaFinal")
     private Integer notaFinal;
+    @Column(name = "tutoria1")
+    private Timestamp tutoria1;
+    @Column(name = "tutoria2")
+    private Timestamp tutoria2;
+    @Column(name = "tutoria3")
+    private Timestamp tutoria3;
 
-    public Proyectos(Integer idAlumno, char documento, char presentacion, Integer notaDoc, Integer notaPres, Integer notaFinal) {
-        this.idAlumno = idAlumno;
-        this.documento = documento;
-        this.presentacion = presentacion;
-        this.notaDoc = notaDoc;
-        this.notaPres = notaPres;
-        this.notaFinal = notaFinal;
-    }
+    @Column(name = "estadoTutoria1")
+    private char estadoTutoria1;
+    @Column(name = "estadoTutoria2")
+    private char estadoTutoria2;
+    @Column(name = "estadoTutoria3")
+    private char estadoTutoria3;
+
+
+
 }
