@@ -39,7 +39,6 @@ public class Proyectos {
     @Column(name = "exposicion")
     private Timestamp exposicion;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idAlumno", insertable = false, updatable = false)
     private Alumno alumno;
