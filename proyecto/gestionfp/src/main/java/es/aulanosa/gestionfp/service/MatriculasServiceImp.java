@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,25 +20,29 @@ public class MatriculasServiceImp implements MatriculasService{
 
     @Override
     @Transactional
-    public Matricula insertar(Matricula matricula) {
+    //inserta una nueva matricula en la BD
+    public Matricula insertarMatricula(Matricula matricula) {
         return matriculasRepository.save(matricula);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<Matricula> consultarPorId(Integer id) {
+    //devuelve una matricula a partir de un id especificado
+    public Optional<Matricula> consultarPorIdMatricula(Integer id) {
         return matriculasRepository.findById(id);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<Matricula> consultarTodos() {
+    //devuelve una lista de todas las matriculas
+    public List<Matricula> consultarTodasMatriculas() {
         return matriculasRepository.findAll();
     }
 
     @Override
     @Transactional
-    public Matricula modificar(Matricula matricula) throws NoSuchFieldException {
+    //modifica una matricula existente en la BD
+    public Matricula modificarMatricula(Matricula matricula) throws NoSuchFieldException {
         if (matriculasRepository.findById(matricula.getId()).isPresent()){
             return matriculasRepository.save(matricula);
         }
@@ -48,25 +53,35 @@ public class MatriculasServiceImp implements MatriculasService{
 
     @Override
     @Transactional
-    public void eliminar(Integer id) {
+    //elimina una matricula existente a partir de un id especificado
+    public void eliminarMatricula(Integer id) {
         matriculasRepository.deleteById(id);
     }
 
     @Override
-    @Transactional
+    @Transactional (readOnly = true)
+    //devuelve una lista de matriculas a partir de un nombre especificado
     public List<Matricula> buscarPorNombreDeMatricula(String nombre) {
         return matriculasRepository.buscarPorNombre(nombre);
     }
 
     @Override
-    public List<Matricula> buscarPorMesDeMatricula(String nombre) {
-        return null;
+    @Transactional (readOnly = true)
+    //devuelve una lista de matriculas a partir de un idCurso existente
+    public List<Matricula> buscarTodosCursosPorId(Integer idCurso) {
+        return matriculasRepository.findAllByidCurso(idCurso);
     }
-
     @Override
-    @Transactional
-    public List<Curso> buscarTodosCursosPorId(Integer idCurso) {
-        return matriculasRepository.buscarTodosCursosPorId(idCurso);
-    }
+    @Transactional (readOnly = true)
+    //devuelve una lista de las matriculas a partir de un mes especificado
+    public List<Matricula> buscarPorMesDeMatricula(Integer mes) {
 
+        List<Matricula> matriculaFecha = matriculasRepository.buscarPorMes(mes);
+
+        return matriculaFecha;
+
+
+
+
+    }
 }

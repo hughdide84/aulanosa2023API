@@ -29,13 +29,9 @@ public class CursoController {
         Curso cursoComprobar = serviceCur.buscarPorId(cursoDTO.getId());
 
         if (cursoComprobar == null) {
-            try {
                 Curso curso = cursoDTO.convertirModel();
                 serviceCur.insertarCurso(curso);
                 return ResponseEntity.status(HttpStatus.CREATED).body(curso);
-            } catch (Exception e) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al insertar el curso");
-            }
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El curso ya existe");
         }

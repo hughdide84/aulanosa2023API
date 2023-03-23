@@ -1,11 +1,13 @@
 package es.aulanosa.gestionfp.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import es.aulanosa.gestionfp.validator.EstadoCursoConstraint;
 import jakarta.persistence.*;
 
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,6 +42,7 @@ public class Curso {
         private Timestamp fin;
         @NotNull
         @Column(name = "estado")
+        @EstadoCursoConstraint
         private char estado;
 
         @JsonIgnore

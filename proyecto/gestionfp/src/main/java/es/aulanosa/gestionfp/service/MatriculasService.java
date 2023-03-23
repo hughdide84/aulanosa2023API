@@ -7,18 +7,18 @@ import java.util.List;
 import java.util.Optional;
 
 public interface MatriculasService {
-    public Matricula insertar(Matricula matricula);
+    public Matricula insertarMatricula(Matricula matricula);
 
-    public Optional<Matricula> consultarPorId(Integer id);
+    public Optional<Matricula> consultarPorIdMatricula(Integer id);
 
-    public List<Matricula> consultarTodos();
+    public List<Matricula> consultarTodasMatriculas();
 
-    public Matricula modificar(Matricula matricula) throws NoSuchFieldException;
+    public Matricula modificarMatricula(Matricula matricula) throws NoSuchFieldException;
 
-    public void eliminar(Integer id);
+    public void eliminarMatricula(Integer id);
 
     List<Matricula> buscarPorNombreDeMatricula(String nombre);
-    List<Matricula> buscarPorMesDeMatricula(String nombre);
+    List<Matricula> buscarPorMesDeMatricula(Integer numMes);
 
-    public List<Curso> buscarTodosCursosPorId (Integer id);
+    public List<Matricula> buscarTodosCursosPorId (Integer id);
 }

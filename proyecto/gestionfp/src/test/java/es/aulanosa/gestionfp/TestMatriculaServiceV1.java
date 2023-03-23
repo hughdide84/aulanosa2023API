@@ -13,10 +13,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 @TestClassOrder(ClassOrderer.OrderAnnotation.class)
 @SpringBootTest
-public class TestMatriculaV1 {
+public class TestMatriculaServiceV1 {
 
     @Autowired
     MatriculasService matriculasService;
@@ -36,7 +37,7 @@ public class TestMatriculaV1 {
         Timestamp timestamp = new Timestamp(122,2,30,16,30,21,1);
         matricula.setFecha(timestamp);
         try {
-            var a = matriculasService.insertar(matricula);
+            var a = matriculasService.insertarMatricula(matricula);
             System.out.println(a);
         }
         catch (Exception e) {
@@ -47,39 +48,20 @@ public class TestMatriculaV1 {
     @Test
     @Order(2)
     void consultarMatriculasPorId() {
-        var a = matriculasService.consultarPorId(32);
+        var a = matriculasService.consultarPorIdMatricula(32);
         System.out.println(a);
     }
 
     @Test
     @Order(3)
-    void consultarTodos() {
-        List<Matricula> a = matriculasService.consultarTodos();
-        System.out.println(a);
-    }
-
-    @Test
-    @Order(4)
     void modificarMatricula() throws NoSeHaEncontradoException {
 
-        var a = matriculasService.consultarPorId(32);
+        Optional<Matricula> a = matriculasService.consultarPorIdMatricula(58);
 
         if (a.isPresent()) {
-            Matricula matricula = new Matricula();
-            matricula.setId(32);
-            matricula.setFactura("Alguna");
-            matricula.setNombre("Alguni");
-            matricula.setNif("Si");
-            matricula.setCuota(45);
-            matricula.setMatricula(4165);
-            matricula.setIdCurso(41);
-            matricula.setObservaciones("No observado");
-            matricula.setIdUsuario(14);
-            Timestamp timestamp = new Timestamp(102,5,15,16,30,21,1);
-            matricula.setFecha(timestamp);
-
-            var g = matriculasService.insertar(matricula);
-            System.out.println(g);
+            a.get().setNombre("NombreModificado");
+             matriculasService.insertarMatricula(a.get());
+            System.out.println(a);
         }
 
         else {
@@ -88,12 +70,19 @@ public class TestMatriculaV1 {
     }
 
     @Test
+    @Order(4)
+    void consultarMatriculaModificadaPorId() {
+        var a = matriculasService.consultarPorIdMatricula(32);
+        System.out.println(a);
+    }
+
+    @Test
     @Order(5)
     void eliminarMatricula() throws NoSeHaEncontradoException {
-        var a = matriculasService.consultarPorId(1);
+        var a = matriculasService.consultarPorIdMatricula(1);
 
-        if (a != null) {
-            matriculasService.eliminar(1);
+        if (a.isPresent()) {
+            matriculasService.eliminarMatricula(a.get().getId());
             System.out.println("Eliminado");
         }
 
@@ -105,22 +94,49 @@ public class TestMatriculaV1 {
 
     @Test
     @Order(6)
-    void buscarMatriculaPorNombre() {
-        List<Matricula> a = matriculasService.buscarPorNombreDeMatricula("No");
+    void consultarTodos() {
+        List<Matricula> a = matriculasService.consultarTodasMatriculas();
         System.out.println(a);
     }
 
+
+
+
+
     @Test
     @Order(7)
-    void buscarCursosDeMatricula() {
-        List<Curso> a = matriculasService.buscarTodosCursosPorId(23);
-        System.out.println(a);
+    void buscarMatriculaPorNombre() throws NoSeHaEncontradoException {
+        List<Matricula> a = matriculasService.buscarPorNombreDeMatricula("No");
+        if(!a.isEmpty()){
+            System.out.println(a);
+        }else{
+            throw new NoSeHaEncontradoException("El nombre de matricula no existe");
+        }
+
+
+    }
+
+    @Test
+    @Order(8)
+    void buscarCursosDeMatricula() throws NoSeHaEncontradoException {
+        List<Matricula> a = matriculasService.buscarTodosCursosPorId(23);
+
+        if(!a.isEmpty()){
+            System.out.println(a);
+        }else{
+            throw new NoSeHaEncontradoException("El id proporcionado no existe");
+        }
+
     }
     @Test
-    @Order(7)
-    void buscarMatriculaPorMes() {
-        List<Matricula> a = matriculasService.buscarPorMesDeMatricula("enero");
-        System.out.println(a);
+    @Order(9)
+    void buscarMatriculaPorMes() throws NoSeHaEncontradoException {
+        List<Matricula> a = matriculasService.buscarPorMesDeMatricula(3);
+        if(!a.isEmpty()){
+            System.out.println(a);
+        }else{
+            throw new NoSeHaEncontradoException("El mes no tiene matriculas asignadas");
+        }
     }
 
 
