@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 /**
  * Clase que implementa la interfaz AlumnoExternoService.
@@ -126,4 +128,30 @@ public class AlumnoExternoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
         }
     }
+    @GetMapping("/")
+    @Operation(summary = "Lista todos los alumnos externos filtrados por idCurso")
+    public ResponseEntity<?> listarAlumnosExternosCurso(@PathVariable int id) throws NoSeHaEncontradoException {
+        List<AlumnoExterno> a = new ArrayList<>();
+
+        a.add((AlumnoExterno) service.buscarPorIdCurso(id));
+
+
+
+        if(!a.isEmpty()){
+
+            List<AlumnoExternoDTO> aeDTO = new ArrayList<>();
+            AlumnoExternoDTO alumnoExternoDTO = new AlumnoExternoDTO();
+            for (AlumnoExterno ae:
+                 a) {
+                aeDTO.add(alumnoExternoDTO.crearDTO(ae));
+            }
+
+            return ResponseEntity.status(HttpStatus.OK).body(aeDTO);
+        }else{
+            ErrorDTO errorDTO = new ErrorDTO("E0006", "No hay resultados en la base de datos para los criterios de busqueda");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
+        }
+
+    }
+
 }

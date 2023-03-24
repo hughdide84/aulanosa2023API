@@ -31,6 +31,8 @@ public interface AlumnoExternoRepository extends JpaRepository<AlumnoExterno, In
     List<AlumnoExterno> findByEspecialidad(String especialidad);
     List<AlumnoExterno> findByEspecialidadContaining(String especialidad);
 
+    List<AlumnoExterno> findByidCurso(int idCurso);
+
 
 
 }
