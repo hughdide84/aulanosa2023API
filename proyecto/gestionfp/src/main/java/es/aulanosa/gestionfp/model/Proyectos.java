@@ -1,10 +1,7 @@
 package es.aulanosa.gestionfp.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-<<<<<<< HEAD
-=======
 import es.aulanosa.gestionfp.validator.EstadoProyectoConstraint;
->>>>>>> Añadir-endpoint-Proyectos
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -13,12 +10,8 @@ import lombok.NoArgsConstructor;
 import org.apache.logging.log4j.message.Message;
 
 import java.sql.Timestamp;
-<<<<<<< HEAD
-=======
 import java.util.List;
 
-//Constructor
->>>>>>> Añadir-endpoint-Proyectos
 
 //Constructor
 @Entity
@@ -49,7 +42,6 @@ public class Proyectos {
     @Column(name = "exposicion")
     private Timestamp exposicion;
 
-<<<<<<< HEAD
     @ManyToOne
     @JoinColumn(name = "idAlumno", insertable = false, updatable = false)
     private Alumno alumno;
@@ -77,7 +69,6 @@ public class Proyectos {
                 ", exposicion=" + exposicion +
                 '}';
     }
-=======
     @Column(name = "tutoria1")
     private Timestamp tutoria1;
     @Column(name = "tutoria2")
@@ -102,5 +93,4 @@ public class Proyectos {
 
 
 
->>>>>>> Añadir-endpoint-Proyectos
 }

@@ -15,6 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -77,6 +79,26 @@ public class MensajeController {
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe ningún mensaje con ese ID");
         }
+    }
+
+    /**
+     * Método
+     * @return
+     */
+    @GetMapping("")
+    @Operation
+    public ResponseEntity<?> listarTodoMensaje(){
+        List<Mensaje> mensajes = new ArrayList<>();
+        List<MensajeDTO> mensajesDTO = new ArrayList<>();
+
+        for (Mensaje msg:
+             mensajes) {
+            MensajeDTO msgDTO = new MensajeDTO();
+            mensajesDTO.add(msgDTO.toDTO(msg));
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(mensajesDTO);
+
     }
 
     /**
