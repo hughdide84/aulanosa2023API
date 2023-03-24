@@ -14,7 +14,7 @@ import java.util.Optional;
  * Implementación de la interfaz del servicio
  */
 @Service
-public class ProyectosServiceImp implements ProyectosService{
+public class ProyectosServiceImp implements ProyectosService {
 
     @Autowired
     private ProyectosRepository repository;
@@ -59,13 +59,14 @@ public class ProyectosServiceImp implements ProyectosService{
     }
 
     @Override
-<<<<<<< HEAD
     @Transactional(readOnly = true)
     public List<Proyectos> buscarPorCursoYEstudios(Integer idCurso, Integer idEstudios) {
         return repository.buscarPorCursoYEstudios(idCurso, idEstudios);
-=======
+
+    }
+
+    @Override
     public List<Proyectos> buscarProyectosCursoyEstudios(int idCurso, int idEstudios) {
-        return repository.buscarProyectosCursoyEstudios(idCurso,idEstudios);
->>>>>>> Añadir-endpoint-Proyectos
+        return null;
     }
 }

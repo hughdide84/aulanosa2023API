@@ -13,10 +13,7 @@ public interface ProyectosService {
     public Proyectos buscarPorId(Integer id);
     public Proyectos modificar(Proyectos proyectos) throws NoSeHaEncontradoException;
     public void borrar(Integer id);
-<<<<<<< HEAD
     List<Proyectos> buscarPorCursoYEstudios(Integer idCurso, Integer idEstudios);
-=======
     public List<Proyectos> buscarProyectosCursoyEstudios (int idCurso, int idEstudios);
 
->>>>>>> Añadir-endpoint-Proyectos
 }

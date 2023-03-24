@@ -128,17 +128,17 @@ public class AlumnoExternoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
         }
     }
-    @GetMapping("/")
+    /**
+     * Devuelve todos los alumnosExternos asociados a un curso especificado como parametro
+     * @param idCurso el id del curso que queremos filtrar
+     * @return Todos los  alumnos externos que pertenecen a ese curso
+     */
+    @GetMapping("/cursoEs/{idCurso}")
     @Operation(summary = "Lista todos los alumnos externos filtrados por idCurso")
-    public ResponseEntity<?> listarAlumnosExternosCurso(@PathVariable int id) throws NoSeHaEncontradoException {
-        List<AlumnoExterno> a = new ArrayList<>();
-
-        a.add((AlumnoExterno) service.buscarPorIdCurso(id));
-
-
+    public ResponseEntity<?> listarAlumnosExternosCurso(@PathVariable int idCurso) throws NoSeHaEncontradoException {
+        List<AlumnoExterno> a = service.buscarPorIdCurso(idCurso);
 
         if(!a.isEmpty()){
-
             List<AlumnoExternoDTO> aeDTO = new ArrayList<>();
             AlumnoExternoDTO alumnoExternoDTO = new AlumnoExternoDTO();
             for (AlumnoExterno ae:
