@@ -34,21 +34,25 @@ public class EmpresaController {
     @PostMapping("")
     public ResponseEntity<?> altaEmpresa(@RequestBody EmpresaDTO empresaDTO) {
 
-        Empresa consultarEmpresa = empService.findById(empresaDTO.getId());
+        try {
+            Empresa consultarEmpresa = empService.findById(empresaDTO.getId());
 
-        if (consultarEmpresa == null && comprobarTamanoCampos(empresaDTO).equals("")) {
-            Empresa empresaGuardada = empresaDTO.convertirModel();
-            empService.save(empresaGuardada);
-            return ResponseEntity.status(HttpStatus.CREATED).body(empresaDTO);
-        } else if (!comprobarTamanoCampos(empresaDTO).equals("")) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Longitud de caracteres excedida de los siguientes campos: " + comprobarTamanoCampos(empresaDTO));
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Empresa ya existente");
+            if (consultarEmpresa == null && comprobarTamanoCampos(empresaDTO).equals("")) {
+                Empresa empresaGuardada = empresaDTO.convertirModel();
+                empService.save(empresaGuardada);
+                return ResponseEntity.status(HttpStatus.CREATED).body(empresaDTO);
+            } else if (!comprobarTamanoCampos(empresaDTO).equals("")) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Longitud de caracteres excedida de los siguientes campos: " + comprobarTamanoCampos(empresaDTO));
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Empresa ya existente");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al crear la empresa");
         }
     }
 
     //Este metodo busca un campo de la tabla empresa mediante su id
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> consultarEmpresa(@PathVariable("id") Integer id) {
         Empresa empresa = empService.findById(id);
 
@@ -68,7 +72,7 @@ public class EmpresaController {
         if (empresaParaActualizar != null && comprobarTamanoCampos(empresaDTO).equals("")) {
             Empresa empresaGuardada = empresaDTO.convertirModel();
             empService.save(empresaGuardada);
-            return ResponseEntity.status(HttpStatus.CREATED).body(empresaGuardada);
+            return ResponseEntity.status(HttpStatus.OK).body(empresaGuardada);
         } else if (!comprobarTamanoCampos(empresaDTO).equals("")) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Longitud de caracteres excedida de los siguientes campos: " + comprobarTamanoCampos(empresaDTO));
         } else {
@@ -77,7 +81,7 @@ public class EmpresaController {
     }
 
     //Este metodo busca un campo de la tabla empresa para eliminarlo.
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminarEmpresa(@PathVariable("id") Integer id) {
         Empresa empresa = empService.findById(id);
 
@@ -86,7 +90,7 @@ public class EmpresaController {
             empService.deleteById(id);
             Empresa empresaComp = empService.findById(idEmp);
             if (empresaComp == null) {
-                return ResponseEntity.ok("Campo seleccionado borrado con exito");
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Empresa eliminada correctamente");
             }
             else {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error, no se ha podido eliminar el campo seleccionado");
@@ -111,7 +115,7 @@ public class EmpresaController {
         }
     }
 
-    @GetMapping("{id}/alumno")
+    @GetMapping("/{id}/alumno")
     public ResponseEntity<?> listarAlumnosEnEmpresa(@PathVariable("id") Integer id) {
         List<Alumno> alumnoEmp = alumnoEmpresaService.buscarTodosAlumnosPorIdEmpresa(id);
 
