@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -44,6 +45,18 @@ public class EmpresaServiceImp implements EmpresaService {
     @Transactional(readOnly = true)
     public List<Empresa> findAllByNombre(String nombre) {
         return empresaRepository.findAllByNombre(nombre);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Empresa> buscarEmpresasPorCursoYEstudios(Integer idCurso, Integer idEstudios) throws NoSeHaEncontradoException {
+        if(empresaRepository.findAllByIdCursoAndIdEstudios(idCurso, idEstudios).isEmpty()){
+            throw new NoSeHaEncontradoException("No hay coincidencias en la BD con los datos proporcionados");
+        }else{
+            return empresaRepository.findAllByIdCursoAndIdEstudios(idCurso, idEstudios);
+        }
     }
 
     //guarda una empresa

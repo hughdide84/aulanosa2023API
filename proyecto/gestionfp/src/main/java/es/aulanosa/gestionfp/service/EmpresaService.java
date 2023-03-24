@@ -42,4 +42,13 @@ public interface EmpresaService {
      * @return Una lista de empresas que coincidan con el nombre a buscar
      */
     List<Empresa> findAllByNombre(String nombre);
+
+
+    /**
+     * Obtiene una lista de empresas filtradas por curso y estudios
+     * @param idCurso id Del curso a buscar
+     * @param idEstudios id del Estudio a buscar
+     * @return Devuelve una lista de empresas que coinciden con los parámetros
+     */
+    List<Empresa> buscarEmpresasPorCursoYEstudios(Integer idCurso, Integer idEstudios) throws NoSeHaEncontradoException;
 }

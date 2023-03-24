@@ -2,6 +2,7 @@ package es.aulanosa.gestionfp.controller;
 
 import es.aulanosa.gestionfp.dto.AlumnoEmpresaDTO;
 import es.aulanosa.gestionfp.dto.EmpresaDTO;
+import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Alumno;
 import es.aulanosa.gestionfp.model.AlumnoEmpresa;
 import es.aulanosa.gestionfp.model.Empresa;
@@ -217,5 +218,27 @@ public class EmpresaController {
         }
 
         return ResponseEntity.ok(listaAlumnoEmpresaDTO);
+    }
+
+    /**
+     * Lista todas las empresas que tengan el curso y estudios que se piden
+     * @param idCurso Id del curso representado en la BD
+     * @param idEstudio Id del estudio representado en la DB
+     * @return Devuelve una lista con loas coinicdencias de la BD
+     * @throws NoSeHaEncontradoException Si no se encuentra ningun resultado salta este error
+     */
+    @GetMapping("/curso/{idCurso}/estudio/{idEstudio}")
+    public ResponseEntity<?> buscarEmpresaPorCursoYEstudios(@PathVariable int idCurso, @PathVariable int idEstudio) throws NoSeHaEncontradoException {
+        List<Empresa> empresas = empService.buscarEmpresasPorCursoYEstudios(idCurso, idEstudio);
+
+        List<EmpresaDTO> empresasDTO = new ArrayList<>();
+        for (Empresa empresa :
+                empresas) {
+            EmpresaDTO empresaDTO = new EmpresaDTO();
+
+            empresasDTO.add(empresaDTO.crearDTO(empresa));
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(empresasDTO);
     }
 }
