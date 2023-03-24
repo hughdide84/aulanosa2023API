@@ -27,6 +27,8 @@ public class ComentarioServiceImp implements ComentarioService {
     @Autowired
     UsuarioServiceImp usuarioServiceImp;
     @Autowired
+    PagoServiceImp pagoServiceImp;
+    @Autowired
     private AlumnoEmpresaRepository alumnoEmpresaRepository;
 
     // Guarda un comentario
@@ -115,20 +117,33 @@ public class ComentarioServiceImp implements ComentarioService {
 
         for (var comentario : comentarios) {
             eventos.add(new EventoDTO(comentario.getTexto(), comentario.getFecha()));
-            var usuarioOptional = usuarioServiceImp.listarPorId(comentario.getIdUsuarioComentario());
-            if (usuarioOptional.isPresent()) {
-                var alumno = alumnoServiceImp.buscarPorUsuario(usuarioOptional.get().getNombre());
-                if (alumno != null) {
-                    String textoAlumnoInicio = "El alumno " + alumno.getNombre() + " comienza las prácticas el día " + alumno.getInicioPr();
-                    eventos.add(new EventoDTO(textoAlumnoInicio, alumno.getInicioPr()));
-                    String textoAlumnoFin = "El alumno " + alumno.getNombre() + " finaliza las prácticas el día " + alumno.getFinPr();
-                    eventos.add(new EventoDTO(textoAlumnoFin, alumno.getFinPr()));
+        }
+        var usuarioOptional = usuarioServiceImp.listarPorId(idUsuario);
+        if (usuarioOptional.isPresent()) {
+            var alumno = alumnoServiceImp.buscarPorUsuario(usuarioOptional.get().getNombre());
+            if (alumno != null) {
+                String textoAlumnoInicio = "El alumno " + alumno.getNombre() + " comienza las prácticas el día " + alumno.getInicioPr();
+                eventos.add(new EventoDTO(textoAlumnoInicio, alumno.getInicioPr()));
+                String textoAlumnoFin = "El alumno " + alumno.getNombre() + " finaliza las prácticas el día " + alumno.getFinPr();
+                eventos.add(new EventoDTO(textoAlumnoFin, alumno.getFinPr()));
+            }
+            var pagos = pagoServiceImp.buscarPorIdUsuario(idUsuario);
+            for (var pago : pagos) {
+                String estado;
+                switch (pago.getEstado()) {
+                    case 'C':
+                        estado = "confirmado";
+                        break;
+                    case 'D':
+                        estado = "devuelto";
+                        break;
+                    default:
+                        estado = "(estado no reconocido)";
                 }
+                String textoPago = "El usuario " + usuarioOptional.get().getNombre() + " ha " + estado + " el pago de " + pago.getPago() + "€";
+                eventos.add(new EventoDTO(textoPago, pago.getFecha()));
             }
         }
-
-
-
 
         return eventos;
     }

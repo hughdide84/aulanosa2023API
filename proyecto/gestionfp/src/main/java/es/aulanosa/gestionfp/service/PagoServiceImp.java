@@ -17,41 +17,47 @@ public class PagoServiceImp implements PagoService {
 
     @Autowired
     private PagoRepository repositorio;
+
     @Transactional
     @Override
     //guarda un pago nuevo en la BD
     public Pago guardarPago(Pago pago) {
         return repositorio.save(pago);
     }
+
     @Transactional(readOnly = true)
     @Override
     //devuelve una lista de todos los pagos
     public List<Pago> buscarTodosPagos() {
         return repositorio.findAll();
     }
+
     @Transactional(readOnly = true)
     @Override
     //devuelve el pago que coincida con el id introducido
     public Optional<Pago> buscarPorIdPago(Integer id) {
         return repositorio.findById(id);
     }
+
     @Transactional
     @Override
     //modifica un pago existente
     public Pago modificarPago(Pago pago) throws NoSeHaEncontradoException, NoSuchFieldException {
         if (repositorio.findById(pago.getId()).isPresent()) {
             return repositorio.save(pago);
-        } else{
+        } else {
             throw new NoSuchFieldException("No existe el pago con id: " + pago.getId());
         }
 
     }
+
     @Transactional
     @Override
     //borra un pago existente a partir de el id proporcionado
-    public void borrarPago(Integer id){
-            repositorio.deleteById(id);
-        }
+    public void borrarPago(Integer id) {
+        repositorio.deleteById(id);
+    }
+
     @Transactional(readOnly = true)
     @Override
     //devuelve una lista de pagos a partir de un idMatricula que se le pase
@@ -60,13 +66,20 @@ public class PagoServiceImp implements PagoService {
 
         List<Pago> pagos = new ArrayList<>();
 
-        if(!repositorio.findAllByIdMatricula(idMatricula).isEmpty()){
+        if (!repositorio.findAllByIdMatricula(idMatricula).isEmpty()) {
             pagos = repositorio.findAllByIdMatricula(idMatricula);
             return pagos;
-        }else{
+        } else {
             throw new NoSeHaEncontradoException("No existe el idMatricula");
         }
 
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Pago> buscarPorIdUsuario(int idUsuario) {
+        List<Pago> pagos = new ArrayList<>();
+        return repositorio.buscarPorIdUsuario(idUsuario);
     }
 }
 

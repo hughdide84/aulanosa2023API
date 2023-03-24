@@ -15,6 +15,6 @@ public interface PagoService {
     public Pago modificarPago(Pago pago) throws NoSeHaEncontradoException, NoSuchFieldException;
     public void borrarPago(Integer id);
 
-    @Transactional(readOnly = true)
     List<Pago> listarPorMatricula(int idMatricula) throws NoSeHaEncontradoException;
+    List<Pago> buscarPorIdUsuario(int idUsuario);
 }

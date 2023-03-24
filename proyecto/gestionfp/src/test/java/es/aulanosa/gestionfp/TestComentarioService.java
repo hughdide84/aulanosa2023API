@@ -93,7 +93,7 @@ public class TestComentarioService {
     @Test
     @Order(7)
     void listarEventosPorUsuario() {
-        var eventos = comentarioService.listarEventosPorUsuario(69);
+        var eventos = comentarioService.listarEventosPorUsuario(65);
         System.out.println(eventos);
     }
 }

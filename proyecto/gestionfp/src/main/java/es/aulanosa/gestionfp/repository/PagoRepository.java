@@ -14,5 +14,7 @@ import java.util.List;
 public interface PagoRepository extends JpaRepository <Pago,Integer> {
 
     public List<Pago> findAllByIdMatricula (Integer id);
+    @Query("select p from Pago p where p.idUsuario = ?1")
+    List<Pago> buscarPorIdUsuario(int idUsuario);
 
 }

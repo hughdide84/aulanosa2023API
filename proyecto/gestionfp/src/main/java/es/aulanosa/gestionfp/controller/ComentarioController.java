@@ -2,6 +2,7 @@ package es.aulanosa.gestionfp.controller;
 
 import es.aulanosa.gestionfp.dto.ComentarioDTO;
 import es.aulanosa.gestionfp.dto.ErrorDTO;
+import es.aulanosa.gestionfp.dto.EventoDTO;
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.Comentario;
 import es.aulanosa.gestionfp.service.ComentarioService;
@@ -166,6 +167,26 @@ public class ComentarioController {
         }else{
             ErrorDTO errorDTO = new ErrorDTO("E0011", "No se ha encontrado un registro con los campos especificados");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDTO);
+        }
+    }
+
+    /**
+     * Devuelve una lista con todos los eventos
+     * @param idUsuario id del usuario por el que se quiere buscar
+     * @return Devuelve una lista con los eventos respectivos al usuario
+     */
+    @GetMapping("/eventos/{idUsuario}")
+    @Operation(summary = "Devuelve una lista con todos los eventos")
+    public ResponseEntity<?> listarEventosPorUsuario(@PathVariable(value = "idUsuario") int idUsuario) throws NoSeHaEncontradoException {
+
+        try {
+            List<EventoDTO> eventos = service.listarEventosPorUsuario(idUsuario);
+            return ResponseEntity.status(HttpStatus.OK).body(eventos);
+
+        } catch (Exception e) {
+            List<ErrorDTO> errores = new ArrayList<>();
+            errores.add(new ErrorDTO("E0011", "No se ha encontrado un registro con los campos especificados"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errores);
         }
     }
 }
