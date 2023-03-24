@@ -88,7 +88,7 @@ public class MensajeController {
     @GetMapping("")
     @Operation
     public ResponseEntity<?> listarTodoMensaje(){
-        List<Mensaje> mensajes = new ArrayList<>();
+        List<Mensaje> mensajes = service.consultarTodosMensajes();
         List<MensajeDTO> mensajesDTO = new ArrayList<>();
 
         for (Mensaje msg:
