@@ -15,4 +15,13 @@ public interface EmpresaRepository extends JpaRepository<Empresa, Integer> {
      @return Una lista de empresas que coinciden con el nombre especificado.
      */
     List<Empresa> findAllByNombre(String nombre);
+
+
+    /**
+     * Lista todas las empresas que tengan el idCUrso e idEstudios correspondientes
+     * @param idCurso Id del curso representado en la BD
+     * @param idEstudios Id del Estudio representado en la BD
+     * @return Devuelve una lista de empresas
+     */
+    List<Empresa> findAllByIdCursoAndIdEstudios(Integer idCurso, Integer idEstudios);
 }
