@@ -20,13 +20,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Clase que gestiona las peticiones relacionadas con las asignaturasHorario
+ */
 @RestController
 @RequestMapping("/api/asignaturaHorario")
 public class AsignaturaHorarioController {
-
-    /**
-     * Clase que gestiona las peticiones relacionadas con las asignaturasHorario
-     */
+    
     @Autowired
     private AsignaturaHorarioServiceImp service;
 
