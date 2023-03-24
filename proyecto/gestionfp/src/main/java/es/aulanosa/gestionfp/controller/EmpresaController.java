@@ -227,7 +227,7 @@ public class EmpresaController {
      * @return Devuelve una lista con loas coinicdencias de la BD
      * @throws NoSeHaEncontradoException Si no se encuentra ningun resultado salta este error
      */
-    @GetMapping("/curso/{idCurso}/estudio/{idEstudio}")
+    @GetMapping("/{idCurso}/{idEstudio}")
     public ResponseEntity<?> buscarEmpresaPorCursoYEstudios(@PathVariable int idCurso, @PathVariable int idEstudio) throws NoSeHaEncontradoException {
         List<Empresa> empresas = empService.buscarEmpresasPorCursoYEstudios(idCurso, idEstudio);
 
