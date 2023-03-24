@@ -12,6 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Clase que implementa los metodos definidos en la interfaz AsignaturaHorarioService
+ */
 @Service
 public class AsignaturaHorarioServiceImp implements AsignaturaHorarioService{
 
