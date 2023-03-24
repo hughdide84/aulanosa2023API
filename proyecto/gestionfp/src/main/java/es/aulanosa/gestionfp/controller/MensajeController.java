@@ -82,8 +82,8 @@ public class MensajeController {
     }
 
     /**
-     * Método
-     * @return
+     * Método para listar todos los mensajes
+     * @return devuelve una lista con todos los mensajes de la BD
      */
     @GetMapping("")
     @Operation
