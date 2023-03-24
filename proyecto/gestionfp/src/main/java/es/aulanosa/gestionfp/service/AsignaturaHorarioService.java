@@ -36,7 +36,7 @@ public interface AsignaturaHorarioService {
     AsignaturaHorario modificarAsignaturaHorario(AsignaturaHorario asignaturaHorario) throws NoSeHaEncontradoException;
 
     /**
-     * 
+     * Busca un AsignaturaHorario por su idAsignatura, idCurso y nivel
      * @param idAsignatura
      * @param idCurso
      * @param nivel
@@ -51,8 +51,18 @@ public interface AsignaturaHorarioService {
      */
     void eliminarAsignaturaHorario(int id) throws NoSeHaEncontradoException;
 
+    /**
+     * Lista todos los AsignaturaHorario de la base de datos
+     * @return una lista con todos los AsignaturaHorario
+     */
     List<AsignaturaHorario> listarTodoAsignaturaHorario();
 
+    /**
+     * Lista todos los AsignaturaHorario de la base de datos que coincidan con el cursoEstudioNivelDTO
+     * @param cursoEstudioNivelDTO
+     * @return una lista con todos los AsignaturaHorario que coincidan con el cursoEstudioNivelDTO
+     * @throws NoSeHaEncontradoException si no se encuentra el cursoEstudioNivelDTO
+     */
     List<AsignaturaHorario> listarHorariosSegunCursoEstudioNivel(CursoEstudioNivelDTO cursoEstudioNivelDTO) throws NoSeHaEncontradoException;
 
 }

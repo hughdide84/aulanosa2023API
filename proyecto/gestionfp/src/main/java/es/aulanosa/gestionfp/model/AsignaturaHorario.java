@@ -12,6 +12,9 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Time;
 
+/**
+ * Clase que representa la entidad AsignaturasHorarios
+ */
 @Entity
 @Table(name = "AsignaturaHorario")
 @Data

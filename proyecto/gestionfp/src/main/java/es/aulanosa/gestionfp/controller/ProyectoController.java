@@ -13,10 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-<<<<<<< HEAD
-=======
 import java.util.EventObject;
->>>>>>> Añadir-endpoint-Proyectos
 import java.util.List;
 
 /**
@@ -126,8 +123,6 @@ public class ProyectoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe ningún proyecto con ese ID");
         }
     }
-
-<<<<<<< HEAD
     @GetMapping("/curso/{idCurso}/estudios/{idEstudios}")
     @Operation(summary = "Listar por curso y estudios")
     public ResponseEntity<?> listarPorCursoYEstudios(@PathVariable Integer idCurso, @PathVariable Integer idEstudios){
@@ -140,7 +135,7 @@ public class ProyectoController {
             errores.add(new ErrorDTO("E004", "No hay proyectos "));
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errores);
         }
-=======
+    }
     @GetMapping("/cursoEs/{idCurso}/estudiosEs/{idEstudios}")
     @Operation(summary = "Método para buscar todos los proyectos de un curso y unos estudios")
     //Consulta un proyecto por su ID
@@ -162,9 +157,5 @@ public class ProyectoController {
 
             return ResponseEntity.status(HttpStatus.OK).body(proyectosDTO);
         }
-
-
-
->>>>>>> Añadir-endpoint-Proyectos
     }
 }

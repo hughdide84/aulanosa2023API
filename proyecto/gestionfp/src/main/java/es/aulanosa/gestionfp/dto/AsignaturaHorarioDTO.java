@@ -16,6 +16,9 @@ import java.sql.Time;
 @AllArgsConstructor
 @Data
 
+/**
+ * Clase que representa la entidad AsignaturasHorarios en formato DTO
+ */
 public class AsignaturaHorarioDTO {
 
     private int id;

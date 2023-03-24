@@ -7,6 +7,7 @@ import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
 import es.aulanosa.gestionfp.model.AsignaturaHorario;
 import es.aulanosa.gestionfp.service.AsignaturaHorarioService;
 import es.aulanosa.gestionfp.service.AsignaturaHorarioServiceImp;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.hibernate.exception.SQLGrammarException;
@@ -23,10 +24,19 @@ import java.util.Optional;
 @RequestMapping("/api/asignaturaHorario")
 public class AsignaturaHorarioController {
 
+    /**
+     * Clase que gestiona las peticiones relacionadas con las asignaturasHorario
+     */
     @Autowired
     private AsignaturaHorarioServiceImp service;
 
+    /**
+     * Crea una nueva asignaturaHorario
+     * @param asignaturaHorarioDTO
+     * @return una nueva asignaturaHorario
+     */
     @PostMapping("")
+    @Operation(summary = "Crea una nueva asignaturaHorario")
     //falta @operation
     //API para dar de alta, se le pasa un objeto DTO por POST, lo convierte al model y lo inserta
     public ResponseEntity<?> altaAsignaturaHorario(@RequestBody AsignaturaHorarioDTO asignaturaHorarioDTO) {
@@ -46,7 +56,13 @@ public class AsignaturaHorarioController {
         }
     }
 
+    /**
+     * Devuelve una asignaturaHorario por su ID
+     * @param id
+     * @return una asignaturaHorario en específico
+     */
     @GetMapping("/{id}")
+    @Operation(summary = "Devuelve una asignaturaHorario por su ID")
     //consulta por id, se le pasa como variable el mismo, consulta si existe y en caso de que lo haga devuelve el objeto recuperado de la BD
     public ResponseEntity<?> consultaAsignaturaHorario(@PathVariable Integer id){
         try{
@@ -62,7 +78,12 @@ public class AsignaturaHorarioController {
         }
     }
 
+    /**
+     * Edita una asignaturaHorario existente
+     * @return una asignaturaHorario editada
+     */
     @PutMapping("")
+    @Operation(summary = "Edita una asignaturaHorario existente")
     //se le pasa un objeto completo por PUT, el programa comprueba que su ID exista en la BD y en caso de que lo haga cambia los valores que estén diferentes
     public ResponseEntity<?> editarAsignaturaHorario(@RequestBody AsignaturaHorarioDTO asignaturaHorarioDTO){
         try{
@@ -84,10 +105,16 @@ public class AsignaturaHorarioController {
             ErrorDTO errorDTO = new ErrorDTO("E0004", "No se ha introducido una asignaturaHorario válida");
             System.out.println("s");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDTO);
-
         }
     }
+
+    /**
+     * Elimina una asignaturaHorario existente
+     * @param id
+     * @return una asignaturaHorario eliminada
+     */
     @DeleteMapping("/{id}")
+    @Operation(summary = "Elimina una asignaturaHorario existente")
     //se le pasa un ID por API, el programa comprueba que exista en la BD y en caso afirmativo se borra de la misma
     public ResponseEntity<?> eliminarAsignaturaHorario(@PathVariable int id){
         try{
@@ -104,7 +131,12 @@ public class AsignaturaHorarioController {
         }
     }
 
+    /**
+     * Lista todas las asignaturasHorario
+     * @return una lista de asignaturasHorario
+     */
     @GetMapping("")
+    @Operation(summary = "Lista todas las asignaturasHorario")
     //lista todos los campos de la BD, en caso de que esta este vacia, devuelve un error personalizado
     public ResponseEntity<?> listarTodoAsignaturaHorario(){
         if(!service.listarTodoAsignaturaHorario().isEmpty()){
@@ -129,7 +161,12 @@ public class AsignaturaHorarioController {
         }
     }
 
+    /**
+     * Lista todas las asignaturasHorario de un curso, estudio y nivel
+     * @return una lista de asignaturasHorario de un curso, estudio y nivel
+     */
     @GetMapping("/curso/{curso}/estudio/{estudio}/nivel/{nivel}")
+    @Operation(summary = "Lista todas las asignaturasHorario filtrando por curso, estudio y nivel")
     //se le pasan las IDs del curso y estudio, además del nivel, desde AsignaturaHorario relaciona con Asignatura, que es la tabla que tiene--
     //los campos necesarios para hacer la respuesta, compruebo que lo que me devuelve no esté vacío y luego lo devuelvo en caso afirmativo
     public ResponseEntity<?> listarCursoEstudiosYNivel(@PathVariable(value = "curso") int idCurso, @PathVariable(value = "estudio") int idEstudio, @PathVariable(value = "nivel")int nivel) throws NoSeHaEncontradoException {
