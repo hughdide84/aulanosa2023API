@@ -1,6 +1,7 @@
 package es.aulanosa.gestionfp.service;
 
 import es.aulanosa.gestionfp.excepciones.NoSeHaEncontradoException;
+import es.aulanosa.gestionfp.model.Alumno;
 import es.aulanosa.gestionfp.model.AlumnoExterno;
 
 import java.util.List;
@@ -51,5 +52,12 @@ public interface AlumnoExternoService {
     List<AlumnoExterno> buscarPorTitulacionEs(String titulacion);
     List<AlumnoExterno> buscarPorEspecialidadConteniendo(String especialidad);
     List<AlumnoExterno> buscarPorEspecialidadEs(String especialidad);
+
+    /**
+     * Método para listar todos los AlumnosExternos de la BD relacionados con un IdCurso proporcionado
+     * @param id IdCurso para la busqueda de datos
+     * @return Lista con todos los AlumnosExternos que se relacionen con ese curso
+     */
+    List<AlumnoExterno> buscarPorIdCurso(Integer id) throws NoSeHaEncontradoException;
 
 }

@@ -16,6 +16,8 @@ public interface AlumnoExternoRepository extends JpaRepository<AlumnoExterno, In
     @Query("select a from AlumnoExterno a join fetch a.curso c where c.estado = 'A'")
     List<AlumnoExterno> findAllAlumnoExternosActivos();
 
+    List<AlumnoExterno> findAllByIdCurso(Integer id);
+
     AlumnoExterno findFirstByNombre(String nombre);
     List<AlumnoExterno> findByNombreContaining(String nombre);
     List<AlumnoExterno> findByEmailContaining(String email);

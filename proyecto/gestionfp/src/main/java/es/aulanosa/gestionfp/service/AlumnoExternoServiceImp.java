@@ -136,6 +136,17 @@ public class AlumnoExternoServiceImp implements AlumnoExternoService {
         return repository.findByEspecialidad(especialidad);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<AlumnoExterno> buscarPorIdCurso(Integer id) throws NoSeHaEncontradoException {
+        if(!repository.findAllByIdCurso(id).isEmpty()){
+            return repository.findAllByIdCurso(id);
+        }else{
+            throw new NoSeHaEncontradoException("No se han encontrado");
+        }
+    }
 
 
 }
